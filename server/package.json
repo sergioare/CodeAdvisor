@@ -1,0 +1,20 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Backend codeAdvisor project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergioare/CodeAdvisor.git"
+  },
+  "author": "Group 11",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sergioare/CodeAdvisor/issues"
+  },
+  "homepage": "https://github.com/sergioare/CodeAdvisor#readme"
+}
