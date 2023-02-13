@@ -1,6 +1,6 @@
 import styles from './Landing.module.css'
 import Navbar from '../Navbar/Navbar';
-import { images, textLanding } from './data';
+import { images, textLanding, icons } from './data';
 
 const Landing = () => {
     return (
@@ -12,6 +12,9 @@ const Landing = () => {
           <div className={styles.leftSide}>
             <h1>{textLanding.h1}</h1>
             <p>{textLanding.p1}</p>
+            <div>
+              
+            </div>
           </div>
 
           <div className={styles.rightSide}>
