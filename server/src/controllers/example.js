@@ -1,0 +1,1 @@
+const BIENVENIDA = 'Hola mundo';
