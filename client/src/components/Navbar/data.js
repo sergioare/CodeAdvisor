@@ -11,4 +11,7 @@ export const navbarItems =[
     {
         name: 'Contact'
     },
+    {
+        name: 'QAs'
+    },
 ]
