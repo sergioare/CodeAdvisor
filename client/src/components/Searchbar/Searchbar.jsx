@@ -16,6 +16,7 @@ const Searchbar = () => {
           className={styles.btn}
           type="submit"
           >
+            
          <i className="fa-sharp fa-solid fa-magnifying-glass"></i>
         </button>
         </div>
