@@ -1,3 +1,6 @@
+@use '../Styles/mixins';
+@import '../Styles/_variables.scss';
+
 .navbar{
     display: flex;
     position: fixed;
@@ -8,25 +11,20 @@
 }
 
 .navLeft{
-    display: flex;
+    @include mixins.create-flexbox;
     flex: 1;
-    justify-content: center;
-    align-items: center;
-    color: #9196f1;
+    color: $primary-color;
     font-weight: 800;
     font-size: 2vw;
 }
 
 .navRight{
-    display: flex;
-    
+    @include mixins.create-flexbox;
     margin-top: 10px;
     flex: 3;
-    border-radius:4em 0 0 4em ;
     gap: 8vw;
-    justify-content: center;
-    align-items: center;
-    background-color: #9196f1;
+    border-radius:4em 0 0 4em ;
+    background-color: $primary-color;
     font-weight: bolder;  
     
 }
