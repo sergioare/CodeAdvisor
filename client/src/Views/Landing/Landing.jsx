@@ -1,5 +1,7 @@
 import './Landing.scss'
 import Navbar from '../../components/Navbar/Navbar';
+import Cards from "../../components/Cards/Cards"
+// import { images, textLanding } from './data';
 import { images, textLanding, icons } from './data';
 
 const Landing = () => {
@@ -29,8 +31,10 @@ const Landing = () => {
                 key={index}
               />
             ))}
-          </div>     
+          </div>  
 
+          <Cards />
+      
         </div>
     );
 };
