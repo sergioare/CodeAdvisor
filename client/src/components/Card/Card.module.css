@@ -1,0 +1,21 @@
+.cardCont{
+    border: solid 1px white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+    margin-bottom: 50px;
+
+    border-radius: 1em;
+}
+
+.cardCont h1{
+  color: black;
+  display: flex;
+}
+
+.img {
+    height: 250px;
+    width: 250px;
+    border-radius: 90em;
+}

@@ -1,0 +1,15 @@
+.container {
+  
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    gap: 30px;
+    place-content: center;
+   background-color: #9196f1;
+   margin-top: 150px ;
+   
+   width: 100%;
+}
+
+.container h1{
+  color: white;
+}
