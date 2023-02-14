@@ -5,22 +5,25 @@ import Card from 'react-bootstrap/Card';
 const CardGeneral = (props) =>{
     return(
        
-        <div className="container">
-            <Card>
+        <div>
+            
+        
+            <Card className="cardMain">
               <Card.Img variant="top" src={props.img} />
               <Card.Body className="cardBg">
                 <Card.Title>{props.name}</Card.Title>
-                <Card.Text>
-                Programming Language: {props.Programming_language}
+                <Card.Text className="letra">
+                Programming Language: <p>{props.Programming_language}</p>
                 <br></br>
-                Native language: {props.Native_language}
+                Native language: <p>{props.Native_language}</p>
                 <br></br>
-                Ranking: {props.Ranking}
+                Ranking: <p>{props.Ranking}</p>
                 </Card.Text>
               
                 <Button variant="primary">Meet Advisor</Button>
               </Card.Body>
             </Card>
+
             </div>
     
 

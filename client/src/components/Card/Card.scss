@@ -1,44 +1,26 @@
-@import "~bootstrap/scss/bootstrap";
 @import '../Styles/_variables.scss';
 
-
-.container{
-  // border: solid 1px white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 80px;
-    margin-bottom: 50px;
-  // display:flex;
-  // background-color: $primary-color;
-  // width: 100%;
+.cardMain{
+  margin-top: 50px;
+  margin-bottom: 30px;
 }
 
-// .cardBg{
-//   // background-color:$primary-color;
-// }
-// .cardCont{
-//     border: solid 1px white;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     margin-top: 80px;
-//     margin-bottom: 50px;
 
-//     border-radius: 1em;
-// }
+.cardBg{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+   
 
-// .cardCont h1{
-//   color: black;
-//   display: flex;
-// }
+}
+.letra{
+text-align: center;
 
-// .img {
-//     height: 250px;
-//     width: 250px;
-//     border-radius: 90em;
-// }
 
-// .cardBody{
-//   background-color: rgb(155, 4, 29);
-// }
+}
+
+.letra p{
+  color: $primary-color;
+  font-weight: bold;
+  margin: 0px;
+  }
