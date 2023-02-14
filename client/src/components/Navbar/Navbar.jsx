@@ -1,6 +1,7 @@
 import './Navbar.scss'
 import { navbarItems } from './data';
 import Searchbar from '../Searchbar/Searchbar';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
@@ -11,7 +12,7 @@ const Navbar = () => {
            </div> 
             <div className='navRight'>
                     {navbarItems.map((item, index)=>{
-                        return <div key={index}>{item.name}</div>
+                        return <Link to={item.path} ><div key={index}>{item.name}</div></Link>
                     })}
                     <Searchbar/>
             </div>
