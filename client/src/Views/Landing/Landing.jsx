@@ -1,5 +1,5 @@
 import './Landing.scss'
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../../components/Navbar/Navbar';
 import { images, textLanding, icons } from './data';
 
 const Landing = () => {
