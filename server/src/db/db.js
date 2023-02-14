@@ -1,11 +1,11 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
-import  { Sequelize } from 'sequelize';
-//------------------------- firestore ------
+import  { Sequelize, where } from 'sequelize';
+//------------------------- firestore ------------
 import { initializeApp } from "firebase/app";
 //import { getAnalytics } from "firebase/analytics";
-import {collection, getDocs, getFirestore} from 'firebase/firestore';
-//------------------------------------------
+import {collection, getDocs, getFirestore, query} from 'firebase/firestore';
+//-----------------------------------------------
 
 const {
   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
@@ -38,8 +38,13 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 // -------------------------------------------------
 // db.collection('todos').getDocs();   crear collection
-// const todosCol = collection(db,'todos');
+ const todosCol = collection(db,'usuario');
 // const snapshot = await getDocs(todosCol);
+const simpleQuery = query(
+  todosCol,
+  where('usu','==','campo1')
+)
+console.log(simpleQuery)
 
 
 export const seqConn = async ()=>{
