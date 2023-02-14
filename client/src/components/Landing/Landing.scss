@@ -1,0 +1,69 @@
+@use '../Styles/mixins';
+@import '../Styles/_variables.scss';
+
+.landing{
+    display: flex;
+    // flex-wrap: wrap;
+    width: 100%;
+    height: 100vh;
+    // flex-direction: column;
+}
+.navbar{
+    display:flex;
+    width: 100;
+    height: 15vh;
+    margin-bottom: 20vh;
+}
+
+.leftSide{
+   @include mixins.create-flexbox;
+    flex-wrap: wrap;
+    width: 50%;
+   
+        h1 {
+            display: flex;
+            flex-wrap: wrap;
+            flex-basis: 70%;
+            margin-top: 15vh;
+            font-size: 3vw;
+            color:$primary-color;
+            
+        }
+        p{
+            display: flex;
+            flex-basis: 70%;
+            justify-content: space-around;
+            font-size: 2vw;
+            margin-top: -10vh;
+        }
+
+        .icons{
+            display: flex;
+            width: 70%;
+            height: fit-content;
+            justify-content: space-between;
+
+            .icon{
+                display: flex;
+                flex-wrap: wrap;
+                width: fit-content;
+                color:$primary-color;
+                font-size: 3vw;
+                
+            }
+        }
+}
+
+
+.rightSide{
+    @include mixins.create-flexbox;
+    width: 49%;
+   
+
+        img {
+        width: 30vw;
+        height: 55vh;
+        margin-top: 10vh;
+        border-radius: 50%;
+        }
+}

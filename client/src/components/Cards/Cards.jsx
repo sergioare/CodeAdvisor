@@ -1,4 +1,3 @@
-import styles from "../Cards/Cards.module.css"
 import Card from "../Card/Card"
 
 const Cards = () => {
@@ -41,7 +40,7 @@ const advisors = [{
 ]
     return(
         
-        <div className={styles.container}>
+        <div className="container">
         {/* <><h2>hola</h2></> */}
         <>
         {advisors.map((a) => {
