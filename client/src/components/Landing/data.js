@@ -12,9 +12,18 @@ export const images=[
         }
 ]
 
-export const icons=[{
-    facebook:<i class="fa-brands fa-facebook"></i>,
-    instagram:<i class="fa-brands fa-instagram"></i>,
-    linkedin:<i class="fa-brands fa-linkedin"></i>,
-    github: <i class="fa-brands fa-github"></i>
-}]
+export const icons=[
+    {
+        name:<i class="fa-brands fa-facebook"></i>,
+    },
+    {
+        name:<i class="fa-brands fa-instagram"></i>,
+    },
+    {
+        name:<i class="fa-brands fa-linkedin"></i>,
+    },
+    {
+        name:<i class="fa-brands fa-github"></i>
+    },
+    
+]
