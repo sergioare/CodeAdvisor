@@ -1,14 +1,17 @@
-const { Router } = require("express");
-//esto vide de handlers
-const {
-    getUsersHandler,
-    getUserHandler
-} = require('../handlers/usersHandlers')
+import {Router} from 'express';
+//import { getUsersHandler, getUserHandler} from '../handlers/usersHandlers';
 
-const usersRoute = Router()
+// const {
+//     getUsersHandler,
+//     getUserHandler
+// } = require('../handlers/usersHandlers')
 
-usersRoute.get('/',getUsersHandler)
-usersRoute.get('/:id',getUserHandler)
-usersRoute.post('/')
+const usersRoute = Router();
 
-module.exports = usersRoute
+// usersRoute.get('/',getUsersHandler)
+// usersRoute.get('/:id',getUserHandler)
+// usersRoute.post('/')
+//const usersRoute = 'Hola';
+//module.exports = usersRoute
+
+export default usersRoute;
