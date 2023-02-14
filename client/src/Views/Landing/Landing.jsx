@@ -1,6 +1,6 @@
 import './Landing.scss'
-import Navbar from '../Navbar/Navbar';
-import Cards from '../Cards/Cards';
+import Navbar from '../../components/Navbar/Navbar';
+import Cards from "../../components/Cards/Cards"
 // import { images, textLanding } from './data';
 import { images, textLanding, icons } from './data';
 
