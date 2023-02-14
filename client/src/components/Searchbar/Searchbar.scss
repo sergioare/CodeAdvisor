@@ -1,0 +1,32 @@
+@import '../Styles/_variables.scss';
+
+.searchbar{
+    background-color: white;
+    display: flex;
+    width: 15vw ;
+    border-radius:2em ;
+    height: 4.3vh;
+  
+        .input{
+            width: 70%;
+            height: 4vh;
+            border: none;
+            border-radius:2em ;
+            font-size: 1.1vw;
+            padding-left: 10px;
+            outline: none;
+        
+        }
+        
+        i {
+            color:$primary-color ;
+        
+        }
+        .btn{
+            width: 30%;
+            background: none;
+            border:none;
+            font-size: 1.2vw;
+        
+        }
+}
