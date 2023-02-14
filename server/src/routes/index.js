@@ -1,7 +1,17 @@
-const {Router} = require('express')
-const usersRoute = require('./usersRoute')
+import {Router} from 'express';
+//import usersRoute from './usersRoute';
+//import usersRoute from './usersRoute';
 
-const mainRouter = Router()
+const router = Router();
 
-mainRouter.use('/users', usersRoute)
-mainRouter.use('/adviser')
+//router.use('/users', usersRoute)
+// router.use('/adviser')
+ 
+router.get("/", (req,res)=>{
+    res.status(200).json({message : "Hola mundo"});
+})
+
+
+//const router = 'Hola';
+
+export default router;
