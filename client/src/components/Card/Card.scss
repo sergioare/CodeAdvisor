@@ -1,26 +1,24 @@
 @import '../Styles/_variables.scss';
 
-.cardMain{
+.cardMain {
   margin-top: 50px;
   margin-bottom: 30px;
+  border-radius: 10px;
 }
 
 
-.cardBg{
+.cardBg {
   display: flex;
-    flex-direction: column;
-    align-items: center;
-   
-
-}
-.letra{
-text-align: center;
-
-
+  flex-direction: column;
+  align-items: center;
 }
 
-.letra p{
+.letra {
+  text-align: center;
+}
+
+.letra p {
   color: $primary-color;
   font-weight: bold;
   margin: 0px;
-  }
+}
