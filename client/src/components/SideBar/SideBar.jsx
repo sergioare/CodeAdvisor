@@ -75,8 +75,8 @@ const SideBar = () => {
                     <input 
                         type="checkbox" 
                         value="Best Score" 
-                        checked={selectedFilter === "Best Score"} 
-                        onChange={handleFilterClick}
+                        checked={selectedOrder === "Best Score"} 
+                        onChange={handleOrderClick}
                     />
 
                     <div className={`option-item ${selectedOrder === "Best Score" ? "selected" : ""}`} onClick={handleOrderClick}>Best Score</div>
@@ -85,7 +85,7 @@ const SideBar = () => {
                     <input 
                         type="checkbox" 
                         value="Most Available" 
-                        checked={selectedFilter === "Most Available"} 
+                        checked={selectedOrder === "Most Available"} 
                         onChange={handleOrderClick}
                     />
                     <div className={`option-item ${selectedOrder === "Most Available" ? "selected" : ""}`} onClick={handleOrderClick}>Most Available</div>
@@ -95,7 +95,7 @@ const SideBar = () => {
                     <input 
                         type="checkbox" 
                         value="More Affordable" 
-                        checked={selectedFilter === "More Affordable"} 
+                        checked={selectedOrder === "More Affordable"} 
                         onChange={handleOrderClick}
                         />
                     <div className={`option-item ${selectedOrder === "More Affordable" ? "selected" : ""}`} onClick={handleOrderClick}>More Affordable</div>
