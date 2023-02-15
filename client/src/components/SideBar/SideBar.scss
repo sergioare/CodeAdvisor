@@ -1,0 +1,127 @@
+@use '../Styles/mixins';
+@import '../Styles/_variables.scss';
+
+// Sidebar styles
+.menu-icon {
+    width: 23px;
+    height: 23px;
+    background-image: url('https://cdn1.iconfinder.com/data/icons/office-222/91/General_Office_30-256.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: $title-bg-purple;
+    border-radius: 10px;
+    border: 3px solid $title-bg-purple;
+    cursor: pointer;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  .menu-icon:hover {
+    background-color: $text-bg-purple; 
+    box-shadow: 3px 3px $title-bg-light; 
+    border: 3px solid $text-bg-purple;
+  }
+
+.sidebar {
+    width: 250px;
+    height: 100%;
+    padding: 20px;
+    position: fixed;
+    left: -290px;
+    top: 0;
+    background-color: $title-bg-purple;
+    transition: all 0.3s ease-in-out;
+    z-index: 9999;
+    border: 2px solid darkpurple;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    
+    .sidebar-header {
+      position: relative;
+      margin-left: -20px;
+      margin-top: -20px;
+      background-color: $primary-color;
+      padding: 1px;
+      padding-bottom: 20px;
+      padding-right: 289px;
+      border-top-right-radius: 10px;
+    
+    }
+    &.open {
+      left: 0;
+    }
+  
+    h3 {
+      padding: 20px;
+      color: $title-bg-purple;
+      background-color: $title-bg-light;
+    }
+  
+    .options {
+      padding: 20px;
+      color: $text-bg-purple;
+      background-color: $text-bg-light;
+  
+      input[type="radio"],
+      input[type="checkbox"] {
+        margin-right: 10px;
+      }
+  
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+  
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  .filter-container {
+    background-color: $primary-color;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 5px;
+
+        .option-item{
+            cursor: pointer;
+
+
+        }
+
+  }
+  
+  .filter-item {
+    margin-right: 4px;
+    cursor: pointer;
+  }
+  
+  .filter-item:last-child {
+    margin-right: 0;
+  }
+
+  .sidebar-select{
+    background-color: $primary-color;
+    padding: 8px;
+    border-radius: 10px;
+    width: 120px;
+    cursor: pointer;
+  }
+  
+  .sidebar-title{
+    font-weight: 700;
+    text-shadow: 1px 1px 1px $primary-color;
+    font-size: 15px;
+  }
+  
+  
+  
