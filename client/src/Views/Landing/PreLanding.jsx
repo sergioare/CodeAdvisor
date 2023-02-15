@@ -1,6 +1,7 @@
 import './Landing.scss'
 import Navbar from '../../components/Navbar/Navbar';
-import { images, textLanding, icons } from './data';
+import { images, textLanding } from './data';
+import { icons } from '../../utils';
 
 const PreLanding = () => {
     return (
@@ -35,4 +36,4 @@ const PreLanding = () => {
     );
 };
 
-export default Landing;
+export default PreLanding;

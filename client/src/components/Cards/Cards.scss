@@ -1,0 +1,26 @@
+@import "~bootstrap/scss/bootstrap";
+@import '../Styles/_variables.scss';
+
+
+.container{
+  display: grid;
+    grid-template-columns: repeat(auto-fill, 261px);
+    gap: 30px;
+    place-content: center;
+    margin-top: 10px;
+    background-color: $primary-color;
+    border-top-left-radius: 500px;
+    border-bottom-right-radius: 800px;
+    max-width: 100%;
+    
+}
+
+
+.containerPrincipal{
+  width: 100%;
+    margin-top: 55px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 130px;
+}

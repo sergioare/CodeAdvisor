@@ -1,7 +1,27 @@
-import React from 'react'
+import './Home.scss'
+import Navbar from '../../components/Navbar/Navbar';
+import Cards from "../../components/Cards/Cards"
+import { icons } from '../../utils';
 
-export default function Home() {
+const Home = () => {
     return (
-        <div>Home</div>
-    )
-}
+        <div className='home'>
+          <div className='navbarHome'>
+            <Navbar/>
+          </div>
+
+           <div className='icons'>
+            {icons.map((icon, index)=>(
+              <div className='icon'>
+                {icon.name}
+                </div>
+            ))}
+            </div>
+                    
+          <Cards />
+      
+        </div>
+    );
+};
+
+export default Home;
