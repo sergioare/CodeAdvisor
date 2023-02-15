@@ -1,5 +1,7 @@
 const {Router} = require('express');
 const express = require('express');
+const userRoute = require("./userRoute");
+
 const {addStudent, 
     getAllStudents, 
     getStudent,
@@ -7,11 +9,20 @@ const {addStudent,
     deleteStudent
    } = require('../controllers/studentController');
 
+const { 
+    getAllUsers 
+    
+   } = require('../controllers/userController');
+
+
+
 const router = express.Router();
 
+router.get("/users", getAllUsers)
 
-//router.use('/users', usersRoute)
+router.use("/user", userRoute);
 // router.use('/adviser')
+
 
 const Hardcodeo = [
 
@@ -41,21 +52,23 @@ const Hardcodeo = [
 
 ]
  
+
+
 router.get("/", (req,res)=>{
     res.status(200).json(Hardcodeo);
-})
+});
 
 
+
+router.post('/student', addStudent);
 router.post('/student', addStudent);
 router.get('/students', getAllStudents);
 router.get('/student/:id', getStudent);
 router.put('/student/:id', updateStudent);
 router.delete('/student/:id', deleteStudent);
 
+
+
+
 module.exports = router;
 
-
-
-// module.exports = {
-//     routes: router
-// }
