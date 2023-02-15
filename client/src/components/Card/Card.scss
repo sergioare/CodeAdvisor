@@ -1,24 +1,80 @@
 @import '../Styles/_variables.scss';
 
-.cardMain {
-  margin-top: 50px;
-  margin-bottom: 30px;
-  border-radius: 10px;
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
+.cardMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  // background-color: $secundary-color;
+  width: 300px;
+  // height: 300px;
+  margin: 5px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cardMain img {
+  width: 100%;
+  height: 150px;
+  border-radius: 15px 15px 0 0;
+  object-fit: cover;
+  object-position: 0 0;
+}
 
 .cardBg {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.letra {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: white;
+  padding: 10px;
+  border-radius: 0 0 15px 15px;
   text-align: center;
+
+  h1 {
+    color: $title-bg-medium;
+    font-size: 24px;
+    // margin-top: 0;
+    font-weight: bold;
+  }
+
 }
 
-.letra p {
-  color: $primary-color;
-  font-weight: bold;
-  margin: 0px;
+.cardBg .letra {
+
+  h2 {
+    color: $secundary-color;
+    font-size: 17px;
+    margin: 0;
+  }
+
+  p {
+    color: text-bg-light;
+    font-size: 16px;
+    margin: 0;
+  }
+}
+
+.cardBg button {
+  background-color: $title-bg-light;
+  color: $text-bg-purple;
+  border: none;
+  padding: 7px 17px;
+  font-size: 15px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.cardBg button:hover {
+  background-color: $primary-color;
+  cursor: pointer;
 }
