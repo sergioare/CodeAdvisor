@@ -3,7 +3,7 @@ import "./ConfigSideBar.scss"
 
 function ConfigSideBar(props) {
     const [isEnglish, setIsEnglish] = useState(true);
-    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(true);
     const languageToggle = useRef(null);
     const themeToggle = useRef(null);
 
