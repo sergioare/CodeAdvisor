@@ -17,9 +17,25 @@
 
 .containerPrincipal {
   width: 100%;
-  // margin-top: 55px;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 40px;
+
+}
+
+.containeMessage h1 {
+  color: $title-bg-light;
+  font-size: 40px;
+  font-weight: bold;
+  margin-left: 90px;
+}
+
+.containeMessage p {
+  margin-top: 0;
+  color: $text-bg-light;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 90px;
 }
