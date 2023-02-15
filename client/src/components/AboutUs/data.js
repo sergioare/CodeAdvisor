@@ -1,0 +1,60 @@
+export const infoUs = [
+    {
+        id:"1",
+        img:"https://avatars.githubusercontent.com/u/110656227?v=4",
+        name: "Yoel Preza",
+        ocupation: "Full Stack Web Developer",
+        linkedin: <i class="fa-brands fa-facebook"></i>,
+        gitHub: <a href="https://github.com/mariatm97" ><i class="fa-brands fa-facebook"></i></a>,
+
+    },
+    {
+        id:"2",
+        name: "Teresa Moron",
+        ocupation: "Full Stack Web Developer",
+        linkedin: <i class="fa-brands fa-facebook"></i>,
+        gitHub: <i class="fa-brands fa-facebook"></i>,
+    },
+    {
+        id:"3",
+        name: "Santander Mendoza",
+        ocupation: "Full Stack Web Developer",
+        linkedin: <i class="fa-brands fa-facebook"></i>,
+        gitHub: <i class="fa-brands fa-facebook"></i>,
+    },
+    {
+        id:"4",
+        name: "David Morales",
+        ocupation: "Full Stack Web Developer",
+        linkedin: <i class="fa-brands fa-facebook"></i>,
+        gitHub: <i class="fa-brands fa-facebook"></i>,
+    },
+    {
+        id:"5",
+        name: "Nico Bisellach",
+        ocupation: "Full Stack Web Developer",
+        linkedin: <i class="fa-brands fa-facebook"></i>,
+        gitHub: <i class="fa-brands fa-facebook"></i>,
+    },
+    {
+        id:"6",
+        name: "Sergio Arevalo",
+        ocupation: "Full Stack Web Developer",
+        linkedin: <i class="fa-brands fa-facebook"></i>,
+        gitHub: <i class="fa-brands fa-facebook"></i>,
+    },
+    {
+        id:"7",
+        name: "Angel Pv",
+        ocupation: "Full Stack Web Developer",
+        linkedin: <i class="fa-brands fa-facebook"></i>,
+        gitHub: <i class="fa-brands fa-facebook"></i>,
+    },
+    {
+        id:"8",
+        name: "Brayan",
+        ocupation: "Full Stack Web Developer",
+        linkedin: <i class="fa-brands fa-facebook"></i>,
+        gitHub: <i class="fa-brands fa-facebook"></i>,
+    },
+]

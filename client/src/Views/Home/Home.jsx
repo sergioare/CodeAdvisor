@@ -1,14 +1,12 @@
 import './Home.scss'
-import Navbar from '../../components/Navbar/Navbar';
 import Cards from "../../components/Cards/Cards"
 import { icons } from '../../utils';
 
 const Home = () => {
     return (
         <div className='home'>
-          <div className='navbarHome'>
-            <Navbar/>
-          </div>
+        
+               <Cards />
 
            <div className='icons'>
             {icons.map((icon, index)=>(
@@ -18,7 +16,6 @@ const Home = () => {
             ))}
             </div>
                     
-          <Cards />
       
         </div>
     );

@@ -10,17 +10,17 @@ const PreLanding = () => {
             <Navbar/>
           </div>
 
-          <div className='leftSide'>
-            <h1>{textLanding.h1}</h1>
-            <p>{textLanding.p1}</p>
-            <div className='icons'>
-            {icons.map((icon, index)=>(
-              <div className='icon'>
-                {icon.name}
-                </div>
-            ))}
+      <div className='leftSide'>
+        <h1>{textLanding.h1}</h1>
+        <p>{textLanding.p1}</p>
+        <div className='icons'>
+          {icons.map((icon, index) => (
+            <div className='icon'>
+              {icon.name}
             </div>
-          </div>
+          ))}
+        </div>
+      </div>
 
           <div className='rightSide'>
             {images.map((image, index)=>(

@@ -21,7 +21,7 @@
    @include mixins.create-flexbox;
     flex-wrap: wrap;
     width: 50%;
-   
+
         h1 {
             display: flex;
             flex-wrap: wrap;
@@ -29,14 +29,14 @@
             margin-top: -13vh;
             font-size: 3vw;
             color:$title-bg-purple;
-            
+
         }
         p{
             display: flex;
             flex-basis: 70%;
             justify-content: space-around;
             font-size: 2vw;
-           
+
         }
 
         .icons{
@@ -51,7 +51,7 @@
                 width: fit-content;
                 color:$primary-color;
                 font-size: 3vw;
-                
+
             }
         }
 }
