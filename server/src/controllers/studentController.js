@@ -27,6 +27,7 @@ const getAllStudents = async (req, res, next) => {
     try {
         const students = await firestore.collection('students');
         const data = await students.get();
+        console.log(data);
         const studentsArray = [];
         if(data.empty) {
             res.status(404).send('No student record found');
