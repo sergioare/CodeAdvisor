@@ -1,7 +1,7 @@
 @use '../Styles/mixins';
 @import '../Styles/_variables.scss';
 
-.navbar{
+.navbar {
     display: flex;
     position: fixed;
     width: 100%;
@@ -10,7 +10,7 @@
     font-size: 1.1vw;
 }
 
-.navLeft{
+.navLeft {
     @include mixins.create-flexbox;
     flex: 1;
     color: $primary-color;
@@ -18,13 +18,18 @@
     font-size: 2vw;
 }
 
-.navRight{
+.navRight {
     @include mixins.create-flexbox;
     margin-top: 10px;
     flex: 3;
     gap: 8vw;
-    border-radius:4em 0 0 4em ;
+    border-radius: 4em 0 0 4em;
     background-color: $primary-color;
-    font-weight: bolder;  
-    
+    font-weight: bolder;
+}
+
+a:link,
+a:visited {
+    text-decoration: none;
+    color: white;
 }

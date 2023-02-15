@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
+import Cards from '../../components/Cards/Cards';
 
 export default function Home() {
-    return (
-        <div>Hola soy el home</div>
-    )
+  return (
+    <div>
+      <Cards />
+    </div>
+  )
 }
