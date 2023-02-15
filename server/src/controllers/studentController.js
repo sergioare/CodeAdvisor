@@ -1,13 +1,19 @@
-import firebase from '../db';
-//const firebase = require('../db');
-import Student from '../models/student';
-//const Student = require('../models/student');
+'use strict';
+// const firebase = require('../db/db');
+// const Student = require('../models/student');
+// const {getFirestore, collection} = require('firebase/firestore');
+// const firestore = firebase.firestore();
+
+//const firestore = getFirestore(app);
+// console.log(firebase.container.providers)
 
 
+const firebase = require('../db/db');
+const Student = require('../models/student');
 const firestore = firebase.firestore();
 
 
-export const addStudent = async (req, res, next) => {
+const addStudent = async (req, res, next) => {
     try {
         const data = req.body;
         await firestore.collection('students').doc().set(data);
@@ -17,7 +23,7 @@ export const addStudent = async (req, res, next) => {
     }
 }
 
-export const getAllStudents = async (req, res, next) => {
+const getAllStudents = async (req, res, next) => {
     try {
         const students = await firestore.collection('students');
         const data = await students.get();
@@ -48,48 +54,47 @@ export const getAllStudents = async (req, res, next) => {
     }
 }
 
-// const getStudent = async (req, res, next) => {
-//     try {
-//         const id = req.params.id;
-//         const student = await firestore.collection('students').doc(id);
-//         const data = await student.get();
-//         if(!data.exists) {
-//             res.status(404).send('Student with the given ID not found');
-//         }else {
-//             res.send(data.data());
-//         }
-//     } catch (error) {
-//         res.status(400).send(error.message);
-//     }
-// }
+const getStudent = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const student = await firestore.collection('students').doc(id);
+        const data = await student.get();
+        if(!data.exists) {
+            res.status(404).send('Student with the given ID not found');
+        }else {
+            res.send(data.data());
+        }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
 
-// const updateStudent = async (req, res, next) => {
-//     try {
-//         const id = req.params.id;
-//         const data = req.body;
-//         const student =  await firestore.collection('students').doc(id);
-//         await student.update(data);
-//         res.send('Student record updated successfuly');        
-//     } catch (error) {
-//         res.status(400).send(error.message);
-//     }
-// }
+const updateStudent = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const data = req.body;
+        const student =  await firestore.collection('students').doc(id);
+        await student.update(data);
+        res.send('Student record updated successfuly');        
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
 
-// const deleteStudent = async (req, res, next) => {
-//     try {
-//         const id = req.params.id;
-//         await firestore.collection('students').doc(id).delete();
-//         res.send('Record deleted successfuly');
-//     } catch (error) {
-//         res.status(400).send(error.message);
-//     }
-// }
+const deleteStudent = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        await firestore.collection('students').doc(id).delete();
+        res.send('Record deleted successfuly');
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
 
-
-// module.exports = {
-//     addStudent,
-//     getAllStudents,
-//     getStudent,
-//     updateStudent,
-//     deleteStudent
-// }
+module.exports = {
+    addStudent,
+    getAllStudents,
+    getStudent,
+    updateStudent,
+    deleteStudent
+}
