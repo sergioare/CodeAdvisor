@@ -11,4 +11,3 @@ export const getUser = () =>{
     return  bdData
 }
 
-//module.exports= {getAllUsers, getUser}
