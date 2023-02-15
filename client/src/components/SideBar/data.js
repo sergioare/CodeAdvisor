@@ -1,4 +1,5 @@
 const Countries = [
+    'All',
     'Argentina',
     'Bolivia',
     'Brazil',
@@ -13,6 +14,7 @@ const Countries = [
 ]
 
 const ProgrammingLanguages = [
+    'All',
     'JavaScript',
     'Python',
     'Java',
@@ -24,5 +26,10 @@ const ProgrammingLanguages = [
     'C',
 ]
 
+const MenuIcon = {
+    path: 'https://cdn1.iconfinder.com/data/icons/office-222/91/General_Office_30-256.png',
+    alt: 'menu icon'
+}
 
-export {Countries, ProgrammingLanguages}
+
+export {Countries, ProgrammingLanguages, MenuIcon}

@@ -2,16 +2,53 @@
 @import '../Styles/_variables.scss';
 
 // Sidebar styles
+.menu-icon {
+    width: 23px;
+    height: 23px;
+    background-image: url('https://cdn1.iconfinder.com/data/icons/office-222/91/General_Office_30-256.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: $title-bg-purple;
+    border-radius: 10px;
+    border: 3px solid $title-bg-purple;
+    cursor: pointer;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  .menu-icon:hover {
+    background-color: $text-bg-purple; 
+    box-shadow: 3px 3px $title-bg-light; 
+    border: 3px solid $text-bg-purple;
+  }
+
 .sidebar {
     width: 250px;
     height: 100%;
+    padding: 20px;
     position: fixed;
-    left: -250px;
+    left: -290px;
     top: 0;
     background-color: $primary-color;
     transition: all 0.3s ease-in-out;
     z-index: 9999;
+    border: 2px solid darkpurple;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    
+    .sidebar-header {
+      position: relative;
+      margin-left: -20px;
+      margin-top: -20px;
+
   
+      img {
+        width: 30px;
+      }
+    
+    }
     &.open {
       left: 0;
     }
@@ -44,6 +81,38 @@
       }
     }
   }
+
+  .filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .filter-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+  
+  .filter-item:last-child {
+    margin-right: 0;
+  }
+  
+  .filter-item label {
+    display: flex;
+    align-items: center;
+  }
+  
+  .filter-item input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  .filter-item input[type="checkbox"]:checked + label {
+    font-weight: bold;
+  }
+
   
   // Toggle button styles
   .toggle-btn {
@@ -63,6 +132,8 @@
       margin-bottom: 8px;
     }
   }
+
+  
   
   
   
