@@ -1,5 +1,5 @@
-import server from './src/server.js';
-import * as dotenv from 'dotenv';
+const server = require('./src/server.js');
+const dotenv = require('dotenv');
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
@@ -11,3 +11,7 @@ const PORT = process.env.PORT || 5000;
     console.log('Unable to initiate', error)
   }
 })(); 
+
+
+
+// "type": "module",

@@ -1,6 +1,6 @@
-import {Router} from 'express';
-//import usersRoute from './usersRoute';
-//import usersRoute from './usersRoute';
+const {Router} = require('express');
+
+
 
 const router = Router();
 
@@ -40,4 +40,4 @@ router.get("/", (req,res)=>{
 })
 
 
-export default router;
+module.exports = router;

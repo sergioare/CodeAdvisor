@@ -1,11 +1,10 @@
-import express from 'express';
-import cors from 'cors';
-import morgan from 'morgan';
-import cookieParser from 'cookie-parser';
-import router from './routes/index.js';
+const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const router = require('./routes/index.js');
 
 
-console.log(router)
 const server = express();
 
 server.use(cors());
@@ -15,5 +14,5 @@ server.use(cookieParser());
 
 server.use(router);
 
-  
-export default server;
+
+module.exports = server;
