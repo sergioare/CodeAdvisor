@@ -17,6 +17,7 @@
     margin-top: 20px;
     padding-left: 1px;
     padding-top: 1px;
+    
   }
   
   .menu-icon:hover {
@@ -97,6 +98,7 @@
 
         .option-item{
             cursor: pointer;
+            font-weight: 600;
 
 
         }
@@ -105,7 +107,9 @@
   
   .filter-item {
     margin-right: 4px;
+    font-weight: 600;
     cursor: pointer;
+    text-shadow: 1px 1px 1px $secundary-color;
   }
   
   .filter-item:last-child {

@@ -26,7 +26,8 @@ const SideBar = () => {
 
     return (
         <>
-        <i className="menu-icon fas fa-bars" onClick={handleMenuIconClick}></i>
+        <i className="menu-icon fas fa-bars" onClick={handleMenuIconClick} style={{position: "fixed"}}></i>
+
 
             <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
                 <div className="sidebar-header">
