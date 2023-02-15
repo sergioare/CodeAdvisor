@@ -30,7 +30,7 @@
     position: fixed;
     left: -290px;
     top: 0;
-    background-color: $primary-color;
+    background-color: $title-bg-purple;
     transition: all 0.3s ease-in-out;
     z-index: 9999;
     border: 2px solid darkpurple;
@@ -42,11 +42,11 @@
       position: relative;
       margin-left: -20px;
       margin-top: -20px;
-
-  
-      img {
-        width: 30px;
-      }
+      background-color: $primary-color;
+      padding: 1px;
+      padding-bottom: 20px;
+      padding-right: 289px;
+      border-top-right-radius: 10px;
     
     }
     &.open {
@@ -83,57 +83,45 @@
   }
 
   .filter-container {
+    background-color: $primary-color;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 5px;
+
+        .option-item{
+            cursor: pointer;
+
+
+        }
+
   }
   
   .filter-item {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
+    margin-right: 4px;
+    cursor: pointer;
   }
   
   .filter-item:last-child {
     margin-right: 0;
   }
-  
-  .filter-item label {
-    display: flex;
-    align-items: center;
-  }
-  
-  .filter-item input[type="checkbox"] {
-    margin-right: 5px;
-  }
-  
-  .filter-item input[type="checkbox"]:checked + label {
-    font-weight: bold;
-  }
 
-  
-  // Toggle button styles
-  .toggle-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: block;
-    width: 50px;
-    height: 50px;
+  .sidebar-select{
+    background-color: $primary-color;
+    padding: 8px;
+    border-radius: 10px;
+    width: 120px;
     cursor: pointer;
-  
-    span {
-      display: block;
-      width: 100%;
-      height: 4px;
-      background-color: $text-bg-purple;
-      margin-bottom: 8px;
-    }
   }
-
   
+  .sidebar-title{
+    font-weight: 700;
+    text-shadow: 1px 1px 1px $primary-color;
+    font-size: 15px;
+  }
   
   
   
