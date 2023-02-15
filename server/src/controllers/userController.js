@@ -1,7 +1,6 @@
 'use strict';
 
 const firebase = require('../db/db');
-const Student = require('../models/student');
 const User = require('../models/User');
 const firestore = firebase.firestore();
 
@@ -16,34 +15,6 @@ const addUser = async (req, res, next) => {
     }
 }
 
-const getAllUsers = async (req, res, next) => {
-    try {
-        const User = await firestore.collection('User');
-        const data = await User.get();
-        const userArray = [];
-        if(data.empty) {
-            res.status(404).send('No user record found');
-        }else {
-            data.forEach(doc => {
-                
-                const user = new Student(
-                    doc.id,
-                    doc.data().id,
-                    doc.data().Username,
-                    doc.data().Password,
-                    doc.data().Name,
-                    doc.data().Lastname,
-                    doc.data().StatusAdviser,
-                    doc.data().StatusAdmin,
-                );
-                userArray.push(user);
-            });
-            res.send(userArray);
-        }
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
-}
 
 const getUser = async (req, res, next) => {
     try {
@@ -64,8 +35,8 @@ const updateUser = async (req, res, next) => {
     try {
         const id = req.params.id;
         const data = req.body;
-        const student =  await firestore.collection('User').doc(id);
-        await student.update(data);
+        const user =  await firestore.collection('User').doc(id);
+        await user.update(data);
         res.send('User record updated successfuly');        
     } catch (error) {
         res.status(400).send(error.message);
@@ -84,7 +55,6 @@ const deleteUser = async (req, res, next) => {
 
 module.exports = {
     addUser,
-    getAllUsers,
     getUser,
     updateUser,
     deleteUser
