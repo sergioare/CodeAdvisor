@@ -33,6 +33,14 @@ const SortMethod =[
 
 ]
 
+const Languages = [
+    "English",
+    "Spanish"
+]
 
+const Specialties = [
+    "Advisor",
+    "Freelance Developer"
+]
 
-export {Countries, ProgrammingLanguages, SortMethod}
+export {Countries, ProgrammingLanguages, SortMethod, Languages, Specialties}
