@@ -1,10 +1,9 @@
 import './Landing.scss'
 import Navbar from '../../components/Navbar/Navbar';
-import Cards from "../../components/Cards/Cards"
-// import { images, textLanding } from './data';
-import { images, textLanding, icons } from './data';
+import { images, textLanding } from './data';
+import { icons } from '../../utils';
 
-const Landing = () => {
+const PreLanding = () => {
     return (
         <div className='landing'>
           <div className='navbar'>
@@ -31,12 +30,10 @@ const Landing = () => {
                 key={index}
               />
             ))}
-          </div>  
+          </div>     
 
-          <Cards />
-      
         </div>
     );
 };
 
-export default Landing;
+export default PreLanding;
