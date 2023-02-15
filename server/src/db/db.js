@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
-import  { Sequelize, where } from 'sequelize';
+//import  { Sequelize, where } from 'sequelize';
 //------------------------- firestore ------------
 import { initializeApp } from "firebase/app";
 //import { getAnalytics } from "firebase/analytics";
@@ -11,10 +11,10 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
 } = process.env
 
-export const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
-  dialect: 'postgres', 
-  native: false, 
-})
+// export const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
+//   dialect: 'postgres', 
+//   native: false, 
+// })
 
 //--------------------------------------------------------Firebase-------------------
 // TODO: Add SDKs for Firebase products that you want to use
@@ -47,15 +47,5 @@ const simpleQuery = query(
 console.log(simpleQuery)
 
 
-export const seqConn = async ()=>{
-  try {
-    sequelize
-    .authenticate()
-    .then(()=>
-    console.log("Authenticate has been successfull"))
-  } catch (error) {
-    console.log("Authenticate has not been succesfull", error)
-  }
-}
 
 // Here I am CodigoJaguar

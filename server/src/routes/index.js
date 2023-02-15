@@ -36,10 +36,8 @@ const Hardcodeo = [
 ]
  
 router.get("/", (req,res)=>{
-    res.status(200).json({message : "Hola mundo"});
+    res.status(200).json(Hardcodeo);
 })
 
-
-//const router = 'Hola';
 
 export default router;
