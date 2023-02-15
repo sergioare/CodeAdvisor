@@ -26,10 +26,13 @@ const ProgrammingLanguages = [
     'C',
 ]
 
-const MenuIcon = {
-    path: 'https://cdn1.iconfinder.com/data/icons/office-222/91/General_Office_30-256.png',
-    alt: 'menu icon'
-}
+const SortMethod =[
+    "Best Score",
+    "Most Available",
+    "More Affordable",
+
+]
 
 
-export {Countries, ProgrammingLanguages, MenuIcon}
+
+export {Countries, ProgrammingLanguages, SortMethod}

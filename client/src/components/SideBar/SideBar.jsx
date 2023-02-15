@@ -1,4 +1,4 @@
-import { Countries, ProgrammingLanguages } from "./data"
+import { Countries, ProgrammingLanguages, SortMethod } from "./data"
 import './SideBar.scss'
 import React, { useState } from "react";
 
@@ -26,10 +26,10 @@ const SideBar = () => {
 
     return (
         <>
-            <div className="menu-icon" onClick={handleMenuIconClick}></div>
+        <i class="menu-icon fas fa-bars" onClick={handleMenuIconClick}></i>
             <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
                 <div className="sidebar-header">
-                    <div className="menu-icon" onClick={handleMenuIconClick}></div>
+                <i class="menu-icon fas fa-bars" onClick={handleMenuIconClick}></i>
                 </div>
                 <div className="sidebar-content">
                     <p className="sidebar-title">I'm looking for:</p>
@@ -69,37 +69,21 @@ const SideBar = () => {
                         })}
                     </select>
                     <p className="sidebar-title">Sort by:</p>
-
                     <div className="options-container">
-                    <div className="filter-container">
-                    <input 
-                        type="checkbox" 
-                        value="Best Score" 
-                        checked={selectedOrder === "Best Score"} 
-                        onChange={handleOrderClick}
-                    />
 
-                    <div className={`option-item ${selectedOrder === "Best Score" ? "selected" : ""}`} onClick={handleOrderClick}>Best Score</div>
-                    </div>
-                    <div className="filter-container">
-                    <input 
-                        type="checkbox" 
-                        value="Most Available" 
-                        checked={selectedOrder === "Most Available"} 
-                        onChange={handleOrderClick}
-                    />
-                    <div className={`option-item ${selectedOrder === "Most Available" ? "selected" : ""}`} onClick={handleOrderClick}>Most Available</div>
-                    </div>
-                    <div className="filter-container" >
-                        
-                    <input 
-                        type="checkbox" 
-                        value="More Affordable" 
-                        checked={selectedOrder === "More Affordable"} 
-                        onChange={handleOrderClick}
-                        />
-                    <div className={`option-item ${selectedOrder === "More Affordable" ? "selected" : ""}`} onClick={handleOrderClick}>More Affordable</div>
-                    </div>
+                        {SortMethod.map((item) => {
+                            return (<div className="filter-container">
+                                <input 
+                                    type="checkbox" 
+                                    value = {item}
+                                    checked={selectedOrder === item} 
+                                    onChange={handleOrderClick}
+                                />
+            
+                                <div className={`option-item ${selectedOrder === item ? "selected" : ""}`} onClick={handleOrderClick}>{item}</div>
+                                </div>)
+                        })}
+
                     </div>
         </div>
       </div>
