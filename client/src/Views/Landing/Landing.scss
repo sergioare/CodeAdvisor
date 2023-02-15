@@ -9,18 +9,47 @@
     background-image: url(../../assets/bg-1.png);
     background-size: 105% 100%;
     background-repeat: no-repeat;
+
+    .icons{
+        display: flex;
+        width: 50%;
+        height: fit-content;
+        justify-content: space-evenly;
+               
+        .icon{
+            display: flex;
+            flex-wrap: wrap;
+            width: fit-content;
+            color:$primary-color;
+            font-size: 3vw;
+
+        }
+    }
 }
-.navbar{
+.navbarLanding{
     display:flex;
     width: 100vw;
     height: 15vh;
     color:$title-bg-purple;
+    margin-bottom: 15vh;
 }
 
 .leftSide{
+    @include mixins.create-flexbox;
+    width: 50%;
+    
+        img {
+        width: 30vw;
+        height: 55vh;
+        margin-top: -20vh;
+        border-radius: 50%;
+        }
+}
+.rightSide{
    @include mixins.create-flexbox;
     flex-wrap: wrap;
     width: 50%;
+
 
         h1 {
             display: flex;
@@ -39,32 +68,6 @@
 
         }
 
-        .icons{
-            display: flex;
-            width: 70%;
-            height: fit-content;
-            justify-content: space-between;
-
-            .icon{
-                display: flex;
-                flex-wrap: wrap;
-                width: fit-content;
-                color:$primary-color;
-                font-size: 3vw;
-
-            }
-        }
-}
-
-
-.rightSide{
-    @include mixins.create-flexbox;
-    width: 49%;
-
-        img {
-        width: 30vw;
-        height: 55vh;
-        margin-top: -20vh;
-        border-radius: 50%;
-        }
-}
+    }
+    
+    

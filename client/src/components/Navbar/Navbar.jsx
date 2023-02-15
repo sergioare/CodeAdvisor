@@ -12,7 +12,7 @@ const Navbar = () => {
       </div>
       <div className='navRight'>
         {navbarItems.map((item, index) => {
-          return <Link to={item.path} ><div key={index}>{item.name}</div></Link>
+          return <Link to={item.path} key={index}><div key={index}>{item.name}</div></Link>
         })}
         <Searchbar />
       </div>

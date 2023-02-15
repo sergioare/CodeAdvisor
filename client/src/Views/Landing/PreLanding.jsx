@@ -6,23 +6,11 @@ import { icons } from '../../utils';
 const PreLanding = () => {
     return (
         <div className='landing'>
-          <div className='navbar'>
+          <div className='navbarLanding'>
             <Navbar/>
           </div>
-
-      <div className='leftSide'>
-        <h1>{textLanding.h1}</h1>
-        <p>{textLanding.p1}</p>
-        <div className='icons'>
-          {icons.map((icon, index) => (
-            <div className='icon'>
-              {icon.name}
-            </div>
-          ))}
-        </div>
-      </div>
-
-          <div className='rightSide'>
+          
+          <div className='leftSide'>
             {images.map((image, index)=>(
               <img 
                 src={image.src}
@@ -31,6 +19,19 @@ const PreLanding = () => {
               />
             ))}
           </div>     
+
+          <div className='rightSide'>
+            <h1>{textLanding.h1}</h1>
+            <p>{textLanding.p1}</p>
+          </div>
+          
+            <div className='icons'>
+            {icons.map((icon, index)=>(
+              <div className='icon' key={index}>
+                {icon.name}
+                </div>
+            ))}
+            </div>
 
         </div>
     );
