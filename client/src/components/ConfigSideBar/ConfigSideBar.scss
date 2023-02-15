@@ -1,0 +1,64 @@
+@use '../Styles/mixins';
+@import '../Styles/_variables.scss';
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 200px;
+  background-color: $title-bg-purple;
+  border-left: 1px solid #ccc;
+  padding: 20px;
+  border: red solid 5px;
+  
+  .title {
+    background-color: $primary-color;
+    color: $text-bg-purple;
+    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .language-toggle, .theme-toggle {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: #ccc;
+    }
+  }
+  
+  .language-toggle.active {
+    background-color: #ccc;
+  }
+  
+  .theme-toggle.active {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  a {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .signoff-button {
+    display: block;
+    width: 100%;
+    margin-top: auto;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: $primary-color;
+    color: #fff;
+    
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
