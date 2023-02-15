@@ -1,23 +1,34 @@
 @use '../Styles/mixins';
 @import '../Styles/_variables.scss';
 
-.sidebar {
+.Configsidebar {
   position: fixed;
   top: 0;
-  right: 0;
+  right: -300px;
   height: 100%;
   width: 200px;
   background-color: $title-bg-purple;
-  border-left: 1px solid #ccc;
+  border-left: 1px solid $title-bg-purple;
   padding: 20px;
-  border: red solid 5px;
-  
+  transition: right 0.4s ease-in-out;
+  border: $primary-color solid 2px;
+  border-right: 0;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+
+
+  &.open {
+    right: 0;
+  }
+
   .title {
     background-color: $primary-color;
     color: $text-bg-purple;
     font-weight: bold;
     padding: 10px;
     margin-bottom: 20px;
+    width: 100%;
+    border-radius: 10px;
   }
   
   .language-toggle, .theme-toggle {
@@ -27,19 +38,22 @@
     padding: 10px;
     border: none;
     cursor: pointer;
+    background-color: $primary-color;
+    color: $text-bg-purple;
+    border-radius: 10px;
     
     &:hover {
-      background-color: #ccc;
+      background-color: darken($primary-color, 10%);
     }
   }
   
   .language-toggle.active {
-    background-color: #ccc;
+    background-color: $secundary-color;
   }
   
   .theme-toggle.active {
     background-color: #000;
-    color: #fff;
+    color: $text-bg-purple;
   }
   
   a {
@@ -56,6 +70,7 @@
     cursor: pointer;
     background-color: $primary-color;
     color: #fff;
+    border-radius: 10px;
     
     &:hover {
       background-color: darken($primary-color, 10%);

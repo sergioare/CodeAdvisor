@@ -1,47 +1,47 @@
+import { useState, useRef } from 'react';
 import "./ConfigSideBar.scss"
 
-
 function ConfigSideBar(props) {
+    const [isEnglish, setIsEnglish] = useState(true);
+    const [isDarkMode, setIsDarkMode] = useState(false);
+    const languageToggle = useRef(null);
+    const themeToggle = useRef(null);
 
-    const languageToggle = document.querySelector('.language-toggle');
-    const themeToggle = document.querySelector('.theme-toggle');
-
-    let isEnglish = true;
-    let isDarkMode = false;
-
-    languageToggle?.addEventListener('click', () => {
-    isEnglish = !isEnglish;
-    languageToggle.textContent = isEnglish ? 'English' : 'Español';
-    languageToggle.classList.toggle('active', !isEnglish);
-    });
-
-    themeToggle?.addEventListener('click', () => {
-    isDarkMode = !isDarkMode;
-    document.body.classList.toggle('dark-mode', isDarkMode);
-    themeToggle.textContent = isDarkMode ? 'Dark Mode' : 'Light Mode';
-    themeToggle.classList.toggle('active', isDarkMode);
-    });
-
-    function signOff() {
-        console.log("singing off")
-    // code to sign off the user
+    function handleLanguageToggle() {
+        setIsEnglish(!isEnglish);
+        languageToggle.current.textContent = isEnglish ? 'Español' : 'English';
+        languageToggle.current.classList.toggle('active', isEnglish);
     }
 
+    function handleThemeToggle() {
+        setIsDarkMode(!isDarkMode);
+        document.body.classList.toggle('dark-mode', isDarkMode);
+        themeToggle.current.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+        themeToggle.current.classList.toggle('active', isDarkMode);
+    }
 
-    return(
-        <>
-        <h1>prueba</h1>
-            <div className="sidebar">
-            <div className="title">Configurations</div>
-            <button className="language-toggle">English</button>
-            <button className="theme-toggle">Light Mode</button>
+    function signOff() {
+        console.log("signing off");
+        // code to sign off the user
+    }
+
+    function handleTitleClick() {
+        props.toggleConfigBar();
+    }
+
+    return (
+        <div className={`Configsidebar ${props.isConfigBarOpen ? 'open' : 'closed'}`}>
+            <button className="title" onClick={handleTitleClick}>Configurations</button>
+            <button ref={languageToggle} className="language-toggle" onClick={handleLanguageToggle}>
+                {isEnglish ? 'English' : 'Español'}
+            </button>
+            <button ref={themeToggle} className="theme-toggle" onClick={handleThemeToggle}>
+                {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+            </button>
             <a href="https://example.com/report">Report a problem</a>
             <button className="signoff-button" onClick={signOff}>Sign off</button>
-            </div>
-
-        </>
-    )
-
+        </div>
+    );
 }
 
-export default ConfigSideBar
+export default ConfigSideBar;

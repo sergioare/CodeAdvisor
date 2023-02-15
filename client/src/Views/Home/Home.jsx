@@ -4,7 +4,7 @@ import { icons } from '../../utils';
 import SideBar from '../../components/SideBar/SideBar';
 import ConfigSideBar from '../../components/ConfigSideBar/ConfigSideBar';
 
-const Home = () => {
+const Home = (props) => {
   return (
     <div className='home'>
       <SideBar/>
@@ -15,8 +15,8 @@ const Home = () => {
             {icon.name}
           </div>
         ))}
-        <ConfigSideBar/>
       </div>
+      <ConfigSideBar isConfigBarOpen={props.isConfigBarOpen} toggleConfigBar={props.toggleConfigBar}/>
 
 
     </div>
