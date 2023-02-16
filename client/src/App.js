@@ -5,16 +5,22 @@ import Navbar from './components/Navbar/Navbar';
 
 function App() {
   const location = useLocation();
-  return (
-    <div>
-      {location.pathname === '/home' && <Navbar />}
-      <Routes>
-        <Route exact path='/' element={<Landing />} />
-        <Route path='/home' element={<Home />} />
-        <Route path='/about' element={<AboutUs />} />
 
-      </Routes>
-    </div>
+  const [isConfigBarOpen, setIsConfigBarOpen] = useState(false);
+
+  const toggleConfigBar = () => {
+    setIsConfigBarOpen(!isConfigBarOpen);
+  };
+  return (
+    <div className="App">
+    {location.pathname === '/home' && <Navbar toggleConfigBar={toggleConfigBar} />}
+    {isConfigBarOpen && <ConfigSideBar />}
+    <Routes>
+      <Route exact path='/' element={<Landing />} />
+      <Route path='/home' element={<Home toggleConfigBar={toggleConfigBar} isConfigBarOpen={isConfigBarOpen} />} />
+      <Route path='/about' element={<AboutUs />} />
+    </Routes>
+  </div>
   );
 }
 

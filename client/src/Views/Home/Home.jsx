@@ -3,11 +3,14 @@ import Cards from "../../components/Cards/Cards"
 import { icons } from '../../Utils/utils';
 import { Commercial } from '../../components/Commercial/Commercial';
 import Testimonials  from '../../components/Testimonials/Testimonials';
+import SideBar from '../../components/SideBar/SideBar';
+import ConfigSideBar from '../../components/ConfigSideBar/ConfigSideBar';
 
-const Home = () => {
+const Home = (props) => {
   return (
     <div className='home'>
-      <Commercial />
+      <Commercial />     
+      <SideBar/>
       <Cards />
       <Testimonials />
       <div className='icons'>
@@ -17,6 +20,7 @@ const Home = () => {
           </div>
         ))}
       </div>
+      <ConfigSideBar isConfigBarOpen={props.isConfigBarOpen} toggleConfigBar={props.toggleConfigBar}/>
 
 
     </div>

@@ -1,0 +1,108 @@
+@use '../Styles/mixins';
+@import '../Styles/_variables.scss';
+
+// Sidebar styles
+.menu-icon {
+    width: 23px;
+    height: 23px;
+    content: "\f0c9";
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: $title-bg-purple;
+    border-radius: 10px;
+    border: 3px solid $title-bg-purple;
+    cursor: pointer;
+    margin-left: 20px;
+    margin-top: 20px;
+    padding-left: 1px;
+    padding-top: 1px;
+    
+  }
+  
+  .menu-icon:hover {
+    background-color: $text-bg-purple;
+    box-shadow: 3px 3px $title-bg-light;
+    border: 3px solid $text-bg-purple;
+  }
+  
+
+.sidebar {
+    margin-top: 74px;
+    height: 100%;
+    padding: 20px;
+    position: fixed;
+    left: -300px;
+    top: 0;
+    background-color: $title-bg-purple;
+    transition: all 0.3s ease-in-out;
+    z-index: 9999;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 290px;
+    
+    
+    
+    .sidebar-header {
+      position: relative;
+      margin-left: -20px;
+      margin-top: -20px;
+      background-color: $primary-color;
+      padding-bottom: 16px;
+      border-top-right-radius: 10px;
+      width: 290px;
+    
+    }
+    &.open {
+      left: 0;
+      width: 290px;
+    }
+
+  }
+
+  .filter-container {
+    background-color: $primary-color;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 5px;
+
+        .option-item{
+            cursor: pointer;
+            font-weight: 600;
+
+
+        }
+
+  }
+  
+  .filter-item {
+    margin-right: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    text-shadow: 1px 1px 1px $secundary-color;
+  }
+  
+  .filter-item:last-child {
+    margin-right: 0;
+  }
+
+  .sidebar-select{
+    background-color: $primary-color;
+    padding: 8px;
+    border-radius: 10px;
+    width: 120px;
+    cursor: pointer;
+  }
+  
+  .sidebar-title{
+    font-weight: 700;
+    text-shadow: 1px 1px 1px $primary-color;
+    font-size: 15px;
+  }
+  
+  
+  
