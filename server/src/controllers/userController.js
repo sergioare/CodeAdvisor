@@ -1,5 +1,3 @@
-'use strict';
-
 const firebase = require('../db/db');
 const User = require('../models/User');
 const firestore = firebase.firestore();
@@ -14,7 +12,6 @@ const addUser = async (req, res, next) => {
         res.status(400).send(error.message);
     }
 }
-
 
 const getUser = async (req, res, next) => {
     try {

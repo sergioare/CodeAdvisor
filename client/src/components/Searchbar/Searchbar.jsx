@@ -1,11 +1,11 @@
-import styles from './Searchbar.module.css'
+import  './Searchbar.scss'
 
 
 const Searchbar = () => {
     return (
-        <div className={styles.searchbar}>
+        <div className='searchbar'>
           <input
-            className={styles.input}
+            className='input'
             autoComplete="off"
             type="text"
             placeholder="Search..."
@@ -13,7 +13,7 @@ const Searchbar = () => {
           />
           
           <button
-          className={styles.btn}
+          className='btn'
           type="submit"
           >
          <i className="fa-sharp fa-solid fa-magnifying-glass"></i>
