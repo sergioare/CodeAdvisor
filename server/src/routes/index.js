@@ -1,7 +1,19 @@
-const {Router} = require('express')
-const usersRoute = require('./usersRoute')
+const {Router} = require('express');
+const express = require('express');
+const userRoute = require("./userRoute");
 
-const mainRouter = Router()
+const getAllUsers  = require('../controllers/usersController');
 
-mainRouter.use('/users', usersRoute)
-mainRouter.use('/adviser')
+
+
+const router = express.Router();
+
+router.get("/users", getAllUsers)
+
+router.use("/user", userRoute);
+
+
+
+
+module.exports = router;
+
