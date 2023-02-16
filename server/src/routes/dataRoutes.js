@@ -5,6 +5,7 @@ const {
     updateAutor,
 
     getReviewrs,
+    getReviewr,
     addReviewrs,
     updateReviewrs,
 
@@ -22,6 +23,7 @@ dataRoute.post('/autores/',addAutor);
 dataRoute.put('/autores/:id',updateAutor);
 
 dataRoute.get('/reviewrs/',getReviewrs);
+dataRoute.get('/reviewrs/:id',getReviewr)
 dataRoute.post('/reviewrs/',addReviewrs);
 dataRoute.put('/reviewrs/:id',updateReviewrs);
 

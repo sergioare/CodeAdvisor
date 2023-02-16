@@ -2,7 +2,7 @@ const firebase = require('../db/db');
 const {Data, Autor, Reviewrs, Lengaje, Specialty} = require('../models/database');
 const firestore = firebase.firestore();
 
-
+//------------/ AUTORES DE LA PAGINA /--------------------//
 const getAutores = async (req, res, next) => {
     try {
         const fire = await firestore.collection('Autores');
@@ -14,14 +14,14 @@ const getAutores = async (req, res, next) => {
             data.forEach(element => {
                 const yo = new Autor(
                     element.id,
-                    element.data().name      || "not found",
-                    element.data().img       || "not found",
-                    element.data().ocupation || ["not found"],
-                    element.data().about     || "not found",
-                    element.data().linkedin  || "not found",
-                    element.data().gitHub    || "not found",
-                    element.data().email     || "not found",
-                    element.data().phone     || 000,
+                    element.data().name,
+                    element.data().img || "https://img.freepik.com/vector-premium/fondo-pagina-error-404-distorsion_23-2148086227.jpg?w=2000",  
+                    element.data().ocupation,
+                    element.data().about,
+                    element.data().linkedin,
+                    element.data().gitHub,
+                    element.data().email,
+                    element.data().phone, 
                 )
                 autorArray.push(yo)
             });
@@ -52,6 +52,7 @@ const updateAutor = async (req, res, next) => {
     }
 }
 
+//------------/ TESTIMONIOS DE LA PAGINA /--------------------//
 const getReviewrs = async (req, res, next) => {
     try {
         const fire = await firestore.collection('Reviewrs');
@@ -71,6 +72,21 @@ const getReviewrs = async (req, res, next) => {
                 revArray.push(yo)
             });
             res.status(200).send(revArray);
+        }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+const getReviewr = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const student = await firestore.collection('Reviewrs').doc(id);
+        const data = await student.get();
+        if(!data.exists) {
+            res.status(404).send('User with the given ID not found');
+        }else {
+
+            res.send(data.data());
         }
     } catch (error) {
         res.status(400).send(error.message);
@@ -97,6 +113,7 @@ const updateReviewrs = async (req, res, next) => {
     }
 }
 
+//------------/ LENGUAJES DE PROGRAMACION /--------------------//
 const getLenguajes = async (req, res, next) => {
     try {
         const fire = await firestore.collection('lenguajes');
@@ -143,6 +160,7 @@ const updateLenguajes = async (req, res, next) => {
     }
 }
 
+//------------/ OTROS XD DE LA PAGINA /--------------------//
 const getSpecialty = async (req, res, next) => {
     try {
         const fire = await firestore.collection('Specialty');
@@ -192,6 +210,7 @@ module.exports = {
     updateAutor,
 
     getReviewrs,
+    getReviewr,
     addReviewrs,
     updateReviewrs,
 
