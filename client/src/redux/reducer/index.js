@@ -1,12 +1,22 @@
-// import { } from '../actions/actions';
+import {GET_AUTORS } from '../actions/actions';
 
-// const initialState = {
-//   users: [],
-//   reviews:[],
+const initialState = {
+    users: [],
+    reviews: [],
+    autors: []
+};
 
-// };
+const rootReducer = (state = initialState, action) => {
+    switch (action.type){
+        case GET_AUTORS:
+            return{
+                ...state,
+                autors:action.payload
+            }
 
-// const rootReducer = (state = initialState, action) => {
-// }
+            default:
+                return{...state}
+    }
+}
 
-// export default rootReducer;
+export default rootReducer;
