@@ -30,8 +30,27 @@ class Reviewrs{
         this.ranking        = ranking;
     }
 }
+
+class Lengaje{
+    constructor(id, name, image,  traducción, description){
+        this.id         = id
+        this.name       = name;
+        this.image      = image;
+        this.traducción = traducción;
+        this.description= description;
+    }
+}
+class Specialty{
+    constructor(id, name, description){
+        this.id = id
+        this.name = name
+        this.description = description
+    }
+}
 module.exports = {
     Data,
     Autor,
-    Reviewrs
+    Reviewrs,
+    Lengaje,
+    Specialty
 };

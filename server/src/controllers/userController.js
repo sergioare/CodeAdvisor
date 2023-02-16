@@ -6,7 +6,7 @@ const firestore = firebase.firestore();
 const addUser = async (req, res, next) => {
     try {
         const data = req.body;
-        await firestore.collection('User').doc().set(data);
+        await firestore.collection('user').doc().set(data);
         res.send('Record saved successfuly');
     } catch (error) {
         res.status(400).send(error.message);

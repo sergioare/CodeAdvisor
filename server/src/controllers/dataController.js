@@ -1,5 +1,5 @@
 const firebase = require('../db/db');
-const {Data, Autor, Reviewrs} = require('../models/database');
+const {Data, Autor, Reviewrs, Lengaje, Specialty} = require('../models/database');
 const firestore = firebase.firestore();
 
 
@@ -16,12 +16,12 @@ const getAutores = async (req, res, next) => {
                     element.id,
                     element.data().name      || "not found",
                     element.data().img       || "not found",
-                    element.data().ocupation || "not found",
+                    element.data().ocupation || ["not found"],
                     element.data().about     || "not found",
                     element.data().linkedin  || "not found",
                     element.data().gitHub    || "not found",
                     element.data().email     || "not found",
-                    element.data().phone     || "not found",
+                    element.data().phone     || 000,
                 )
                 autorArray.push(yo)
             });
@@ -97,6 +97,94 @@ const updateReviewrs = async (req, res, next) => {
     }
 }
 
+const getLenguajes = async (req, res, next) => {
+    try {
+        const fire = await firestore.collection('lenguajes');
+        const data = await fire.get();
+        const lArray = [];
+        if(data.empty) {
+            res.status(404).send('base de datos de lenguajes vacia');
+        }else {
+            data.forEach(element => {
+                const yo = new Lengaje(
+                    element.id,
+                    element.data().name        || "not found",
+                    element.data().image       || "not found",
+                    element.data().traducción  || "not found",
+                    element.data().description || "not found",
+                )
+                lArray.push(yo)
+            });
+            res.status(200).send(lArray);
+        }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+const addLenguajes = async (req, res, next) => {
+    try {
+        const data = req.body;
+        await firestore.collection('lenguajes').doc().set(data);
+        res.send(`Lenguaje: ${data.name} añadido`);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+const updateLenguajes = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const data = req.body;
+        const lData =  await firestore.collection('lenguajes').doc(id);
+        await lData.update(data);
+        let yo = await lData.get()
+        res.send(`lenguaje: ${yo.data().name}, ha sido modificado`);        
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
+const getSpecialty = async (req, res, next) => {
+    try {
+        const fire = await firestore.collection('Specialty');
+        const data = await fire.get();
+        const sArray = [];
+        if(data.empty) {
+            res.status(404).send('base de datos de Specialty vacia');
+        }else {
+            data.forEach(element => {
+                const yo = new Specialty(
+                    element.id,
+                    element.data().name        || "not found",
+                    element.data().descripcion || "not found",
+                )
+                sArray.push(yo)
+            });
+            res.status(200).send(sArray);
+        }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+const getData = async (req, res, next) => {
+    try {
+        const fire = await firestore.collection('Data');
+        const data = await fire.get();
+        const dArray = [];
+        if(data.empty) {
+            res.status(404).send('base de datos de Data vacia');
+        }else {
+            data.forEach(element => {
+                const yo = new Data(
+                    element.id,)
+                dArray.push(yo)
+            });
+            res.status(200).send(dArray);
+        }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
 module.exports = {
 
     getAutores,
@@ -107,4 +195,10 @@ module.exports = {
     addReviewrs,
     updateReviewrs,
 
+    getLenguajes,
+    addLenguajes,
+    updateLenguajes,
+
+    getSpecialty,
+    getData
 }
