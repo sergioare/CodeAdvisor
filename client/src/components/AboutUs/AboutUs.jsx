@@ -1,5 +1,6 @@
 import { infoUs } from "./data"
 import "./AboutUs.scss"
+import Navbar from "../Navbar/Navbar"
 // import * as React from 'react';
 // import Card from '@mui/material/Card';
 // import CardActions from '@mui/material/CardActions';
@@ -11,8 +12,15 @@ import "./AboutUs.scss"
 const AboutUs = () => {
 
     return (
+<div>
+{/* <div className='codeLogo'>
+        <i className="fa-solid fa-house-laptop"></i>
+        CodeAdvisor
+      </div> */}
+<Navbar/>
 
             <div className="containerAbout"> 
+          
                 <h1 className="title">About Us</h1>
                 <h2 className="subtitle"> We create this platform seeks to facilitate access to online software advisors as well as contact with Freelance programmers.</h2>
         <div className="aboutConten">
@@ -40,7 +48,7 @@ const AboutUs = () => {
         </div>
 
         </div>  
-
+        </div>  
 
 
 
