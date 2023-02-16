@@ -1,14 +1,10 @@
-import {getAllUsers, getUser} from '../controllers/usersController';
+// import {getAllUsers, getUser} from '../controllers/usersController';
 
-// const {           
-//     getAllUsers,
-//     getUser
-// } = require('../controllers/usersController')
 
-export const getUsersHandler = (req, res) => {
-    res.status(200).send(getAllUsers)
-}
-export const  getUserHandler = (req, res) => {
-    res.status(200).send(getUser)
-}
+// export const getUsersHandler = (req, res) => {
+//     res.status(200).send(getAllUsers)
+// }
+// export const  getUserHandler = (req, res) => {
+//     res.status(200).send(getUser)
+// }
 
