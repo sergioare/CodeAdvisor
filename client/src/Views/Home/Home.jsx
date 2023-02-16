@@ -5,8 +5,12 @@ import { Commercial } from '../../components/Commercial/Commercial';
 import Testimonials  from '../../components/Testimonials/Testimonials';
 import SideBar from '../../components/SideBar/SideBar';
 import ConfigSideBar from '../../components/ConfigSideBar/ConfigSideBar';
+import { useAuth } from '../../context/authContext';
+// import { useContext } from 'react';
 
 const Home = (props) => {
+  const {user} = useAuth()
+  console.log(user)
   return (
     <div className='home'>
       <Commercial />     
