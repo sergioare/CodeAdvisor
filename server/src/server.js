@@ -11,7 +11,8 @@ server.use(cors());
 server.use(morgan('dev'));
 server.use(express.json());
 server.use(cookieParser());
-server.use("/", router);
+
+server.use(router);
 
 
 

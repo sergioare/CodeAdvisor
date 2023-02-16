@@ -1,14 +1,18 @@
 export const navbarItems =[
     {
-        name: 'Home'
+        name: 'Home',
+        path: '/home'
     },
     {
-        name: 'About'
+        name: 'About',
+        path: '/about'
     },
     {
-        name: 'Courses'
+        name: 'Courses',
+        path:'/courses'
     },
     {
-        name: 'Contact'
+        name: 'Contact',
+        path:'contact'
     },
 ]

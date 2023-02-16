@@ -1,51 +1,20 @@
-// const {Router} = require('express');
+
 const express = require('express');
-const {addStudent, 
-    getAllStudents, 
-    getStudent,
-    updateStudent,
-    deleteStudent
-   } = require('../controllers/studentController');
+const userRoute = require("./userRoute");
+const adminRouter = require('./adminRouter')
+const getAllUsers  = require('../controllers/usersController');
 
 const router = express.Router();
 
 
-//router.use('/users', usersRoute)
-// router.use('/adviser')
-
-
  
 router.get("/", (req,res)=>{
-    res.status(200).send('hola');
+    res.status(200).send('hola mundo');
 })
 
+router.get("/users", getAllUsers)
 
-module.exports= router
+router.use("/user", userRoute);
+router.use('/admin', adminRouter)
 
-// const Hardcodeo = [
-
-//     { Username : "JuanDestroyer",
-//      Password: "qwerty1",
-//      Name: "Juan",
-//      LastName: "Perez",
-//      EstatusAsesor: true,
-//      EstatusAdmin: false
-//     },
-    
-//         { Username : "Elver777",
-//         Password: "qwerty2",
-//         Name: "Elver",
-//         LastName: "Galarga",
-//         EstatusAsesor: true,
-//         EstatusAdmin: false
-//     },
-        
-//     { "Username" : "Alma123",
-//      "Password": "qwerty3",
-//      "Name": "Alma",
-//      "LastName": "Maria",
-//      EstatusAsesor: true,
-//      EstatusAdmin: false
-//     }
-    
-//     ]
+module.exports = router
