@@ -52,7 +52,7 @@ export const infoUs = [
     },
     {
         name: "-David Morales",
-        img:"https://media.licdn.com/dms/image/C4E03AQHhRz6QOkbHlg/profile-displayphoto-shrink_800_800/0/1650996322743?e=1681948800&v=beta&t=5fSVeVzHa6mvFsMeDD0t-crKv7TBbU7_lol61XJ31GQ",
+        img:"https://ca.slack-edge.com/TPRS7H4PN-U047DJSHY03-fc601359b9b2-512",
         ocupation: "Full Stack Web Developer",
         about:"Aqui va tu about",
         linkedin: <a href="https://www.linkedin.com/in/david-morales-developer/"><i class="fa-brands fa-linkedin"></i></a>,
