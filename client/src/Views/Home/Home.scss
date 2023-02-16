@@ -1,31 +1,33 @@
 @import '../../components/Styles/variables';
 
-.home{
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 100vh;
- }
-.navbarHome{
-    display:flex;
-    width: 100vw;
-    height: 15vh;
-    margin-bottom: 20vh;
-    color:$title-bg-purple;
+.home {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100vh;
 }
 
-.icons{
-    display: flex;
-    width: 70%;
-    height: fit-content;
-    justify-content: space-between;
+.navbarHome {
+  display: flex;
+  width: 100vw;
+  height: 15vh;
+  margin-bottom: 20vh;
+  color: $title-bg-purple;
+}
 
-    .icon{
-        display: flex;
-        flex-wrap: wrap;
-        width: fit-content;
-        color:$primary-color;
-        font-size: 3vw;
-        
-    }
+.icons {
+  margin: 10px auto;
+  padding: 10px;
+  display: flex;
+  width: 70%;
+  height: fit-content;
+  justify-content: space-between;
+
+  .icon {
+    display: flex;
+    flex-wrap: wrap;
+    width: fit-content;
+    color: $primary-color;
+    font-size: 3vw;
+  }
 }

@@ -1,19 +1,9 @@
 @import "~bootstrap/scss/bootstrap";
 @import '../Styles/_variables.scss';
 
-
-.container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 261px);
-  gap: 30px;
-  place-content: center;
-  margin-top: 10px;
-  background-color: $primary-color;
-  border-top-left-radius: 500px;
-  border-bottom-right-radius: 800px;
-  max-width: 100%;
+body {
+  background-color: $text-bg-purple;
 }
-
 
 .containerPrincipal {
   width: 100%;
@@ -22,20 +12,33 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 40px;
+  // background-color: $primary-color;
 
-}
+  .containeMessage h1 {
+    color: $title-bg-light;
+    font-size: 40px;
+    font-weight: bold;
+    margin-left: 90px;
+  }
 
-.containeMessage h1 {
-  color: $title-bg-light;
-  font-size: 40px;
-  font-weight: bold;
-  margin-left: 90px;
-}
+  .containeMessage p {
+    margin-top: -10px;
+    color: $text-bg-light;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 90px;
+  }
 
-.containeMessage p {
-  margin-top: 0;
-  color: $text-bg-light;
-  font-size: 16px;
-  font-weight: bold;
-  margin-left: 90px;
+  .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 261px);
+    gap: 30px;
+    padding: 30px;
+    place-content: center;
+    margin-top: 10px;
+    background-color: $title-bg-purple;
+    // border-top-left-radius: 600px;
+    // border-bottom-right-radius: 800px;
+    max-width: 100%;
+  }
 }
