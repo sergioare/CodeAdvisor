@@ -3,7 +3,9 @@ import { navbarItems } from './data';
 import Searchbar from '../Searchbar/Searchbar';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const { toggleConfigBar } = props;
+
   return (
     <div className='navbar'>
       <div className='navLeft'>
@@ -15,6 +17,7 @@ const Navbar = () => {
           return <Link to={item.path} key={index}><div key={index}>{item.name}</div></Link>
         })}
         <Searchbar />
+        <button onClick={toggleConfigBar}>Config</button>
       </div>
     </div>
   );

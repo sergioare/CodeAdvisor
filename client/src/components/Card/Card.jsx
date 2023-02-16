@@ -1,4 +1,5 @@
-import "./Card.scss"
+import "./Card.scss";
+import { Link } from 'react-router-dom';
 
 const CardGeneral = (props) => {
 
@@ -13,7 +14,7 @@ const CardGeneral = (props) => {
             <h2>Native language:</h2> <p>{props.Native_language}</p>
             <h2>Ranking:</h2> <p>{props.Ranking}</p>
           </div>
-          <button variant="primary">Meet Advisor</button>
+          <Link to={`/advisor/${props.id}`}><button variant="primary">Meet Advisor</button></Link>
         </div>
       </div>
     </div>
