@@ -1,8 +1,7 @@
 
 
 class User {
-    constructor(id, Username, Password, Name, Lastname,
-        StatusAdviser, StatusAdmin ) {
+    constructor(id, Username, Password, Name, Lastname, StatusAdviser, StatusAdmin ) {
             this.id = id;
             this.Username = Username;
             this.Password = Password;
