@@ -1,0 +1,102 @@
+@use '../../../components/Styles/mixins';
+@import '../../../components/Styles/variables';
+
+.landingFourth{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+
+    .leftSide{
+        @include mixins.create-flexbox;
+        width: 55%;
+        flex-direction: column;
+        
+        .text{
+            width: 70%;
+                        
+            h1{
+                color:$title-bg-light;
+                margin-bottom: 5vh;
+                font-size: 3vw;
+            }
+            p{
+                color:$text-bg-light;
+                font-size: 1.2vw;
+            }
+            .btn{
+                margin-top: 5vh;
+                color:$title-bg-light;
+                font-weight: bolder;
+                font-size: 1.2vw;
+                border: 2px solid $text-bg-light;
+            }
+        }
+    }
+    
+    .rightSide{
+        display: flex;
+        flex-wrap: wrap;
+        width: 43%;
+        
+        img{
+            position: absolute;
+            margin-top: -25vh;
+            width: 25vw;
+            height: 76vh;
+        }
+        .circle1{
+            position: absolute;
+            border-radius: 50%;
+            margin-top: 10vh;
+            margin-left: -2vw;
+            width: 23em;
+            height: 23em;
+            background-color: $circles-bg-light;
+        }
+        .circle2{
+            position: absolute;
+            border-radius: 50%;
+            margin-top: -55vh;
+            margin-left: -20vw;
+            width: 8em;
+            height: 8em;
+            border: .5em solid $circles-bg-light;
+        }
+        .circle3{
+            position: absolute;
+            border-radius: 50%;
+            margin-top: -90vh;
+            margin-left: -10vw;
+            width: 3em;
+            height: 3em;
+            border: .3em solid $circles-bg-light;
+        }
+        .circle4{
+            position: absolute;
+            border-radius: 50%;
+            margin-top: -80vh;
+            margin-left: 10vw;
+            width: 2em;
+            height: 2em;
+            border: .3em solid $circles-bg-light;
+        }
+        .circle5{
+            position: absolute;
+            border-radius: 50%;
+            margin-top: -60vh;
+            margin-left: 20vw;
+            width: 4em;
+            height: 4em;
+            border: .3em solid $circles-bg-light;
+        }
+        .circle6{
+            position: absolute;
+            border-radius: 50%;
+            margin-top: -40vh;
+            margin-left: 5vw;
+            width: 7em;
+            height: 7em;
+            border: .5em solid $circles-bg-light;
+        }
+    }
+}

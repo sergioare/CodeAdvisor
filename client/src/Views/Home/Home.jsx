@@ -1,6 +1,6 @@
 import './Home.scss'
 import Cards from "../../components/Cards/Cards"
-import { icons } from '../../utils';
+import { icons } from '../../Utils/utils';
 
 const Home = () => {
   return (
