@@ -1,4 +1,4 @@
-import Landing from './Landing/PreLanding'
+import Landing from './Landing/Landing';
 import Home from '../Views/Home/Home';
 
 
