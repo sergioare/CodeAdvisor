@@ -1,22 +1,13 @@
 import { infoUs } from "./data"
 import "./AboutUs.scss"
 import Navbar from "../Navbar/Navbar"
-// import * as React from 'react';
-// import Card from '@mui/material/Card';
-// import CardActions from '@mui/material/CardActions';
-// import CardContent from '@mui/material/CardContent';
-// import CardMedia from '@mui/material/CardMedia';
-// import Button from '@mui/material/Button';
-// import Typography from '@mui/material/Typography';
+
 
 const AboutUs = () => {
 
     return (
 <div>
-{/* <div className='codeLogo'>
-        <i className="fa-solid fa-house-laptop"></i>
-        CodeAdvisor
-      </div> */}
+
 <Navbar/>
 
             <div className="containerAbout"> 
