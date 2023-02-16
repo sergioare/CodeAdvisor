@@ -20,7 +20,18 @@ class Autor{
         this.phone      = phone;
     }
 }
+
+class Reviewrs{
+    constructor( id, name, img, testimonial, ranking ){
+        this.id         = id
+        this.name       = name;
+        this.img        = img;
+        this.testimonial  = testimonial;
+        this.ranking        = ranking;
+    }
+}
 module.exports = {
     Data,
-    Autor
+    Autor,
+    Reviewrs
 };
