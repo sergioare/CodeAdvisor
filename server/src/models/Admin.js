@@ -10,4 +10,4 @@ class Admin {
     }
 }
 
-module.exports = User;
+module.exports = Admin;
