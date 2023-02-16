@@ -1,7 +1,7 @@
 import './Landing.scss'
-import Navbar from '../../components/Navbar/Navbar';
+import Navbar from '../../../components/Navbar/Navbar';
 import { images, textLanding } from './data';
-import { icons } from '../../utils';
+import { icons } from '../../../Utils/utils';
 
 const PreLanding = () => {
     return (
