@@ -12,29 +12,19 @@ const addAdmin = async (req, res, next) => {
     }
 }
 
-const updateAnyUser = async (req, res, next) => {
+const pruebaDeReferencia = async (req, res, next) => {
     try {
         const id = req.params.id;
         const data = req.body;
         const user =  await firestore.collection('User').doc(id);
-        await user.update(data);
-        res.send('User record updated successfuly');        
+        await user.get(data);
+        res.send(user);        
     } catch (error) {
         res.status(400).send(error.message);
     }
 }
 
-const updateAnyadviser = async (req, res, next) => {
-    try {
-        const id = req.params.id;
-        const data = req.body;
-        const user =  await firestore.collection('User').doc(id);
-        await user.update(data);
-        res.send('User record updated successfuly');        
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
-}
+
 
 //cambiar contreaseñas e info 
 //registro a nuvos admin 
@@ -43,6 +33,5 @@ const updateAnyadviser = async (req, res, next) => {
 
 module.exports = {
     addAdmin,
-    updateAnyUser,
-    updateAnyadviser
+    pruebaDeReferencia
 }

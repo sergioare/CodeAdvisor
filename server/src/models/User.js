@@ -2,7 +2,7 @@
 
 class User {
     constructor(id, Username, Password, Name, Lastname,
-        StatusAdviser, StatusAdmin, Reviews,Lenguajes ) {
+        StatusAdviser, StatusAdmin,Reviews,Lenguajes  ) {
             this.id = id;
             this.Username = Username;
             this.Password = Password;

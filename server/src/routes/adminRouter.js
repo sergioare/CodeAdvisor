@@ -1,12 +1,13 @@
 const {Router} = require('express');
 
 const {
-    addAdmin
+    addAdmin,
+    pruebaDeReferencia
 } = require('../controllers/adminControllers');
 
 const adminRouter= Router()
 
 
-adminRouter.post('/',addAdmin)
+adminRouter.get('/',pruebaDeReferencia)
 
 module.exports = adminRouter;

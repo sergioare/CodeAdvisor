@@ -79,7 +79,7 @@ const Cards = () => {
       <div className="containeMessage">
         <h1>Our Advisors</h1>
         <br></br>
-        <p>Let's join our best classes with one advisor</p>
+        <p>Let's join our best classes with one advisor.</p>
       </div>
       <div className="container">
         {advisors.map((a) => {
