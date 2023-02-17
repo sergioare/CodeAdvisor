@@ -23,7 +23,8 @@ const initialState = {
       F_Residence: [],
     },
     sortMethod: "",
-  
+}
+
   const filterApplyer = (advisors, filters, method) => {
     let advisorsToDisplay = [...advisors];
     if (filters.F_Specialty && filters.F_Specialty.length > 0) {
