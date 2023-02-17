@@ -115,7 +115,7 @@ const getAllTechSkills = async (req, res, next) => {
                     element.data().Translation  || "emply",
                     element.data().Description  || "emply",
                 )
-                tsArray.push(ts)
+                if(element.data().status === true){tsArray.push(ts)}
             });
             res.status(200).send(tsArray);
         }
