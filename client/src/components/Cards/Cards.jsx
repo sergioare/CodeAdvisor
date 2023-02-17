@@ -26,11 +26,12 @@ const Cards = () => {
           return <Card
             key={advisor.id}
             id={advisor.id}
-            img={advisor.image}
-            name={advisor.name}
-            Programming_language={advisor.techSkills.join(', ')}
-            Native_language={advisor.idiomaNativo}
-            Ranking={advisor.ranking}
+            Image={advisor.Image}
+            Firstname={advisor.Firstname + ' ' +
+             advisor.Lastname}
+            TechSkills={advisor.TechSkills}
+            Specialty={advisor.Specialty}
+            Score={advisor.Score}
           />
         })}
       </div>
