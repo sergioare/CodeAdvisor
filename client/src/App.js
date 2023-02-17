@@ -4,7 +4,8 @@ import { Landing, Home, Detail } from './Views/index';
 import AboutUs from "./components/AboutUs/AboutUs"
 import Navbar from './components/Navbar/Navbar';
 import ConfigSideBar from './components/ConfigSideBar/ConfigSideBar';
-
+import Courses from './components/Courses/Courses';
+import Contact from './components/Contact/Contact';
 function App() {
   const location = useLocation();
 
@@ -22,6 +23,8 @@ function App() {
         <Route path='/home' element={<Home toggleConfigBar={toggleConfigBar} isConfigBarOpen={isConfigBarOpen} />} />
         <Route path='/about' element={<AboutUs />} />
         <Route path='/user/:id' element={<Detail />} />
+        <Route path='/courses' element={<Courses />} />
+        <Route path='/contact' element={<Contact />} />
       </Routes>
     </div>
   );
