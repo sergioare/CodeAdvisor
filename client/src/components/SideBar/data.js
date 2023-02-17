@@ -1,5 +1,4 @@
 const Countries = [
-    'All',
     'Argentina',
     'Bolivia',
     'Brazil',
@@ -14,7 +13,6 @@ const Countries = [
 ]
 
 const ProgrammingLanguages = [
-    'All',
     'JavaScript',
     'Python',
     'Java',
@@ -40,7 +38,7 @@ const Languages = [
 
 const Specialties = [
     "Advisor",
-    "Freelance Developer"
+    "Freelance"
 ]
 
 export {Countries, ProgrammingLanguages, SortMethod, Languages, Specialties}
