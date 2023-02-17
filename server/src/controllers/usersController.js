@@ -15,11 +15,11 @@ const getAllUsers = async (req, res, next) => {
                 
                 const user = new User(
                     doc.id,
-                    doc.data().name, 
-                    doc.data().image, 
-                    doc.data().techSkills,
-                    doc.data().idiomaNativo,
-                    doc.data().ranking
+                    doc.data().name         ||  "name_emply", 
+                    doc.data().image        ||   "https://st4.depositphotos.com/20838724/23306/v/600/depositphotos_233067620-stock-illustration-customer-support-icon-vector-filled.jpg", 
+                    doc.data().techSkills   ||  "emply",
+                    doc.data().idiomaNativo ||  "emply",
+                    doc.data().ranking      ||  0
                 );
                 userArray.push(user);
             });
