@@ -5,7 +5,7 @@ export const FILTER_BY_SPECIALTY = "FILTER_BY_SPECIALTY";
 export const FILTER_BY_LANGUAGE = "FILTER_BY_LANGUAGE";
 export const FILTER_BY_PROGRAMMING_LANGUAGE = "FILTER_BY_PROGRAMMING_LANGUAGE";
 export const FILTER_BY_RESIDENCE = "FILTER_BY_RESIDENCE";
-export const SORT_BY_SCORE  = "SORT_BY_SCORE";
+export const SORT_ADVISORS  = "SORT_ADVISORS";
 export const SORT_BY_AVAILABILITY  = "SORT_BY_AVAILABILITY";
 export const SORT_BY_PRICE  = "SORT_BY_PRICE";
 export const SORT_BY_ALPHABET = "SORT_BY_ALPHABET";
@@ -55,25 +55,14 @@ export const filterBySpecialty = (specialty) => {
     };
   };
   
-  export const sortByScore = () => {
+  export const sortAdvisors= (method) => {
     return {
-      type: SORT_BY_SCORE,
+      type: SORT_ADVISORS,
+      payload: method
     };
   };
 
-  export const sortByPrice = (higherOrLower) => {
-    return {
-      type: SORT_BY_PRICE,
-      payload: higherOrLower
-    };
-  };
 
-  export const sortByAlphabet = (straightOrInverse) => {
-    return {
-      type: SORT_BY_ALPHABET,
-      payload: straightOrInverse
-    };
-  };
 
   /* export const sortByAvailability = () => {
     return {

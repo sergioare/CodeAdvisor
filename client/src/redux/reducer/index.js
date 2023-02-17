@@ -4,10 +4,7 @@ import {
     FILTER_BY_LANGUAGE,
     FILTER_BY_PROGRAMMING_LANGUAGE,
     FILTER_BY_RESIDENCE,
-    SORT_BY_SCORE,
-    SORT_BY_PRICE,
-    SORT_BY_ALPHABET,
-    SORT_BY_AVAILABILITY,
+    SORT_ADVISORS,
     GET_AUTORS
   } from '../actions/actions';
   
@@ -23,10 +20,11 @@ const initialState = {
       F_Programming_L: [],
       F_Residence: [],
     },
+    sortMethod: "",
 };
 
   
-  const filterApplyer = (advisors, filters) => {
+  const filterApplyer = (advisors, filters, method) => {
     let advisorsToDisplay = [...advisors];
     if (filters.F_Specialty && filters.F_Specialty.length > 0) {
         advisorsToDisplay = advisorsToDisplay.filter(advisors => filters.F_Specialty.includes(advisors.Specialty));
@@ -51,9 +49,34 @@ const initialState = {
     if (filters.F_Residence) {
         advisorsToDisplay = advisorsToDisplay.filter(advisors => filters.F_Residence.includes(advisors.Residence));
     }
-
-    return advisorsToDisplay;
+    const advisorsSorted = sortAdvisors(advisorsToDisplay, method)
+    return advisorsSorted;
   };
+
+  function sortAdvisors(advisors, sortBy) {
+    const sortedAdvisors = [...advisors];
+    switch (sortBy) {
+      case "Best Score":
+        sortedAdvisors.sort((advisor1, advisor2) => advisor2.Score - advisor1.Score);
+        break;
+      case "More expensive":
+        sortedAdvisors.sort((advisor1, advisor2) => advisor2.Price - advisor1.Price);
+        break;
+      case "More Affordable":
+        sortedAdvisors.sort((advisor1, advisor2) => advisor1.Price - advisor2.Price);
+        break;
+      case "A to Z":
+        sortedAdvisors.sort((advisor1, advisor2) => advisor1.name.localeCompare(advisor2.name));
+        break;
+      case "Z to A":
+        sortedAdvisors.sort((advisor1, advisor2) => advisor2.name.localeCompare(advisor1.name));
+        break;
+      default:
+        break;
+    }
+    return sortedAdvisors;
+  }
+  
   
 const rootReducer = (state = initialState, action) => {
     
@@ -77,7 +100,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state.filters,
                 F_Specialty: action.payload,
             },
-            advisorsInDisplay: filterApplyer(state.advisors, state.filters),
+            advisorsInDisplay: filterApplyer(state.advisors, state.filters, state.sortMethod),
             };
         case FILTER_BY_LANGUAGE:
             return {
@@ -86,7 +109,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state.filters,
                 F_Language: action.payload,
             },
-            advisorsInDisplay: filterApplyer(state.advisors, state.filters),
+            advisorsInDisplay: filterApplyer(state.advisors, state.filters, state.sortMethod),
             };
         case FILTER_BY_PROGRAMMING_LANGUAGE:
             return {
@@ -95,7 +118,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state.filters,
                 F_Programming_L: action.payload,
             },
-            advisorsInDisplay: filterApplyer(state.advisors, state.filters),
+            advisorsInDisplay: filterApplyer(state.advisors, state.filters, state.sortMethod),
             };
         case FILTER_BY_RESIDENCE:
             return {
@@ -104,36 +127,16 @@ const rootReducer = (state = initialState, action) => {
                 ...state.filters,
                 F_Residence: action.payload,
             },
-            advisorsInDisplay: filterApplyer(state.advisors, state.filters),
+            advisorsInDisplay: filterApplyer(state.advisors, state.filters, state.sortMethod),
             };
-        case SORT_BY_SCORE:
-            const advisorsToSortByScore = [...state.advisorsInDisplay];
-            advisorsToSortByScore.sort((advisor1, advisor2) => advisor2.Score - advisor1.Score);
+        case SORT_ADVISORS:
+            const sortedAdvisors = sortAdvisors(state.advisorsInDisplay, action.payload);
             return {
                 ...state,
-                advisorsInDisplay: advisorsToSortByScore,
+                sortMethod: action.payload,
+                advisorsInDisplay: sortedAdvisors,
             };
-        case SORT_BY_PRICE:
-            const advisorsToSortByPrice = [...state.advisorsInDisplay];
-            if(action.payload == "Higher") {
-                advisorsToSortByPrice.sort((advisor1, advisor2) => advisor2.Price - advisor1.Price);
-            } else if(action.payload == "Lower")advisorsToSortByPrice.sort((advisor1, advisor2) => advisor1.Price - advisor2.Price);
-            return {
-                ...state,
-                advisorsInDisplay: advisorsToSortByPrice,
-            };
-        case SORT_BY_ALPHABET:
-            const advisorsToSortByAlphabet = [...state.advisorsInDisplay];
-            if (action.payload === "Straight") {
-                advisorsToSortByAlphabet.sort((advisor1, advisor2) => advisor1.name.localeCompare(advisor2.name));
-            } else if (action.payload === "Inverse") {
-                advisorsToSortByAlphabet.sort((advisor1, advisor2) => advisor2.name.localeCompare(advisor1.name));
-            }
-        
-            return {
-                ...state,
-                advisorsInDisplay: advisorsToSortByAlphabet,
-            };
+
             
         default:
             return{...state}

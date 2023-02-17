@@ -5,6 +5,7 @@ import {
   filterByLanguage,
   filterByProgrammingLanguage,
   filterByResidence,
+  sortAdvisors,
 } from "../../redux/actions/actions";
 import { Countries, ProgrammingLanguages, Languages, Specialties, SortMethod } from "./data";
 import "./SideBar.scss";
@@ -37,7 +38,11 @@ const SideBar = () => {
     useEffect(() => {
         const newCountries = [...countries];
         dispatch(filterByResidence(newCountries));
-    }, [programmingLanguages]);
+    }, [countries]);
+
+    useEffect(() => {
+        dispatch(sortAdvisors(selectedOrder));
+    }, [selectedOrder]);
     
     const handleSpecialtyChange = async (event) => {
       const { value } = event.target;
@@ -85,8 +90,8 @@ const SideBar = () => {
   
   
 
-    const handleOrderClick = (e) => {
-        setSelectedOrder(e.target?.value? e.target?.value : e.target?.innerHTML);
+    const handleOrderClick = (event) => {
+        setSelectedOrder(event.target?.innerHTML);  
     };
 
     const handleMenuIconClick = () => {
@@ -159,7 +164,7 @@ const SideBar = () => {
                                     onChange={handleOrderClick}
                                 />
             
-                                <div key={item} className={`option-item ${selectedOrder === item ? "selected" : ""}`} onClick={handleOrderClick}>{item}</div>
+                                <div key={item} value = {item} className={`option-item ${selectedOrder === item ? "selected" : ""}`} onClick={handleOrderClick}>{item}</div>
                                 </div>)
                         })}
 
