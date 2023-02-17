@@ -1,40 +1,40 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/authContext";
+// import { useAuth } from "../../context/authContext";
 // import { Alert } from "./Alert";
 
 
 
 function Register() {
 
-  const { signup } = useAuth();
-  console.log(signup)
+  // const { signup } = useAuth();
+  // console.log(signup)
 
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
+  // const [user, setUser] = useState({
+  //   email: "",
+  //   password: "",
+  // });
 
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+  // const [error, setError] = useState("");
+  // const navigate = useNavigate();
 
-  //const handleChange = ({target:{name,value}})=> setUser({...user,[name]:value})
+  // //const handleChange = ({target:{name,value}})=> setUser({...user,[name]:value})
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      await signup(user.email, user.password);
-      navigate("/");
-    } catch (error) {
-      setError(error.message);
-    }
-  };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setError("");
+  //   try {
+  //     await signup(user.email, user.password);
+  //     navigate("/");
+  //   } catch (error) {
+  //     setError(error.message);
+  //   }
+  // };
 
   return (
     <div className="w-full max-w-xs m-auto text-black">
-      
-
+      Regiister
+{/* 
       <form
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded px-8 pt-6 pb-6 mb-4"
@@ -75,7 +75,7 @@ function Register() {
         <Link to="/login" className="text-blue-700 hover:text-blue-900">
           Login
         </Link>
-      </p>
+      </p> */}
     </div>
   );
 }

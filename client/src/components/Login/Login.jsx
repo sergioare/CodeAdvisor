@@ -1,59 +1,56 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/authContext";
-import { Alert } from "../Alert/Alert";
-
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+// import { useAuth } from "../../context/AuthContext";
+import { auth } from "../../firebase";
+import {AuthContext} from '../../context/AuthContext'
+import './Login.scss'
 
 const Login = () => {
+  const [email, setEmail] = useState(''); 
+  const [password, setPassword] = useState(''); 
+  const [error, setError] = useState(false);
+  // const { login, loginWithGoogle, resetPassword } = useAuth();
+  const navigate = useNavigate();
 
-    const [user, setUser] = useState({ 
-        email: "",
-        password: "",
-      });
+  const handleLogin = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential)=>{
+      const user = userCredential.user
+      dispatchEvent({type: 'Login', payload: user})
+      navigate("/home");
+    })
+    .catch(error=>{
+      setError(error)
+    })
+  }
 
-   
-      const { login, loginWithGoogle, resetPassword } = useAuth();
-      const [error, setError] = useState("");
-      const navigate = useNavigate();
-    
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError("");
-        try {
-          await login(user.email, user.password);
-          navigate("/");
-        } catch (error) {
-          setError(error.message);
-        }
-      };
-    
-      const handleChange = ({ target: { value, name } }) =>
-        setUser({ ...user, [name]: value });
-    
-      const handleGoogleSignin = async () => {
-        try {
-          await loginWithGoogle();
-          navigate("/");
-        } catch (error) {
-          setError(error.message);
-        }
-      };
-    
-      const handleResetPassword = async (e) => {
-        e.preventDefault();
-        if (!user.email) return setError("Write an email to reset password");
-        try {
-          await resetPassword(user.email);
-          setError('We sent you an email. Check your inbox')
-        } catch (error) {
-          setError(error.message);
-        }
-      };
+  // const handleGoogleSignin = async () => {
+  //   try {
+  //     await loginWithGoogle();
+  //     navigate("/");
+  //   } catch (error) {
+  //     setError(error.message);
+  //   }
+  // };
+
+  // const handleResetPassword = async (e) => {
+  //   e.preventDefault();
+  //   if (!user.email) return setError("Write an email to reset password");
+  //   try {
+  //     await resetPassword(user.email);
+  //     setError('We sent you an email. Check your inbox')
+  //   } catch (error) {
+  //     setError(error.message);
+  //   }
+  // };
 
     return (
-        <>
-            <form
-        onSubmit={handleSubmit}
+        <div className="login">
+          hola
+            {/* <form
+        onSubmit={handleLogin}
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
         <div className="mb-4">
@@ -104,10 +101,10 @@ const Login = () => {
             Forgot Password?
           </a>
         </div>
-      </form>
+      </form> */}
 
 
-        </>
+        </div>
     )
 }
 export default Login;
