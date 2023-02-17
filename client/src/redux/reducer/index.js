@@ -104,6 +104,13 @@ const rootReducer = (state = initialState, action) => {
             },
             advisorsInDisplay: filterApplyer(state.advisors, state.filters),
             };
+         case SORT_BY_SCORE:
+            const advisorsToSort = [...state.advisorsInDisplay];
+            advisorsToSort.sort((advisor1, advisor2) => advisor2.Score - advisor1.Score);
+            return {
+                ...state,
+                advisorsInDisplay: advisorsToSort,
+            };
             
         default:
             return{...state}
