@@ -26,8 +26,12 @@ const ProgrammingLanguages = [
 
 const SortMethod =[
     "Best Score",
-    "Most Available",
     "More Affordable",
+    "More expensive",
+    "A to Z",
+    "Z to A",
+    "Most Available",
+    "relleno inaccesible"
 
 ]
 

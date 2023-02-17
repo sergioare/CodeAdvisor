@@ -7,6 +7,8 @@ export const FILTER_BY_PROGRAMMING_LANGUAGE = "FILTER_BY_PROGRAMMING_LANGUAGE";
 export const FILTER_BY_RESIDENCE = "FILTER_BY_RESIDENCE";
 export const SORT_BY_SCORE  = "SORT_BY_SCORE";
 export const SORT_BY_AVAILABILITY  = "SORT_BY_AVAILABILITY";
+export const SORT_BY_PRICE  = "SORT_BY_PRICE";
+export const SORT_BY_ALPHABET = "SORT_BY_ALPHABET";
 
 export const getAutors = () => {
     return async function (dispatch) {
@@ -58,9 +60,23 @@ export const filterBySpecialty = (specialty) => {
       type: SORT_BY_SCORE,
     };
   };
-  
-  export const sortByAvailability = () => {
+
+  export const sortByPrice = (higherOrLower) => {
+    return {
+      type: SORT_BY_PRICE,
+      payload: higherOrLower
+    };
+  };
+
+  export const sortByAlphabet = (straightOrInverse) => {
+    return {
+      type: SORT_BY_ALPHABET,
+      payload: straightOrInverse
+    };
+  };
+
+  /* export const sortByAvailability = () => {
     return {
       type: SORT_BY_AVAILABILITY,
     };
-  };
+  }; */

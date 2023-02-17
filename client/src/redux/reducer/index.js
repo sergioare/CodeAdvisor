@@ -5,6 +5,8 @@ import {
     FILTER_BY_PROGRAMMING_LANGUAGE,
     FILTER_BY_RESIDENCE,
     SORT_BY_SCORE,
+    SORT_BY_PRICE,
+    SORT_BY_ALPHABET,
     SORT_BY_AVAILABILITY,
     GET_AUTORS
   } from '../actions/actions';
@@ -104,12 +106,33 @@ const rootReducer = (state = initialState, action) => {
             },
             advisorsInDisplay: filterApplyer(state.advisors, state.filters),
             };
-         case SORT_BY_SCORE:
-            const advisorsToSort = [...state.advisorsInDisplay];
-            advisorsToSort.sort((advisor1, advisor2) => advisor2.Score - advisor1.Score);
+        case SORT_BY_SCORE:
+            const advisorsToSortByScore = [...state.advisorsInDisplay];
+            advisorsToSortByScore.sort((advisor1, advisor2) => advisor2.Score - advisor1.Score);
             return {
                 ...state,
-                advisorsInDisplay: advisorsToSort,
+                advisorsInDisplay: advisorsToSortByScore,
+            };
+        case SORT_BY_PRICE:
+            const advisorsToSortByPrice = [...state.advisorsInDisplay];
+            if(action.payload == "Higher") {
+                advisorsToSortByPrice.sort((advisor1, advisor2) => advisor2.Price - advisor1.Price);
+            } else if(action.payload == "Lower")advisorsToSortByPrice.sort((advisor1, advisor2) => advisor1.Price - advisor2.Price);
+            return {
+                ...state,
+                advisorsInDisplay: advisorsToSortByPrice,
+            };
+        case SORT_BY_ALPHABET:
+            const advisorsToSortByAlphabet = [...state.advisorsInDisplay];
+            if (action.payload === "Straight") {
+                advisorsToSortByAlphabet.sort((advisor1, advisor2) => advisor1.name.localeCompare(advisor2.name));
+            } else if (action.payload === "Inverse") {
+                advisorsToSortByAlphabet.sort((advisor1, advisor2) => advisor2.name.localeCompare(advisor1.name));
+            }
+        
+            return {
+                ...state,
+                advisorsInDisplay: advisorsToSortByAlphabet,
             };
             
         default:

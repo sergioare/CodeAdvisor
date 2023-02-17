@@ -10,6 +10,7 @@ import { Countries, ProgrammingLanguages, Languages, Specialties, SortMethod } f
 import "./SideBar.scss";
 
 const SideBar = () => {
+
   const dispatch = useDispatch();
   const [specialties, setSpecialties] = useState([]);
   const [languages, setLanguages] = useState([]);
@@ -22,7 +23,6 @@ const SideBar = () => {
         const newSpecialties = [...specialties];
         dispatch(filterBySpecialty(newSpecialties));
     }, [specialties]);
-
     
     useEffect(() => {
         const newLanguages = [...languages];
@@ -59,7 +59,6 @@ const SideBar = () => {
         return [...prevLanguages, value];
       }
     });
-    const newLanguages = [...languages];
   };
   
   const handleProgrammingLanguageChange = async (event) => {
@@ -102,6 +101,7 @@ const SideBar = () => {
           <div className="sidebar-header">
           <i className="menu-icon fas fa-bars" onClick={handleMenuIconClick} ></i>
           </div>
+          <div className="blank-space"></div>
           <div className="sidebar-content">
             <div className="sidebar-section">
             <p className="sidebar-title">I'm looking for:</p>
