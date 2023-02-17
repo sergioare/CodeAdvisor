@@ -38,15 +38,13 @@ const initialState = {
 
     if (filters.F_Programming_L && filters.F_Programming_L.length > 0) {
         advisorsToDisplay = advisorsToDisplay.filter(advisors => {
-        for (let i = 0; i < filters.F_Programming_L.length; i++) {
-          if (!advisors.ProgrammingLanguage.includes(filters.F_Programming_L[i])) {
-            return false;
+          for (let i = 0; i < filters.F_Programming_L.length; i++) {
+            if (!advisors.ProgrammingLanguage.includes(filters.F_Programming_L[i])) {
+              return false;
+            }
           }
-
-        }
-      }
-      return true;
-    });
+          return true;
+        });
 
   }
 
