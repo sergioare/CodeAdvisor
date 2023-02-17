@@ -1,5 +1,6 @@
+/*
 const firebase = require('../db/db');
-const User = require('../models/User');
+const User = require('../models/Advisors');
 const firestore = firebase.firestore();
 
 
@@ -57,3 +58,4 @@ module.exports = {
     updateUser,
     deleteUser
 }
+*/
