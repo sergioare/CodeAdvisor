@@ -1,5 +1,9 @@
 import axios from "axios"
-export const GET_AUTORS = "GET_AUTORS"
+
+export const GET_AUTORS = "GET_AUTORS";
+export const GET_REVIEWS = 'GET_REVIEWS';
+export const GET_ADVISORS = 'GET_ADVISORS';
+export const ADVISOR_DETAIL = 'ADVISOR_DETAIL';
 export const LOAD_PROFESSIONALS = "LOAD_PROFESSIONALS";
 export const FILTER_BY_SPECIALTY = "FILTER_BY_SPECIALTY";
 export const FILTER_BY_LANGUAGE = "FILTER_BY_LANGUAGE";
@@ -18,6 +22,30 @@ export const getAutors = () => {
         
     };
 };
+
+export const getReviews = () => {
+  return async function (dispatch) {
+    const response = await axios.get('http://localhost:3002/data/reviewrs');
+    const reviews = response.data;
+    dispatch({ type: GET_REVIEWS, payload: reviews });
+  };
+};
+
+export const getAdvisors = () => {
+  return async function (dispatch) {
+    const response = await axios.get('http://localhost:3002/users');
+    const advisors = response.data;
+    dispatch({ type: GET_ADVISORS, payload: advisors })
+  };
+};
+
+export const getDetail = (id) => {
+  return async function (dispatch) {
+    const response = await axios.get(`http://localhost:3002/user/${id}`);
+    const advisor = response.data;
+    dispatch({ type: ADVISOR_DETAIL, payload: advisor })
+  }
+}
 
 export const loadProfessionals = () => {
     return function (dispatch) {
@@ -61,8 +89,6 @@ export const filterBySpecialty = (specialty) => {
       payload: method
     };
   };
-
-
 
   /* export const sortByAvailability = () => {
     return {

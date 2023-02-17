@@ -1,14 +1,14 @@
 @use '../Styles/mixins';
 @import '../Styles/_variables.scss';
 
-.containerAbout{
+.containerAbout {
     // background-color: #794BFF;
     margin-top: 30px;
-    margin-bottom: 80px;
+    margin-bottom: 50px;
     padding-top: 5px;
-    padding-bottom: 20px;
 }
-.aboutConten{
+
+.aboutConten {
     // background-color: #794BFF;
     //  margin: 10px;
     // padding-top: 20px;
@@ -27,13 +27,13 @@
 
 }
 
-.cardCont{
-    
+.cardCont {
+
     display: flex;
     justify-content: center;
     align-items: flex-start;
 
-    .text{
+    .text {
         background-color: white;
         border-radius: 1em;
         border: solid 3px rgba(136, 93, 255, 0.4666666667);
@@ -43,31 +43,38 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
-        justify-content: center;
+        justify-content: space-around;
         padding: 10px;
+        padding-bottom: 30px;
     }
 
-    .image{
+    .image {
         border-radius: 50%;
         width: 100px;
         height: 100px;
-        border: solid 3px #fcfcfc77;
+        border: solid 3px rgba(252, 252, 252, 0.4666666667);
+        margin-right: 309px;
+        margin-top: 16px;
+        position: absolute;
     }
-    .iconsCont{
+
+    .iconsCont {
         width: 200px;
         height: 20px;
         font-size: 28px;
         color: black;
     }
-    .name{
+
+    .name {
         font-weight: bold;
         font-size: 22px;
-        
+        margin: 0px 50px 0px 50px;
+
     }
 }
 
 
-.about{
+.about {
     font-style: italic;
     // border: solid 1px;
     border-radius: .5em;
@@ -75,16 +82,17 @@
     background-color: #885dff38;
     font-size: 14px;
     width: 200px;
-    
+
 }
 
-.title{
+.title {
     // color: $text-bg-purple;
     color: black;
     padding-left: 40px;
     font-size: 60px;
 }
-.subtitle{
+
+.subtitle {
     // color: $text-bg-purple;
     color: black;
     padding-left: 40px;
@@ -94,50 +102,58 @@
     margin-top: 20px;
 }
 
-.ocupation{
+.ocupation {
     font-size: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.tools{
-    margin-top: 30px;
-    border-radius: 1em;
-    border: solid 3px rgba(136, 93, 255, 0.4666666667);
-    background-color: #ffff;
-    width: 1000px;
-    height: 190px;
-    text-align: center;
-    padding-top: 15px;
-    margin-left: 180px;
-    margin-top: 80px;
-    margin-bottom: 50px;
-  
-    
-    .containertools{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-      
+.toolsContainer {
+    display: flex;
+    justify-content: center;
 
+    .tools {
+        margin-top: 30px;
+        border-radius: 1em;
+        border: solid 3px rgba(136, 93, 255, 0.4666666667);
+        background-color: #ffff;
+        width: 1000px;
+        height: 190px;
+        text-align: center;
+        padding-top: 15px;
+        margin-top: 80px;
+        margin-bottom: 50px;
+
+
+        .containertools {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+
+        }
     }
+
 }
-.logoReact{
-    width: 200px;
-    height: 80px;
+
+.logoReact {
+    width: 140px;
+    height: 60px;
 }
-.logo{
-    width: 200px;
+
+.logo {
+    width: 170px;
     height: 50px;
 }
 
-.logoSql{
-    width: 90px;
-    height: 80px;
+.logoSql {
+    width: 76px;
+    height: 71px;
 }
 
 
 
 
-h3{
+h3 {
     margin-bottom: 30px;
 }
-

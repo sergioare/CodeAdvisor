@@ -5,14 +5,16 @@ import {
     FILTER_BY_PROGRAMMING_LANGUAGE,
     FILTER_BY_RESIDENCE,
     SORT_ADVISORS,
-    GET_AUTORS
+     GET_AUTORS, GET_REVIEWS, GET_ADVISORS, ADVISOR_DETAIL
   } from '../actions/actions';
   
 
 const initialState = {
-    advisors: [],
-    reviews: [],
-    autors: [],
+    users: [],
+  advisors: [],
+  advisorDetail: [],
+  reviews: [],
+  autors: [],
     advisorsInDisplay: [],
     filters: {
       F_Specialty: [],
@@ -21,8 +23,6 @@ const initialState = {
       F_Residence: [],
     },
     sortMethod: "",
-};
-
   
   const filterApplyer = (advisors, filters, method) => {
     let advisorsToDisplay = [...advisors];
@@ -137,10 +137,25 @@ const rootReducer = (state = initialState, action) => {
                 advisorsInDisplay: sortedAdvisors,
             };
 
-            
-        default:
-            return{...state}
-    }
-  };
+    case GET_REVIEWS:
+      return {
+        ...state, reviews: action.payload
+      }
+
+    case GET_ADVISORS:
+      return {
+        ...state, advisors: action.payload
+      }
+
+    case ADVISOR_DETAIL:
+      return {
+        ...state, advisorDetail: action.payload
+      }
+
+    default:
+      return { ...state }
+  }
+}
+
   
   export default rootReducer;

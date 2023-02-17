@@ -12,9 +12,9 @@ const CardGeneral = (props) => {
           <div className="letra">
             <h2>Tech Skills:</h2> <p>{props.Programming_language}</p>
             <h2>Native language:</h2> <p>{props.Native_language}</p>
-            <h2>Ranking:</h2> <p>{props.Ranking}</p>
+            <h2>Ranking:</h2> <p>⭐{props.Ranking}</p>
           </div>
-          <Link to={`/advisor/${props.id}`}><button variant="primary">Meet Advisor</button></Link>
+          <Link to={`/user/${props.id}`}><button variant="primary">Meet Advisor</button></Link>
         </div>
       </div>
     </div>
