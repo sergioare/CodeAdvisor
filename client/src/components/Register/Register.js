@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
-// import { Alert } from "./Alert";
+import { Alert } from "../Alert/Alert";
 
 
 
@@ -18,7 +18,7 @@ function Register() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  //const handleChange = ({target:{name,value}})=> setUser({...user,[name]:value})
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,9 +31,11 @@ function Register() {
     }
   };
 
+
+  
   return (
     <div className="w-full max-w-xs m-auto text-black">
-      
+      {error && <Alert message={error} />}
 
       <form
         onSubmit={handleSubmit}

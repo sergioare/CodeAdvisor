@@ -1,11 +1,12 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+
+
 import { 
     getAuth,
     connectAuthEmulator,
     signInWithEmailAndPassword
  } from "firebase/auth";
-
 
 
 const {
