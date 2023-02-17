@@ -26,6 +26,8 @@ const initialState = {
 }
 
   const filterApplyer = (advisors, filters, method) => {
+    console.log(filters)
+    console.log(advisors)
     let advisorsToDisplay = [...advisors];
     if (filters.F_Specialty && filters.F_Specialty.length > 0) {
         advisorsToDisplay = advisorsToDisplay.filter(advisors => filters.F_Specialty.includes(advisors.Specialty));
@@ -51,6 +53,7 @@ const initialState = {
         advisorsToDisplay = advisorsToDisplay.filter(advisors => filters.F_Residence.includes(advisors.Residence));
     }
     const advisorsSorted = sortAdvisors(advisorsToDisplay, method)
+    console.log(advisorsSorted)
     return advisorsSorted;
   };
 

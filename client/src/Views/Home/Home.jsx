@@ -1,12 +1,21 @@
 import './Home.scss'
-import Cards from "../../components/Cards/Cards"
+import React,{ useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { loadProfessionals } from '../../redux/actions/actions';
 import { icons } from '../../Utils/utils';
 import { Commercial } from '../../components/Commercial/Commercial';
+import Cards from "../../components/Cards/Cards"
 import Testimonials from '../../components/Testimonials/Testimonials';
 import SideBar from '../../components/SideBar/SideBar';
 import ConfigSideBar from '../../components/ConfigSideBar/ConfigSideBar';
 
+
+
 const Home = (props) => {
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    dispatch(loadProfessionals());
+    },[dispatch])
   return (
     <div className='home'>
       <Commercial />
