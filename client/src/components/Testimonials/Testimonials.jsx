@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 const Testimonials = () => {
   const dispatch = useDispatch();
   const reviews = useSelector(state => state.reviews);
-  console.log(reviews)
+  
   useEffect(() => {
     dispatch(getReviews())
   }, [dispatch])
