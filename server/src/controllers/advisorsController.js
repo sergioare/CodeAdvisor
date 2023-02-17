@@ -36,17 +36,7 @@ const getAllUAdvisors = async (req, res, next) => {
     }
 }
 
-const addAdvisorsAdvisors = async (req, res, next) => {
-    try {
-        const data = req.body;
-        await firestore.collection('Advisors').doc().set(data);
-        res.send('Advisors successfuly');
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
-}
-
-const getIdAdvisorsAdvisors = async (req, res, next) => {
+const getIdAdvisors = async (req, res, next) => {
     try {
         const id = req.params.id;
         const student = await firestore.collection('Advisors').doc(id);
@@ -57,6 +47,16 @@ const getIdAdvisorsAdvisors = async (req, res, next) => {
 
             res.send(data.data());
         }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
+const addAdvisors = async (req, res, next) => {
+    try {
+        const data = req.body;
+        await firestore.collection('Advisors').doc().set(data);
+        res.send('Advisors successfuly');
     } catch (error) {
         res.status(400).send(error.message);
     }
@@ -86,8 +86,8 @@ const deleteAdvisors = async (req, res, next) => {
 
 module.exports = { 
     getAllUAdvisors,
-    getIdAdvisorsAdvisors,
-    addAdvisorsAdvisors,
+    getIdAdvisors,
+    addAdvisors,
     updatAdvisors,
     deleteAdvisors
 }
