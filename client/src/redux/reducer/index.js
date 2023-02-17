@@ -6,11 +6,14 @@ import {
     FILTER_BY_RESIDENCE,
     SORT_BY_SCORE,
     SORT_BY_AVAILABILITY,
+    GET_AUTORS
   } from '../actions/actions';
   
 
-  const initialState = {
+const initialState = {
     users: [],
+    reviews: [],
+    autors: [],
     usersInDisplay: [],
     filters: {
       F_Specialty: [],
@@ -18,7 +21,10 @@ import {
       F_Programming_L: [],
       F_Residence: [],
     },
-  };
+};
+
+
+
   
   const filterApplyer = (users, filters) => {
     let usersToDisplay = [...users];
@@ -52,6 +58,12 @@ import {
   const rootReducer = (state = initialState, action) => {
     
     switch (action.type) {
+        case GET_AUTORS:
+            return{
+                ...state,
+                autors:action.payload
+            };
+
       case LOAD_PROFESSIONALS:
         return {
           ...state,
@@ -95,8 +107,8 @@ import {
           usersInDisplay: filterApplyer(state.users, state.filters),
         };
         
-      default:
-        return state;
+        default:
+            return{...state}
     }
   };
   
