@@ -4,32 +4,30 @@ const {
     addAutor,
     updateAutor,
 
-    getReviewrs,
-    getReviewr,
-    addReviewrs,
-    updateReviewrs,
+    getCommunityComments,
+    addCommunityComments,
+    updateCommunityComments,
 
-    getLenguajes,
-    addLenguajes,
-    updateLenguajes,
+    getTechSkills,
+    addTechSkills,
+    updateTechSkills,
 
     getSpecialty
     } = require('../controllers/dataController');
 
 const dataRoute = Router();
 
-dataRoute.get('/autores/',getAutores);
-dataRoute.post('/autores/',addAutor);
-dataRoute.put('/autores/:id',updateAutor);
+dataRoute.get('/Autores/',getAutores);
+dataRoute.post('/Autores/',addAutor);
+dataRoute.put('/Autores/:id',updateAutor);
 
-dataRoute.get('/reviewrs/',getReviewrs);
-dataRoute.get('/reviewrs/:id',getReviewr)
-dataRoute.post('/reviewrs/',addReviewrs);
-dataRoute.put('/reviewrs/:id',updateReviewrs);
+dataRoute.get('/CommunityComments/',getCommunityComments);
+dataRoute.post('/CommunityComments/',addCommunityComments);
+dataRoute.put('/CommunityComments/:id',updateCommunityComments);
 
-dataRoute.get('/lenguajes/',getLenguajes);
-dataRoute.post('/lenguajes/',addLenguajes);
-dataRoute.put('/lenguajes/:id',updateLenguajes);
+dataRoute.get('/TechSkills/',getTechSkills);
+dataRoute.post('/TechSkills/',addTechSkills);
+dataRoute.put('/TechSkills/:id',updateTechSkills);
 
 dataRoute.get('/Specialty/',getSpecialty);
 
