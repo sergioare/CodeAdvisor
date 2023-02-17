@@ -7,7 +7,7 @@ import { useAuth } from "../../context/authContext";
 
 function Register() {
 
-  const { signup } = useAu th();
+  const { signup } = useAuth();
   console.log(signup)
 
   const [user, setUser] = useState({
