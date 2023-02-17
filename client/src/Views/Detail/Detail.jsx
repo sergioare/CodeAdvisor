@@ -14,16 +14,16 @@ export const Detail = () => {
   }, [dispatch, id]);
 
   const detail = useSelector(state => state.advisorDetail)
-  console.log(detail)
+
   return (
     <div className='DetailContainer'>
       <div className='Detail'>
         <img src={detail.Image} alt='imageAdvisor' />
         <h2>{detail.Firstname + ' ' + detail.Lastname}</h2>
         <p>About: {detail.About}</p>
-        <p>Specialty: {detail.Specialty.length > 1 ? detail.Specialty.join(', ') : detail.Specialty}</p>
+        <p>Specialty: {detail.Specialty?.length > 1 ? detail.Specialty.join(', ') : detail.Specialty}</p>
         <p>Tech Skills: {detail.Techskills?.join(', ')}</p>
-        <p>Languages: {detail.Language.length > 1 ? detail.Language.join(', ') : detail.Language}</p>
+        <p>Languages: {detail.Language?.length > 1 ? detail.Language.join(', ') : detail.Language}</p>
         <p>Score: {detail.Score}</p>
         <Link to='/home'><button>Back Home</button></Link>
       </div>
