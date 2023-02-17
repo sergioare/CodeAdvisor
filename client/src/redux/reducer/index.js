@@ -11,10 +11,10 @@ import {
   
 
 const initialState = {
-    users: [],
+    advisors: [],
     reviews: [],
     autors: [],
-    usersInDisplay: [],
+    advisorsInDisplay: [],
     filters: {
       F_Specialty: [],
       F_Language: [],
@@ -23,23 +23,21 @@ const initialState = {
     },
 };
 
-
-
   
-  const filterApplyer = (users, filters) => {
-    let usersToDisplay = [...users];
+  const filterApplyer = (advisors, filters) => {
+    let advisorsToDisplay = [...advisors];
     if (filters.F_Specialty && filters.F_Specialty.length > 0) {
-        usersToDisplay = usersToDisplay.filter(user => filters.F_Specialty.includes(user.Specialty));
+        advisorsToDisplay = advisorsToDisplay.filter(advisors => filters.F_Specialty.includes(advisors.Specialty));
     }
       
     if (filters.F_Language && filters.F_Language.length > 0) {
-      usersToDisplay = usersToDisplay.filter(user => filters.F_Language.includes(user.Language));
+        advisorsToDisplay = advisorsToDisplay.filter(advisors => filters.F_Language.includes(advisors.Language));
     }
 
     if (filters.F_Programming_L && filters.F_Programming_L.length > 0) {
-      usersToDisplay = usersToDisplay.filter(user => {
+        advisorsToDisplay = advisorsToDisplay.filter(advisors => {
         for (let i = 0; i < filters.F_Programming_L.length; i++) {
-          if (!user.ProgrammingLanguage.includes(filters.F_Programming_L[i])) {
+          if (!advisors.ProgrammingLanguage.includes(filters.F_Programming_L[i])) {
             return false;
           }
         }
@@ -49,13 +47,13 @@ const initialState = {
     }
 
     if (filters.F_Residence) {
-      usersToDisplay = usersToDisplay.filter(user => filters.F_Residence.includes(user.Residence));
+        advisorsToDisplay = advisorsToDisplay.filter(advisors => filters.F_Residence.includes(advisors.Residence));
     }
 
-    return usersToDisplay;
+    return advisorsToDisplay;
   };
   
-  const rootReducer = (state = initialState, action) => {
+const rootReducer = (state = initialState, action) => {
     
     switch (action.type) {
         case GET_AUTORS:
@@ -64,49 +62,49 @@ const initialState = {
                 autors:action.payload
             };
 
-      case LOAD_PROFESSIONALS:
-        return {
-          ...state,
-          users: action.payload,
-          usersInDisplay: action.payload,
-        };
-      case FILTER_BY_SPECIALTY:
-        return {
-          ...state,
-          filters: {
-            ...state.filters,
-            F_Specialty: action.payload,
-          },
-          usersInDisplay: filterApplyer(state.users, state.filters),
-        };
-      case FILTER_BY_LANGUAGE:
-        return {
-          ...state,
-          filters: {
-            ...state.filters,
-            F_Language: action.payload,
-          },
-          usersInDisplay: filterApplyer(state.users, state.filters),
-        };
-      case FILTER_BY_PROGRAMMING_LANGUAGE:
-        return {
-          ...state,
-          filters: {
-            ...state.filters,
-            F_Programming_L: action.payload,
-          },
-          usersInDisplay: filterApplyer(state.users, state.filters),
-        };
-      case FILTER_BY_RESIDENCE:
-        return {
-          ...state,
-          filters: {
-            ...state.filters,
-            F_Residence: action.payload,
-          },
-          usersInDisplay: filterApplyer(state.users, state.filters),
-        };
-        
+        case LOAD_PROFESSIONALS:
+            return {
+            ...state,
+            advisors: action.payload,
+            advisorsInDisplay: action.payload,
+            };
+        case FILTER_BY_SPECIALTY:
+            return {
+            ...state,
+            filters: {
+                ...state.filters,
+                F_Specialty: action.payload,
+            },
+            advisorsInDisplay: filterApplyer(state.advisors, state.filters),
+            };
+        case FILTER_BY_LANGUAGE:
+            return {
+            ...state,
+            filters: {
+                ...state.filters,
+                F_Language: action.payload,
+            },
+            advisorsInDisplay: filterApplyer(state.advisors, state.filters),
+            };
+        case FILTER_BY_PROGRAMMING_LANGUAGE:
+            return {
+            ...state,
+            filters: {
+                ...state.filters,
+                F_Programming_L: action.payload,
+            },
+            advisorsInDisplay: filterApplyer(state.advisors, state.filters),
+            };
+        case FILTER_BY_RESIDENCE:
+            return {
+            ...state,
+            filters: {
+                ...state.filters,
+                F_Residence: action.payload,
+            },
+            advisorsInDisplay: filterApplyer(state.advisors, state.filters),
+            };
+            
         default:
             return{...state}
     }

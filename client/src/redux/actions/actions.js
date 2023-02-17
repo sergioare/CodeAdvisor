@@ -19,7 +19,7 @@ export const getAutors = () => {
 
 export const loadProfessionals = () => {
     return function (dispatch) {
-        fetch("http://localhost:5000/users")
+        fetch("http://localhost:3002/users")
             .then(res => res.json())
             .then(data => dispatch({ type: LOAD_PROFESSIONALS, payload: data }));
     }
