@@ -1,15 +1,13 @@
 
 
 class User {
-    constructor(id, Username, Password, Name, Lastname, StatusAdviser, StatusAdmin ) {
+    constructor(id, name, image, techSkills, idiomaNativo, ranking ) {
             this.id = id;
-            this.Username = Username;
-            this.Password = Password;
-            this.Name = Name;
-            this.Lastname = Lastname;
-            this.StatusAdviser = StatusAdviser;
-            this.StatusAdmin = StatusAdmin;
-        
+            this.name = name;
+            this.image = image;
+            this.techSkills = techSkills;
+            this.idiomaNativo = idiomaNativo;
+            this.ranking = ranking;
     }
 }
 
