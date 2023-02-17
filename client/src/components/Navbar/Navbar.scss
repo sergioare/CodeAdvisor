@@ -37,3 +37,12 @@
 
     }
 }
+
+.config-icon{
+    cursor: pointer;
+    color: $title-bg-purple;
+}
+
+.config-icon:hover{
+    color: $text-bg-purple;
+}
