@@ -1,7 +1,7 @@
 
 class Advisors {
     constructor(
-        id, Nickname, Firstname, Lastname, Contact, Img, Residence, Language, Price, Score, About, Specialty, TechSkills
+        id, Nickname, Firstname, Lastname, Contact, Img, Residence, Language, Price, Score, About, Specialty, TechSkills, Reviews
         ) {
             this.id         = id,
             this.Nickname   = Nickname,
@@ -15,8 +15,23 @@ class Advisors {
             this.Score      = Score,
             this.About      = About,
             this.Specialty  = Specialty,
-            this.TechSkills = TechSkills
+            this.TechSkills = TechSkills,
+            this.Reviews    = Reviews
     }
 }
 
-module.exports = Advisors;
+class Reviews {
+    constructor(id, name, img, review, score,){
+        this.id = id
+        this.name = name
+        this.img = img
+        this.review = review
+        this.score = score
+    }
+}
+
+
+module.exports = {
+    Advisors,
+    Reviews
+};
