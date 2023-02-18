@@ -1,5 +1,5 @@
 import './Home.scss'
-import React,{ useEffect } from 'react';
+import React,{ useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadProfessionals } from '../../redux/actions/actions';
 import { icons } from '../../Utils/utils';
@@ -15,7 +15,7 @@ import { useAuth } from '../../context/authContext';
 const Home = () => {
 
   const {user} = useAuth()
-  console.log(user)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
  const dispatch=useDispatch()
   useEffect(()=>{
@@ -25,8 +25,8 @@ const Home = () => {
   return (
     <div className='home'>
       <Commercial />
-      <SideBar />
-      <Cards />
+      <SideBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+      <Cards isSidebarOpen={isSidebarOpen} />
       <Testimonials />
       <div className='icons'>
         {icons.map((icon, index) => (
