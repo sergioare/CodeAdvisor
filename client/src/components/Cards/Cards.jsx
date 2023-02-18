@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 
 const Cards = () => {
   const dispatch = useDispatch();
-  const advisors = useSelector(state => state.advisors);
+  const advisors = useSelector(state => state.advisorsInDisplay);
 
   useEffect(() => {
     dispatch(getAdvisors())
@@ -26,7 +26,7 @@ const Cards = () => {
           return <Card
             key={advisor.id}
             id={advisor.id}
-            Image={advisor.Image}
+            Image={advisor.Img}
             Firstname={advisor.Firstname + ' ' +
              advisor.Lastname}
             TechSkills={advisor.TechSkills}

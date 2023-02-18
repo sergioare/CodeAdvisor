@@ -13,15 +13,17 @@ const Countries = [
 ]
 
 const ProgrammingLanguages = [
-    'JavaScript',
-    'Python',
+    'JS',
+    'PY',
     'Java',
     'Ruby',
     'PHP',
     'C++',
-    'CSS',
     'C#',
     'C',
+    'HTML',
+    'CSS',
+    'YOLO',
 ]
 
 const SortMethod =[
