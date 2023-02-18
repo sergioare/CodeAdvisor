@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAdvisors } from '../../redux/actions/actions';
 import { useEffect } from 'react';
 
-const Cards = () => {
+const Cards = ({ isSidebarOpen }) => {
+
   const dispatch = useDispatch();
   const advisors = useSelector(state => state.advisorsInDisplay);
 
@@ -15,7 +16,7 @@ const Cards = () => {
 
   return (
 
-    <div className="containerPrincipal">
+    <div className={`containerPrincipal ${isSidebarOpen ? 'sidebar-open' : ''}`}>
       <div className="containeMessage">
         <h1>Our Advisors</h1>
         <br></br>
