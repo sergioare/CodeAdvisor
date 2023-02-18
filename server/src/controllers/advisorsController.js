@@ -44,7 +44,7 @@ const getAllUAdvisors = async (req, res, next) => {
                     doc.data().Specialty,
                     doc.data().TechSkills
                     );
-                    if (doc.data().status === false) {
+                    if (doc.data().status === true) {
                         advisorsArray.push(advisors);
                     }
                 });
