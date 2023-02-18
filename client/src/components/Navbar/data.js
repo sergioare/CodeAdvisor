@@ -13,6 +13,6 @@ export const navbarItems =[
     },
     {
         name: 'Contact',
-        path:'contact'
+        path:'/contact'
     },
 ]
