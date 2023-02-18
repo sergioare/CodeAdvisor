@@ -10,7 +10,7 @@ import {
 import { Countries, ProgrammingLanguages, Languages, Specialties, SortMethod } from "./data";
 import "./SideBar.scss";
 
-const SideBar = () => {
+const SideBar = ({isSidebarOpen, setIsSidebarOpen}) => {
 
   const dispatch = useDispatch();
   const [specialties, setSpecialties] = useState([]);
@@ -18,7 +18,6 @@ const SideBar = () => {
   const [programmingLanguages, setProgrammingLanguages] = useState([]);
   const [countries, setCountries] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState("Best Score");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     useEffect(() => {
         const newSpecialties = [...specialties];
@@ -130,8 +129,8 @@ const SideBar = () => {
             </div>
             </div>
             <div className="sidebar-section">
-            <p className="sidebar-title">Programming Language:</p>
-            <div className="filter-container">
+            <p className="sidebar-title">Tech Skills:</p>
+            <div className="filter-container-lot">
               {ProgrammingLanguages.map((item) => (
                 <div key={item + "container"} className={`option-item ${programmingLanguages.includes(item) ? "selected" : ""}`}>
                   <input key={item + "check box"} type="checkbox" className="filter-item" id={item} value={item} checked={programmingLanguages.includes(item)} onChange={handleProgrammingLanguageChange} />
@@ -142,7 +141,7 @@ const SideBar = () => {
             </div>
             <div className="sidebar-section">
             <p className="sidebar-title">Country:</p>
-            <div className="filter-container">
+            <div className="filter-container-lot">
               {Countries.map((item) => (
                 <div key={item + "container"} className={`option-item ${countries.includes(item) ? "selected" : ""}`}>
                   <input key={item + "check box"} type="checkbox" className="filter-item" id={item} value={item} checked={countries.includes(item)} onChange={handleCountryChange} />
