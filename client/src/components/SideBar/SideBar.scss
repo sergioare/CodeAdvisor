@@ -40,11 +40,12 @@
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     width: 290px;
+    overflow: auto;
     
     
     
     .sidebar-header {
-      position: relative;
+      position: fixed;
       margin-left: -20px;
       margin-top: -20px;
       background-color: $primary-color;
@@ -70,6 +71,7 @@
     border-radius: 10px;
     padding: 5px;
 
+
         .option-item{
             cursor: pointer;
             font-weight: 600;
@@ -78,6 +80,9 @@
         }
 
   }
+
+
+  
   
   .filter-item {
     margin-right: 4px;
@@ -104,5 +109,11 @@
     font-size: 15px;
   }
   
+
+.blank-space {
+  height: 50px;
+
+
+}
   
   

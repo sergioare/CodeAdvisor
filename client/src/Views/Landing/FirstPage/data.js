@@ -11,5 +11,26 @@ export const images=[
                 alt:"Online Class"
         }
 ]
-
+export const navbarLanding =[
+    {
+        name: 'Home',
+        path: '/home'
+    },
+    {
+        name: 'About',
+        path: '/about'
+    },
+    {
+        name: 'Courses',
+        path:'/courses'
+    },
+    {
+        name: 'Contact',
+        path:'contact'
+    },
+    {
+        name: 'Login',
+        path:'login'
+    },
+]
 

@@ -6,7 +6,7 @@ import Testimonials from '../../components/Testimonials/Testimonials'
 
 const Landing = () => {
     return (
-        <div>
+        <div>  
             <PreLanding/>
             <LandingTwo/>
             <LandingThree/>

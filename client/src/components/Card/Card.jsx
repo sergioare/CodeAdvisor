@@ -6,15 +6,15 @@ const CardGeneral = (props) => {
   return (
     <div className="cardContainer">
       <div className="cardMain">
-        <img src={props.img} alt="imageprofile" />
+        <img src={props.Image} alt="imageprofile" />
         <div className="cardBg">
-          <h1>{props.name}</h1>
+          <h1>{props.Firstname}{props.Lastname}</h1>
           <div className="letra">
-            <h2>Tech Skills:</h2> <p>{props.Programming_language}</p>
-            <h2>Native language:</h2> <p>{props.Native_language}</p>
-            <h2>Ranking:</h2> <p>{props.Ranking}</p>
+            <h2>Tech Skills:</h2> <p>{props.TechSkills.length > 1 ? props.TechSkills.join(', ') : props.TechSkills}</p>
+            <h2>Specialty:</h2> <p>{props.Specialty.length > 1 ? props.Specialty.join(', ') : props.Specialty}</p>
+            <h2>Ranking:</h2> <p>⭐{props.Score}</p>
           </div>
-          <Link to={`/advisor/${props.id}`}><button variant="primary">Meet Advisor</button></Link>
+          <Link to={`/user/${props.id}`}><button variant="primary">Meet Advisor</button></Link>
         </div>
       </div>
     </div>

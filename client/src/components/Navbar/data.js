@@ -4,15 +4,15 @@ export const navbarItems =[
         path: '/home'
     },
     {
-        name: 'About',
-        path: '/about'
+        name: 'Forum',
+        path: '/forum'
     },
     {
         name: 'Courses',
         path:'/courses'
     },
     {
-        name: 'Contact',
-        path:'contact'
+        name: 'FAQs',
+        path:'FAQs'
     },
 ]

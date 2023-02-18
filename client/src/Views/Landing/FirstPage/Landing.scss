@@ -9,7 +9,18 @@
     background-image: url(../../../assets/bg-1.png);
     background-size: 105% 100%;
     background-repeat: no-repeat;
+  
+    
+        
+        .link{
+            color:$text-bg-purple;
+            text-decoration: none;
+        }
+   
 
+    .navRight{
+        background-color: transparent;
+    }
     .icons{
         display: flex;
         width: 50%;
@@ -43,7 +54,7 @@
         img {
         width: 30vw;
         height: 55vh;
-        margin-top: -20vh;
+        margin-top: -5vh;
         border-radius: 50%;
         object-fit: cover;
         }
@@ -68,6 +79,7 @@
             flex-basis: 70%;
             justify-content: space-around;
             font-size: 2vw;
+            color:$text-bg-purple;
 
         }
 

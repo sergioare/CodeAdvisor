@@ -9,15 +9,17 @@ const Navbar = (props) => {
   return (
     <div className='navbar'>
       <div className='navLeft'>
+      <Link to='/' className='linkLogo' >
         <i className="fa-solid fa-house-laptop"></i>
         CodeAdvisor
+      </Link>
       </div>
       <div className='navRight'>
         {navbarItems.map((item, index) => {
           return <Link to={item.path} key={index}><div key={index}>{item.name}</div></Link>
         })}
         <Searchbar />
-        <button onClick={toggleConfigBar}>Config</button>
+        <i className="config-icon fas fa-cogs" onClick={toggleConfigBar}></i>
       </div>
     </div>
   );
