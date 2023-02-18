@@ -49,7 +49,7 @@ export const getDetail = (id) => {
 
 export const loadProfessionals = () => {
   return function (dispatch) {
-    fetch("http://localhost:3002/users")
+    fetch("http://localhost:3002/Advisors")
       .then(res => res.json())
       .then(data => dispatch({ type: LOAD_PROFESSIONALS, payload: data }));
   }
