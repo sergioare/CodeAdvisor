@@ -1,20 +1,27 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+
+
 import { 
     getAuth,
     connectAuthEmulator,
     signInWithEmailAndPassword
-  } from "firebase/auth";
+ } from "firebase/auth";
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyDXEa11aeeany--l217i6EZc2Y2NPg-fXY",
-//   authDomain: "codeadvisor-5f855.firebaseapp.com",
-//   projectId: "codeadvisor-5f855",
-//   storageBucket: "codeadvisor-5f855.appspot.com",
-//   messagingSenderId: "149482917408",
-//   appId: "1:149482917408:web:ec8f3f05ad8d3a05427645",
-//   measurementId: "G-ZZVBCR8WDH"
-// };
+
+const {
+    PORT,
+    HOST,
+    HOST_URL,
+    API_KEY,
+    AUTH_DOMAIN,
+    PROJECT_ID,
+    STORAGE_BUCKET,
+    MESSAGING_SENDER_ID,
+    APP_ID,
+    MEASUREMENT_ID
+} = process.env;
+
 const firebaseConfig = {
   apiKey: "AIzaSyDKd3GIIfTmZ41ZVDziBlNWPi2fsrspFL4",
   authDomain: "pf-beta-ang31.firebaseapp.com",
@@ -25,6 +32,7 @@ const firebaseConfig = {
   measurementId: "G-30PVTTBKSE"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app)
-const analytics = getAnalytics(app);
+
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app)
+//const analytics = getAnalytics(app);
