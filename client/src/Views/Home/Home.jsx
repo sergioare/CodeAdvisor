@@ -7,7 +7,8 @@ import { Commercial } from '../../components/Commercial/Commercial';
 import Cards from "../../components/Cards/Cards"
 import Testimonials from '../../components/Testimonials/Testimonials';
 import SideBar from '../../components/SideBar/SideBar';
-import ConfigSideBar from '../../components/ConfigSideBar/ConfigSideBar';
+// import ConfigSideBar from '../../components/ConfigSideBar/ConfigSideBar';
+import Navbar from '../../components/Navbar/Navbar';
 // import { useAuth } from '../../context/AuthContext';
 // import { useContext } from 'react';
 
@@ -24,6 +25,7 @@ const Home = () => {
 
   return (
     <div className='home'>
+      <Navbar/>
       <Commercial />
       <SideBar />
       <Cards />

@@ -50,6 +50,8 @@
 .leftSide{
     @include mixins.create-flexbox;
     width: 50%;
+    overflow: hidden;
+
     
         img {
         width: 30vw;
@@ -57,7 +59,9 @@
         margin-top: -5vh;
         border-radius: 50%;
         object-fit: cover;
+             
         }
+     
 }
 .rightSide{
    @include mixins.create-flexbox;
