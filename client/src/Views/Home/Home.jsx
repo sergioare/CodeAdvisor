@@ -12,12 +12,16 @@ import ConfigSideBar from '../../components/ConfigSideBar/ConfigSideBar';
 // import { useContext } from 'react';
 
 
+const Home = () => {
 
-const Home = (props) => {
-  const dispatch=useDispatch()
+  // const {user} = useAuth()
+  // console.log(user)
+
+ const dispatch=useDispatch()
   useEffect(()=>{
     dispatch(loadProfessionals());
     },[dispatch])
+
   return (
     <div className='home'>
       <Commercial />
@@ -31,7 +35,7 @@ const Home = (props) => {
           </div>
         ))}
       </div>
-      <ConfigSideBar isConfigBarOpen={props.isConfigBarOpen} toggleConfigBar={props.toggleConfigBar} />
+      {/* <ConfigSideBar isConfigBarOpen={props.isConfigBarOpen} toggleConfigBar={props.toggleConfigBar} /> */}
 
 
     </div>

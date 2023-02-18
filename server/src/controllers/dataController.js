@@ -99,7 +99,7 @@ const updateCommunityComments = async (req, res, next) => {
 }
 
 //------------/ TechSkills /--------------------//
-const getTechSkills = async (req, res, next) => {
+const getAllTechSkills = async (req, res, next) => {
     try {
         const fire = await firestore.collection('TechSkills');
         const data = await fire.get();
@@ -115,9 +115,23 @@ const getTechSkills = async (req, res, next) => {
                     element.data().Translation  || "emply",
                     element.data().Description  || "emply",
                 )
-                tsArray.push(ts)
+                if(element.data().status === true){tsArray.push(ts)}
             });
             res.status(200).send(tsArray);
+        }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+const getIdTechSkills = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const fire = await firestore.collection('TechSkills').doc(id);
+        const data = await fire.get();
+        if(!data.exists) {
+            res.status(404).send('TechSkills not found');
+        }else {
+            res.send(data.data());
         }
     } catch (error) {
         res.status(400).send(error.message);
@@ -225,7 +239,8 @@ module.exports = {
     addCommunityComments,
     updateCommunityComments,
 
-    getTechSkills,
+    getAllTechSkills,
+    getIdTechSkills,
     addTechSkills,
     updateTechSkills,
 
@@ -234,6 +249,28 @@ module.exports = {
 }
 
 
+const Countries = [
+    'All',
+    'Argentina',
+    'Bolivia',
+    'Brazil',
+    'Canada',
+    'Colombia',
+    'Chile',
+    'Mexico',
+    'Paraguay',
+    'Peru',
+    'U.S.A.',
+    'U.K.',
+]
+
+
+const sort = [
+"more affordable Más asequible",
+"more expensive más caro",
+"best score mejor puntuación",
+"most available más disponible"
+]
 /*
 const getIdCommunityComments = async (req, res, next) => {
     try {
