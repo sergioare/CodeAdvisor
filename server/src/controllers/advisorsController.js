@@ -1,6 +1,22 @@
+/*
+ * Queridos programadores del BACK:
+ * 
+ * Cuando escribi este codigo, solo Dios y yo sabiamos como funcionaba.
+ * Ahora, !solo Dios sabe!
+ * 
+ * Asi que si estas tratando de 'optimizar' este .JS y fracasas (seguramente).
+ * 
+ * por favor cambiar el siguiente marcador:
+ * 
+ *  ________________ ____________
+ * |   programador  |  codigo    |
+ *  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ ‾‾‾‾‾‾‾‾‾‾‾‾
+ * |         1      |     2      |
+ *  ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ ‾‾‾‾‾‾‾‾‾‾‾‾
+ */
 const firebase = require("../db/db");
+//const { getSeletTechSkills } = require("../handlers/filtersData");
 const Advisors = require("../models/Advisors");
-const { getIdTechSkills } = require("./dataController");
 const firestore = firebase.firestore();
 
 const getAllUAdvisors = async (req, res, next) => {
@@ -38,29 +54,38 @@ const getAllUAdvisors = async (req, res, next) => {
         res.status(400).send(error.message);
     }
 };
-    
+
 const getIdAdvisors = async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const student = await firestore.collection("Advisors").doc(id);
-    const data = await student.get();
-    if (!data.exists) {
-      res.status(404).send("Advisors with the given ID not found");
-    } else {
-      const aa = data.data().Techskills[0];
-      console.log(aa);
-      const ff = await firestore.collection("TechSkills").doc(aa);
-      const dd = await ff.get();
-      if (!dd.exists) {
-        console.log("TechSkills not found");
-      } else {
-        console.log(dd.data());
-      }
-      res.send(data.data());
+    try {
+        const id = req.params.id;
+        const student = await firestore.collection("Advisors").doc(id);
+        const data = await student.get();
+        if (!data.exists) {
+            res.status(404).send("Advisors with the given ID not found");
+        } else {
+            const aa = data.data().TechSkills
+            //const tech = await getSeletTechSkills(aa)
+            const advisors = new Advisors(
+                data.id,
+                data.data().Nickname,
+                data.data().Firstname,
+                data.data().Lastname,
+                data.data().Contact,
+                data.data().Img,
+                data.data().Residence,
+                data.data().Language,
+                data.data().Price,
+                data.data().Score,
+                data.data().About,
+                data.data().Specialty,
+                data.data().TechSkills
+                //tech
+                );
+                res.send(advisors);
+        }
+    } catch (error) {
+        res.status(400).send(error.message);
     }
-  } catch (error) {
-    res.status(400).send(error.message);
-  }
 };
 
 const addAdvisors = async (req, res, next) => {
@@ -102,13 +127,3 @@ module.exports = {
   updatAdvisors,
   deleteAdvisors,
 };
-
-// export const getAllUsers = () =>{
-//     const bdData = 'todos los usuarios'
-//     return  bdData
-// }
-
-// export const getUser = () =>{
-//     const bdData = 'todos los usuarios'
-//     return  bdData
-// }
