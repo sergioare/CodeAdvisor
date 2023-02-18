@@ -1,7 +1,17 @@
 import { textLandingFourth } from './data';
 import './LandingFourth.scss'
 import image from '../../../assets/profesor.png'
+import Swal from 'sweetalert2'
+
 const LandingFourth = () => {
+    const showAlert = ()=>{
+        Swal.fire({
+        title: "Sorry, We are working for you",
+        icon: "warning",
+        footer: "<b>Continue enjoy our services</b>",
+        timer: 3000,
+    })
+    }
     return (
         <div className="landingFourth">
             <div className="leftSide">
@@ -9,7 +19,7 @@ const LandingFourth = () => {
                     <h1>{textLandingFourth.h1}</h1>
                     <p>{textLandingFourth.p1}</p>
                     <p>{textLandingFourth.p2}</p>
-                    <button className='btn'>{textLandingFourth.btn}</button>
+                    <button className='btn' onClick={showAlert}>{textLandingFourth.btn}</button>
                 </div>
             </div>
             <div className="rightSide">
