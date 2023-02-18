@@ -28,12 +28,13 @@ const PreLanding = () => {
       <div className='leftSide'>
          <div className="slider">
         {images.map((image, index) => (
-          <span><img
+          <div className='images-landing'>
+            <img
             src={image.src}
             alt={image.alt}
             key={index}
           />
-          </span>
+          </div>
         ))}
 
          </div>

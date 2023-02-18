@@ -49,24 +49,40 @@
 
 .leftSide{
     @include mixins.create-flexbox;
-    width: 50%;
-    overflow: hidden;
+    width: 55%;
+    
 
     
-        img {
-        width: 30vw;
-        height: 55vh;
-        margin-top: -5vh;
-        border-radius: 50%;
-        object-fit: cover;
-             
+    .slider{
+    @include mixins.create-flexbox;
+        width: 95%;
+        display: flex;
+        gap: 1vw;
+        margin-bottom: 12vh;
+       
         }
+
+        .images-landing{
+                display: flex;
+                width: 10vw;
+                height: 40vh;
+                overflow: hidden;
+                flex: 1;
+                border-radius: 20%;
+                transition: all 2s cubic-bezier(.25, .4, .45, 1.4);
+
+                &:hover{
+                    flex:5;
+                }
+            }
+        
      
 }
 .rightSide{
    @include mixins.create-flexbox;
     flex-wrap: wrap;
-    width: 50%;
+    width: 45%;
+    margin-top: 10vh;
 
 
         h1 {

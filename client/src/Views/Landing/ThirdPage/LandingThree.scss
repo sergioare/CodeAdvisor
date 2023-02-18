@@ -16,8 +16,13 @@
         font-size: 3.5vw;
     
         img{
-           display: flex;
-           border: 8px solid $text-bg-purple;
+            width: 30vw;
+            height: 55vh;
+            margin-top: -5vh;
+            border-radius: 50%;
+            object-fit: cover;
+            display: flex;
+            border: 8px solid $text-bg-purple;
     
         }
         .image1{
