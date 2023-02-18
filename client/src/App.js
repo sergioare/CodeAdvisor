@@ -1,26 +1,25 @@
-
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { Landing, Home, Detail } from './Views/index';
 import AboutUs from "./components/AboutUs/AboutUs"
-import Navbar from './components/Navbar/Navbar';
+// import Navbar from './components/Navbar/Navbar';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import { AuthProvider } from './context/authContext';
 import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
-import ConfigSideBar from './components/ConfigSideBar/ConfigSideBar';
+// import ConfigSideBar from './components/ConfigSideBar/ConfigSideBar';
 import Courses from './components/Courses/Courses';
 import Contact from './components/Contact/Contact';
 
 
 
 function App() {
-  const location = useLocation();
+  // const location = useLocation();
   return (
     <div className="App">
       {/* {location.pathname === '/home' && <Navbar toggleConfigBar={toggleConfigBar} />}
-      {isConfigBarOpen && <ConfigSideBar />} */}
+      {isConfigBarOpen && <ConfigSideBar />}  */}
       
-      <div className="bg-slate-300 text-black h-screen flex text-white">
+      <div>
       <AuthProvider>
         <Routes>
           <Route exact path='/' element={<Landing />} />

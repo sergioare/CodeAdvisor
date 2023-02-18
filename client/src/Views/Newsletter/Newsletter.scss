@@ -1,0 +1,64 @@
+@use '../../components/Styles/mixins';
+@import '../../components/Styles/variables';
+
+.newsletter{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+   
+    .form{
+        @include mixins.create-flexbox;
+
+        flex-direction: column;
+        width: 40%;
+        padding: 2vw;
+        border: 2px solid $circles-bg-light;
+        border-radius: 20px;
+     
+        
+        h1{
+            color:$title-bg-light;
+            margin-bottom: 5vh;
+            display: flex;
+           text-align: center;
+                    
+        }
+        p{
+            color:$text-bg-light;
+            font-size: 1.4vw;
+            text-align: center;
+            margin-bottom: 5vh;
+       
+        }
+        .input-name{
+            width: 80%;
+            height: 6vh;
+            margin-bottom: 3vh;
+            border: 3px solid $circles-bg-light;
+            border-radius: 20px;
+            font-size: 1.3vw;
+            text-align: center;
+
+        }
+        .input-email{
+            height: 6vh;
+            width: 80%;
+            border: 3px solid $circles-bg-light;
+            border-radius: 20px;
+            margin-bottom: 5vh;
+            font-size: 1.3vw;
+            text-align: center;
+
+
+        }
+        .btn{
+            background-color:$bg-btn;
+            font-size: 1.3vw;
+            width: 40%;
+            color:$text-bg-purple;
+            font-weight: bolder;
+        
+
+        }
+    }
+}
