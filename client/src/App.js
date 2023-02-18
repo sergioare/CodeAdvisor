@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       {/* {location.pathname === '/home' && <Navbar toggleConfigBar={toggleConfigBar} />}
-      {isConfigBarOpen && <ConfigSideBar />} */}
+      {isConfigBarOpen && <ConfigSideBar />}  */}
       
       <div className="bg-slate-300 text-black h-screen flex text-white">
       <AuthProvider>
