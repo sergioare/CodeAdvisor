@@ -1,8 +1,8 @@
 const {Router} = require('express');
 const {
     getAllUAdvisors,
-    getIdAdvisorsAdvisors,
-    addAdvisorsAdvisors,
+    getIdAdvisors,
+    addAdvisors,
     updatAdvisors,
     deleteAdvisors
     } = require('../controllers/advisorsController');
@@ -10,8 +10,8 @@ const {
 const advisorsRoute = Router();
 
 advisorsRoute.get('/',getAllUAdvisors);
-advisorsRoute.get('/:id',getIdAdvisorsAdvisors);
-advisorsRoute.post('/',addAdvisorsAdvisors);
+advisorsRoute.get('/:id',getIdAdvisors);
+advisorsRoute.post('/',addAdvisors);
 advisorsRoute.put('/:id', updatAdvisors);
 advisorsRoute.delete('/:id', deleteAdvisors);
 
