@@ -33,11 +33,10 @@ class CommunityComments{
 }
 
 class TechSkills{
-    constructor(id, Name, Image, Translation, Description ){
+    constructor(id, Name, Image, Description ){
         this.id             = id
         this.Name           = Name
         this.Image          = Image;
-        this.Translation    = Translation;
         this.Description    = Description   ;
     }
 }
