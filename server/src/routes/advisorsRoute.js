@@ -3,13 +3,13 @@ const {
 
     getAllUAdvisors,
     getIdAdvisors,
-    getAdvisorsAllReviews,
+    getAdvisorsAllReviwers,
 
     addAdvisors,
-    addAdvisorsReviews,
+    addAdvisorsReviwers,
 
     updatAdvisors,
-    updatAdvisorsReviews,
+    updatAdvisorsReviwers,
     
     deleteAdvisors
 
@@ -19,13 +19,13 @@ const advisorsRoute = Router();
 
 advisorsRoute.get('/',getAllUAdvisors);
 advisorsRoute.get('/:id',getIdAdvisors);
-advisorsRoute.get('/:id/Reviews',getAdvisorsAllReviews)
+advisorsRoute.get('/:id/Reviwers',getAdvisorsAllReviwers)
 
 advisorsRoute.post('/',addAdvisors);
-advisorsRoute.post('/:id/Reviews',addAdvisorsReviews)
+advisorsRoute.post('/:id/Reviwers',addAdvisorsReviwers)
 
 advisorsRoute.put('/:id', updatAdvisors);
-advisorsRoute.put('/:id/Reviews/:idr',updatAdvisorsReviews)
+advisorsRoute.put('/:id/Reviwers/:idr',updatAdvisorsReviwers)
 
 advisorsRoute.delete('/:id', deleteAdvisors);
 

@@ -33,12 +33,12 @@ class Advisors {
     }
 }
 
-class Reviews {
-    constructor(id, name, img, review, score,){
+class Reviwers {
+    constructor(id, Name, Img, Reviwer, score,){
         this.id = id
-        this.name = name
-        this.img = img
-        this.review = review
+        this.Name = Name
+        this.Img = Img
+        this.Reviwer = Reviwer
         this.score = score
     }
 }
@@ -46,5 +46,5 @@ class Reviews {
 
 module.exports = {
     Advisors,
-    Reviews
+    Reviwers
 };

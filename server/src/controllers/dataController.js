@@ -1,6 +1,7 @@
 const firebase = require('../db/db');
-const {Data, Autor, CommunityComments, TechSkills, Specialty} = require('../models/database');
 const firestore = firebase.firestore();
+
+const {Data, Autor, CommunityComments, TechSkills, Contacts, Specialty} = require('../models/database');
 
 //------------/ AUTORES DE LA PAGINA /--------------------//
 const getAutores = async (req, res, next) => {
@@ -162,6 +163,40 @@ const updateTechSkills = async (req, res, next) => {
     }
 }
 
+//------------/ Contacts /--------------------//
+const getContacts = async (req, res, next) => {
+    try {
+        const fire = await firestore.collection('Contacts');
+        const data = await fire.get();
+        const ccArray = [];
+        if(data.empty) {
+            res.status(404).send('Contacts vacia');
+        }else {
+            data.forEach(element => {
+                const cc = new Contacts(
+                    element.id, 
+                    element.data().email, 
+                    element.data().fullName, 
+                    element.data().mensaje 
+                )
+                ccArray.push(cc)
+            });
+            res.status(200).send(ccArray);
+        }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+const addContacts = async (req, res, next) => {
+    try {
+        const data = req.body;
+        await firestore.collection('Contacts').doc().set(data);
+        res.send('Contacts añadido');
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
 //------------/ Specialty /--------------------//
 const getSpecialty = async (req, res, next) => {
     try {
@@ -230,7 +265,6 @@ const getData = async (req, res, next) => {
 }
 
 module.exports = {
-
     getAutores,
     addAutor,
     updateAutor,
@@ -243,6 +277,9 @@ module.exports = {
     getIdTechSkills,
     addTechSkills,
     updateTechSkills,
+
+    getContacts,
+    addContacts,
 
     getSpecialty,
     getData

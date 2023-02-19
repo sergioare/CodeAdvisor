@@ -56,7 +56,8 @@ async function getAllReviews(aId) {
     } catch (error) {
         return ["Error Reviwers", 0]
     }
-    }
+}
+
 module.exports = {
     getSeletTechSkills,
     getAllReviews
