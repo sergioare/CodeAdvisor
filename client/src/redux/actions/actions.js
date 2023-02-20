@@ -13,6 +13,7 @@ export const SORT_ADVISORS = "SORT_ADVISORS";
 export const SORT_BY_AVAILABILITY = "SORT_BY_AVAILABILITY";
 export const SORT_BY_PRICE = "SORT_BY_PRICE";
 export const SORT_BY_ALPHABET = "SORT_BY_ALPHABET";
+export const GET_TECHSKILLS = 'GET_TECHSKILLS';
 
 export const getAutors = () => {
   return async function (dispatch) {
@@ -44,6 +45,14 @@ export const getDetail = (id) => {
     const response = await axios.get(`http://localhost:3002/Advisors/${id}`);
     const advisor = response.data;
     dispatch({ type: ADVISOR_DETAIL, payload: advisor })
+  }
+}
+
+export const getTechSkills = () => {
+  return async function (dispatch) {
+    const response = await axios.get('http://localhost:3002/data/TechSkills');
+    const techSkills = response.data;
+    dispatch({ type: GET_TECHSKILLS, payload: techSkills })
   }
 }
 
