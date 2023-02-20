@@ -17,7 +17,7 @@ const getAutores = async (req, res, next) => {
                     element.id,
                     element.data().name         || "empty",
                     element.data().img          || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmLy65I94l_MT3xr0Cj9OQNs5_k8Tox9c9qQ&usqp=CAU",  
-                    element.data().ocupation    || "empty",
+                    element.data().ocupation    || ["empty"],
                     element.data().about        || "empty",
                     element.data().linkedin     || "empty",
                     element.data().gitHub       || "empty",
@@ -109,11 +109,11 @@ const getAllTechSkills = async (req, res, next) => {
             res.status(404).send('TechSkills vacia');
         }else {
             data.forEach(element => {
+                console.log(element.data().Description);
                 const ts = new TechSkills(
                     element.id,
                     element.data().Name         || "emply",
                     element.data().Image        || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmLy65I94l_MT3xr0Cj9OQNs5_k8Tox9c9qQ&usqp=CAU",
-                    element.data().Translation  || "emply",
                     element.data().Description  || "emply",
                 )
                 if(element.data().status === true){tsArray.push(ts)}
@@ -259,6 +259,19 @@ const getData = async (req, res, next) => {
             });
             res.status(200).send(dArray);
         }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
+const addXD = async (req, res, next) => {
+    const data = req.body;
+    if (!data.id) {
+        res.status(404).send(`falta nombre de TechSkills`);
+    }
+    try {
+        await firestore.collection('XD').doc(data.id).set(data);
+        res.send(`TechSkills: ${data.name} añadido`);
     } catch (error) {
         res.status(400).send(error.message);
     }

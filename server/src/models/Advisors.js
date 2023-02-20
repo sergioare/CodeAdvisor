@@ -46,10 +46,11 @@ class Reviwers {
 }
 
 class Schedules {
-    constructor(id, Class, Student, Start, End,){
+    constructor(id, Class, About, Meet, Start, End,){
         this.id = id
         this.Class = Class
-        this.Student = Student
+        this.About = About
+        this.Meet = Meet
         this.Start = Start
         this.End = End
     }
