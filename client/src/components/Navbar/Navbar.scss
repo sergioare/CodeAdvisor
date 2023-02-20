@@ -13,9 +13,13 @@
 .navLeft {
     @include mixins.create-flexbox;
     flex: 1;
-    color: $text-bg-purple;
     font-weight: 800;
     font-size: 2vw;
+
+    .linkLogo{
+        text-decoration: none;
+        color: $primary-color;
+    }
 }
 
 .navRight {

@@ -9,8 +9,10 @@ const Navbar = (props) => {
   return (
     <div className='navbar'>
       <div className='navLeft'>
+      <Link to='/' className='linkLogo' >
         <i className="fa-solid fa-house-laptop"></i>
         CodeAdvisor
+      </Link>
       </div>
       <div className='navRight'>
         {navbarItems.map((item, index) => {
