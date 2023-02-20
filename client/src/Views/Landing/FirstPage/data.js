@@ -30,8 +30,8 @@ export const navbarLanding =[
         path: '/about'
     },
     {
-        name: 'Courses',
-        path:'/courses'
+        name: 'Technologies',
+        path:'/technologies'
     },
     {
         name: 'Contact',
