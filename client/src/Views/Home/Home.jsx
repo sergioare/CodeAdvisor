@@ -33,8 +33,8 @@ const Home = () => {
   return (
     <div className='home'>
       <Navbar toggleConfigBar={toggleConfigBar}/>
-      <Commercial />
       <SideBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+      <Commercial isSidebarOpen={isSidebarOpen}/>
       <Cards isSidebarOpen={isSidebarOpen} />
       <Testimonials />
       <div className='icons'>
