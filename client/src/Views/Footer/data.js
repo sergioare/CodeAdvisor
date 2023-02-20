@@ -1,7 +1,7 @@
 export const footerItems =[
     {
         name: 'About Us',
-        path: '/aboutUs'
+        path: '/about'
     },
     {
         name: 'Services',
