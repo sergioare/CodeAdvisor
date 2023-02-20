@@ -37,7 +37,7 @@ class TechSkills{
         this.id             = id
         this.Name           = Name
         this.Image          = Image;
-        this.Description    = Description   ;
+        this.Description    = Description;
     }
 }
 class Contacts{

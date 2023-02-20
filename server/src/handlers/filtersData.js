@@ -68,7 +68,8 @@ async function getAllSchedules(aId) {
                 const schedule = new Schedules(
                     doc.id,
                     doc.data().Class    || "empty",
-                    doc.data().Student  || "empty",
+                    doc.data().About    || "empty",
+                    doc.data().Meet     || "empty",
                     doc.data().Start    || { "seconds": 0000000000, "nanoseconds": 000000000 }, 
                     doc.data().End      || { "seconds": 0000000000, "nanoseconds": 000000000 }
                     );
