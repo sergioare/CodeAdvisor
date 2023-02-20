@@ -1,6 +1,16 @@
 import './Newsletter.scss'
+import Swal from 'sweetalert2'
 
 const Newsletter = () => {
+    const showAlert=()=>{
+        Swal.fire({
+            title: '',
+            text: 'Do you want to continue',
+            icon: 'error',
+            confirmButtonText: 'Cool'
+          })
+    }
+
     return (
         <div className="newsletter">
             {/* <div className="form"> */}

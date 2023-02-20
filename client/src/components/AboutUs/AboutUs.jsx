@@ -21,7 +21,7 @@ const AboutUs = () => {
 
             <div className="containerAbout">
                 <h1 className="title">About Us</h1>
-                <h2 className="subtitle"> We create this platform seeks to facilitate access to online software advisors as well as contact with Freelance programmers.</h2>
+                <h2 className="subtitle"> We created this platform seeking to facilitate access to online software advisors as well as contact with Freelance developers.</h2>
                 <div className="aboutConten">
                     {autores.map((i, index) => {
                         return (

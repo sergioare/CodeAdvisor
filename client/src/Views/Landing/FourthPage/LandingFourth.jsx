@@ -8,7 +8,7 @@ const LandingFourth = () => {
         Swal.fire({
         title: "Sorry, We are working for you",
         icon: "warning",
-        footer: "<b>Continue enjoy our services</b>",
+        footer: "<b>Continue to enjoy our services</b>",
         timer: 3000,
     })
     }

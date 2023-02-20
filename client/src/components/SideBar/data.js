@@ -32,7 +32,7 @@ const SortMethod =[
     "More expensive",
     "A to Z",
     "Z to A",
-    "Most Available",
+    /* "Most Available", */
     "relleno inaccesible"
 
 ]

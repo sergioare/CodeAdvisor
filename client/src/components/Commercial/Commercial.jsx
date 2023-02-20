@@ -1,9 +1,9 @@
 import React from 'react'
 import './Commercial.scss'
 
-export const Commercial = () => {
+export const Commercial = ({ isSidebarOpen }) => {
   return (
-    <div className='ContPrincipal'>
+    <div className={`ContPrincipal ${isSidebarOpen ? 'sidebar-open' : ''}`}>
       <div className='textCont'>
         <h1>Teaching in the internet age </h1>
         <h1>means we must teach <p>tomorrow's</p></h1>
