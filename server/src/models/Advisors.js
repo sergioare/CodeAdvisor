@@ -14,7 +14,8 @@ class Advisors {
         About, 
         Specialty, 
         TechSkills, 
-        Reviews
+        Reviews,
+        schedules
         ) {
             this.id         = id,
             this.Nickname   = Nickname,
@@ -29,7 +30,8 @@ class Advisors {
             this.About      = About,
             this.Specialty  = Specialty,
             this.TechSkills = TechSkills
-            this.Reviews    = Reviews
+            this.Reviews    = Reviews,
+            this.schedules  = schedules
     }
 }
 
@@ -43,8 +45,18 @@ class Reviwers {
     }
 }
 
+class Schedules {
+    constructor(id, Class, Student, Start, End,){
+        this.id = id
+        this.Class = Class
+        this.Student = Student
+        this.Start = Start
+        this.End = End
+    }
+}
 
 module.exports = {
     Advisors,
-    Reviwers
+    Reviwers,
+    Schedules
 };

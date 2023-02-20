@@ -15,14 +15,14 @@ const getAutores = async (req, res, next) => {
             data.forEach(element => {
                 const a = new Autor(
                     element.id,
-                    element.data().name,
-                    element.data().img || "https://img.freepik.com/vector-premium/fondo-pagina-error-404-distorsion_23-2148086227.jpg?w=2000",  
-                    element.data().ocupation,
-                    element.data().about,
-                    element.data().linkedin,
-                    element.data().gitHub,
-                    element.data().email,
-                    element.data().phone, 
+                    element.data().name         || "empty",
+                    element.data().img          || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmLy65I94l_MT3xr0Cj9OQNs5_k8Tox9c9qQ&usqp=CAU",  
+                    element.data().ocupation    || "empty",
+                    element.data().about        || "empty",
+                    element.data().linkedin     || "empty",
+                    element.data().gitHub       || "empty",
+                    element.data().email        || "empty",
+                    element.data().phone        || "empty"
                 )
                 autorArray.push(a)
             });
@@ -65,10 +65,10 @@ const getCommunityComments = async (req, res, next) => {
             data.forEach(element => {
                 const cc = new CommunityComments(
                     element.id,
-                    element.data().name         || "not found",
-                    element.data().img          || "not found",
-                    element.data().testimonial  || "not found",
-                    element.data().ranking      || 000
+                    element.data().name         || "empty",
+                    element.data().img          || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmLy65I94l_MT3xr0Cj9OQNs5_k8Tox9c9qQ&usqp=CAU",
+                    element.data().testimonial  || "empty",
+                    element.data().ranking      || "empty"
                 )
                 if(element.data().status === true){ccArray.push(cc)}
             });
@@ -112,7 +112,7 @@ const getAllTechSkills = async (req, res, next) => {
                 const ts = new TechSkills(
                     element.id,
                     element.data().Name         || "emply",
-                    element.data().Image        || "https://thumbs.dreamstime.com/b/concepto-de-errores-icono-simple-del-vector-123196424.jpg",
+                    element.data().Image        || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmLy65I94l_MT3xr0Cj9OQNs5_k8Tox9c9qQ&usqp=CAU",
                     element.data().Translation  || "emply",
                     element.data().Description  || "emply",
                 )
@@ -175,9 +175,9 @@ const getContacts = async (req, res, next) => {
             data.forEach(element => {
                 const cc = new Contacts(
                     element.id, 
-                    element.data().email, 
-                    element.data().fullName, 
-                    element.data().mensaje 
+                    element.data().email    || "empty", 
+                    element.data().fullName || "empty", 
+                    element.data().mensaje  || "empty"
                 )
                 ccArray.push(cc)
             });
@@ -209,7 +209,7 @@ const getSpecialty = async (req, res, next) => {
             data.forEach(element => {
                 const ts = new Specialty(
                     element.id,
-                    element.data().Description  || "emply",
+                    element.data().Description  || "empty",
                 )
                 tsArray.push(ts)
             });

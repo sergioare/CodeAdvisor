@@ -1,7 +1,7 @@
 const firebase = require("../db/db");
 const firestore = firebase.firestore();
 
-const { Reviews ,} = require("../models/Advisors");
+const { Reviwers, Schedules } = require("../models/Advisors");
 const { TechSkills } = require("../models/database");
 
 
@@ -25,40 +25,65 @@ async function getSeletTechSkills(ids) {
     return idl
 }
 async function getAllReviews(aId) {
-    console.log("getAllReviews", aId);
+    console.log("get_All_Reviwers");
     const reviews = [];
     let sr = 0
     let rs = 0
     try {
-        const fire = await firestore.collection(`/Advisors/${aId}/Reviews`);
+        const fire = await firestore.collection(`/Advisors/${aId}/Reviwers`);
         const data = await fire.get();
-        console.log(data.empty);
         if (data.empty) {
-            return ["Reviwers vacios", 0]
+            return ["Reviwers empty", 0]
         } else {
             data.forEach((doc) => {
-                let a = doc.data().score
-                console.log(a);
+                let a = doc.data().score || 1
                 rs++
                 sr = sr + a
-                console.log(sr, rs);
-                const r = new Reviews(
+                const r = new Reviwers(
                     doc.id,
-                    doc.data().name||"na",
-                    doc.data().img||"na",
-                    doc.data().review||"na",
-                    doc.data().score
+                    doc.data().Name     || "empty",
+                    doc.data().Img      || "empty",
+                    doc.data().Reviwer   || "empty",
+                    doc.data().score    || 1
                     );
                     reviews.push(r);
                 });
                 return [reviews, sr/rs]
             }
     } catch (error) {
+        console.log(error);
         return ["Error Reviwers", 0]
+    }
+}
+async function getAllSchedules(aId) {
+    console.log("get_All_Schedules");
+    const schedules = [];
+    try {
+        const fire = await firestore.collection(`/Advisors/${aId}/Schedules`);
+        const data = await fire.get();
+        if (data.empty) {
+            return ["Schedules empty"]
+        } else {
+            data.forEach((doc) => {
+                const schedule = new Schedules(
+                    doc.id,
+                    doc.data().Class    || "empty",
+                    doc.data().Student  || "empty",
+                    doc.data().Start    || { "seconds": 0000000000, "nanoseconds": 000000000 }, 
+                    doc.data().End      || { "seconds": 0000000000, "nanoseconds": 000000000 }
+                    );
+                    schedules.push(schedule);
+                });
+                return schedules
+            }
+    } catch (error) {
+        console.log(error);
+        return ["Error Schedules"]
     }
 }
 
 module.exports = {
     getSeletTechSkills,
-    getAllReviews
+    getAllReviews,
+    getAllSchedules
 }
