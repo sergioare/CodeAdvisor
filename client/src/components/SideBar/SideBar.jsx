@@ -111,8 +111,8 @@ const SideBar = ({isSidebarOpen, setIsSidebarOpen}) => {
             <p className="sidebar-title">I'm looking for:</p>
             <div className="filter-container">
               {Specialties.map((item) => (
-                <div key={item + "container"} className={`option-item ${specialties.includes(item) ? "selected" : ""}`}>
-                  <input key={item + "check box"} type="checkbox" className="filter-item" id={item} value={item} checked={specialties.includes(item)} onChange={handleSpecialtyChange} />
+                <div key={item + "container"} className={`option-item ${specialties?.includes(item) ? "selected" : ""}`}>
+                  <input key={item + "check box"} type="checkbox" className="filter-item" id={item} value={item} checked={specialties?.includes(item)} onChange={handleSpecialtyChange} />
                   <label key={item + "name"} htmlFor={item} className="filter-item">{item === "Freelance" ? item + " Developer" : item}</label>
                 </div>
               ))}
@@ -121,8 +121,8 @@ const SideBar = ({isSidebarOpen, setIsSidebarOpen}) => {
             <div className="sidebar-section">
             <div className="filter-container">
               {Languages.map((item) => (
-                <div key={item + "container"} className={`option-item ${languages.includes(item) ? "selected" : ""}`}>
-                  <input key={item + "check box"} type="checkbox" className="filter-item" id={item} value={item} checked={languages.includes(item)} onChange={handleLanguageChange} />
+                <div key={item + "container"} className={`option-item ${languages?.includes(item) ? "selected" : ""}`}>
+                  <input key={item + "check box"} type="checkbox" className="filter-item" id={item} value={item} checked={languages?.includes(item)} onChange={handleLanguageChange} />
                   <label key={item + "name"} htmlFor={item} className="filter-item">{item}</label>
                 </div>
               ))}
