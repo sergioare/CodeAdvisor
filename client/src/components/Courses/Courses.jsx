@@ -25,7 +25,7 @@ const Courses = () => {
             <h2 key={skill.id}> {skill.id}</h2>
             <h4>{skill.Name}</h4>
             <img src={skill.Image} alt='imageTechSkills' />
-            <p>{skill.Description}</p>
+            {/* <p>{skill.Description}</p> */}
           </div>
         })
         }
