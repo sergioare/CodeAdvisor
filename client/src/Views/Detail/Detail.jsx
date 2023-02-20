@@ -14,22 +14,27 @@ export const Detail = () => {
   }, [dispatch, id]);
 
   const detail = useSelector(state => state.advisorDetail)
-console.log(detail);
+  console.log(detail);
   return (
     <div className='DetailContainer'>
+      <h1>Profile</h1>
+      <p> {detail.Specialty?.length > 1 ? detail.Specialty.join(', ') : detail.Specialty}</p>
+
       <div className='Detail'>
+        <p className='About'> About me: <p className='TextAbout'>{detail.About}</p> </p>
         <img src={detail.Img} alt='imageAdvisor' />
-        <h2>{detail.Firstname + ' ' + detail.Lastname}</h2>
-        <p>About: {detail.About}</p>
-        <p>Specialty: {detail.Specialty?.length > 1 ? detail.Specialty.join(', ') : detail.Specialty}</p>
-        <p>Tech Skills: {detail.TechSkills?.join(', ')}</p>
-        <p>Languages: {detail.Language?.length > 1 ? detail.Language.join(', ') : detail.Language}</p>
-        <p>Score: {detail.Score}</p>
-        <Link to='/home'><button>Back Home</button></Link>
+        <div className='DataContent'>
+          <p className='DetailTitle'>Details</p>
+          <p className='TitlesPurple'> Name: <p>{detail.Firstname + ' ' + detail.Lastname} </p></p>
+          <p className='TitlesPurple'>Tech Skills: <p>{detail.TechSkills?.join(', ')}</p></p>
+          <p className='TitlesPurple'>Languages: <p>{detail.Language?.length > 1 ? detail.Language.join(', ') : detail.Language}</p></p>
+          <p className='TitlesPurple'>Score: <p>{detail.Score}</p></p>
+        </div>
       </div>
       {/* <div> */}
       {/* <>ENLAZAR LOS REVIEWS DEL ASESOR</> */}
       {/* </div> */}
+      <Link to='/home'><button>Back Home</button></Link>
     </div>
   )
 }
