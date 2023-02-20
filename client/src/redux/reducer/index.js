@@ -60,7 +60,7 @@ const filterApplyer = (advisors, filters, method) => {
 
   if (advisorsToDisplay.length === advisors.length) {
     // No filters active, return original array of advisors
-    console.log(sortAdvisors(advisorsToDisplay, method))
+    // console.log(sortAdvisors(advisorsToDisplay, method))
     return sortAdvisors(advisorsToDisplay, method);
   } else {
     // Filters active, return filtered array of advisors
