@@ -8,24 +8,47 @@ import Cards from "../../components/Cards/Cards"
 import Testimonials from '../../components/Testimonials/Testimonials';
 import SideBar from '../../components/SideBar/SideBar';
 import ConfigSideBar from '../../components/ConfigSideBar/ConfigSideBar';
-import { useAuth } from '../../context/authContext';
+import { useAuth } from "../../context/authContext";
 // import { useContext } from 'react';
+import { useNavigate } from "react-router-dom";
 
 
 const Home = () => {
 
-  const {user} = useAuth()
-  console.log(user)
+  const { user, logout} = useAuth();
+  const navigate = useNavigate();
+  console.log(user);
 
  const dispatch=useDispatch()
   useEffect(()=>{
     dispatch(loadProfessionals());
     },[dispatch])
 
+    const handleSignOut = async (e) => {
+      e.preventDefault();
+      try {
+        await logout();
+        navigate("/");
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
   return (
     <div className='home'>
-      <Commercial />
+      {//  User contains info about the user, only if logged shows Sidebar and logged, 
+      //   if not, shows Commercial components, modify as much as needed
+      user==null ? 
+      <>
+      <Commercial /> 
+      </>: 
+      <>
       <SideBar />
+      <h1 className='logged'>User Logged</h1>
+      <button onClick={handleSignOut}>Log Out</button>
+      </>
+      } 
+      
       <Cards />
       <Testimonials />
       <div className='icons'>

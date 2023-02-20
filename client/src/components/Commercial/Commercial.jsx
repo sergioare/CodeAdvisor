@@ -1,7 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './Commercial.scss'
 
 export const Commercial = () => {
+
+
+
+
   return (
     <div className='ContPrincipal'>
       <div className='textCont'>
@@ -10,8 +15,10 @@ export const Commercial = () => {
         <h1><span>skills today</span></h1>
       </div>
       <div className='buttonCont'>
-        <button>Join as Advisor</button>
-        <button>Join as Student</button>
+        <Link to='/register' key='Registerbutton'>
+          <button>Join as Advisor</button>
+          <button>Join as Student</button>
+        </Link>
       </div>
       
     </div>

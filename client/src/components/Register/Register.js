@@ -13,6 +13,9 @@ function Register() {
   const [user, setUser] = useState({
     email: "",
     password: "",
+    Nickname:"",
+    Contact: "",
+    Country:"",
   });
 
   const [error, setError] = useState("");
@@ -37,10 +40,57 @@ function Register() {
     <div className="w-full max-w-xs m-auto text-black">
       {error && <Alert message={error} />}
 
+      <h1>Register</h1>
+
       <form
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded px-8 pt-6 pb-6 mb-4"
       >
+
+        
+        <div className="mb-4">
+          <label
+            
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >Nickname
+          </label>
+          <input
+            name="Nickname"
+            onChange={(e) => setUser({ ...user, Nickname: e.target.value })}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            
+          />
+        </div>
+
+        <div className="mb-4">
+          <label
+            
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >Contact
+          </label>
+          <input
+            name="Contact"
+            onChange={(e) => setUser({ ...user, Contact: e.target.value })}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            
+          />
+        </div>
+
+        <div className="mb-4">
+          <label
+            
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >Country
+          </label>
+          <input
+            name="Country"
+            onChange={(e) => setUser({ ...user, Country: e.target.value })}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            
+          />
+        </div>
+
+
         <div className="mb-4">
           <label
             htmlFor="email"
@@ -85,15 +135,3 @@ function Register() {
 
 export default Register;
 
-// const Register = () => {
-
-//     return (
-//         <>
-//           <div>
-//             Register
-//           </div>
-
-
-//         </>
-//     )
-// }                {error && <Alert message={error} />}
