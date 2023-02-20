@@ -1,6 +1,6 @@
 import Navbar from "../Navbar/Navbar";
 import "./Courses.scss"
-import notFound from "../../assets/Page_in_Mante.png"
+// import notFound from "../../assets/Page_in_Mante.png"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getTechSkills } from "../../redux/actions/actions";
