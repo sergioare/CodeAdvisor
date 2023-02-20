@@ -9,13 +9,13 @@ import Testimonials from '../../components/Testimonials/Testimonials';
 import SideBar from '../../components/SideBar/SideBar';
 // import ConfigSideBar from '../../components/ConfigSideBar/ConfigSideBar';
 import Navbar from '../../components/Navbar/Navbar';
-import { useAuth } from '../../context/authContext';
+// import { useAuth } from '../../context/authContext';
 // import { useContext } from 'react';
 
 
 const Home = () => {
 
-  const {user} = useAuth()
+  // const {user} = useAuth()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
  const dispatch=useDispatch()
@@ -38,8 +38,7 @@ const Home = () => {
         ))}
       </div>
       {/* <ConfigSideBar isConfigBarOpen={props.isConfigBarOpen} toggleConfigBar={props.toggleConfigBar} /> */}
-
-
+      
     </div>
   );
 };

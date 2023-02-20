@@ -9,6 +9,7 @@ import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
 // import ConfigSideBar from './components/ConfigSideBar/ConfigSideBar';
 import Courses from './components/Courses/Courses';
 import Contact from './components/Contact/Contact';
+import  Modals  from './components/Modals/Modals';
 
 
 
@@ -42,6 +43,7 @@ function App() {
           <Route path='/user/:id' element={<Detail/>} />
           <Route path='/courses' element={<Courses />} />
           <Route path='/contact' element={<Contact />} />
+          <Route path='/modals' element={<Modals />} />
         </Routes>
       </AuthProvider>
       </div>
