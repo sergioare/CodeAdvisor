@@ -91,6 +91,29 @@
 
   }
 
+  .sidebar-clear-section{
+    display: flex;
+    justify-content: flex-end;
+    
+
+    .clear-filter-item{
+      background-color: $primary-color;
+      cursor: pointer;
+      font-weight: 600;
+      color: $title-bg-purple;
+      text-shadow: 1px 1px 1px black;
+      border-radius: 10px;
+      border: 1px solid $title-bg-light;
+
+
+    }
+
+    .clear-filter-item:hover{
+      background-color: $secundary-color;
+    }
+  }
+  
+
   .filter-container {
     background-color: $primary-color;
     display: flex;
@@ -105,6 +128,7 @@
         .option-item{
             cursor: pointer;
             font-weight: 600;
+            color: $title-bg-purple;
             text-shadow: 1px 1px 1px black;
 
         }
@@ -113,6 +137,7 @@
           margin-right: 4px;
           font-weight: 500;
           cursor: pointer;
+          color: $title-bg-purple;
           text-shadow: 1px 1px 1px black;
         }
         
@@ -155,6 +180,7 @@
     margin-right: 4px;
     font-weight: 500;
     cursor: pointer;
+    color: $title-bg-purple;
     text-shadow: 1px 1px 1px black;
   }
 

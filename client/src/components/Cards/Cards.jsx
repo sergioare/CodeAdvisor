@@ -4,10 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAdvisors } from '../../redux/actions/actions';
 import { useEffect, useState } from 'react';
 
-const Cards = ({ isSidebarOpen }) => {
+const Cards = ({ isSidebarOpen, currentPage, setCurrentPage}) => {
   const dispatch = useDispatch();
   const allAdvisors = useSelector(state => state.advisorsInDisplay);
-  const [currentPage, setCurrentPage] = useState(1);
   const [cardsPerPage, setCardsPerPage] = useState(8);
 
   // Calculate total number of pages
