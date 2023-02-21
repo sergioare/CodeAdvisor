@@ -1,7 +1,32 @@
 import "./Contact.scss"
 import contact from "../../assets/contacUs2.png"
 import { Link } from "react-router-dom"
+import { useState } from "react"
+import axios from "axios"
+
+
 const Contact = () => {
+
+const [input, setInput] = useState({
+    email: "",
+    fullName: "",
+    mensaje: "",
+});
+
+const changeHandler =(event)=>{
+    const property = event.target.name;
+    const value = event.target.value;
+    
+setInput({...input, [property]:value}) 
+};
+
+const submitHandler=(event)=>{
+    event.preventDefault()
+    axios.post('http://localhost:3002/data/Contacts/',input)
+    .then(res=>alert("Message Send"))
+    
+};
+
     return (
         <div className="containerPrincipal" >
 
@@ -11,14 +36,14 @@ const Contact = () => {
             </div>
             <div className="conteinerContact">
                 <div className="contact">
-                    <form className="formContainer">
+                    <form className="formContainer" onSubmit={submitHandler}>
                         <label>Full Name</label>
-                        <input type="text" />
+                        <input type="text" value={input.fullName} onChange={changeHandler} name="fullName"/>
                         <label> E-mail</label>
-                        <input type="text" />
+                        <input type="text" value={input.email} onChange={changeHandler} name="email"/>
                         <label> Message</label>
-                        <input className="MesasgeCont" type="text" />
-                        <button className="button">Contact Us</button>
+                        <input className="MesasgeCont" type="text" value={input.mensaje} onChange={changeHandler} name="mensaje"/>
+                        <button className="button" type="submit">Contact Us</button>
                     </form>
                     <div className="contactDetail">
                         <p><i class="fa-solid fa-phone"></i> 55-3565-9898</p>
