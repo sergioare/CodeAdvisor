@@ -37,10 +37,17 @@ class TechSkills{
         this.id             = id
         this.Name           = Name
         this.Image          = Image;
-        this.Description    = Description   ;
+        this.Description    = Description;
     }
 }
-
+class Contacts{
+    constructor( id, email, fullName, mensaje ){
+        this.id = id, 
+        this.email = email, 
+        this.fullName = fullName, 
+        this.mensaje = mensaje
+    }
+}
 class Specialty{
     constructor(id, Description){
         this.id = id
@@ -53,5 +60,6 @@ module.exports = {
     Autor,
     CommunityComments,
     TechSkills,
+    Contacts,
     Specialty
 };

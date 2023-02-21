@@ -2,20 +2,40 @@ import './Navbar.scss'
 import { navbarItems } from './data';
 import Searchbar from '../Searchbar/Searchbar';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 const Navbar = (props) => {
   const { toggleConfigBar } = props;
 
+  const showAlert = (e)=>{
+    e.preventDefault();
+    Swal.fire({
+    title: "Sorry, We are working for you",
+    icon: "warning",
+    footer: "<b>Continue to enjoy our services</b>",
+    timer: 3000,
+    })
+  }
+
   return (
     <div className='navbar'>
       <div className='navLeft'>
+      <Link to='/' className='linkLogo' >
         <i className="fa-solid fa-house-laptop"></i>
         CodeAdvisor
+      </Link>
       </div>
       <div className='navRight'>
-        {navbarItems.map((item, index) => {
-          return <Link to={item.path} key={index}><div key={index}>{item.name}</div></Link>
-        })}
+      {navbarItems.map((item, index) => {
+        const linkProps = {
+          to: item.path,
+          key: index
+        };
+        if (item.name === 'Forum' || item.name === 'FAQs') {
+          linkProps.onClick = showAlert;
+        }
+        return <Link {...linkProps}><div>{item.name}</div></Link>;
+      })}
         <Searchbar />
         <i className="config-icon fas fa-cogs" onClick={toggleConfigBar}></i>
       </div>

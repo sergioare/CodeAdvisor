@@ -21,35 +21,38 @@
     right: 0;
   }
 
-  .title {
-    background-color: $primary-color;
+  .config-title {
+    background-color: $title-bg-light;
     color: $text-bg-purple;
-    font-weight: bold;
+    font-weight: 800;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     width: 100%;
     border-radius: 10px;
+    text-shadow: 2px 2px 2px black;
+
+    &:hover {
+      background-color: lighten($title-bg-light, 10%);
+    }
   }
   
   .language-toggle, .theme-toggle {
     display: block;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     padding: 10px;
     border: none;
     cursor: pointer;
     background-color: $primary-color;
     color: $text-bg-purple;
     border-radius: 10px;
-    
+    text-shadow: 2px 2px 2px $title-bg-light;
+
     &:hover {
       background-color: darken($primary-color, 10%);
     }
   }
   
-  .language-toggle.active {
-    background-color: $secundary-color;
-  }
   
   .theme-toggle.active {
     background-color: #000;
@@ -61,7 +64,8 @@
     margin-bottom: 10px;
   }
   
-  .signoff-button {
+  .signoff-report-button {
+    text-decoration: none;
     display: block;
     width: 100%;
     margin-top: auto;
@@ -71,6 +75,9 @@
     background-color: $primary-color;
     color: #fff;
     border-radius: 10px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 2px $title-bg-light;
+
     
     &:hover {
       background-color: darken($primary-color, 10%);

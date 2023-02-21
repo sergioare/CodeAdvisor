@@ -135,3 +135,15 @@ function Register() {
 
 export default Register;
 
+// const Register = () => {
+
+//     return (
+//         <>
+//           <div>
+//             Register
+//           </div>
+
+
+//         </>
+//     )
+// }                {error && <Alert message={error} />}

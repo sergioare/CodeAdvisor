@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAdvisors } from '../../redux/actions/actions';
 import { useEffect } from 'react';
 
-const Cards = () => {
+const Cards = ({ isSidebarOpen }) => {
+
   const dispatch = useDispatch();
   const advisors = useSelector(state => state.advisorsInDisplay);
 
@@ -15,11 +16,11 @@ const Cards = () => {
 
   return (
 
-    <div className="containerPrincipal">
+    <div className={`containerPrincipal ${isSidebarOpen ? 'sidebar-open' : ''}`}>
       <div className="containeMessage">
         <h1>Our Advisors</h1>
         <br></br>
-        <p>Let's join our best classes with one advisor.</p>
+        <p>Let's find the best advisor for you.</p>
       </div>
       <div className="container">
         {advisors?.map((advisor) => {
@@ -27,10 +28,10 @@ const Cards = () => {
             key={advisor.id}
             id={advisor.id}
             Image={advisor.Img}
-            Firstname={advisor.Firstname + ' ' +
-             advisor.Lastname}
+            Firstname={advisor.Firstname + ' ' + advisor.Lastname}
             TechSkills={advisor.TechSkills}
             Specialty={advisor.Specialty}
+            Language={advisor.Language}
             Score={advisor.Score}
           />
         })}

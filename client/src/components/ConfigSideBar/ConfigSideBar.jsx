@@ -31,15 +31,15 @@ function ConfigSideBar(props) {
 
     return (
         <div className={`Configsidebar ${props.isConfigBarOpen ? 'open' : 'closed'}`}>
-            <button className="title" onClick={handleTitleClick}>Configurations</button>
+            <button className="config-title" onClick={handleTitleClick}>Configurations</button>
             <button ref={languageToggle} className="language-toggle" onClick={handleLanguageToggle}>
                 {isEnglish ? 'English' : 'Español'}
             </button>
             <button ref={themeToggle} className="theme-toggle" onClick={handleThemeToggle}>
                 {isDarkMode ? 'Light Mode' : 'Dark Mode'}
             </button>
-            <a href="https://example.com/report">Report a problem</a>
-            <button className="signoff-button" onClick={signOff}>Sign off</button>
+            <a className="signoff-report-button" href="https://example.com/report">Report a problem</a>
+            <button className="signoff-report-button" onClick={signOff}>Sign off</button>
         </div>
     );
 }

@@ -12,7 +12,11 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 40px;
-  // background-color: $primary-color;
+
+  &.sidebar-open {
+    margin-left: 260px;
+    margin-top: 90px;
+  }
 
   .containeMessage h1 {
     color: $title-bg-light;
@@ -37,8 +41,6 @@ body {
     place-content: center;
     margin-top: 10px;
     background-color: $title-bg-purple;
-    // border-top-left-radius: 600px;
-    // border-bottom-right-radius: 800px;
     max-width: 100%;
   }
 }
