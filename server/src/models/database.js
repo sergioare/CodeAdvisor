@@ -21,7 +21,7 @@ class Autor{
     }
 }
 
-class Reviewrs{
+class CommunityComments{
     constructor( id, name, img, testimonial, ranking ){
         this.id         = id
         this.name       = name;
@@ -30,8 +30,26 @@ class Reviewrs{
         this.ranking        = ranking;
     }
 }
+
+class TechSkills{
+    constructor(id, Name, Image, Translation, Description ){
+        this.id             = id
+        this.Name           = Name
+        this.Image          = Image;
+        this.Translation    = Translation;
+        this.Description    = Description   ;
+    }
+}
+class Specialty{
+    constructor(id, Description){
+        this.id = id
+        this.Description = Description
+    }
+}
 module.exports = {
     Data,
     Autor,
-    Reviewrs
+    CommunityComments,
+    TechSkills,
+    Specialty
 };

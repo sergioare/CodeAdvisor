@@ -4,20 +4,32 @@ const {
     addAutor,
     updateAutor,
 
-    getReviewrs,
-    addReviewrs,
-    updateReviewrs
+    getCommunityComments,
+    addCommunityComments,
+    updateCommunityComments,
+
+    getTechSkills,
+    addTechSkills,
+    updateTechSkills,
+
+    getSpecialty
     } = require('../controllers/dataController');
 
 const dataRoute = Router();
 
-dataRoute.get('/autores/',getAutores);
-dataRoute.post('/autores/',addAutor);
-dataRoute.put('/autores/:id',updateAutor);
+dataRoute.get('/Autores/',getAutores);
+dataRoute.post('/Autores/',addAutor);
+dataRoute.put('/Autores/:id',updateAutor);
 
-dataRoute.get('/reviewrs/',getReviewrs);
-dataRoute.post('/reviewrs/',addReviewrs);
-dataRoute.put('/reviewrs/:id',updateReviewrs);
+dataRoute.get('/CommunityComments/',getCommunityComments);
+dataRoute.post('/CommunityComments/',addCommunityComments);
+dataRoute.put('/CommunityComments/:id',updateCommunityComments);
+
+dataRoute.get('/TechSkills/',getTechSkills);
+dataRoute.post('/TechSkills/',addTechSkills);
+dataRoute.put('/TechSkills/:id',updateTechSkills);
+
+dataRoute.get('/Specialty/',getSpecialty);
 
 
 module.exports = dataRoute;

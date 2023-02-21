@@ -21,7 +21,7 @@ function App() {
         <Route exact path='/' element={<Landing />} />
         <Route path='/home' element={<Home toggleConfigBar={toggleConfigBar} isConfigBarOpen={isConfigBarOpen} />} />
         <Route path='/about' element={<AboutUs />} />
-        <Route path='/advisors/:id' element={<Detail />} />
+        <Route path='/user/:id' element={<Detail />} />
       </Routes>
     </div>
   );

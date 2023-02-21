@@ -1,24 +1,19 @@
 
 const express = require('express');
-const userRoute = require("./userRoute");
-const adminRouter = require('./adminRouter')
-const dataRoute = require('./dataRoutes')
-const getAllUsers  = require('../controllers/usersController');
-
 const router = express.Router();
 
-
+// const userRoute = require("./userRoute");
+const dataRoute = require('./dataRoutes')
+const advisorsRoute  = require('./advisorsRoute');
+ 
  
 router.get("/", (req,res)=>{
     res.status(200).send('hola mundo');
 })
 
-router.get("/users", getAllUsers)
-router.use("/user", userRoute);
-router.use('/admin', adminRouter)
-
-module.exports = router
-
+// router.get("/users", getAllUsers)
+// router.use("/user", userRoute);
+router.use("/Advisors", advisorsRoute)
 router.use('/data', dataRoute)
 
 

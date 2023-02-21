@@ -13,7 +13,7 @@
 .navLeft {
     @include mixins.create-flexbox;
     flex: 1;
-    color: $title-bg-purple;
+    color: $text-bg-purple;
     font-weight: 800;
     font-size: 2vw;
 }
@@ -24,15 +24,25 @@
     flex: 3;
     gap: 8vw;
     height: 8vh;
-    border-radius:4em 0 0 4em ;
+    border-radius: 4em 0 0 4em;
     background-color: $primary-color;
     font-weight: bolder;
-    color:$title-bg-light ;
+    color: $title-bg-light ;
 
-    
-    a:link, a:visited{
+
+    a:link,
+    a:visited {
         text-decoration: none;
-        color:$title-bg-purple;  
+        color: $title-bg-purple;
 
     }
+}
+
+.config-icon{
+    cursor: pointer;
+    color: $title-bg-purple;
+}
+
+.config-icon:hover{
+    color: $text-bg-purple;
 }
