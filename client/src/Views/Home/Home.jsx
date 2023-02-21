@@ -1,5 +1,5 @@
 import './Home.scss'
-import React,{ useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadProfessionals } from '../../redux/actions/actions';
 import { icons } from '../../Utils/utils';
@@ -11,19 +11,20 @@ import ConfigSideBar from '../../components/ConfigSideBar/ConfigSideBar';
 import Navbar from '../../components/Navbar/Navbar';
 // import { useAuth } from '../../context/authContext';
 // import { useContext } from 'react';
+// import Footer from '../Footer/Footer';
 
 
 const Home = () => {
 
-  // const {user} = useAuth()
+  // const { user } = useAuth()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isConfigBarOpen, setIsConfigBarOpen] = useState(false)
 
 
- const dispatch=useDispatch()
-  useEffect(()=>{
+  const dispatch = useDispatch()
+  useEffect(() => {
     dispatch(loadProfessionals());
-    },[dispatch])
+  }, [dispatch])
 
   const toggleConfigBar = () => {
   setIsConfigBarOpen(prevState => !prevState);
@@ -46,7 +47,17 @@ const Home = () => {
       </div>
       <ConfigSideBar isConfigBarOpen={isConfigBarOpen} toggleConfigBar={toggleConfigBar} />
 
-
+      {/* <div className='fifthPage'>
+        <Footer />
+        <div className="circle1"></div>
+        <div className="circle2"></div>
+        <div className="circle3"></div>
+        <div className="circle4"></div>
+        <div className="circle5"></div>
+        <div className="circle6"></div>
+        <div className="circle7"></div>
+        <div className="circle8"></div>
+      </div> */}
     </div>
   );
 };

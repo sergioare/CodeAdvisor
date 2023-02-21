@@ -28,10 +28,10 @@ const Cards = ({ isSidebarOpen }) => {
             key={advisor.id}
             id={advisor.id}
             Image={advisor.Img}
-            Firstname={advisor.Firstname + ' ' +
-             advisor.Lastname}
+            Firstname={advisor.Firstname + ' ' + advisor.Lastname}
             TechSkills={advisor.TechSkills}
             Specialty={advisor.Specialty}
+            Language={advisor.Language}
             Score={advisor.Score}
           />
         })}
