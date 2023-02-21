@@ -41,8 +41,64 @@ body {
     gap: 30px;
     padding: 30px;
     place-content: center;
-    margin-top: 10px;
+    margin-top: 0;
     background-color: $title-bg-purple;
     max-width: 100%;
+    padding-top: 0;
+
   }
 }
+
+.pagination-container{
+  background-color: $title-bg-purple;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.pagination-container {
+  background-color: $title-bg-purple;
+  width: 100%;
+  height: 50px;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; // align to right
+}
+
+.pagination {
+  display: flex;
+  margin-right: 30px;
+
+  button {
+    background: $title-bg-light;
+    color: $title-bg-purple;
+    font-weight: 800;
+    font-size: 16px;
+    padding: 0px 10px; // reduce padding
+    cursor: pointer;
+    outline: none;
+    transition: background 0.3s ease;
+    border-radius: 10px;
+
+    &:hover:not(:disabled) {
+      background: $primary-color;
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+
+  .current-page {
+    background: $primary-color;
+    color: $title-bg-purple;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 800;
+    margin: 0 10px;
+    padding: 0px 10px;
+    border-radius: 6px;
+  }
+}
+
