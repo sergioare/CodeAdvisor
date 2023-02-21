@@ -26,9 +26,12 @@ export const Detail = () => {
         <div className='DataContent'>
           <p className='DetailTitle'>Details</p>
           <p className='TitlesPurple'> Name: <p>{detail.Firstname + ' ' + detail.Lastname} </p></p>
-          <p className='TitlesPurple'>Tech Skills: <p>{detail.TechSkills?.join(', ')}</p></p>
+          <p className='TitlesPurple'>Conutry: <p>{detail.Residence}</p></p>
           <p className='TitlesPurple'>Languages: <p>{detail.Language?.length > 1 ? detail.Language.join(', ') : detail.Language}</p></p>
-          <p className='TitlesPurple'>Score: <p>{detail.Score}</p></p>
+          <p className='TitlesPurple'>Tech Skills: <p>{detail.TechSkills?.join(', ')}</p></p>
+          <p className='TitlesPurple'>Score: <span>⭐{detail.Score}</span></p>
+          <p className='TitlesPurple'>Price: <span>${detail.Price} / hr</span></p>
+
         </div>
       </div>
       {/* <div> */}
