@@ -4,8 +4,7 @@
 .Configsidebar {
   position: fixed;
   top: 0;
-  //right: -300px;
-  right: 0;
+  right: -300px;
   height: 100%;
   width: 200px;
   background-color: $title-bg-purple;
@@ -66,6 +65,7 @@
   }
   
   .signoff-report-button {
+    text-decoration: none;
     display: block;
     width: 100%;
     margin-top: auto;
@@ -75,7 +75,6 @@
     background-color: $primary-color;
     color: #fff;
     border-radius: 10px;
-    text-decoration: none;
     margin-bottom: 20px;
     text-shadow: 2px 2px 2px $title-bg-light;
 

@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { Alert } from "../Alert/Alert";
+
 
 
 const Login = () => {
@@ -12,7 +13,8 @@ const Login = () => {
       });
 
    
-      const { login, loginWithGoogle, resetPassword , logout} = useAuth();
+      // const { login, loginWithGoogle, resetPassword , logout} = useAuth();
+      const { login, resetPassword , logout} = useAuth();
       const [error, setError] = useState("");
       const navigate = useNavigate();
     
@@ -41,14 +43,14 @@ const Login = () => {
       const handleChange = ({ target: { value, name } }) =>
         setUser({ ...user, [name]: value });
     
-      const handleGoogleSignin = async () => {
-        try {
-          await loginWithGoogle();
-          navigate("/");
-        } catch (error) {
-          setError(error.message);
-        }
-      };
+      // const handleGoogleSignin = async () => {
+      //   try {
+      //     await loginWithGoogle();
+      //     navigate("/");
+      //   } catch (error) {
+      //     setError(error.message);
+      //   }
+      // };
     
       const handleResetPassword = async (e) => {
         e.preventDefault();

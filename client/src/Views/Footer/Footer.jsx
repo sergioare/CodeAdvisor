@@ -2,7 +2,18 @@
   import { Link } from 'react-router-dom';
   import { footerItems, links } from './data';
   import { icons } from '../../Utils/utils';
+  import Swal from 'sweetalert2'
+
 const Footer = () => {
+  const showAlert = (e)=>{
+    e.preventDefault();
+    Swal.fire({
+    title: "Sorry, We are working for you",
+    icon: "warning",
+    footer: "<b>Continue to enjoy our services</b>",
+    timer: 3000,
+})
+}
   return(
     <div>
         <footer className="footer-distributed">
@@ -25,12 +36,19 @@ const Footer = () => {
           </div>
 
 
-        <div className="footer-company">
-            <h1>Company</h1>
-            {footerItems.map((item, index) => {
-            return <Link to={item.path} key={index}><div key={index} className='links-company'>{item.name}</div></Link>
+          <div className="footer-company">
+          <h1>Company</h1>
+          {footerItems.map((item, index) => {
+            const linkProps = {
+              to: item.path,
+              key: index,
+              className: 'links-company'
+            };
+            if (item.name === 'Community' || item.name === 'Testimonial') {
+              linkProps.onClick = showAlert;
+            }
+            return <Link {...linkProps}>{item.name}</Link>;
           })}
-            
         </div>
        
 
@@ -47,18 +65,23 @@ const Footer = () => {
             </div>
             <div>
                 <i className="fa fa-envelope"></i>
-                <p><a href="CodeAdvisor@gmail.com">CodeAdvisor@gmail.com</a></p>
+                <p onClick={showAlert}><a  href="CodeAdvisor@gmail.com">CodeAdvisor@gmail.com</a></p>
             
         </div>
         </div>
         <div className="footer-links">
-          <h1>Links</h1>
-          {links.map((item, index) => {
-            return <Link to={item.path} key={index}><div key={index}>{item.name}</div></Link>
-          })}
-          
-         
-        </div>
+        <h1>Links</h1>
+        {links.map((item, index) => {
+          const linkProps = {
+            to: item.path,
+            key: index
+          };
+          if (item.name === 'FAQs' || item.name === 'Become a Teacher') {
+            linkProps.onClick = showAlert;
+          }
+          return <Link {...linkProps}><div>{item.name}</div></Link>;
+        })}
+      </div>
          
         <hr/>
         <hr/>

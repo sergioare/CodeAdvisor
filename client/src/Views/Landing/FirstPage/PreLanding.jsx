@@ -1,5 +1,4 @@
 import './Landing.scss'
-import Navbar from '../../../components/Navbar/Navbar';
 import { images, textLanding } from './data';
 import { icons } from '../../../Utils/utils';
 import { navbarLanding } from "./data";
