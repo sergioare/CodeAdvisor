@@ -8,9 +8,13 @@ const {
     addCommunityComments,
     updateCommunityComments,
 
-    getTechSkills,
+    getAllTechSkills,
+    getIdTechSkills,
     addTechSkills,
     updateTechSkills,
+
+    getContacts,
+    addContacts,
 
     getSpecialty
     } = require('../controllers/dataController');
@@ -25,9 +29,13 @@ dataRoute.get('/CommunityComments/',getCommunityComments);
 dataRoute.post('/CommunityComments/',addCommunityComments);
 dataRoute.put('/CommunityComments/:id',updateCommunityComments);
 
-dataRoute.get('/TechSkills/',getTechSkills);
+dataRoute.get('/TechSkills/',getAllTechSkills);
+dataRoute.get('/TechSkills/:id',getIdTechSkills);
 dataRoute.post('/TechSkills/',addTechSkills);
 dataRoute.put('/TechSkills/:id',updateTechSkills);
+
+dataRoute.get('/Contacts/',getContacts);
+dataRoute.post('/Contacts/',addContacts);
 
 dataRoute.get('/Specialty/',getSpecialty);
 

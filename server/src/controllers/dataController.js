@@ -1,6 +1,7 @@
 const firebase = require('../db/db');
-const {Data, Autor, CommunityComments, TechSkills, Specialty} = require('../models/database');
 const firestore = firebase.firestore();
+
+const {Data, Autor, CommunityComments, TechSkills, Contacts, Specialty} = require('../models/database');
 
 //------------/ AUTORES DE LA PAGINA /--------------------//
 const getAutores = async (req, res, next) => {
@@ -14,14 +15,14 @@ const getAutores = async (req, res, next) => {
             data.forEach(element => {
                 const a = new Autor(
                     element.id,
-                    element.data().name,
-                    element.data().img || "https://img.freepik.com/vector-premium/fondo-pagina-error-404-distorsion_23-2148086227.jpg?w=2000",  
-                    element.data().ocupation,
-                    element.data().about,
-                    element.data().linkedin,
-                    element.data().gitHub,
-                    element.data().email,
-                    element.data().phone, 
+                    element.data().name         || "empty",
+                    element.data().img          || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmLy65I94l_MT3xr0Cj9OQNs5_k8Tox9c9qQ&usqp=CAU",  
+                    element.data().ocupation    || ["empty"],
+                    element.data().about        || "empty",
+                    element.data().linkedin     || "empty",
+                    element.data().gitHub       || "empty",
+                    element.data().email        || "empty",
+                    element.data().phone        || "empty"
                 )
                 autorArray.push(a)
             });
@@ -64,10 +65,10 @@ const getCommunityComments = async (req, res, next) => {
             data.forEach(element => {
                 const cc = new CommunityComments(
                     element.id,
-                    element.data().name         || "not found",
-                    element.data().img          || "not found",
-                    element.data().testimonial  || "not found",
-                    element.data().ranking      || 000
+                    element.data().name         || "empty",
+                    element.data().img          || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmLy65I94l_MT3xr0Cj9OQNs5_k8Tox9c9qQ&usqp=CAU",
+                    element.data().testimonial  || "empty",
+                    element.data().ranking      || "empty"
                 )
                 if(element.data().status === true){ccArray.push(cc)}
             });
@@ -99,7 +100,7 @@ const updateCommunityComments = async (req, res, next) => {
 }
 
 //------------/ TechSkills /--------------------//
-const getTechSkills = async (req, res, next) => {
+const getAllTechSkills = async (req, res, next) => {
     try {
         const fire = await firestore.collection('TechSkills');
         const data = await fire.get();
@@ -108,16 +109,30 @@ const getTechSkills = async (req, res, next) => {
             res.status(404).send('TechSkills vacia');
         }else {
             data.forEach(element => {
+                console.log(element.data().Description);
                 const ts = new TechSkills(
                     element.id,
                     element.data().Name         || "emply",
-                    element.data().Image        || "https://thumbs.dreamstime.com/b/concepto-de-errores-icono-simple-del-vector-123196424.jpg",
-                    element.data().Translation  || "emply",
+                    element.data().Image        || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmLy65I94l_MT3xr0Cj9OQNs5_k8Tox9c9qQ&usqp=CAU",
                     element.data().Description  || "emply",
                 )
-                tsArray.push(ts)
+                if(element.data().status === true){tsArray.push(ts)}
             });
             res.status(200).send(tsArray);
+        }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+const getIdTechSkills = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const fire = await firestore.collection('TechSkills').doc(id);
+        const data = await fire.get();
+        if(!data.exists) {
+            res.status(404).send('TechSkills not found');
+        }else {
+            res.send(data.data());
         }
     } catch (error) {
         res.status(400).send(error.message);
@@ -148,6 +163,40 @@ const updateTechSkills = async (req, res, next) => {
     }
 }
 
+//------------/ Contacts /--------------------//
+const getContacts = async (req, res, next) => {
+    try {
+        const fire = await firestore.collection('Contacts');
+        const data = await fire.get();
+        const ccArray = [];
+        if(data.empty) {
+            res.status(404).send('Contacts vacia');
+        }else {
+            data.forEach(element => {
+                const cc = new Contacts(
+                    element.id, 
+                    element.data().email    || "empty", 
+                    element.data().fullName || "empty", 
+                    element.data().mensaje  || "empty"
+                )
+                ccArray.push(cc)
+            });
+            res.status(200).send(ccArray);
+        }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+const addContacts = async (req, res, next) => {
+    try {
+        const data = req.body;
+        await firestore.collection('Contacts').doc().set(data);
+        res.send('Contacts añadido');
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
 //------------/ Specialty /--------------------//
 const getSpecialty = async (req, res, next) => {
     try {
@@ -160,7 +209,7 @@ const getSpecialty = async (req, res, next) => {
             data.forEach(element => {
                 const ts = new Specialty(
                     element.id,
-                    element.data().Description  || "emply",
+                    element.data().Description  || "empty",
                 )
                 tsArray.push(ts)
             });
@@ -215,8 +264,20 @@ const getData = async (req, res, next) => {
     }
 }
 
-module.exports = {
+const addXD = async (req, res, next) => {
+    const data = req.body;
+    if (!data.id) {
+        res.status(404).send(`falta nombre de TechSkills`);
+    }
+    try {
+        await firestore.collection('XD').doc(data.id).set(data);
+        res.send(`TechSkills: ${data.name} añadido`);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
 
+module.exports = {
     getAutores,
     addAutor,
     updateAutor,
@@ -225,15 +286,41 @@ module.exports = {
     addCommunityComments,
     updateCommunityComments,
 
-    getTechSkills,
+    getAllTechSkills,
+    getIdTechSkills,
     addTechSkills,
     updateTechSkills,
+
+    getContacts,
+    addContacts,
 
     getSpecialty,
     getData
 }
 
 
+const Countries = [
+    'All',
+    'Argentina',
+    'Bolivia',
+    'Brazil',
+    'Canada',
+    'Colombia',
+    'Chile',
+    'Mexico',
+    'Paraguay',
+    'Peru',
+    'U.S.A.',
+    'U.K.',
+]
+
+
+const sort = [
+"more affordable Más asequible",
+"more expensive más caro",
+"best score mejor puntuación",
+"most available más disponible"
+]
 /*
 const getIdCommunityComments = async (req, res, next) => {
     try {

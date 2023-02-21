@@ -4,17 +4,17 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export const textThirdLanding=[
     {
-        h2:'Online Degrees',
-        p:'Earn an accredited degree taught by software advisors online. Study at your own pace, and complete assignments and exams on your schedule.',
+        h2:'Online learning.',
+        p:'Get the knowledge you need, taught by software advisors online. Study at your own pace and complete assignments on your schedule.',
         icon: <WorkspacePremiumIcon style={{ fontSize: 80 }}/>
     },
     {
-        h2:'Short courses',
+        h2:'Short courses.',
         p:'Learn a new skill quickly with our short courses. Choose from a variety of topics and gain practical knowledge in just a few weeks.',
         icon:<ClassIcon  style={{ fontSize: 80 }}/>
     },
     {
-        h2:'Expert Traning',
+        h2:'Expert Traning.',
         p:'Get hands-on training from industry experts. Our courses cover the latest technologies and techniques to help you advance your career.',
         icon: <AccountCircleIcon style={{ fontSize: 80 }}/>
     },

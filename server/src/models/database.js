@@ -7,6 +7,7 @@ class Data {
         this.image = image;
     }
 }
+
 class Autor{
     constructor( id, name, img, ocupation, about, linkedin, gitHub, email, phone ){
         this.id         = id
@@ -32,12 +33,19 @@ class CommunityComments{
 }
 
 class TechSkills{
-    constructor(id, Name, Image, Translation, Description ){
+    constructor(id, Name, Image, Description ){
         this.id             = id
         this.Name           = Name
         this.Image          = Image;
-        this.Translation    = Translation;
-        this.Description    = Description   ;
+        this.Description    = Description;
+    }
+}
+class Contacts{
+    constructor( id, email, fullName, mensaje ){
+        this.id = id, 
+        this.email = email, 
+        this.fullName = fullName, 
+        this.mensaje = mensaje
     }
 }
 class Specialty{
@@ -46,10 +54,12 @@ class Specialty{
         this.Description = Description
     }
 }
+
 module.exports = {
     Data,
     Autor,
     CommunityComments,
     TechSkills,
+    Contacts,
     Specialty
 };

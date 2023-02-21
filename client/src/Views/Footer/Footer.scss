@@ -1,0 +1,67 @@
+@use '../../components/Styles/mixins';
+@import '../../components/Styles/variables';
+
+
+.footer-distributed {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    padding:  3vw 3vw 3vw 3vw;
+    margin-top: 25vh;
+    font-size: 1.3vw;
+    color:$text-bg-purple;
+    a:link,
+    a:visited {
+        text-decoration: none;
+        color: $title-bg-purple;
+
+    }
+    
+    h1{
+        color: $text-bg-purple;
+        margin-bottom: 3vw;
+        font-size: 3vw;
+        font-weight: bold;
+    }
+
+    .footer-logo{
+        margin-right: 10vw;
+
+        .linkLogo{
+            display: flex;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 3vw;
+            text-decoration: none;
+            color:$text-bg-purple;
+            margin-bottom: 3vh;
+            
+    
+        }
+
+        .icons-footer{
+            @include mixins.create-flexbox;
+                justify-content: space-evenly;
+                font-size: 2vw;
+                color:$text-bg-purple;
+
+        }
+    }
+    .links-company{
+        color:$text-bg-purple;
+        text-decoration: none;
+        display: block;
+    }
+   
+    .rights{
+    
+        justify-content: center;
+        font-size: 1.2vw;
+        color: $text-bg-purple;
+       
+    }
+    
+}
+

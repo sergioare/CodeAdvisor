@@ -13,15 +13,17 @@ const Countries = [
 ]
 
 const ProgrammingLanguages = [
-    'JavaScript',
-    'Python',
+    'JS',
+    'PY',
     'Java',
     'Ruby',
     'PHP',
     'C++',
-    'CSS',
     'C#',
     'C',
+    'HTML',
+    'CSS',
+    'YOLO',
 ]
 
 const SortMethod =[
@@ -30,7 +32,7 @@ const SortMethod =[
     "More expensive",
     "A to Z",
     "Z to A",
-    "Most Available",
+    /* "Most Available", */
     "relleno inaccesible"
 
 ]
