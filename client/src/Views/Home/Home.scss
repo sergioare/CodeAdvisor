@@ -1,5 +1,8 @@
 @import '../../components/Styles/variables';
 
+body{
+  background-color: $text-bg-purple;
+}
 .home {
   display: flex;
   flex-wrap: wrap;
