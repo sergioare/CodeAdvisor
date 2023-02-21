@@ -86,6 +86,7 @@ const Cards = ({ isSidebarOpen }) => {
             Firstname={advisor.Firstname + ' ' + advisor.Lastname}
             TechSkills={advisor.TechSkills}
             Specialty={advisor.Specialty}
+            Language={advisor.Language}
             Score={advisor.Score}
           />
         );

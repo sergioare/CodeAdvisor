@@ -7,8 +7,9 @@ import Register from './components/Register/Register';
 import { AuthProvider } from './context/authContext';
 import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
 // import ConfigSideBar from './components/ConfigSideBar/ConfigSideBar';
-import Courses from './components/Courses/Courses';
+import Technologies from './components/Technologies/Technologies';
 import Contact from './components/Contact/Contact';
+import  Modals  from './components/Modals/Modals';
 
 
 
@@ -40,8 +41,9 @@ function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/> 
           <Route path='/user/:id' element={<Detail/>} />
-          <Route path='/courses' element={<Courses />} />
+            <Route path='/technologies' element={<Technologies />} />
           <Route path='/contact' element={<Contact />} />
+          <Route path='/modals' element={<Modals />} />
         </Routes>
       </AuthProvider>
       </div>

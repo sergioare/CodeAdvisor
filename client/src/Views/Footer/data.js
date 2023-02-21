@@ -5,7 +5,7 @@ export const footerItems =[
     },
     {
         name: 'Services',
-        path: '/courses'
+        path: '/technologies'
     },
     {
         name: 'Community',
@@ -23,8 +23,8 @@ export const links =[
         path:'/faqs'
     },  
     {
-        name: 'Courses',
-        path:'/courses'
+        name: 'Technologies',
+        path:'/technologies'
     },
     {
         name: 'Become a Teacher',

@@ -1,4 +1,4 @@
-export const navbarItems =[
+export const navbarItems = [
     {
         name: 'Home',
         path: '/home'
@@ -8,11 +8,11 @@ export const navbarItems =[
         path: '/forum'
     },
     {
-        name: 'Courses',
-        path:'/courses'
+        name: 'Technologies',
+        path: '/technologies'
     },
     {
         name: 'FAQs',
-        path:'FAQs'
+        path: 'FAQs'
     },
 ]
