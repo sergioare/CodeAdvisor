@@ -3,7 +3,7 @@
 
 .containerAbout {
     // background-color: #794BFF;
-    margin-top: 30px;
+    margin-top: 0px;
     margin-bottom: 50px;
     padding-top: 5px;
 }
@@ -14,8 +14,8 @@
     // padding-top: 20px;
     // padding-bottom: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 380px);
-    gap: 25px;
+    grid-template-columns: repeat(auto-fill, 395px);
+    gap: 30px;
     place-content: center;
     margin-top: 30px;
     padding: 10px;
@@ -32,12 +32,13 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    margin-left: 50px;
 
     .text {
         background-color: white;
         border-radius: 1em;
         border: solid 3px rgba(136, 93, 255, 0.4666666667);
-        width: 300px;
+        width: 310px;
         height: 350px;
         display: flex;
         flex-direction: column;
@@ -50,11 +51,11 @@
 
     .image {
         border-radius: 50%;
-        width: 100px;
-        height: 100px;
+        width: 135px;
+        height: 135px;
         border: solid 3px rgba(252, 252, 252, 0.4666666667);
-        margin-right: 309px;
-        margin-top: 16px;
+        margin-right: 350px;
+        margin-top: 20px;
         position: absolute;
     }
 
@@ -68,7 +69,7 @@
     .name {
         font-weight: bold;
         font-size: 22px;
-        margin: 0px 50px 0px 50px;
+        margin: 0px 20px 0px 20px;
 
     }
 }
@@ -76,12 +77,13 @@
 
 .about {
     font-style: italic;
-    // border: solid 1px;
     border-radius: .5em;
-    padding: 5px;
+    padding: 10px;
     background-color: #885dff38;
     font-size: 14px;
-    width: 200px;
+    width: 250px;
+ 
+
 
 }
 
@@ -106,6 +108,7 @@
     font-size: 18px;
     padding-left: 10px;
     padding-right: 10px;
+    margin: 0px 15px 0px 15px;
 }
 
 .toolsContainer {
