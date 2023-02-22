@@ -10,6 +10,7 @@ import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
 import Technologies from './components/Technologies/Technologies';
 import Contact from './components/Contact/Contact';
 import  Modals  from './components/Modals/Modals';
+import Upload from './components/Upload/upload';
 
 
 
@@ -19,7 +20,7 @@ function App() {
 
     
     <div className="bg-slate-300 text-black h-screen flex text-white" align = 'center'>
-      {/* reemplazé div de clase App con esta clase para trabajar con Tailwind son libres de cambiarlo y ponerle estilo*/}
+     
       
       <AuthProvider>
         <Routes>
@@ -27,7 +28,7 @@ function App() {
           
           <Route path='/about' element={<AboutUs />} />
 
-          
+          <Route path='/upload' element={<Upload/>} />
 
           <Route path='/home' element={<Home />} />
           
@@ -52,6 +53,8 @@ function App() {
 
 
           <Route path='/modals' element={<Modals />} />
+
+
         </Routes>
       </AuthProvider>
       </div>

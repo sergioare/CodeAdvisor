@@ -12,7 +12,6 @@ const Login = () => {
         password: "",
       });
 
-   
       // const { login, loginWithGoogle, resetPassword , logout} = useAuth();
       const { login, resetPassword , logout} = useAuth();
       const [error, setError] = useState("");

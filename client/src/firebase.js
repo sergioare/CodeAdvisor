@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import {getAuth} from "firebase/auth";
 import {getFirestore} from 'firebase/firestore'
+import {getStorage,ref,uploadBytes,getDownloadURL} from 'firebase/storage'
 
 // const {
 //     PORT,
@@ -28,3 +29,18 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app)
 export const db = getFirestore(app)
+export const storage =  getStorage(app)
+
+
+
+
+export function UploadFile(params) {
+  const fileRef = ref(storage, 'File.jpg');
+  uploadBytes(fileRef, params).then((snapshot) => {
+    console.log(snapshot);
+    console.log('Uploaded a blob or file!');
+    
+  });
+  const Url = getDownloadURL(fileRef).then(url => url)
+  return Url;
+}
