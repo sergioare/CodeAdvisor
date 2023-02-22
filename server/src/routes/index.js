@@ -6,6 +6,7 @@ const router = express.Router();
 const dataRoute = require('./dataRoutes')
 const advisorsRoute  = require('./advisorsRoute');
 const mercadoPagoRouter = require('./mercadoPagoRouter')
+const nodeMailerRoutes = require('./nodeMailer')
  
  
 router.get("/", (req,res)=>{
@@ -17,6 +18,7 @@ router.get("/", (req,res)=>{
 router.use("/Advisors", advisorsRoute)
 router.use('/data', dataRoute)
 router.use('/payment', mercadoPagoRouter)
+router.use('/contactUs', nodeMailerRoutes)
 
 
 module.exports = router;
