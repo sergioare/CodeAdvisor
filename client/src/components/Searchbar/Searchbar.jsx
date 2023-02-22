@@ -1,7 +1,7 @@
 import  './Searchbar.scss'
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-
+import Fuse from 'fuse.js';
 
 
 const Searchbar = () => {
@@ -10,38 +10,49 @@ const [wrongSearch, setWrongSearch] = useState(false);
 
 function handleSearch(event) {
   event.preventDefault();
-  setWrongSearch(false)
   const inputValue = event.target.elements.search.value.toLowerCase();
+  const inputWords = inputValue.split(/\s+/);
   
-  // split the search query into first and last name parts
-  const nameParts = inputValue.split(' ');
-  let advisor = null;
-  
-  if (nameParts.length === 2) {
+  // Define the search options for the `Fuse` instance
+  const options = {
+    keys: ['Firstname', 'Lastname', 'Nickname'],
+    threshold: 0.3,
+    weight: {
+      Firstname: 1,
+      Lastname: 2,
+      Nickname: 1.5,
+    },
+  };
+
+  // Create a `Fuse` instance with the advisors array and the search options
+  const fuse = new Fuse(advisors, options);
+
+  // Search for matches with the search query
+  let results = fuse.search(inputValue);
+  // If there are no matches with the full input value, try searching by first and last name separately
+  if (results?.length === 0 && inputWords?.length === 2) {
     // the search query has two parts - assume "firstname lastname" format
-    const [firstname, lastname] = nameParts;
-    advisor = advisors.find(c =>
-      (c.Firstname.toLowerCase() === firstname && c.Lastname.toLowerCase() === lastname) ||
-      c.Nickname.toLowerCase() === inputValue
-    );
-  } else if (nameParts.length === 2) {
-    // the search query has two parts - assume "lastname firstname" format
-    const [lastname, firstname] = nameParts;
-    advisor = advisors.find(c =>
-      (c.Firstname.toLowerCase() === firstname && c.Lastname.toLowerCase() === lastname) ||
-      c.Nickname.toLowerCase() === inputValue
-    );
-  } else {
-    // the search query has only one part
-    advisor = advisors.find(c =>
-      c.Nickname.toLowerCase() === inputValue ||
-      c.Firstname.toLowerCase() === inputValue ||
-      c.Lastname.toLowerCase() === inputValue
-    );
+    const [firstname, lastname] = inputWords;
+    let firstNameMatches = fuse.search(firstname);
+    let lastNameMatches = fuse.search(lastname);
+    if (firstNameMatches.length && lastNameMatches.length) {
+      // Both first and last name have matches, return the advisor with the best score
+      results = advisors.find(c => c.id === firstNameMatches[0].item.id || c.id === lastNameMatches[0].item.id);
+    } else if (firstNameMatches.length) {
+      // Only the first name has matches, return the advisor with the best score
+      results = advisors.find(c => c.id === firstNameMatches[0].item.id);
+    } else if (lastNameMatches.length) {
+      // Only the last name has matches, return the advisor with the best score
+      results = advisors.find(c => c.id === lastNameMatches[0].item.id);
+    }
   }
 
-  if (advisor) {
+  // If there are any matches, redirect to the first match
+  if (results.length > 0) {
+    const advisor = results[0].item;
     window.location.href = `http://localhost:3000/user/${advisor.id}`;
+  } else if(results){
+    window.location.href = `http://localhost:3000/user/${results.id}`;
   } else {
     setWrongSearch(true);
     setTimeout(() => {
@@ -49,6 +60,7 @@ function handleSearch(event) {
     }, 3000); // 3 seconds delay
   }
 }
+
 
 
 
