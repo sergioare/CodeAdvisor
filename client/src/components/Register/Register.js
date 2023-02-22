@@ -7,7 +7,7 @@ import { Alert } from "../Alert/Alert";
 
 function Register() {
 
-  const { signup } = useAuth();
+  const { signup , verifyEmail} = useAuth();
   console.log(signup)
 
   const [user, setUser] = useState({
@@ -28,6 +28,7 @@ function Register() {
     setError("");
     try {
       await signup(user.email, user.password);
+      await verifyEmail()
       navigate("/");
     } catch (error) {
       setError(error.message);

@@ -1,6 +1,7 @@
 import { createContext , useContext, useEffect, useState} from "react";
 import {createUserWithEmailAndPassword ,signOut, signInWithEmailAndPassword, 
-    GoogleAuthProvider,sendPasswordResetEmail, onAuthStateChanged,signInWithPopup, getAuth} from 'firebase/auth';
+    GoogleAuthProvider,sendPasswordResetEmail, onAuthStateChanged,
+    signInWithPopup, getAuth, sendEmailVerification } from 'firebase/auth';
 import {auth} from '../firebase';
 
 export const authContext = createContext();
@@ -17,6 +18,18 @@ export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
   
+
+    const verifyEmail = ()=>{
+      const auth = getAuth();
+    sendEmailVerification(auth.currentUser)
+    .then(() => {
+          console.log('Current user',auth.currentUser)
+          alert('confirm your email')
+    });
+
+    }
+    
+
     const signup = (email, password) => {
       return createUserWithEmailAndPassword(auth, email, password);
     };
@@ -53,6 +66,7 @@ export function AuthProvider({ children }) {
           loading,
           loginWithGoogle,
           resetPassword,
+          verifyEmail
         }}
       >
         {children}
