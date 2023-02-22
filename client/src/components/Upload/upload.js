@@ -11,7 +11,7 @@ const handleSubmit = async (e)=>{
 
     e.preventDefault();
     try {
-        //   Subida de Curriculum
+        //   Subida de Foto y retorno de liga url
         const Photo_url = await UploadFile(Photo)
         console.log(Photo_url)
 
