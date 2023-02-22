@@ -22,7 +22,7 @@ setInput({...input, [property]:value})
 
 const submitHandler=(event)=>{
     event.preventDefault()
-    axios.post('http://localhost:3002/data/Contacts/',input)
+    axios.post('http://localhost:3002/contactUs',input)
     .then(res=>alert("Message Send"))
     
 };
