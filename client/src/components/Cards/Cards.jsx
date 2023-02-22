@@ -4,10 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAdvisors } from '../../redux/actions/actions';
 import { useEffect, useState } from 'react';
 
-const Cards = ({ isSidebarOpen }) => {
+const Cards = ({ isSidebarOpen, currentPage, setCurrentPage}) => {
   const dispatch = useDispatch();
   const allAdvisors = useSelector(state => state.advisorsInDisplay);
-  const [currentPage, setCurrentPage] = useState(1);
   const [cardsPerPage, setCardsPerPage] = useState(8);
 
   // Calculate total number of pages
@@ -48,6 +47,16 @@ const Cards = ({ isSidebarOpen }) => {
       setCurrentPage(currentPage - 1);
     }
   };
+
+  // Event handler for clicking the first page button
+  const handleFirstPage = () => {
+      setCurrentPage(1);
+  };
+
+  // Event handler for clicking the last page button
+  const handleLastPage = () => {
+    setCurrentPage(totalPages);
+};
   return (
 
     <div className={`containerPrincipal ${isSidebarOpen ? 'sidebar-open' : ''}`}>
@@ -58,20 +67,34 @@ const Cards = ({ isSidebarOpen }) => {
     </div>
     <div className="pagination-container">
       <div className="pagination">
+      <button
+            className="first-page-btn"
+            onClick={handleFirstPage}
+            disabled={currentPage === 1}
+          >
+            &lt;&lt;
+        </button>
         <button
             className="prev-page-btn"
             onClick={handlePrevPage}
             disabled={currentPage === 1}
           >
             &lt;
-          </button>
+        </button>
           <span className="current-page">{currentPage}</span>
-          <button
+        <button
             className="next-page-btn"
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
           >
             &gt;
+        </button>
+        <button
+            className="last-page-btn"
+            onClick={handleLastPage}
+            disabled={currentPage === totalPages}
+          >
+            &gt;&gt;
         </button>
       </div>
     </div>
