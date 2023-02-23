@@ -12,7 +12,7 @@ const {
     getContacts,
     addContacts,
 
-    getSpecialty,
+    getSpecialty,xd
     } = require('../controllers/dataController');
 
 const dataRoute = Router();
@@ -30,6 +30,7 @@ dataRoute.get('/Contacts/',getContacts);
 dataRoute.post('/Contacts/',addContacts);
 
 dataRoute.get('/Specialty/',getSpecialty);
+dataRoute.post('/XD/',xd);
 
 
 module.exports = dataRoute;

@@ -178,6 +178,16 @@ const getSpecialty = async (req, res, next) => {
 
 //------------/ OTROS XD DE LA PAGINA /--------------------//
 
+const xd = async (req, res, next) => {
+    try {
+        const data = req.body;
+        await firestore.collection('XD').doc().set(data);
+        res.send(data);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+
 module.exports = {
     getAutores,
 
@@ -191,5 +201,5 @@ module.exports = {
     getContacts,
     addContacts,
 
-    getSpecialty,
+    getSpecialty,xd
 }
