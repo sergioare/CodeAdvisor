@@ -12,7 +12,7 @@ const LandingTwo = () => {
     dispatch(getTechSkills())
   }, [dispatch])
 
-  const [numTarjetas, setNumTarjetas] = useState(3);
+  const [numTarjetas, /*setNumTarjetas*/] = useState(3);
   const tarjetasMostradas = techSkills.slice(0, numTarjetas);
   return (
     <div className='landingTwo'>
