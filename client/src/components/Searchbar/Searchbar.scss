@@ -6,6 +6,12 @@
     width: 15vw;
     border-radius: 2em;
     height: 4.3vh;
+    border: 1px solid white;
+
+    &.red {
+        border: 1px solid rgb(196, 0, 0);
+  
+      }
 
     .input {
         width: 70%;
