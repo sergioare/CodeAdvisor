@@ -10,6 +10,7 @@ import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
 import Technologies from './components/Technologies/Technologies';
 import Contact from './components/Contact/Contact';
 import  Modals  from './components/Modals/Modals';
+import Payment from './components/Payment/Payment';
 
 
 
@@ -41,9 +42,11 @@ function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/> 
           <Route path='/user/:id' element={<Detail/>} />
-            <Route path='/technologies' element={<Technologies />} />
+          <Route path='/technologies' element={<Technologies />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/modals' element={<Modals />} />
+          <Route path='/payment/:id' element={<Payment/>} />
+
         </Routes>
       </AuthProvider>
       </div>
