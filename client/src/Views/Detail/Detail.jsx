@@ -14,14 +14,17 @@ export const Detail = () => {
   }, [dispatch, id]);
 
   const detail = useSelector(state => state.advisorDetail)
-  console.log(detail);
+  // console.log(detail);
   return (
     <div className='DetailContainer'>
       <h1>Profile</h1>
       <p> {detail.Specialty?.length > 1 ? detail.Specialty.join(', ') : detail.Specialty}</p>
 
       <div className='Detail'>
-        <p className='About'> About me: <p className='TextAbout'>{detail.About}</p> </p>
+        <p className='About'> About me: <p className='TextAbout'>{detail.About}</p> 
+        <Link to= {`/payment/${detail.id}`}><button>Schedule Advice</button></Link></p>
+        
+        
         <img src={detail.Img} alt='imageAdvisor' />
         <div className='DataContent'>
           <p className='DetailTitle'>Details</p>
