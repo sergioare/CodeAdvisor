@@ -2,6 +2,9 @@ const {Router} = require('express');
 const { 
     getData,
     
+    addAutor,
+    addTechSkills,
+
     updateAutor,
     updateAdvisor,
     updateTechSkills,
@@ -11,6 +14,11 @@ const {
 const adminRoute = Router();
 
 adminRoute.get("/", getData)
+
+adminRoute.post("/Autor/", addAutor)
+adminRoute.post("/TechSkills/", addTechSkills)
+
+
 
 adminRoute.put("/Autor/", updateAutor)
 adminRoute.put("/Advisors/", updateAdvisor)

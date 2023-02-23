@@ -31,7 +31,7 @@ const getData = async (req, res, next) => {
                 id: x.id,
                 data: x.data()
             }
-            Admin.Autores.push(a)        
+            //Admin.Autores.push(a)        
         })
         dataAdvisors.forEach((x) =>{            
             let a = {
@@ -65,7 +65,7 @@ const getData = async (req, res, next) => {
 const addAutor = async (req, res, next) => {
     const data = req.body;
     try {
-        await firestore.collection('Autores').doc().set(data);
+        await firestore.collection('Autores').add(data);
         res.send(`Autor: ${data.name}. Succefull`);
     } catch (error) {
         res.status(400).send(error.message);
@@ -91,7 +91,7 @@ const addTechSkills = async (req, res, next) => {
     }
     try {
         await firestore.collection('TechSkills').doc(data.id).set(data);
-        res.send(`TechSkills: ${data.name} añadido`);
+        res.send(`TechSkills: ${data.id} añadido`);
     } catch (error) {
         res.status(400).send(error.message);
     }
@@ -151,6 +151,9 @@ const updateAdvisor = async (req, res, next) => {
 
 module.exports = {
     getData,
+
+    addAutor,
+    addTechSkills,
 
     updateAutor,
     updateAdvisor,

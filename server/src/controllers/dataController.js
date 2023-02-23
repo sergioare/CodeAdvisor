@@ -59,8 +59,9 @@ const getCommunityComments = async (req, res, next) => {
     }
 }
 const addCommunityComments = async (req, res, next) => { 
+    const data = req.body;
+    data.status = true
     try {
-        const data = req.body;
         await firestore.collection('CommunityComments').doc().set(data);
         res.send('CommunityComments añadido');
     } catch (error) {
@@ -177,7 +178,24 @@ const getSpecialty = async (req, res, next) => {
 }
 
 //------------/ OTROS XD DE LA PAGINA /--------------------//
+const dx = async (req, res, next) => {
+try {
+    const fire              = await firestore.collection(`/User`)
+    const data             = await fire.get();
+    const z = []
+    data.forEach((x) =>{            
+        let a = {
+            id: x.id,
+            data: x.data()
+        }
+        z.push(a)        
+    })
+    res.status(200).send(z);
+} catch (error) {
+    res.status(400).send(error.message);
 
+}
+}
 const xd = async (req, res, next) => {
     try {
         const data = req.body;
@@ -201,5 +219,5 @@ module.exports = {
     getContacts,
     addContacts,
 
-    getSpecialty,xd
+    getSpecialty,xd,dx
 }
