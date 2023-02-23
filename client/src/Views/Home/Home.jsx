@@ -18,7 +18,8 @@ const Home = () => {
 
   // const { user } = useAuth()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isConfigBarOpen, setIsConfigBarOpen] = useState(false)
+  const [isConfigBarOpen, setIsConfigBarOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
 
   const dispatch = useDispatch()
@@ -34,9 +35,9 @@ const Home = () => {
   return (
     <div className='home'>
       <Navbar toggleConfigBar={toggleConfigBar}/>
-      <SideBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+      <SideBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} setCurrentPage={setCurrentPage}/>
       <Commercial isSidebarOpen={isSidebarOpen}/>
-      <Cards isSidebarOpen={isSidebarOpen} />
+      <Cards isSidebarOpen={isSidebarOpen} currentPage={currentPage} setCurrentPage={setCurrentPage} />
       <Testimonials />
       <div className='icons'>
         {icons.map((icon, index) => (
