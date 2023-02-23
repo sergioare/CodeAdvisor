@@ -4,67 +4,57 @@ const firestore = firebase.firestore();
 
 
 ///////////////////--Get-Data--\\\\\\\\\\\\\\\\\\\\\\\\\
-const getUsers = async (req, res, next) => {
+const getData = async (req, res, next) => {
     try {
-        const fire =  await firestore.collection(`/User`)
-        const data = await fire.get();
-        let yo = []
-        data.forEach((x) =>{            
-            yo.push(x.id, x.data())
+        const fireUser              = await firestore.collection(`/User`)
+        const fireAutores           = await firestore.collection(`/Autores`)
+        const fireAdvisors          = await firestore.collection(`/Advisors`)
+        const fireTechSkills        = await firestore.collection(`/TechSkills`)
+        const fireCommunityComments = await firestore.collection(`/CommunityComments`)
+
+        const dataUser              = await fireUser.get();
+        const dataAutores           = await fireAutores.get();
+        const dataAdvisors          = await fireAdvisors.get();
+        const dataTechSkills        = await fireTechSkills.get();
+        const dataCommunityComments = await fireCommunityComments.get();
+
+        let Admin = {User : [], Autores: [], Advisors:[], TechSkills:[], CommunityComments:[]}
+        dataUser.forEach((x) =>{  
+            let user = {
+                id: x.id,
+                data: x.data()
+            }
+            Admin.User.push(user)
         })
-        res.status(200).send(yo)
-    } catch (error) {
-        res.status(404).send(error.message)
-    }
-}
-const getAutores = async( res, req, next ) =>{
-    try {
-        const fire =  await firestore.collection(`/Autores`)
-        const data = await fire.get();
-        let yo = []
-        data.forEach((x) =>{            
-            yo.push(x.id, x.data())
+        dataAutores.forEach((x) =>{            
+            let a = {
+                id: x.id,
+                data: x.data()
+            }
+            Admin.Autores.push(a)        
         })
-        res.status(200).send(yo)
-    } catch (error) {
-        res.status(404).send(error.message)
-    }
-}
-const getAdvisors = async( res, req, next ) =>{
-    try {
-        const fire =  await firestore.collection(`/Advisors`)
-        const data = await fire.get();
-        let yo = []
-        data.forEach((x) =>{            
-            yo.push(x.id, x.data())
+        dataAdvisors.forEach((x) =>{            
+            let a = {
+                id: x.id,
+                data: x.data()
+            }
+            Admin.Advisors.push(a)        
         })
-        res.status(200).send(yo)
-    } catch (error) {
-        res.status(404).send(error.message)
-    }
-}
-const getTechSkills = async( res, req, next ) =>{
-    try {
-        const fire =  await firestore.collection(`/TechSkills`)
-        const data = await fire.get();
-        let yo = []
-        data.forEach((x) =>{            
-            yo.push(x.id, x.data())
+        dataTechSkills.forEach((x) =>{            
+            let a = {
+                id: x.id,
+                data: x.data()
+            }
+            Admin.TechSkills.push(a)        
         })
-        res.status(200).send(yo)
-    } catch (error) {
-        res.status(404).send(error.message)
-    }
-}
-const getCommunityComments = async( res, req, next ) =>{
-    try {
-        const fire =  await firestore.collection(`/CommunityComments`)
-        const data = await fire.get();
-        let yo = []
-        data.forEach((x) =>{            
-            yo.push(x.id, x.data())
+        dataCommunityComments.forEach((x) =>{            
+            let a = {
+                id: x.id,
+                data: x.data()
+            }
+            Admin.CommunityComments.push(a)        
         })
-        res.status(200).send(yo)
+        res.status(200).send(Admin)
     } catch (error) {
         res.status(404).send(error.message)
     }
@@ -82,12 +72,12 @@ const addAutor = async (req, res, next) => {
     }
 }
 const updateAutor = async (req, res, next) => {
-    const id = req.params.id;
-    const data = req.body;
+    let id = req.body.id
+    let status = req.body.status
     try {
-        const autor =  await firestore.collection('Autores').doc(id);
-        await autor.update(data);
-        res.send(`Autor con id: ${id}, ha sido modificado`);        
+        const lData =  await firestore.collection('Autores').doc(id);
+        await lData.update({status});
+        res.send(`status del Autores: ${id}, ha sido modificado a: ${status}`);
     } catch (error) {
         res.status(400).send(error.message);
     }
@@ -107,13 +97,12 @@ const addTechSkills = async (req, res, next) => {
     }
 }
 const updateTechSkills = async (req, res, next) => {
+    let id = req.body.id
+    let status = req.body.status
     try {
-        const id = req.params.id;
-        const data = req.body;
         const lData =  await firestore.collection('TechSkills').doc(id);
-        await lData.update(data);
-        let yo = await lData.get()
-        res.send(`TechSkills: ${id}, ha sido modificado`);        
+        await lData.update({status});
+        res.send(`status del TechSkills: ${id}, ha sido modificado a: ${status}`);
     } catch (error) {
         res.status(400).send(error.message);
     }
@@ -132,34 +121,39 @@ const addSpecialty = async (req, res, next) => {
     }
 }
 const updateSpecialty = async (req, res, next) => {
+    let id = req.body.id
+    let status = req.body.status
     try {
-        const id = req.params.id;
-        const data = req.body;
         const lData =  await firestore.collection('Specialty').doc(id);
-        await lData.update(data);
-        res.send(`Specialty: ${id}, ha sido modificado`);        
+        await lData.update({status});
+        res.send(`status del Specialty: ${id}, ha sido modificado a: ${status}`);
     } catch (error) {
         res.status(400).send(error.message);
     }
 }
-///////////////////--Autores--\\\\\\\\\\\\\\\\\\\\\\\\\
-
-///////////////////--Autores--\\\\\\\\\\\\\\\\\\\\\\\\\
+///////////////////--Advisors--\\\\\\\\\\\\\\\\\\\\\\\\\
+const updateAdvisor = async (req, res, next) => {
+    let id = req.body.id
+    let status = req.body.status
+    try {
+        const lData =  await firestore.collection('Advisors').doc(id);
+        await lData.update({status});
+        res.send(`status del Advisors: ${id}, ha sido modificado a: ${status}`);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
+///////////////////--CommunityComments--\\\\\\\\\\\\\\\\\\\\\\\\\
 
 ///////////////////--Autores--\\\\\\\\\\\\\\\\\\\\\\\\\
 
 ///////////////////--Autores--\\\\\\\\\\\\\\\\\\\\\\\\\
 
 module.exports = {
-    getUsers,
-    getAutores,
-    getAdvisors,
-    getTechSkills,
-    getCommunityComments,
+    getData,
 
-    //updateUsers,
-    //updateAutores,
-    //updateAdvisors,
+    updateAutor,
+    updateAdvisor,
     updateTechSkills,
-    //updateCommunityComments,
+    updateSpecialty
 }

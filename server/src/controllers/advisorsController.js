@@ -1,7 +1,7 @@
 const firebase = require("../db/db");
 const firestore = firebase.firestore();
 
-const { Advisors, Reviwers, Schedules } = require("../models/Advisors");
+const { Advisors, Reviwers, Schedules, MyWallet } = require("../models/Advisors");
 const { getAllReviews, getAllSchedules } = require("../handlers/filtersData");
 const dataTechSkills = [
     'JS',
@@ -244,6 +244,63 @@ const updatAdvisorsSchedules = async (req, res, next) => {
     }
 };
 
+//------------/ Advisors MyWallet /-------------------------------------//
+const getAdvisorsAllMyWallet = async (req, res, next) => {
+    console.log("get_Advisors_All_MyWallet");
+    const id = req.params.id
+    try {
+        const fire = await firestore.collection(`/Advisors/${id}/MyWallet`);
+        const data = await fire.get();
+        const myWallets = [];
+        if (data.empty) {
+            res.status(404).send("the collection MyWallet empty");
+        } else {
+            data.forEach((doc) => {
+                const myWallet = new MyWallet(
+                    doc.data().userName    || "empty", 
+                    doc.data().TechSkills  || "empty", 
+                    doc.data().myPayment   || "empty", 
+                    );
+                    if (doc.data().status === true) {
+                        myWallets.push(myWallet);
+                    }
+                });
+                res.send(myWallets);
+            }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+};
+
+const addAdvisorsMyWallet= async (req, res, next) => {
+    console.log("Advisors_add_MyWallet",req.params);
+    const aid                = req.params.id
+    const uid                = req.body.id
+    const dataAdvisor = {
+        userName : req.body.userName,
+        TechSkills : req.body.TechSkills,
+        myPayment : req.body.price,
+        status : true
+    };
+    const dataUser = {
+        advisorName : req.body.advisorName,
+        TechSkills : req.body.TechSkills,
+        myPurchase : req.body.price,
+        status : true
+    };
+    try {
+        await firestore.collection(`/Advisors/${aid}/MyWallet`).add(dataAdvisor);
+        await firestore.collection(`/User/${uid}/MyCart`).add(dataUser);
+
+        const fireAdvisors = await firestore.collection("Advisors").doc(aid);
+        const fireUser = await firestore.collection("User").doc(uid);
+        await fireAdvisors.update({statusMyWallet:true});
+        await fireUser.update({statusMyCart:true});
+        res.send("MyWallet successfuly");
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+};
 
 
 //------------/ Delete  /-------------------------------------//
@@ -269,5 +326,8 @@ module.exports = {
     updatAdvisorsReviwers,
     updatAdvisorsSchedules,
     
+    getAdvisorsAllMyWallet,
+    addAdvisorsMyWallet,
+
     deleteAdvisors
 };

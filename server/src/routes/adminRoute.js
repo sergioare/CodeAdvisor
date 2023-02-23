@@ -1,11 +1,20 @@
 const {Router} = require('express');
 const { 
-    getUsers
+    getData,
+    
+    updateAutor,
+    updateAdvisor,
+    updateTechSkills,
+    updateSpecialty
 } = require('../controllers/adminComtroller');
 
 const adminRoute = Router();
 
-adminRoute.get("/", (req, res) => res.status(200).end('Hello adminComtroller!'))
-adminRoute.get("/users/", getUsers)
+adminRoute.get("/", getData)
+
+adminRoute.put("/Autor/", updateAutor)
+adminRoute.put("/Advisors/", updateAdvisor)
+adminRoute.put("/Specialty/", updateSpecialty)
+adminRoute.put("/TechSkills/", updateTechSkills)
 
 module.exports = adminRoute;
