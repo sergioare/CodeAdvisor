@@ -3,8 +3,32 @@ const firestore = firebase.firestore();
 
 const { Advisors, Reviwers, Schedules } = require("../models/Advisors");
 const { getAllReviews, getAllSchedules } = require("../handlers/filtersData");
-
-
+const dataTechSkills = [
+    'JS',
+    'PY',
+    'Java',
+    'Ruby',
+    'PHP',
+    'C++',
+    'C#',
+    'C',
+    'HTML',
+    'CSS',
+    'YOLO',
+]
+const dataCountries = [
+    'Argentina',
+    'Bolivia',
+    'Brazil',
+    'Canada',
+    'Colombia',
+    'Chile',
+    'Mexico',
+    'Paraguay',
+    'Peru',
+    'U.S.A.',
+    'U.K.',
+]
 
 //------------/ Advisors /-----------------------------------------//
 const getAllAdvisors = async (req, res, next) => {
@@ -38,7 +62,7 @@ const getAllAdvisors = async (req, res, next) => {
                     doc.data().About        || "empty",
                     doc.data().Specialty    || ["empty"],
                     doc.data().TechSkills   || ["empty"],
-                    );
+                    );                                 
                     if (doc.data().status === true) {
                         advisors.push(advisor);
                     }
@@ -91,33 +115,6 @@ const getIdAdvisors = async (req, res, next) => {
     }
 };
 
-const addAdvisors = async (req, res, next) => {
-    console.log("addAdvisors");
-    const data              = req.body;
-    const status            = true
-    data.status             = status
-    try {
-        await firestore.collection("Advisors").doc().set(data);
-        res.send("Advisors successfuly");
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
-};
-
-const updatAdvisors = async (req, res, next) => {
-    console.log("update_Advisors");
-    const id = req.params.id;
-    const data = req.body;
-    try {
-        const fire = await firestore.collection("Advisors").doc(id);
-        await fire.update(data);
-        res.send("Advisors updated successfuly");
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
-};
-
-
 
 //------------/ Advisors Reviwers /-------------------------------------//
 const getAdvisorsAllReviwers = async (req, res, next) => {
@@ -157,7 +154,7 @@ const addAdvisorsReviwers = async (req, res, next) => {
     const statusReviwers    = true
     reviewdata.status       = true
     try {
-        await firestore.collection(`/Advisors/${id}/Reviwers`).doc().set(reviewdata);
+        await firestore.collection(`/Advisors/${id}/Reviwers`).add(reviewdata);
         const fire = await firestore.collection("Advisors").doc(id);
         const data = await fire.get()
         const score = data.data().score || []
@@ -184,8 +181,6 @@ const updatAdvisorsReviwers = async (req, res, next) => {
     }
 };
 
-
-
 //------------/ Advisors Schedules /-------------------------------------//
 const getAdvisorsAllSchedules = async (req, res, next) => {
     console.log("get_Advisors_All_Schedules");
@@ -202,6 +197,7 @@ const getAdvisorsAllSchedules = async (req, res, next) => {
                     doc.id, 
                     doc.data().Class    || "empty", 
                     doc.data().Student  || "empty", 
+                    doc.data().Meet     || "empty", 
                     doc.data().Start    || { "seconds": 0000000000, "nanoseconds": 000000000 }, 
                     doc.data().End      || { "seconds": 0000000000, "nanoseconds": 000000000 },
                     );
@@ -220,12 +216,12 @@ const addAdvisorsSchedules = async (req, res, next) => {
     console.log("Advisors_add_Schedules",req.params);
     const id                = req.params.id
     const data              = req.body;
-    const statusSchedules   = ture
+    const statusSchedules   = true
     data.status             = true
     try {
-        await firestore.collection(`/Advisors/${id}/Schedules`).doc().set(data);
-        const data = await firestore.collection("Advisors").doc(id);
-        await data.update({statusSchedules});
+        await firestore.collection(`/Advisors/${id}/Schedules`).add(data);
+        const fire = await firestore.collection("Advisors").doc(id);
+        await fire.update({statusSchedules});
         res.send("Schedules successfuly");
     } catch (error) {
         res.status(400).send(error.message);
@@ -236,10 +232,12 @@ const updatAdvisorsSchedules = async (req, res, next) => {
     console.log("Advisors_updat_Schedules");
     const id    = req.params.id;
     const idr   = req.params.idr;
+    console.log("params",req.params);
+    console.log("body",req.body);
     const data  = req.body;
     try {
         const rev = await firestore.collection(`/Advisors/${id}/Schedules`).doc(idr);
-        await rev.update(data);
+        //await rev.update(data);
         res.send("Schedules updated successfuly");
     } catch (error) {
         res.status(400).send(error.message);
@@ -265,11 +263,9 @@ module.exports = {
     getAdvisorsAllReviwers,
     getAdvisorsAllSchedules,
 
-    addAdvisors,
     addAdvisorsReviwers,
     addAdvisorsSchedules,
 
-    updatAdvisors,
     updatAdvisorsReviwers,
     updatAdvisorsSchedules,
     
