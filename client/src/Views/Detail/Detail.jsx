@@ -22,7 +22,7 @@ export const Detail = () => {
 
       <div className='Detail'>
         <p className='About'> About me: <p className='TextAbout'>{detail.About}</p> 
-        <Link to= {`/payment/${detail.id}`}><button>Schedule Advice</button></Link></p>
+        <Link to= {`/payment/${detail.id}`}><button className='ButtonSchedule'>Schedule Advice</button></Link></p>
         
         
         <img src={detail.Img} alt='imageAdvisor' />

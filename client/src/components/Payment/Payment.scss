@@ -6,10 +6,16 @@
   align-items: center;
   flex-direction: column;
   height: 100vh;
+
+  .Header{
+    background-color: $primary-color;
+    width: 100vh;
+height: 100vh
+  }
  
 p{
   font-weight: bold;
-  font-size: 24px;
+  font-size: 18px;
   font-style: italic;
   
 }
@@ -32,16 +38,52 @@ p{
     background-color: #fff;
     border-radius: 5px;
     
+    .HoursContent{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 255px;
+      height: 150px;
+      align-items: center;
+      box-shadow: 0px 0px 8px 0px $primary-color;
+      margin-top: 80px;
+
+      .ButtonCounter{
+        width: 35px;
+        border: none;
+        background-color: transparent;
+        color: black;
+        margin: 0px 10px 0px 10px;
+        font-size: 30px;
+    }
+    .Counter{
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    }
 
     .PaymentContent {
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
-      width: 400px;
-      height: 300px;
+      width: 350px;
+      height: 375px;
       align-items: center;
       box-shadow: 0px 0px 8px 0px $primary-color;
+      // border-radius: 1em;
 
+      .DetailBorder{
+        display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 200px;
+      height: 200px;
+      align-items: center;
+      box-shadow: 0px 0px 8px 0px $primary-color;
+      border-radius: 1em;
+
+      }
       .TotalPrice{
         font-weight: bold;
         font-size: 18px;
