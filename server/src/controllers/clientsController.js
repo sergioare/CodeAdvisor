@@ -7,7 +7,7 @@ const addClients = async (req, res, next) => {
     try {
       const data = req.body;
       const id = req.body.uid;
-      await firestore.collection("Clients").doc().set(data);
+      await firestore.collection("Clients").doc(id).set(data);
       res.send("Client successfuly");
     } catch (error) {
       res.status(400).send(error.message);
