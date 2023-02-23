@@ -7,6 +7,7 @@ const dataRoute = require('./dataRoutes')
 const advisorsRoute  = require('./advisorsRoute');
 const mercadoPagoRouter = require('./mercadoPagoRouter')
 const nodeMailerRoutes = require('./nodeMailer')
+const chimpMailerRoutes = require('./nchimpMailerRoute')
  
  
 router.get("/", (req,res)=>{
@@ -19,6 +20,7 @@ router.use("/Advisors", advisorsRoute)
 router.use('/data', dataRoute)
 router.use('/payment', mercadoPagoRouter)
 router.use('/contactUs', nodeMailerRoutes)
+router.use('/subcribe', chimpMailerRoutes)
 
 
 module.exports = router;

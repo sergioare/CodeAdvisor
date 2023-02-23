@@ -38,4 +38,5 @@ nodeMailerRoutes.post('/',  (req, res) => {
 })
 
 
-module.exports= nodeMailerRoutes
+
+module.exports= nodeMailerRoutes 

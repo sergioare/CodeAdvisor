@@ -3,18 +3,18 @@ const { mercadopago } = require('../configMercadoPago')
 const mercadoPagoRouter = Router()
 
 mercadoPagoRouter.post('/', (req, res) => {
-    const prod = req.body
+    // const producto = req.body
     
 
     let preference = {
         Items: [{
             id: 4,
-            title: prod.name, //prod.name
+            title: 'juguete', 
             currency_id: "MXN",
             description: 'soy description',
             category_id: 'art', 
-            quantity: prod.quantity, 
-            unit_price: prod.name,
+            quantity: 1, 
+            unit_price: 10,
         }
         ],
         back_urls: {
