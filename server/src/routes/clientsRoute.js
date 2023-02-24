@@ -10,7 +10,7 @@ const {
 const clientsRoute = Router();
 
 
-clientsRoute.post('/',addClients);
+clientsRoute.post('/:uid',addClients);
 clientsRoute.post('/Upload', uploadInfo) 
 
 

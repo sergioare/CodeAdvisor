@@ -19,9 +19,9 @@ const Home = () => {
   const {user , logout} = useAuth()
   
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isConfigBarOpen, setIsConfigBarOpen] = useState(false)
+  const [isConfigBarOpen, setIsConfigBarOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
-
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -47,21 +47,10 @@ const Home = () => {
 
   return (
     <div className='home'>
-      {//  User contains info about the user, only if logged shows Sidebar and logged, 
-      //   if not, shows Commercial components, modify as much as needed
-      user==null ? 
-      <>
-      <Navbar toggleConfigBar={toggleConfigBar}/> 
-      </>: 
-      <>
-      <SideBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+      <Navbar toggleConfigBar={toggleConfigBar}/>
+      <SideBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} setCurrentPage={setCurrentPage}/>
       <Commercial isSidebarOpen={isSidebarOpen}/>
-      <h1 className='logged'>User Logged</h1>
-      <button onClick={handleSignOut}>Log Out</button>
-      </>
-      } 
-      
-      <Cards isSidebarOpen={isSidebarOpen} />
+      <Cards isSidebarOpen={isSidebarOpen} currentPage={currentPage} setCurrentPage={setCurrentPage} />
       <Testimonials />
       <div className='icons'>
         {icons.map((icon, index) => (
