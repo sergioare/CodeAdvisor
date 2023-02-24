@@ -1,0 +1,14 @@
+.rating {
+    display: inline-block;
+    font-size: 0;
+    /* Elimina el espacio entre las estrellas */
+}
+
+.star {
+    color: #ffce00;
+    font-size: 17px;
+}
+
+.star.empty {
+    color: #ddd;
+}

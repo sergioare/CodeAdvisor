@@ -12,6 +12,8 @@ import Contact from './components/Contact/Contact';
 import  Modals  from './components/Modals/Modals';
 import Upload from './components/Upload/upload';
 import AdvisorProfile from './components/Forms/AdvisorProfile/AdvisorProfile';
+import Payment from './components/Payment/Payment';
+import { Reviews } from './components/Reviews/Reviews';
 
 
 
@@ -25,22 +27,13 @@ function App() {
       
       <AuthProvider>
         <Routes>
-           <Route exact path='/' element={<Landing />} /> 
-          
+          <Route exact path='/' element={<Landing />} /> 
           <Route path='/about' element={<AboutUs />} />
-
           <Route path='/upload' element={<Upload/>} />
-
           <Route path='/home' element={<Home />} />
-          
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/register' element={<Register/>}/> 
-
           <Route path='/user/:id' element={<Detail/>} />
-          
-            <Route path='/technologies' element={<Technologies />} />
+          <Route path='/technologies' element={<Technologies />} />
           <Route path='/contact' element={<Contact />} />
-
           <Route path='/user/1' element={
             //  This route works only if we have a user logged, if not, it redirect to Login component
             // info available ONLY FOR USERS 
@@ -51,12 +44,9 @@ function App() {
           </ProtectedRoute>
 
            } />
-
-
-          <Route path='/modals' element={<Modals />} />
-
-
           <Route path='/profadv' element={<AdvisorProfile />} />
+          <Route path='/payment/:id' element={<Payment/>} />
+          <Route path='/reviews' element={<Reviews/>}/>
         </Routes>
       </AuthProvider>
       </div>

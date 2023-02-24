@@ -22,14 +22,13 @@ const getAllUsers = async (req, res, next) => {
                     doc.data().Lastname,
                     doc.data().StatusAdviser,
                     doc.data().StatusAdmin,
-                    doc.data().Reviews
-                    
-                );
+                    doc.data().Reviews,
+                    doc.data().Lenguajes,
 
+                );
                 userArray.push(user);
-                //console.log(doc.data().Reviews)
+                // console.log(doc.Lenguajes)
             });
-            
             res.send(userArray);
         }
     } catch (error) {
