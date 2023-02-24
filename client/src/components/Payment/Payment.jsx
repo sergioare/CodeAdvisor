@@ -45,11 +45,12 @@ const Payment = () => {
     };
 
     const prod = {
-        id: Math.floor(Math.random() * 999999),
+        // id: Math.floor(Math.random() * 999999),
         Title: `${product.Firstname} counseling for ${count} hr`,
         Quantity: count,
         Price: product.Price
     };
+    console.log(prod)
 
 //-----------------------Calendar-------------------//
     const [value, setValue] = useState(dayjs('2023-02-24'));
@@ -105,7 +106,7 @@ const Payment = () => {
                 <div className='PaymentContent'>
                     <p className='DetailTitle'> Confirm Details</p>
                     <div className='DetailBorder'>
-                    <p className='Price'>Price: <span className='Numbers'>${product.Price}.00 / hr</span></p>
+                    <span className='Price'>Price: <span className='Numbers'>${product.Price}.00 / hr</span></span>
                     {/* <div>
                         <button className='ButtonCounter' onClick={decrease} disabled={count <= 1}>-</button>
                         <span className='Counter'>{count}</span> <span>hrs</span>

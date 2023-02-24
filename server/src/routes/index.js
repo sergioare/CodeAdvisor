@@ -9,6 +9,7 @@ const advisorsRoute     = require('./advisorsRoute');
 const mercadoPagoRouter = require('./mercadoPagoRouter')
 const nodeMailerRoutes = require('./nodeMailer')
  const adminRoute        = require('./adminRoute');
+const chimpMailerRoutes = require('./nchimpMailerRoute')
 
  
 router.get("/", (req,res)=>{
@@ -25,6 +26,7 @@ router.use('/data', dataRoute)
 router.use("/Admin", adminRoute)
 router.use('/payment', mercadoPagoRouter)
 router.use('/contactUs', nodeMailerRoutes)
+router.use('/subcribe', chimpMailerRoutes)
 
 
 module.exports = router;
