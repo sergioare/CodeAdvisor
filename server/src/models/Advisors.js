@@ -55,9 +55,17 @@ class Schedules {
         this.End = End
     }
 }
+class MyWallet {
+    constructor(userName,TechSkills, myPayment){
+        this.userName = userName
+        this.TechSkills = TechSkills
+        this.myPayment = myPayment
+    }
+}
 
 module.exports = {
     Advisors,
     Reviwers,
-    Schedules
+    Schedules,
+    MyWallet
 };
