@@ -19,9 +19,9 @@ mercadoPagoRouter.post('/', (req, res) => {
         }],
 
         back_urls: {
-            success : "http://localhost:3002/payment/feedback",
+            success : "http://localhost:3000/home",
             failure: "http://localhost:3002/payment/feedback",
-            pending : "http://localhost:3002/payment/feedback"
+            pending : ""
         },
         auto_return: 'approved',
         binary_mode: true,
