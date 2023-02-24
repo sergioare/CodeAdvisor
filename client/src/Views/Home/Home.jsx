@@ -9,6 +9,8 @@ import Testimonials from '../../components/Testimonials/Testimonials';
 import SideBar from '../../components/SideBar/SideBar';
 import ConfigSideBar from '../../components/ConfigSideBar/ConfigSideBar';
 import Navbar from '../../components/Navbar/Navbar';
+import Profile from '../../components/Profile/Profile';
+import Admin from '../../components/Admin/Admin';
 // import { useAuth } from '../../context/authContext';
 // import { useContext } from 'react';
 // import Footer from '../Footer/Footer';
@@ -19,7 +21,10 @@ const Home = () => {
   // const { user } = useAuth()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isConfigBarOpen, setIsConfigBarOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false)
   const [currentPage, setCurrentPage] = useState(1);
+  const [isAdmin, setIsAdmin] = useState(true);
+  const [openAdmin, setOpenAdmin] = useState(false);
 
 
   const dispatch = useDispatch()
@@ -31,6 +36,17 @@ const Home = () => {
   setIsConfigBarOpen(prevState => !prevState);
   };
 
+  const closeSideBar = () => {
+    setIsSidebarOpen(false);
+    };
+
+  const toggleProfile = () => {
+    setIsProfileOpen(prevState => !prevState);
+    };
+
+  const toggleAdmin = () => {
+    setOpenAdmin(!openAdmin);
+    };
 
   return (
     <div className='home'>
@@ -46,19 +62,10 @@ const Home = () => {
           </div>
         ))}
       </div>
-      <ConfigSideBar isConfigBarOpen={isConfigBarOpen} toggleConfigBar={toggleConfigBar} />
-
-      {/* <div className='fifthPage'>
-        <Footer />
-        <div className="circle1"></div>
-        <div className="circle2"></div>
-        <div className="circle3"></div>
-        <div className="circle4"></div>
-        <div className="circle5"></div>
-        <div className="circle6"></div>
-        <div className="circle7"></div>
-        <div className="circle8"></div>
-      </div> */}
+      <Profile openAdmin={openAdmin} toggleAdmin={toggleAdmin} isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen} closeSideBar={closeSideBar} > </Profile>
+      <ConfigSideBar isConfigBarOpen={isConfigBarOpen} toggleConfigBar={toggleConfigBar} toggleProfile={toggleProfile} />
+      
+      {isAdmin && <Admin openAdmin={openAdmin} toggleAdmin={toggleAdmin} isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen} closeSideBar={closeSideBar}></Admin>}
     </div>
   );
 };

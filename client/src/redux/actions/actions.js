@@ -14,12 +14,37 @@ export const SORT_BY_AVAILABILITY = "SORT_BY_AVAILABILITY";
 export const SORT_BY_PRICE = "SORT_BY_PRICE";
 export const SORT_BY_ALPHABET = "SORT_BY_ALPHABET";
 export const GET_TECHSKILLS = 'GET_TECHSKILLS';
+export const GET_PROFILE = 'GET_PROFILE'
+export const GET_ADVISORS_REVIEWS = 'GET_ADVISORS_REVIEWS'
+export const BLOCK_ACCOUNT = 'BLOCK_ACCOUNT'
+export const UNBLOCK_ACCOUNT = 'UNBLOCK_ACCOUNT'
 
 export const getAutors = () => {
   return async function (dispatch) {
     const apiData = await axios.get("http://localhost:3002/data/autores/");
     const autors = apiData.data;
     dispatch({ type: GET_AUTORS, payload: autors });//... este info va al reducer
+
+  };
+};
+
+export const blockAccount = (id) => {
+  return async function (dispatch) {
+    dispatch({ type: BLOCK_ACCOUNT, payload: id })
+  };
+}
+
+export const unBlockAccount = (id) => {
+  return async function (dispatch) {
+    dispatch({ type: UNBLOCK_ACCOUNT, payload: id })
+  };
+}
+
+export const getAdvisorReviews = (id) => {
+  return async function (dispatch) {
+    const apiData = await axios.get(`http://localhost:3002/Advisors/${id}/Reviwers`);
+    const reviews = apiData.data;
+    dispatch({ type: GET_ADVISORS_REVIEWS, payload: reviews });
 
   };
 };
@@ -45,6 +70,14 @@ export const getDetail = (id) => {
     const response = await axios.get(`http://localhost:3002/Advisors/${id}`);
     const advisor = response.data;
     dispatch({ type: ADVISOR_DETAIL, payload: advisor })
+  }
+}
+
+export const getProfile = (id) => {
+  return async function (dispatch) {
+    const response = await axios.get(`http://localhost:3002/Advisors/${id}`);
+    const advisor = response.data;
+    dispatch({ type: GET_PROFILE, payload: advisor })
   }
 }
 

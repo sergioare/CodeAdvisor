@@ -1,0 +1,46 @@
+@import '../Styles/_variables.scss';
+
+.admin-button {
+    position: fixed;
+    width: 23px;
+    height: 23px;
+    top: 27px;
+    left: 21px;
+    background-color: $primary-color;
+    color: $title-bg-purple;
+    border: 1px solid $title-bg-light;
+    border-radius: 50%;
+    padding: 0;
+    line-height: 23px; // increased to match button height
+    vertical-align: middle; // added to center text vertically
+    cursor: pointer;
+}
+
+
+
+.admin-window {
+    position: fixed;
+    top: 0;
+    left: -1500px; 
+    width: calc(100% - 20px);
+    height: calc(100% - 90px);
+    background-color: #ffffff;
+    box-shadow: 0 0 20px $title-bg-light;
+    transition: width 0.4s ease-in-out, transform 0.4s ease-in-out, left 0.4s ease-in-out;
+    z-index: 1000;
+    margin-top: 80px;
+    border: 7px solid $primary-color;
+    border-radius: 10px;
+    overflow: auto;
+    line-height: normal;
+
+    &--open {
+    left: 10px;
+  
+      &.config-sidebar-open {
+        width: calc(100% - 220px);
+      }
+    }
+
+    
+}

@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import "./ConfigSideBar.scss"
 
-function ConfigSideBar(props) {
+function ConfigSideBar({isConfigBarOpen, toggleConfigBar, toggleProfile}) {
     const [isEnglish, setIsEnglish] = useState(true);
     const [isDarkMode, setIsDarkMode] = useState(true);
     const languageToggle = useRef(null);
@@ -26,12 +26,17 @@ function ConfigSideBar(props) {
     }
 
     function handleTitleClick() {
-        props.toggleConfigBar();
+        toggleConfigBar();
+    }
+
+    function handleProfileClick(){
+        toggleProfile();
     }
 
     return (
-        <div className={`Configsidebar ${props.isConfigBarOpen ? 'open' : 'closed'}`}>
+        <div className={`Configsidebar ${isConfigBarOpen ? 'open' : 'closed'}`}>
             <button className="config-title" onClick={handleTitleClick}>Configurations</button>
+            <button className="language-toggle" onClick={handleProfileClick}>Profile</button>
             <button ref={languageToggle} className="language-toggle" onClick={handleLanguageToggle}>
                 {isEnglish ? 'English' : 'Español'}
             </button>

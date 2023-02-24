@@ -19,8 +19,8 @@ function handleSearch(event) {
     threshold: 0.3,
     weight: {
       Firstname: 1,
-      Lastname: 2,
-      Nickname: 1.5,
+      Lastname: 1.5,
+      Nickname: 1,
     },
   };
 
@@ -51,7 +51,7 @@ function handleSearch(event) {
   if (results.length > 0) {
     const advisor = results[0].item;
     window.location.href = `http://localhost:3000/user/${advisor.id}`;
-  } else if(results){
+  } else if(results.id){
     window.location.href = `http://localhost:3000/user/${results.id}`;
   } else {
     setWrongSearch(true);

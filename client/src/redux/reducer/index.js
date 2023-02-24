@@ -5,7 +5,8 @@ import {
   FILTER_BY_PROGRAMMING_LANGUAGE,
   FILTER_BY_RESIDENCE,
   SORT_ADVISORS,
-  GET_AUTORS, GET_REVIEWS, GET_ADVISORS, ADVISOR_DETAIL, GET_TECHSKILLS,
+  GET_AUTORS, GET_REVIEWS, GET_ADVISORS, ADVISOR_DETAIL, GET_TECHSKILLS, GET_PROFILE, GET_ADVISORS_REVIEWS,
+  BLOCK_ACCOUNT, UNBLOCK_ACCOUNT,
 } from '../actions/actions';
 
 const initialState = {
@@ -15,6 +16,9 @@ const initialState = {
   reviews: [],
   autors: [],
   techSkills: [],
+  profile: [],
+  advisorReviews: [],
+  blockedAccounts: [],
 
   advisorsInDisplay: [],
   filters: {
@@ -24,6 +28,132 @@ const initialState = {
     F_Residence: [],
   },
   sortMethod: "",
+}
+
+
+
+const rootReducer = (state = initialState, action) => {
+
+  switch (action.type) {
+    case BLOCK_ACCOUNT:
+    return {
+      ...state,
+      users: state.users.filter(a => a.id !== action.payload),
+      advisors: state.advisors.filter(a => a.id !== action.payload),
+      blockedAccounts: [...state.blockedAccounts, action.payload]
+    };
+
+
+    case UNBLOCK_ACCOUNT:
+      return {
+        ...state,
+        blockedAccounts: [...state.blockedAccounts.filter(a => a.id !== action.payload) ]
+      };
+
+    case GET_ADVISORS_REVIEWS:
+      return {
+        ...state,
+        advisorReviews: action.payload
+      };
+
+    case GET_AUTORS:
+      return {
+        ...state,
+        autors: action.payload
+      };
+
+      case LOAD_PROFESSIONALS:
+        return {
+        ...state,
+        advisors: action.payload,
+        advisorsInDisplay: action.payload,
+      };
+      case FILTER_BY_SPECIALTY:
+        const filteredBySpecialty = filterApplyer(state.advisors, {
+          ...state.filters,
+        F_Specialty: action.payload,
+      }, state.sortMethod);
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          F_Specialty: action.payload,
+        },
+        advisorsInDisplay: filteredBySpecialty,
+      };
+
+      case FILTER_BY_LANGUAGE:
+        return {
+        ...state,
+        filters: {
+          ...state.filters,
+          F_Language: action.payload,
+        },
+        advisorsInDisplay: filterApplyer(state.advisors, {
+          ...state.filters,
+          F_Language: action.payload,
+        }, state.sortMethod),
+      };
+    case FILTER_BY_PROGRAMMING_LANGUAGE:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          F_Programming_L: action.payload,
+        },
+        advisorsInDisplay: filterApplyer(state.advisors, {
+          ...state.filters,
+          F_Programming_L: action.payload,
+        }, state.sortMethod),
+      };
+      case FILTER_BY_RESIDENCE:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          F_Residence: action.payload,
+        },
+        advisorsInDisplay: filterApplyer(state.advisors, {
+          ...state.filters,
+          F_Residence: action.payload,
+        }, state.sortMethod),
+      };
+
+      case SORT_ADVISORS:
+        const sortedAdvisors = sortAdvisors(state.advisorsInDisplay, action.payload);
+        return {
+          ...state,
+        sortMethod: action.payload,
+        advisorsInDisplay: sortedAdvisors,
+      };
+
+      case GET_REVIEWS:
+        return {
+        ...state, reviews: action.payload
+      }
+
+      case GET_ADVISORS:
+      return {
+        ...state, advisors: action.payload
+      }
+
+    case ADVISOR_DETAIL:
+      return {
+        ...state, advisorDetail: action.payload
+      }
+
+    case GET_PROFILE:
+      return {
+        ...state, profile: action.payload
+      }
+
+    case GET_TECHSKILLS:
+      return {
+        ...state, techSkills: action.payload
+      }
+      default:
+        return { ...state }
+  }
 }
 
 const filterApplyer = (advisors, filters, method) => {
@@ -93,105 +223,5 @@ function sortAdvisors(advisors, sortBy) {
   }
   return sortedAdvisors;
 }
-
-
-const rootReducer = (state = initialState, action) => {
-
-  switch (action.type) {
-    case GET_AUTORS:
-      return {
-        ...state,
-        autors: action.payload
-      };
-
-    case LOAD_PROFESSIONALS:
-      return {
-        ...state,
-        advisors: action.payload,
-        advisorsInDisplay: action.payload,
-      };
-    case FILTER_BY_SPECIALTY:
-      const filteredBySpecialty = filterApplyer(state.advisors, {
-        ...state.filters,
-        F_Specialty: action.payload,
-      }, state.sortMethod);
-      return {
-        ...state,
-        filters: {
-          ...state.filters,
-          F_Specialty: action.payload,
-        },
-        advisorsInDisplay: filteredBySpecialty,
-      };
-
-    case FILTER_BY_LANGUAGE:
-      return {
-        ...state,
-        filters: {
-          ...state.filters,
-          F_Language: action.payload,
-        },
-        advisorsInDisplay: filterApplyer(state.advisors, {
-          ...state.filters,
-          F_Language: action.payload,
-        }, state.sortMethod),
-      };
-    case FILTER_BY_PROGRAMMING_LANGUAGE:
-      return {
-        ...state,
-        filters: {
-          ...state.filters,
-          F_Programming_L: action.payload,
-        },
-        advisorsInDisplay: filterApplyer(state.advisors, {
-          ...state.filters,
-          F_Programming_L: action.payload,
-        }, state.sortMethod),
-      };
-    case FILTER_BY_RESIDENCE:
-      return {
-        ...state,
-        filters: {
-          ...state.filters,
-          F_Residence: action.payload,
-        },
-        advisorsInDisplay: filterApplyer(state.advisors, {
-          ...state.filters,
-          F_Residence: action.payload,
-        }, state.sortMethod),
-      };
-
-    case SORT_ADVISORS:
-      const sortedAdvisors = sortAdvisors(state.advisorsInDisplay, action.payload);
-      return {
-        ...state,
-        sortMethod: action.payload,
-        advisorsInDisplay: sortedAdvisors,
-      };
-
-    case GET_REVIEWS:
-      return {
-        ...state, reviews: action.payload
-      }
-
-    case GET_ADVISORS:
-      return {
-        ...state, advisors: action.payload
-      }
-
-    case ADVISOR_DETAIL:
-      return {
-        ...state, advisorDetail: action.payload
-      }
-
-    case GET_TECHSKILLS:
-      return {
-        ...state, techSkills: action.payload
-      }
-    default:
-      return { ...state }
-  }
-}
-
 
 export default rootReducer;
