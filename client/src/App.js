@@ -11,6 +11,7 @@ import Technologies from './components/Technologies/Technologies';
 import Contact from './components/Contact/Contact';
 import  Modals  from './components/Modals/Modals';
 import Upload from './components/Upload/upload';
+import AdvisorProfile from './components/Forms/AdvisorProfile/AdvisorProfile';
 
 
 
@@ -55,6 +56,7 @@ function App() {
           <Route path='/modals' element={<Modals />} />
 
 
+          <Route path='/profadv' element={<AdvisorProfile />} />
         </Routes>
       </AuthProvider>
       </div>

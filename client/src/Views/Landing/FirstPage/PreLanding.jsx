@@ -3,6 +3,7 @@ import { images, textLanding } from './data';
 import { icons } from '../../../Utils/utils';
 import { navbarLanding } from "./data";
 import { Link } from 'react-router-dom';
+import Modals from '../../../components/Modals/Modals';
 
 const PreLanding = () => {
   return (
@@ -19,6 +20,7 @@ const PreLanding = () => {
         {navbarLanding.map((item, index) => {
           return <Link to={item.path} key={index}><div key={index}>{item.name}</div></Link>
         })}
+        <Modals/>
       </div>
     </div>
 

@@ -2,7 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { Alert } from "../Alert/Alert";
-
+import GoogleIcon from '@mui/icons-material/Google';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import { sendProfileDetails } from "../../handlers/sendProfileDetails";
+import './Login.scss'
 
 
 const Login = () => {
@@ -12,8 +16,8 @@ const Login = () => {
         password: "",
       });
 
-      // const { login, loginWithGoogle, resetPassword , logout} = useAuth();
-      const { login, resetPassword , logout} = useAuth();
+       const { login, loginWithGoogle, resetPassword , logout} = useAuth();
+      //const { login, resetPassword , logout} = useAuth();
       const [error, setError] = useState("");
       const navigate = useNavigate();
     
@@ -21,8 +25,11 @@ const Login = () => {
         e.preventDefault();
         setError("");
         try {
-          await login(user.email, user.password);
-          navigate("/");
+          const LOGIN = await login(user.email, user.password);   //emailVerified 
+          console.log(LOGIN)
+          if(LOGIN.user.emailVerified) navigate("/");
+          else window.alert('Usuario no verificado, GET THE FUCK OUTTA HERE')
+          
         } catch (error) {
           setError(error.message);
         }
@@ -42,14 +49,16 @@ const Login = () => {
       const handleChange = ({ target: { value, name } }) =>
         setUser({ ...user, [name]: value });
     
-      // const handleGoogleSignin = async () => {
-      //   try {
-      //     await loginWithGoogle();
-      //     navigate("/");
-      //   } catch (error) {
-      //     setError(error.message);
-      //   }
-      // };
+      const handleGoogleSignin = async () => {
+        try {
+          const UserUid = await loginWithGoogle();   // uid  = UserUid.user.uid
+          const data = {Nickname: UserUid.user.displayName} 
+          sendProfileDetails(data, UserUid.user.uid) 
+          navigate("/");
+        } catch (error) {
+          setError(error.message);
+        }
+      };
     
       const handleResetPassword = async (e) => {
         e.preventDefault();
@@ -63,19 +72,16 @@ const Login = () => {
       };
 
     return (
-        <>
-        <div className="w-full max-w-xs m-auto">
-           {error && <Alert message={error} />}
-
+        
+        <div className='login'>
           <form
             onSubmit={handleSubmit}
-            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-          >
-            <div className="mb-4">
+            >
+              <h1>LOGIN</h1>
+            <div className='email'>
               <label
                 htmlFor="email"
-                className="block text-gray-700 text-sm font-bold mb-2"
-              >
+                >
                 Email
               </label>
               <input
@@ -83,14 +89,14 @@ const Login = () => {
                 name="email"
                 id="email"
                 onChange={handleChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="youremail@company.tld"
+                className='input'
+                placeholder="Email@****.com"
               />
             </div>
-            <div className="mb-4">
+            <div className="pass">
               <label
                 htmlFor="password"
-                className="block text-gray-700 text-sm font-bold mb-2"
+                
               >
                 Password
               </label>
@@ -99,37 +105,36 @@ const Login = () => {
                 name="password"
                 id="password"
                 onChange={handleChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="*************"
+                className='input'
+                placeholder="*******"
               />
             </div>
+         
 
-            <div className="flex items-center justify-between">
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="submit"
-              >
-                Sign In
-              </button>
-              <a
+              {/* <a
                 className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
                 href="#!"
                 onClick={handleResetPassword}
-              >
+              > */}
+              <div className='forgot'>
                 Forgot Password?
-              </a>
-            </div>
-          </form>
-          <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                name="SignOut"
-                onClick={handleSignOut}
-              >
-                Sign Out
-              </button>
+              </div>
+              {/* </a> */}
+          
+              <button type="submit" className="btn"> LOGIN </button>
+              <p>Don’t have an account? Sign Up</p> 
+              <span>OR</span>
+              <hr/>
+              <div className="icons">
 
+              <button className='icon'>{<FacebookIcon/>}</button>
+              <button className='icon'>{<GitHubIcon/>}</button>
+              <button className='icon' onClick={handleGoogleSignin}>{<GoogleIcon/>}</button>
+              </div>
+          </form>
+   
       </div>
-      </>
+      
     )
 }
 export default Login;
