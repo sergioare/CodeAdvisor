@@ -3,6 +3,7 @@ import './Testimonials.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { getReviews } from '../../redux/actions/actions';
 import { useEffect } from 'react';
+import StarRating from '../StarRating/StarRating';
 
 const Testimonials = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const Testimonials = () => {
                 <h2>{review.name}</h2>
               </div>
               <p>{review.testimonial}</p>
-              <span>⭐{review.ranking}</span>
+              <span>{<StarRating rating={review.ranking} />}</span>
             </div>
           )
         })}

@@ -11,6 +11,7 @@ import Technologies from './components/Technologies/Technologies';
 import Contact from './components/Contact/Contact';
 import  Modals  from './components/Modals/Modals';
 import Payment from './components/Payment/Payment';
+import { Reviews } from './components/Reviews/Reviews';
 
 
 
@@ -47,6 +48,7 @@ function App() {
           <Route path='/modals' element={<Modals />} />
           <Route path='/payment/:id' element={<Payment/>} />
 
+          <Route path='/reviews' element={<Reviews/>}/>
         </Routes>
       </AuthProvider>
       </div>

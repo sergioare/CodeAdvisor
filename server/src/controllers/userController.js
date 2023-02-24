@@ -110,7 +110,7 @@ const addUserAdvisors = async (req, res, next) => {
     const answer = await getAdvisorData(Uid)
 
     console.log(data);
-    if ( answer === "Advisor available") {
+    if ( true/*answer === "Advisor available"*/) {
         console.log(answer);
 
         if(!req.body.Specialty)         res.status(400).send("error: Specialty empty")
@@ -150,7 +150,7 @@ const addUserAdvisors = async (req, res, next) => {
                     }
                     const autor =  await firestore.collection('User').doc(Uid);
                     await autor.update({statusAdvisor: true});
-                    await firestore.collection("Advisors").doc(Uid).set(advisor);
+                    await firestore.collection("Advisors").add(data);
                     console.log(advisor);
                     res.send(`Advisor ${dataUser.data().NickName} Successfuly`);
                 } catch (error) {

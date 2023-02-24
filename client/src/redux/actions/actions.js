@@ -15,6 +15,7 @@ export const SORT_BY_PRICE = "SORT_BY_PRICE";
 export const SORT_BY_ALPHABET = "SORT_BY_ALPHABET";
 export const GET_TECHSKILLS = 'GET_TECHSKILLS';
 
+
 export const getAutors = () => {
   return async function (dispatch) {
     const apiData = await axios.get("http://localhost:3002/data/autores/");
