@@ -6,11 +6,12 @@ import { getAuth } from 'firebase/auth'
 
 
 function Profile ({isProfileOpen, toggleProfile, isConfigBarOpen, closeSideBar, openAdmin, toggleAdmin}) {
-const id = "2Vyng2S1Lfwv8ge4A9Mv"; //cambair id por id de cada cuenta
+const id = "7sYxjDFQEkZIAjxNGwls"; //cambair id por id de cada cuenta
+//const id = "erronea"
 const auth = getAuth();
-console.log(auth)
-console.log(auth.currentUser)
-const data = {Uid: auth.uid}
+//console.log(auth)
+//console.log(auth.currentUser)
+//const data = {Uid: auth.currentUser.uid}
 
 //console.log(data)
 
@@ -22,7 +23,7 @@ const data = {Uid: auth.uid}
 
 
   // hardcodeo de advisor
-  const isAdvisor = true
+  const isAdvisor = false
 
   const [editing, setEditing] = useState(false);
   const [profile, setProfile] = useState(profileData);
@@ -52,6 +53,19 @@ const data = {Uid: auth.uid}
           toggleAdmin();
       }
     }
+
+let lowestScore, averageScore, highestScore;
+
+if (Reviews.length === 0) {
+  lowestScore = "No reviews so far";
+  averageScore = "No reviews so far";
+  highestScore = "No reviews so far";
+} else {
+  const scores = Reviews.map(review => review.score);
+  lowestScore = Math.min(...scores);
+  averageScore = scores.reduce((total, score) => total + score, 0) / scores.length;
+  highestScore = Math.max(...scores);
+}
 
     
   return (
@@ -101,8 +115,35 @@ const data = {Uid: auth.uid}
             </div>
         </div>
       </div>
+      {!isAdvisor && (
+        <div className="tables-section">
+          <div className="tables-container">        
+            <div className="table-wrapper-full-width">
+            <table className="table-3">
+              <tbody>
+                <tr>
+                  <th className="tittle">Class</th>
+                  <th className="tittle">Calendar</th>
+                </tr>
+                <tr>
+                  <td className="data">In progress</td>
+                  <td rowSpan="3" className="data" style={{border: "2px solid #794BFF"}}>In progress</td>
+                </tr>
+                <tr>
+                  <th className="tittle">Meet</th>
+                </tr>
+                <tr>
+                <td className="data">In progress</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      )}
       {isAdvisor && (
-        <div className="advisor-section">
+        <div className="tables-section">
         <div className="tables-container">
           <div className="table-wrapper">
             <table className="table-1">
@@ -159,7 +200,7 @@ const data = {Uid: auth.uid}
                   <th className="tittle">Calendar</th>
                 </tr>
                 <tr>
-                  <td>In progress</td>
+                  <td className="data">In progress</td>
                   <td rowSpan="3" className="data" style={{border: "2px solid #794BFF"}}>In progress</td>
                 </tr>
                 <tr>
@@ -172,7 +213,26 @@ const data = {Uid: auth.uid}
               </tbody>
             </table>
           </div>
-          <div className="table-wrapper-third">
+          <div className="table-wrapper-full-width">
+            <table className="table-3">
+              <tbody>
+                <tr>
+                  <th className="col-1" colSpan="3">Score</th>
+                </tr>
+                <tr>
+                  <th className="tittle">Lowest</th>
+                  <th className="tittle">Average</th>
+                  <th className="tittle">Highest</th>
+                </tr>
+                <tr>
+                  <td className="data">{lowestScore}</td>
+                  <td className="data">{averageScore}</td>
+                  <td className="data">{highestScore}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="table-wrapper-full-width">
             <table className="table-3">
               <tbody>
                 <tr>
