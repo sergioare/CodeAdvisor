@@ -88,24 +88,25 @@ export const Reviews = () => {
           </div>
 
           <div id="textarea" className='textareaRev'>
-            <div className="mb-2 block"> <Label htmlFor="comment" /> </div>
+            <div className="mb-2-block">
+              <Label htmlFor="comment" /> </div>
             <Textarea
               id="comment"
+              className='textarea'
               placeholder="Leave a comment..."
               required={true}
               rows={4}
               onChange={(e) => handleChange(e)}
               name="comment"
-              value={input.comment}
-            />
+              value={input.comment} />
           </div>
 
           <Button
             className='botonRev'
             gradientDuoTone="purpleToBlue"
             type="submit"
-            disabled={btndisabled}
-          >Send</Button>
+            disabled={btndisabled}>Send</Button>
+
         </form>
       </div>
     </div>
