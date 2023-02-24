@@ -19,6 +19,7 @@ export const GET_ADVISORS_REVIEWS = 'GET_ADVISORS_REVIEWS'
 export const BLOCK_ACCOUNT = 'BLOCK_ACCOUNT'
 export const UNBLOCK_ACCOUNT = 'UNBLOCK_ACCOUNT'
 
+
 export const getAutors = () => {
   return async function (dispatch) {
     const apiData = await axios.get("http://localhost:3002/data/autores/");

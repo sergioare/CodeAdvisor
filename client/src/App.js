@@ -10,6 +10,7 @@ import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
 import Technologies from './components/Technologies/Technologies';
 import Contact from './components/Contact/Contact';
 import  Modals  from './components/Modals/Modals';
+import { Reviews } from './components/Reviews/Reviews';
 
 
 
@@ -44,6 +45,7 @@ function App() {
             <Route path='/technologies' element={<Technologies />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/modals' element={<Modals />} />
+          <Route path='/reviews' element={<Reviews/>}/>
         </Routes>
       </AuthProvider>
       </div>

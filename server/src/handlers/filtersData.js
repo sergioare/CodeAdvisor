@@ -82,9 +82,39 @@ async function getAllSchedules(aId) {
         return ["Error Schedules"]
     }
 }
+async function getUserData(Uid) {
+    console.log("get_User");
+    try {
+        const fireUser   = await firestore.collection("User").doc(Uid);
 
+        const dataUser   = await fireUser.get();
+
+        if(dataUser.exists) return dataUser
+        else return "error: invalid User"
+
+    } catch (error) {
+        return `error: ${error}`
+    }
+}
+async function getAdvisorData(Uid) {
+    console.log("get_Advisor");
+    try {
+        const fireAdvisor   = await firestore.collection("Advisors").doc(Uid);
+
+        const dataAdvisor   = await fireAdvisor.get();
+
+        if(!dataAdvisor.exists) return "Advisor available"
+        else return "error: el advisor ya existe"
+
+    } catch (error) {
+        return `error: ${error}`
+    }
+}
 module.exports = {
     getSeletTechSkills,
     getAllReviews,
-    getAllSchedules
+    getAllSchedules,
+
+    getUserData,
+    getAdvisorData
 }

@@ -10,7 +10,7 @@ import {
 import { Countries, ProgrammingLanguages, Languages, Specialties, SortMethod } from "./data";
 import "./SideBar.scss";
 
-const SideBar = ({isSidebarOpen, setIsSidebarOpen, setCurrentPage}) => {
+const SideBar = ({ isSidebarOpen, setIsSidebarOpen, setCurrentPage }) => {
 
   const dispatch = useDispatch();
   const [specialties, setSpecialties] = useState([]);
@@ -19,45 +19,45 @@ const SideBar = ({isSidebarOpen, setIsSidebarOpen, setCurrentPage}) => {
   const [countries, setCountries] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState("Best Score");
 
-    useEffect(() => {
-        const newSpecialties = [...specialties];
-        dispatch(filterBySpecialty(newSpecialties));
-        setCurrentPage(1);
-    }, [specialties]);
-    
-    useEffect(() => {
-        const newLanguages = [...languages];
-        dispatch(filterByLanguage(newLanguages));
-        setCurrentPage(1);
-    }, [languages]);
+  useEffect(() => {
+    const newSpecialties = [...specialties];
+    dispatch(filterBySpecialty(newSpecialties));
+    setCurrentPage(1);
+  }, [specialties, dispatch, setCurrentPage]);
 
-    useEffect(() => {
-        const newProgrammingLanguages = [...programmingLanguages];
-        dispatch(filterByProgrammingLanguage(newProgrammingLanguages));
-        setCurrentPage(1);
-    }, [programmingLanguages]);
+  useEffect(() => {
+    const newLanguages = [...languages];
+    dispatch(filterByLanguage(newLanguages));
+    setCurrentPage(1);
+  }, [languages, dispatch, setCurrentPage]);
 
-    useEffect(() => {
-        const newCountries = [...countries];
-        dispatch(filterByResidence(newCountries));
-        setCurrentPage(1);
-    }, [countries]);
+  useEffect(() => {
+    const newProgrammingLanguages = [...programmingLanguages];
+    dispatch(filterByProgrammingLanguage(newProgrammingLanguages));
+    setCurrentPage(1);
+  }, [programmingLanguages, dispatch, setCurrentPage]);
 
-    useEffect(() => {
-        dispatch(sortAdvisors(selectedOrder));
-        setCurrentPage(1);
-    }, [selectedOrder]);
-    
-    const handleSpecialtyChange = async (event) => {
-      const { value } = event.target;
-      setSpecialties((prevSpecialties) => {
-        if (prevSpecialties.includes(value)) {
-          return prevSpecialties.filter((specialty) => specialty !== value);
-        } else {
-          return [...prevSpecialties, value];
-        }
-      });
-    };
+  useEffect(() => {
+    const newCountries = [...countries];
+    dispatch(filterByResidence(newCountries));
+    setCurrentPage(1);
+  }, [countries, dispatch, setCurrentPage]);
+
+  useEffect(() => {
+    dispatch(sortAdvisors(selectedOrder));
+    setCurrentPage(1);
+  }, [selectedOrder, dispatch, setCurrentPage]);
+
+  const handleSpecialtyChange = async (event) => {
+    const { value } = event.target;
+    setSpecialties((prevSpecialties) => {
+      if (prevSpecialties.includes(value)) {
+        return prevSpecialties.filter((specialty) => specialty !== value);
+      } else {
+        return [...prevSpecialties, value];
+      }
+    });
+  };
 
   const handleLanguageChange = async (event) => {
     const { value } = event.target;
@@ -69,7 +69,7 @@ const SideBar = ({isSidebarOpen, setIsSidebarOpen, setCurrentPage}) => {
       }
     });
   };
-  
+
   const handleProgrammingLanguageChange = async (event) => {
     const { value } = event.target;
     setProgrammingLanguages((prevProgrammingLanguages) => {
@@ -91,42 +91,43 @@ const SideBar = ({isSidebarOpen, setIsSidebarOpen, setCurrentPage}) => {
       }
     });
   };
-  
-  
 
-    const handleOrderClick = (event) => {
-        setSelectedOrder(event.target?.innerHTML);  
-    };
 
-    const handleMenuIconClick = () => {
-        setIsSidebarOpen(!isSidebarOpen);
-    };
 
-    const clearFilters = () => {
-      setSpecialties([]);
-      setLanguages([]);
-      setProgrammingLanguages([]);
-      setCountries([]);
-      setSelectedOrder("Best Score");
-    }
+  const handleOrderClick = (event) => {
+    setSelectedOrder(event.target?.innerHTML);
+  };
 
-    return (
-        <>
-        <i className="menu-icon-out fas fa-bars" onClick={handleMenuIconClick}></i>
-      
-        <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
-          <div className="sidebar-header">
+  const handleMenuIconClick = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const clearFilters = () => {
+    setSpecialties([]);
+    setLanguages([]);
+    setProgrammingLanguages([]);
+    setCountries([]);
+    setSelectedOrder("Best Score");
+  }
+
+  return (
+    <>
+      <i className="menu-icon-out fas fa-bars" onClick={handleMenuIconClick}></i>
+
+      <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+        <div className="sidebar-header">
           <i className="menu-icon fas fa-bars" onClick={handleMenuIconClick} ></i>
+          <div className="sidebar-clear-section">
+            <button className="clear-filter-item" onClick={clearFilters}>
+              Clear filters
+            </button>
           </div>
-          <div className="blank-space"></div>
-          <div className="sidebar-content">
-            <div className="sidebar-clear-section">
-              <button className="clear-filter-item" onClick={clearFilters}>
-                Clear filters
-              </button>
-            </div>
-            <div className="sidebar-section">
-            <p className="sidebar-title">I'm looking for:</p>
+        </div>
+        <div className="blank-space"></div>
+        <div className="sidebar-content">
+
+          <div className="sidebar-section">
+            <h4 className="sidebar-title">I'm looking for:</h4>
             <div className="filter-container">
               {Specialties.map((item) => (
                 <div key={item + "container"} className={`option-item ${specialties?.includes(item) ? "selected" : ""}`}>
@@ -135,8 +136,10 @@ const SideBar = ({isSidebarOpen, setIsSidebarOpen, setCurrentPage}) => {
                 </div>
               ))}
             </div>
-            </div>
-            <div className="sidebar-section">
+          </div>
+          <div className="sidebar-section">
+            <h4 className="sidebar-title">Languages:</h4>
+
             <div className="filter-container">
               {Languages.map((item) => (
                 <div key={item + "container"} className={`option-item ${languages?.includes(item) ? "selected" : ""}`}>
@@ -145,9 +148,9 @@ const SideBar = ({isSidebarOpen, setIsSidebarOpen, setCurrentPage}) => {
                 </div>
               ))}
             </div>
-            </div>
-            <div className="sidebar-section">
-            <p className="sidebar-title">Tech Skills:</p>
+          </div>
+          <div className="sidebar-section">
+            <h4 className="sidebar-title">Tech Skills:</h4>
             <div className="filter-container-lot">
               {ProgrammingLanguages.map((item) => (
                 <div key={item + "container"} className={`option-item ${programmingLanguages.includes(item) ? "selected" : ""}`}>
@@ -156,9 +159,9 @@ const SideBar = ({isSidebarOpen, setIsSidebarOpen, setCurrentPage}) => {
                 </div>
               ))}
             </div>
-            </div>
-            <div className="sidebar-section">
-            <p className="sidebar-title">Country:</p>
+          </div>
+          <div className="sidebar-section">
+            <h4 className="sidebar-title">Country:</h4>
             <div className="filter-container-lot">
               {Countries.map((item) => (
                 <div key={item + "container"} className={`option-item ${countries.includes(item) ? "selected" : ""}`}>
@@ -167,29 +170,33 @@ const SideBar = ({isSidebarOpen, setIsSidebarOpen, setCurrentPage}) => {
                 </div>
               ))}
             </div>
+          </div>
+
+          <div className="sidebar-section">
+            <h4 className="sidebar-title">Sort by:</h4>
+            <div className="options-container">
+
+              {SortMethod.map((item, index) => {
+                return (<div className="filter-container" key={item + "container"}>
+                  <input
+                    key={index}
+                    type="checkbox"
+                    value={item}
+                    checked={selectedOrder === item}
+                    onChange={handleOrderClick}
+                  />
+
+                  <div key={item} value={item} className={`option-item ${selectedOrder === item ? "selected" : ""}`} onClick={handleOrderClick}>{item}</div>
+                </div>)
+              })}
+
             </div>
-                    <p className="sidebar-title">Sort by:</p>
-                    <div className="options-container">
-
-                        {SortMethod.map((item, index) => {
-                            return (<div className="filter-container" key={item + "container"}>
-                                <input 
-                                    key={index}
-                                    type="checkbox" 
-                                    value = {item}
-                                    checked={selectedOrder === item} 
-                                    onChange={handleOrderClick}
-                                />
-            
-                                <div key={item} value = {item} className={`option-item ${selectedOrder === item ? "selected" : ""}`} onClick={handleOrderClick}>{item}</div>
-                                </div>)
-                        })}
-
-                    </div>
+          </div>
         </div>
+
       </div>
     </>
-    )
+  )
 }
 
 export default SideBar

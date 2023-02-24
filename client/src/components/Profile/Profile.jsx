@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import './Profile.scss';
 import { getProfile, getAdvisorReviews } from '../../redux/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import {auth} from '../firebase';
+import { getAuth } from 'firebase/auth'
 
 
 function Profile ({isProfileOpen, toggleProfile, isConfigBarOpen, closeSideBar, openAdmin, toggleAdmin}) {
 const id = "2Vyng2S1Lfwv8ge4A9Mv"; //cambair id por id de cada cuenta
-//const auth = getAuth();
-const data = {Uid: auth.user.uid}
+const auth = getAuth();
+console.log(auth)
+console.log(auth.currentUser)
+const data = {Uid: auth.uid}
 
-console.log(data)
+//console.log(data)
 
   const dispatch = useDispatch();
   dispatch(getProfile(id)); 
