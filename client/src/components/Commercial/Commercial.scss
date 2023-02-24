@@ -7,6 +7,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-bottom: 10vh;
+  
 
   .textCont {
     margin: 20px auto;
@@ -22,6 +24,7 @@
       font-weight: bold;
       line-height: 1.2;
       margin: 0;
+      color: $text-bg-light;
 
       p {
         display: inline-block;

@@ -21,3 +21,12 @@ export const reviews = [
     score: 4
   }
 ]
+
+
+const regexDescription = /^.{0,100}$/;
+export const validations=(input)=>{
+  const errors={}
+
+  if (!(regexDescription.teste(input.comment)))
+  errors.comment =''
+}

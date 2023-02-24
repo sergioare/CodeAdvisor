@@ -1,3 +1,4 @@
+
 export const textLanding=
     {
         h1:"One programmer closer than you can imagine",
@@ -37,9 +38,6 @@ export const navbarLanding =[
         name: 'Contact',
         path:'contact'
     },
-    {
-        name: 'Login',
-        path:'login'
-    },
+
 ]
 
