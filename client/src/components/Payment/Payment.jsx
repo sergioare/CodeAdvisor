@@ -39,7 +39,7 @@ const Payment = () => {
         event.preventDefault()
         axios.post('http://localhost:3002/payment', prod)
         .then((res) =>
-                (window.location.href = res.data.response.body.init_point))
+                (window.location.href = res.data.response.body.init_point ))
         // console.log(input)
     };
 

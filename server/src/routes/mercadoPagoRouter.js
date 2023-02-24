@@ -2,35 +2,43 @@ const { Router } = require('express');
 const { mercadopago } = require('../configMercadoPago')
 const mercadoPagoRouter = Router()
 
+
+
 mercadoPagoRouter.post('/', (req, res) => {
-    // const producto = req.body
-    
+    const producto = req.body
 
     let preference = {
         Items: [{
             id: 4,
-            title: 'juguete', 
+            title: producto.Title, 
             currency_id: "MXN",
-            description: 'soy description',
-            category_id: 'art', 
-            quantity: 1, 
-            unit_price: 10,
+            quantity: producto.Quantity, 
+            unit_price: producto.Price,
         }
         ],
         back_urls: {
-            failure: "/failure",
-            pending: "/pending",
-            success: "/succes"
+            success : "http://localhost:3002/feedback",
+            failure: "http://localhost:3002/feedback",
+            pending : "http://localhost:3002/feedback"
         },
         auto_return: 'approved',
         binary_mode: true,
 
     }
-    //.redirect(response.body.init_point)
-
+    
+console.log(producto)
     mercadopago.preferences.create(preference)
     .then((response) => res.status(200).send({ response }))
     .catch((error) => res.status(400).send({ error: error.message }))
 })
 
+mercadoPagoRouter.get('/feedback', function (req, res) {
+	
+    res.json({
+        
+		Payment: req.query.payment_id,
+		Status: req.query.status,
+		MerchantOrder: req.query.merchant_order_id
+	});
+});
 module.exports= mercadoPagoRouter
