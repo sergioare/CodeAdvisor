@@ -1,5 +1,5 @@
 import React from 'react';
-import { reviews } from './data';
+// import { reviews } from './data';
 import { FaStar } from "react-icons/fa";
 import { Label, Textarea, Button } from "flowbite-react";
 import { useState } from 'react';
@@ -8,7 +8,7 @@ import { useState } from 'react';
 // import './Reviews.scss';
 // import Swal from 'sweetalert2';
 import './Reviews.scss';
-import StarRating from '../StarRating/StarRating';
+// import StarRating from '../StarRating/StarRating';
 
 export const Reviews = () => {
   const [input, setInput] = useState({
@@ -88,48 +88,27 @@ export const Reviews = () => {
           </div>
 
           <div id="textarea" className='textareaRev'>
-            <div className="mb-2 block"> <Label htmlFor="comment" /> </div>
+            <div className="mb-2-block">
+              <Label htmlFor="comment" /> </div>
             <Textarea
               id="comment"
+              className='textarea'
               placeholder="Leave a comment..."
               required={true}
               rows={4}
               onChange={(e) => handleChange(e)}
               name="comment"
-              value={input.comment}
-            />
+              value={input.comment} />
           </div>
 
           <Button
             className='botonRev'
             gradientDuoTone="purpleToBlue"
             type="submit"
-            disabled={btndisabled}
-          >Send</Button>
+            disabled={btndisabled}>Send</Button>
+
         </form>
       </div>
-
-
-      <div className='ContainRevCheck'>
-        <h1>Reviews</h1>
-        {/* <h4>What our students say about us</h4> */}
-        <div className='Revws'>
-          {reviews?.map((review) => {
-            return (
-              <div className='cardRev' key={review.id}>
-                <div className='HeadRev'>
-                  <img src={review.Img || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png'} alt='' />
-                  <h2>{review.Name}</h2>
-                </div>
-                <p>{review.Reviwer}</p>
-                <span>{<StarRating rating={review.score} />}</span>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-
-
     </div>
   )
 }
