@@ -71,18 +71,22 @@ body {
   margin-right: 30px;
 
   button {
-    background: $title-bg-light;
+    background: $primary-color;
     color: $title-bg-purple;
     font-weight: 800;
-    font-size: 16px;
-    padding: 0px 10px; // reduce padding
+    font-size: 12px;
+    padding: 0px 7px; 
     cursor: pointer;
     outline: none;
     transition: background 0.3s ease;
-    border-radius: 10px;
+    border-radius: 6px;
+    margin-left: 2px;
+    margin-right: 2px;
+    border: 1px solid $title-bg-light;
+    padding-bottom: 1px;
 
     &:hover:not(:disabled) {
-      background: $primary-color;
+      background: $title-bg-light;
     }
 
     &:disabled {
@@ -94,11 +98,13 @@ body {
     background: $primary-color;
     color: $title-bg-purple;
     display: inline-block;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 800;
-    margin: 0 10px;
-    padding: 0px 10px;
-    border-radius: 6px;
+    margin: 0 5px;
+    padding: 0px 7px;
+    border-radius: 4px;
+    border: 1px solid $title-bg-light;
+    padding-bottom: 1px;
   }
 }
 

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
-import { Alert } from "../Alert/Alert";
 import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import { sendProfileDetails } from "../../handlers/sendProfileDetails";
 import './Login.scss'
 import Register from "../Register/Register";
 
@@ -18,9 +18,8 @@ const Login = () => {
     
     const [isRegistering, setIsRegistering] = useState(false);
 
-   
-      // const { login, loginWithGoogle, resetPassword , logout} = useAuth();
-      const { login, resetPassword , logout} = useAuth();
+       const { login, loginWithGoogle, resetPassword , logout} = useAuth();
+      //const { login, resetPassword , logout} = useAuth();
       const [error, setError] = useState("");
       const navigate = useNavigate();
     
@@ -28,8 +27,11 @@ const Login = () => {
         e.preventDefault();
         setError("");
         try {
-          await login(user.email, user.password);
-          navigate("/");
+          const LOGIN = await login(user.email, user.password);   //emailVerified 
+          console.log(LOGIN)
+          if(LOGIN.user.emailVerified) navigate("/");
+          else window.alert('Usuario no verificado, GET THE FUCK OUTTA HERE')
+          
         } catch (error) {
           setError(error.message);
         }
@@ -49,14 +51,16 @@ const Login = () => {
       const handleChange = ({ target: { value, name } }) =>
         setUser({ ...user, [name]: value });
     
-      // const handleGoogleSignin = async () => {
-      //   try {
-      //     await loginWithGoogle();
-      //     navigate("/");
-      //   } catch (error) {
-      //     setError(error.message);
-      //   }
-      // };
+      const handleGoogleSignin = async () => {
+        try {
+          const UserUid = await loginWithGoogle();   // uid  = UserUid.user.uid
+          const data = {Nickname: UserUid.user.displayName} 
+          sendProfileDetails(data, UserUid.user.uid) 
+          navigate("/");
+        } catch (error) {
+          setError(error.message);
+        }
+      };
     
       const handleResetPassword = async (e) => {
         e.preventDefault();
@@ -130,7 +134,7 @@ const Login = () => {
 
               <button className='icon'>{<FacebookIcon/>}</button>
               <button className='icon'>{<GitHubIcon/>}</button>
-              <button className='icon'>{<GoogleIcon/>}</button>
+              <button className='icon' onClick={handleGoogleSignin}>{<GoogleIcon/>}</button>
               </div>
           </form>
           </div>

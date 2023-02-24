@@ -9,17 +9,19 @@ import Testimonials from '../../components/Testimonials/Testimonials';
 import SideBar from '../../components/SideBar/SideBar';
 import ConfigSideBar from '../../components/ConfigSideBar/ConfigSideBar';
 import Navbar from '../../components/Navbar/Navbar';
-// import { useAuth } from '../../context/authContext';
+import { useAuth } from "../../context/authContext";
+import {  useNavigate } from "react-router-dom";
 // import { useContext } from 'react';
-// import Footer from '../Footer/Footer';
 
 
 const Home = () => {
 
-  // const { user } = useAuth()
+  const {user , logout} = useAuth()
+  
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isConfigBarOpen, setIsConfigBarOpen] = useState(false)
-
+  const [isConfigBarOpen, setIsConfigBarOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -31,12 +33,24 @@ const Home = () => {
   };
 
 
+    const handleSignOut = async (e) => {
+      e.preventDefault();
+      try {
+        await logout();
+        navigate("/");
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+
+
   return (
     <div className='home'>
       <Navbar toggleConfigBar={toggleConfigBar}/>
-      <SideBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+      <SideBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} setCurrentPage={setCurrentPage}/>
       <Commercial isSidebarOpen={isSidebarOpen}/>
-      <Cards isSidebarOpen={isSidebarOpen} />
+      <Cards isSidebarOpen={isSidebarOpen} currentPage={currentPage} setCurrentPage={setCurrentPage} />
       <Testimonials />
       <div className='icons'>
         {icons.map((icon, index) => (

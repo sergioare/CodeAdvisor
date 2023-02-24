@@ -10,7 +10,7 @@ import {
 import { Countries, ProgrammingLanguages, Languages, Specialties, SortMethod } from "./data";
 import "./SideBar.scss";
 
-const SideBar = ({isSidebarOpen, setIsSidebarOpen}) => {
+const SideBar = ({isSidebarOpen, setIsSidebarOpen, setCurrentPage}) => {
 
   const dispatch = useDispatch();
   const [specialties, setSpecialties] = useState([]);
@@ -22,25 +22,30 @@ const SideBar = ({isSidebarOpen, setIsSidebarOpen}) => {
     useEffect(() => {
         const newSpecialties = [...specialties];
         dispatch(filterBySpecialty(newSpecialties));
+        setCurrentPage(1);
     }, [specialties]);
     
     useEffect(() => {
         const newLanguages = [...languages];
         dispatch(filterByLanguage(newLanguages));
+        setCurrentPage(1);
     }, [languages]);
 
     useEffect(() => {
         const newProgrammingLanguages = [...programmingLanguages];
         dispatch(filterByProgrammingLanguage(newProgrammingLanguages));
+        setCurrentPage(1);
     }, [programmingLanguages]);
 
     useEffect(() => {
         const newCountries = [...countries];
         dispatch(filterByResidence(newCountries));
+        setCurrentPage(1);
     }, [countries]);
 
     useEffect(() => {
         dispatch(sortAdvisors(selectedOrder));
+        setCurrentPage(1);
     }, [selectedOrder]);
     
     const handleSpecialtyChange = async (event) => {
@@ -97,6 +102,14 @@ const SideBar = ({isSidebarOpen, setIsSidebarOpen}) => {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
+    const clearFilters = () => {
+      setSpecialties([]);
+      setLanguages([]);
+      setProgrammingLanguages([]);
+      setCountries([]);
+      setSelectedOrder("Best Score");
+    }
+
     return (
         <>
         <i className="menu-icon-out fas fa-bars" onClick={handleMenuIconClick}></i>
@@ -107,6 +120,11 @@ const SideBar = ({isSidebarOpen, setIsSidebarOpen}) => {
           </div>
           <div className="blank-space"></div>
           <div className="sidebar-content">
+            <div className="sidebar-clear-section">
+              <button className="clear-filter-item" onClick={clearFilters}>
+                Clear filters
+              </button>
+            </div>
             <div className="sidebar-section">
             <p className="sidebar-title">I'm looking for:</p>
             <div className="filter-container">
