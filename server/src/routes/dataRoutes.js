@@ -1,8 +1,6 @@
 const {Router} = require('express');
 const {
     getAutores,
-    addAutor,
-    updateAutor,
 
     getCommunityComments,
     addCommunityComments,
@@ -10,20 +8,16 @@ const {
 
     getAllTechSkills,
     getIdTechSkills,
-    addTechSkills,
-    updateTechSkills,
 
     getContacts,
     addContacts,
 
-    getSpecialty
+    getSpecialty,xd,dx
     } = require('../controllers/dataController');
 
 const dataRoute = Router();
 
 dataRoute.get('/Autores/',getAutores);
-dataRoute.post('/Autores/',addAutor);
-dataRoute.put('/Autores/:id',updateAutor);
 
 dataRoute.get('/CommunityComments/',getCommunityComments);
 dataRoute.post('/CommunityComments/',addCommunityComments);
@@ -31,13 +25,13 @@ dataRoute.put('/CommunityComments/:id',updateCommunityComments);
 
 dataRoute.get('/TechSkills/',getAllTechSkills);
 dataRoute.get('/TechSkills/:id',getIdTechSkills);
-dataRoute.post('/TechSkills/',addTechSkills);
-dataRoute.put('/TechSkills/:id',updateTechSkills);
 
 dataRoute.get('/Contacts/',getContacts);
 dataRoute.post('/Contacts/',addContacts);
 
 dataRoute.get('/Specialty/',getSpecialty);
+dataRoute.get('/XD/',dx);
+dataRoute.post('/XD/',xd);
 
 
 module.exports = dataRoute;
