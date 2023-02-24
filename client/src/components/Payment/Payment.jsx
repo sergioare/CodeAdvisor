@@ -20,6 +20,7 @@ const Payment = () => {
         dispatch(getDetail(id));
     }, [dispatch, id]);
 
+//----------------Counter----------------------//
 
     const [count, setCount] = useState(1)
 
@@ -32,14 +33,16 @@ const Payment = () => {
         setCount(count + 1);
     }
 
+//----------------------------Ruote to mercadoPAgo---------------------//
     const submitHandler = (event) => {
         event.preventDefault()
         axios.post('http://localhost:3002/payment', prod)
             .then((res) =>
                 (window.location.href = res.data.response.body.init_point))
 
+                // axios.post('http://localhost:3002/data/XD', agenda)
+                // .then((res)=>alert("info enviada"))
     };
-
 
     const prod = {
         id: Math.floor(Math.random() * 999999),
@@ -48,15 +51,16 @@ const Payment = () => {
         Price: product.Price
     };
 
-
+//-----------------------Calendar-------------------//
     const [value, setValue] = useState(dayjs('2023-02-24'));
-
     const date = value.$d.toString().split(" ")
     const dateLong = (` ${date[1]} ${date[2]} ${date[3]}`)
     const time = `${date[4]} hrs`
-console.log(dateLong)
-// console.log(date)
 
+    // const agenda ={
+    //     date: dateLong,
+    //     time:time
+    // }
 
 
     return (
@@ -84,7 +88,7 @@ console.log(dateLong)
                     </LocalizationProvider>
 
                     <div className='HoursContent'>
-                        <p className='DetailTitle'> Chose number of hours</p>
+                        <p> Chose number of hours</p>
                         <div>
                             <button className='ButtonCounter' onClick={decrease} disabled={count <= 1}>-</button>
                             <span className='Counter'>{count}</span> <span>hrs</span>
@@ -92,12 +96,11 @@ console.log(dateLong)
                         </div>
                     </div>
 
+                    <div className='HoursContent'>
+                        <p> Dates confirmed</p>
+                    </div>
 
                 </div>
-
-
-
-
 
                 <div className='PaymentContent'>
                     <p className='DetailTitle'> Confirm Details</p>

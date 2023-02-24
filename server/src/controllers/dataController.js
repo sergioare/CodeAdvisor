@@ -24,30 +24,10 @@ const getAutores = async (req, res, next) => {
                     element.data().email        || "empty",
                     element.data().phone        || "empty"
                 )
-                autorArray.push(a)
+                if(element.data().status === true) autorArray.push(a)
             });
             res.status(200).send(autorArray);
         }
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
-}
-const addAutor = async (req, res, next) => {
-    try {
-        const data = req.body;
-        await firestore.collection('Autores').doc().set(data);
-        res.send(`Autor ${data.name}. Creado`);
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
-}
-const updateAutor = async (req, res, next) => {
-    try {
-        const id = req.params.id;
-        const data = req.body;
-        const autor =  await firestore.collection('Autores').doc(id);
-        await autor.update(data);
-        res.send(`Autor con id: ${id}, ha sido modificado`);        
     } catch (error) {
         res.status(400).send(error.message);
     }
@@ -60,7 +40,7 @@ const getCommunityComments = async (req, res, next) => {
         const data = await fire.get();
         const ccArray = [];
         if(data.empty) {
-            res.status(404).send('CommunityComments vacia');
+            res.status(404).send('CommunityComments empty');
         }else {
             data.forEach(element => {
                 const cc = new CommunityComments(
@@ -78,7 +58,7 @@ const getCommunityComments = async (req, res, next) => {
         res.status(400).send(error.message);
     }
 }
-const addCommunityComments = async (req, res, next) => {
+const addCommunityComments = async (req, res, next) => { 
     try {
         const data = req.body;
         await firestore.collection('CommunityComments').doc().set(data);
@@ -134,30 +114,6 @@ const getIdTechSkills = async (req, res, next) => {
         }else {
             res.send(data.data());
         }
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
-}
-const addTechSkills = async (req, res, next) => {
-    const data = req.body;
-    if (!data.id) {
-        res.status(404).send(`falta nombre de TechSkills`);
-    }
-    try {
-        await firestore.collection('TechSkills').doc(data.id).set(data);
-        res.send(`TechSkills: ${data.name} añadido`);
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
-}
-const updateTechSkills = async (req, res, next) => {
-    try {
-        const id = req.params.id;
-        const data = req.body;
-        const lData =  await firestore.collection('TechSkills').doc(id);
-        await lData.update(data);
-        let yo = await lData.get()
-        res.send(`TechSkills: ${id}, ha sido modificado`);        
     } catch (error) {
         res.status(400).send(error.message);
     }
@@ -219,59 +175,14 @@ const getSpecialty = async (req, res, next) => {
         res.status(400).send(error.message);
     }
 }
-const addSpecialty = async (req, res, next) => {
-    const data = req.body;
-    if (!data.id) {
-        res.status(404).send(`falta nombre de Specialty`);
-    }
-    try {
-        await firestore.collection('Specialty').doc(data.id).set(data);
-        res.send(`Specialty: ${data.name} añadido`);
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
-}
-const updateSpecialty = async (req, res, next) => {
-    try {
-        const id = req.params.id;
-        const data = req.body;
-        const lData =  await firestore.collection('Specialty').doc(id);
-        await lData.update(data);
-        res.send(`Specialty: ${id}, ha sido modificado`);        
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
-}
+
 //------------/ OTROS XD DE LA PAGINA /--------------------//
 
-const getData = async (req, res, next) => {
+const xd = async (req, res, next) => {
     try {
-        const fire = await firestore.collection('Data');
-        const data = await fire.get();
-        const dArray = [];
-        if(data.empty) {
-            res.status(404).send('base de datos de Data vacia');
-        }else {
-            data.forEach(element => {
-                const yo = new Data(
-                    element.id,)
-                dArray.push(yo)
-            });
-            res.status(200).send(dArray);
-        }
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
-}
-
-const addXD = async (req, res, next) => {
-    const data = req.body;
-    if (!data.id) {
-        res.status(404).send(`falta nombre de TechSkills`);
-    }
-    try {
-        await firestore.collection('XD').doc(data.id).set(data);
-        res.send(`TechSkills: ${data.name} añadido`);
+        const data = req.body;
+        await firestore.collection('XD').doc().set(data);
+        res.send(data);
     } catch (error) {
         res.status(400).send(error.message);
     }
@@ -279,8 +190,6 @@ const addXD = async (req, res, next) => {
 
 module.exports = {
     getAutores,
-    addAutor,
-    updateAutor,
 
     getCommunityComments,
     addCommunityComments,
@@ -288,52 +197,9 @@ module.exports = {
 
     getAllTechSkills,
     getIdTechSkills,
-    addTechSkills,
-    updateTechSkills,
 
     getContacts,
     addContacts,
 
-    getSpecialty,
-    getData
+    getSpecialty,xd
 }
-
-
-const Countries = [
-    'All',
-    'Argentina',
-    'Bolivia',
-    'Brazil',
-    'Canada',
-    'Colombia',
-    'Chile',
-    'Mexico',
-    'Paraguay',
-    'Peru',
-    'U.S.A.',
-    'U.K.',
-]
-
-
-const sort = [
-"more affordable Más asequible",
-"more expensive más caro",
-"best score mejor puntuación",
-"most available más disponible"
-]
-/*
-const getIdCommunityComments = async (req, res, next) => {
-    try {
-        const id = req.params.id;
-        const student = await firestore.collection('Reviewrs').doc(id);
-        const data = await student.get();
-        if(!data.exists) {
-            res.status(404).send(`Reviwer de id ${id} no encontrado`);
-        }else {
-            res.send(data.data());
-        }
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
-}
-*/
