@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
-import { Alert } from "../Alert/Alert";
+import Login from "../Login/Login";
+import './Register.scss'
 
 
 
 function Register() {
 
+  const [isRegistering, setIsRegistering] = useState(true);
   const { signup } = useAuth();
-  console.log(signup)
+
 
   const [user, setUser] = useState({
     email: "",
@@ -34,66 +36,63 @@ function Register() {
 
   
   return (
-    <div className="w-full max-w-xs m-auto text-black">
-      {error && <Alert message={error} />}
 
+    <>
+    {isRegistering?
+      <div className="register">
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-6 mb-4"
-      >
-        <div className="mb-4">
+        >
+              <h1>SIGN UP</h1>
+
+        <div className="email">
           <label
             htmlFor="email"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >Email</label>
+            >Email</label>
           <input
             type="email"
             onChange={(e) => setUser({ ...user, email: e.target.value })}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="youremail@company.tld"
+            className="input"
+            placeholder="Email@****.com"
           />
         </div>
 
-        <div className="mb-4">
+        <div className="pass">
           <label
             htmlFor="password"
-            className="block text-gray-700 text-sm font-bold mb-2"
           >Password
           </label>
           <input
             type="password"
             onChange={(e) => setUser({ ...user, password: e.target.value })}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="*************"
+            className='input'
+            placeholder="*******"
           />
         </div>
 
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-          Register
-        </button>
+        <div className="pass">
+          <label
+            htmlFor="password"
+          >Verify Password
+          </label>
+          <input
+            type="password"
+            className='input'
+            placeholder="*******"
+          />
+        </div>
+        
+
+        <button type="submit" className="btn"> Sign Up </button>
+      <p>Already have an Account?  <span onClick={()=> setIsRegistering(!isRegistering)}>Login</span></p>
       </form>
-      <p className="my-4 text-sm flex justify-between px-3">
-        Already have an Account?
-        <Link to="/login" className="text-blue-700 hover:text-blue-900">
-          Login
-        </Link>
-      </p>
     </div>
+        :<Login/>
+    }
+      
+      </>
   );
 }
 
 
 export default Register;
-
-// const Register = () => {
-
-//     return (
-//         <>
-//           <div>
-//             Register
-//           </div>
-
-
-//         </>
-//     )
-// }                {error && <Alert message={error} />}

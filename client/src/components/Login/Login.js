@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { Alert } from "../Alert/Alert";
 import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import './Login.scss'
+import Register from "../Register/Register";
 
 
 const Login = () => {
@@ -14,6 +15,8 @@ const Login = () => {
         email: "",
         password: "",
       });
+    
+    const [isRegistering, setIsRegistering] = useState(false);
 
    
       // const { login, loginWithGoogle, resetPassword , logout} = useAuth();
@@ -67,7 +70,10 @@ const Login = () => {
       };
 
     return (
-        
+      <>
+      {isRegistering?
+        <Register/>
+        :
         <div className='login'>
           <form
             onSubmit={handleSubmit}
@@ -117,7 +123,7 @@ const Login = () => {
               {/* </a> */}
           
               <button type="submit" className="btn"> LOGIN </button>
-              <p>Don’t have an account? Sign Up</p> 
+              <p>Don’t have an account? <span onClick={()=> setIsRegistering(!isRegistering)}>Sign Up</span></p> 
               <span>OR</span>
               <hr/>
               <div className="icons">
@@ -127,8 +133,11 @@ const Login = () => {
               <button className='icon'>{<GoogleIcon/>}</button>
               </div>
           </form>
+          </div>
+          
+        }
    
-      </div>
+   </>
       
     )
 }

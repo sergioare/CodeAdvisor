@@ -1,7 +1,7 @@
 @use '../../components/Styles/mixins';
 @import '../../components/Styles/variables';
 
-.login{
+.register{
     @include mixins.create-flexbox;
     flex-direction: column;
     flex-wrap: wrap;
@@ -16,9 +16,9 @@
     }
 
     h1{
-        margin-top: 3vh;
-        margin-bottom: 5vh;
+        margin-bottom: 8vh;
         color:$primary-color;
+
     }
     
     .email {
@@ -51,14 +51,6 @@
         }
 
     }
-
-    .forgot{
-        text-align: end;
-        padding-right: 4.8vw;
-        margin-bottom: 3vh;
-
-    }
-
     .btn{  
         display: flex;
         margin-left:  42%;
@@ -70,34 +62,5 @@
             background-color: $primary-color;
         }
 
-    }
-    hr{
-        width: 32.4vw;
-        border: 2px solid;
-        color: $primary-color;
-        margin-bottom: -2vh;
-    }
-
-    .icons{
-        display: flex;
-        justify-content: space-evenly;
-        width:38vw;
-        padding-left: 5.8vw;
-
-        .icon{
-            display: flex;
-            background-color:$circles-bg-light ;
-            color: $text-bg-purple;
-            font-weight: 500;
-            border-radius: 20%;
-            border: 1px solid $text-bg-purple;
-    
-            &:hover{
-                background-color: $primary-color;
-            }
-
-        }
-        
-    }
-    
+}
 }
