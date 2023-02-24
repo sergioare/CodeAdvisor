@@ -23,7 +23,6 @@ const ProgrammingLanguages = [
     'C',
     'HTML',
     'CSS',
-    'YOLO',
 ]
 
 const SortMethod =[
