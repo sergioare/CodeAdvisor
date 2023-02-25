@@ -31,6 +31,7 @@ const Home = () => {
   setIsConfigBarOpen(prevState => !prevState);
   };
 
+  console.log("prueba home")
 
   return (
     <div className='home'>
