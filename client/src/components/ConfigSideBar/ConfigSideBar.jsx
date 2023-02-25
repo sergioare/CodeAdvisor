@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import ModInquiries from '../Modals/ModInquiries';
 import "./ConfigSideBar.scss"
 
 function ConfigSideBar({isConfigBarOpen, toggleConfigBar, toggleProfile, closeSideBar, openAdmin, toggleAdmin, isSidebarOpen, isProfileOpen}) {
@@ -45,7 +46,7 @@ function ConfigSideBar({isConfigBarOpen, toggleConfigBar, toggleProfile, closeSi
             <button ref={themeToggle} className="theme-toggle" onClick={handleThemeToggle}>
                 {isDarkMode ? 'Light Mode' : 'Dark Mode'}
             </button>
-            <a className="signoff-report-button" href="https://example.com/report">Report a problem</a>
+            <ModInquiries/>
             <button className="signoff-report-button" onClick={signOff}>Sign off</button>
         </div>
     );

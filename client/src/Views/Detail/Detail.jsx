@@ -5,7 +5,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getDetail } from '../../redux/actions/actions';
 import StarRating from '../../components/StarRating/StarRating';
 
-export const Detail = () => {
+const Detail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -43,3 +43,4 @@ export const Detail = () => {
     </div>
   )
 }
+export default Detail;

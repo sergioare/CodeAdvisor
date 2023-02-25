@@ -46,9 +46,9 @@ const submitHandler=(event)=>{
                         <button className="button" type="submit">Contact Us</button>
                     </form>
                     <div className="contactDetail">
-                        <p><i class="fa-solid fa-phone"></i> 55-3565-9898</p>
-                        <p><i class="fa-sharp fa-solid fa-envelope"></i> contact@codeadvisor.com</p>
-                        <p><i class="fa-sharp fa-solid fa-location-dot"></i> 420 Kent Dr, Mountain View, CA 94043, Estados Unidos </p>
+                        <p><i className="fa-solid fa-phone"></i> 55-3565-9898</p>
+                        <p><i className="fa-sharp fa-solid fa-envelope"></i> contact@codeadvisor.com</p>
+                        <p><i className="fa-sharp fa-solid fa-location-dot"></i> 420 Kent Dr, Mountain View, CA 94043, Estados Unidos </p>
                     </div>
                 </div>
                     <img className="img" src={contact} alt="contact" />
