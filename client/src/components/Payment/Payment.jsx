@@ -100,9 +100,9 @@ const Payment = () => {
                         </div>
                     </div>
 
-                    <div className='HoursContent'>
+                    {/* <div className='HoursContent'>
                         <p> Dates not available </p>
-                    </div>
+                    </div> */}
 
                 </div>
 

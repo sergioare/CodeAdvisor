@@ -1,7 +1,7 @@
 @use '../../components/Styles/mixins';
 @import '../../components/Styles/variables';
 
-.register{
+.register {
     @include mixins.create-flexbox;
     flex-direction: column;
     flex-wrap: wrap;
@@ -11,18 +11,20 @@
     border: 2px solid $circles-bg-light;
     border-radius: 40px;
 
-    form{
+    form {
         width: 100%;
     }
-    .warning{
+
+    .warning {
         margin: 0;
         color: red;
         font-size: smaller;
         margin-bottom: -2vh;
     }
-    h1{
+
+    h1 {
         margin-bottom: 8vh;
-        color:$primary-color;
+        color: $primary-color;
 
     }
 
@@ -33,15 +35,15 @@
         width: 70%;
         text-align: left;
         margin-bottom: 3vh;
-        
-       
-        .input{
+
+
+        .input {
             border: 2px solid $circles-bg-light;
             border-radius: 10px;
             padding-left: .5em;
         }
     }
-    
+
     .email {
         display: flex;
         flex-direction: column;
@@ -49,39 +51,41 @@
         width: 70%;
         text-align: left;
         margin-bottom: 3vh;
-        
-       
-        .input{
+
+
+        .input {
             border: 2px solid $circles-bg-light;
             border-radius: 10px;
             padding-left: .5em;
         }
     }
-    .pass{
+
+    .pass {
         display: flex;
         flex-direction: column;
         margin-left: 15%;
         width: 70%;
         text-align: left;
         margin-bottom: 2vh;
-        
-        .input{
+
+        .input {
             border: 2px solid $circles-bg-light;
             border-radius: 10px;
             padding-left: .5em;
         }
 
     }
-    .btn{  
+
+    .btn {
         display: flex;
-        margin-left:  42%;
-        background-color:$circles-bg-light ;
+        margin-left: 42%;
+        background-color: $circles-bg-light ;
         color: $text-bg-purple;
         font-weight: bold;
 
-        &:hover{
+        &:hover {
             background-color: $primary-color;
         }
 
-}
+    }
 }
