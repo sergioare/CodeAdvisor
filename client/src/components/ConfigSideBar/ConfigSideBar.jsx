@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import "./ConfigSideBar.scss"
 
-function ConfigSideBar({isConfigBarOpen, toggleConfigBar, toggleProfile}) {
+function ConfigSideBar({isConfigBarOpen, toggleConfigBar, toggleProfile, closeSideBar, openAdmin, toggleAdmin, isSidebarOpen, isProfileOpen}) {
     const [isEnglish, setIsEnglish] = useState(true);
     const [isDarkMode, setIsDarkMode] = useState(true);
     const languageToggle = useRef(null);
@@ -31,6 +31,8 @@ function ConfigSideBar({isConfigBarOpen, toggleConfigBar, toggleProfile}) {
 
     function handleProfileClick(){
         toggleProfile();
+        if(isSidebarOpen)closeSideBar();
+        if(openAdmin)toggleAdmin();  
     }
 
     return (

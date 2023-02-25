@@ -15,7 +15,9 @@
     border: 7px solid $primary-color;
     border-radius: 10px;
     overflow: auto;
+    color: black;
 
+    
     &--open {
     left: 10px;
   
@@ -38,15 +40,25 @@
       margin: 0;
       font-size: 24px;
       font-weight: 700;
+      color: $secundary-color;
+      background-color: transparent;
+      border: none;
     }
   
-    &__close-btn {
-      border: none;
+    .fas{
       background-color: transparent;
       font-size: 24px;
       font-weight: 700;
       cursor: pointer;
+      color: $secundary-color;
+      border: none;
+      padding: 0;
+      margin-left: 13%;
     }
+    .fas:hover{
+      color: $title-bg-light;
+    }
+
   
     &__content {
         height: calc(100% - 64px); /* Take up remaining space */
@@ -152,12 +164,23 @@
         padding: 5%;
 
     }
-  }
+
+    .complete-your-data{
+      border: 1px solid $primary-color;
+      border-radius: 20px;
+      background-color: $title-bg-purple;
+    }
+  
   
   .tables-section {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .complete-your-data{
+      border: 1px solid $primary-color;
+      border-radius: 20px;
+    }
   
     .tables-container {
       display: flex;
@@ -181,7 +204,7 @@
           font-family: Arial, sans-serif;
           border: 3px solid $primary-color;
           border-radius: 15px;
-          height: 300px;
+          height: 415px;
           
           thead {
             border-bottom: 2px solid $primary-color;
@@ -196,11 +219,20 @@
             padding: 10px;
             text-align: center;
             border: 1px solid $primary-color;
+            button{
+              padding: 6px;
+            }
           }
-  
-          th {
 
-            text-align: center; //ya aplicada
+          th {
+            
+            height: 5px;
+
+          }
+          
+          td {
+            
+            height: 83px;
 
           }
   
@@ -210,7 +242,10 @@
   
           .data {
             text-align: center;
+            margin: 0;
+            padding-bottom: 0;
           }
+
         }
       }
 
@@ -256,6 +291,30 @@
       }
     }
   }
-  
 
+  .table-wrapper ul, .table-wrapper-full-width ul {
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
   
+}
+
+.profile::-webkit-scrollbar {
+  width: 11px;
+}
+
+.profile::-webkit-scrollbar-track {
+  background-color: $title-bg-purple;
+}
+
+.profile::-webkit-scrollbar-thumb {
+  background-color: #3c30c0;
+  border-radius: 10px;
+}
+
+.profile::-webkit-scrollbar-thumb:hover {
+  background-color: $title-bg-light;
+}
+

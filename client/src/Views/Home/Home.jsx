@@ -11,42 +11,55 @@ import ConfigSideBar from '../../components/ConfigSideBar/ConfigSideBar';
 import Navbar from '../../components/Navbar/Navbar';
 import Profile from '../../components/Profile/Profile';
 import Admin from '../../components/Admin/Admin';
-// import { useAuth } from '../../context/authContext';
+import { useAuth } from "../../context/authContext";
+import {  useNavigate } from "react-router-dom";
 // import { useContext } from 'react';
-// import Footer from '../Footer/Footer';
-
 
 const Home = () => {
 
-  // const { user } = useAuth()
+  const {user , logout} = useAuth()
+  const navigate = useNavigate();  
+  const [currentPage, setCurrentPage] = useState(1);
+  //Estado de admin. No se si será necesario o vendra despues de otro lado.
+  const [isAdmin, setIsAdmin] = useState(true);
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isConfigBarOpen, setIsConfigBarOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false)
-  const [currentPage, setCurrentPage] = useState(1);
-  const [isAdmin, setIsAdmin] = useState(true);
   const [openAdmin, setOpenAdmin] = useState(false);
-
 
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(loadProfessionals());
   }, [dispatch])
+  
+  const handleSignOut = async (e) => {
+    e.preventDefault();
+    try {
+      await logout();
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   const toggleConfigBar = () => {
   setIsConfigBarOpen(prevState => !prevState);
   };
-
+  
   const closeSideBar = () => {
     setIsSidebarOpen(false);
-    };
+  };
 
   const toggleProfile = () => {
     setIsProfileOpen(prevState => !prevState);
-    };
+  };
 
   const toggleAdmin = () => {
     setOpenAdmin(!openAdmin);
-    };
+  };
+
+    
 
   return (
     <div className='home'>
@@ -62,8 +75,8 @@ const Home = () => {
           </div>
         ))}
       </div>
-      <Profile openAdmin={openAdmin} toggleAdmin={toggleAdmin} isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen} closeSideBar={closeSideBar} > </Profile>
-      <ConfigSideBar isConfigBarOpen={isConfigBarOpen} toggleConfigBar={toggleConfigBar} toggleProfile={toggleProfile} />
+      <Profile  isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen}> </Profile>
+      <ConfigSideBar isSidebarOpen={isSidebarOpen} isConfigBarOpen={isConfigBarOpen} toggleConfigBar={toggleConfigBar} toggleProfile={toggleProfile} openAdmin={openAdmin} toggleAdmin={toggleAdmin} closeSideBar={closeSideBar}/>
       
       {isAdmin && <Admin openAdmin={openAdmin} toggleAdmin={toggleAdmin} isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen} closeSideBar={closeSideBar}></Admin>}
     </div>

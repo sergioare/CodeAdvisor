@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import './Commercial.scss';
 import Swal from 'sweetalert2';
 
@@ -21,8 +22,10 @@ export const Commercial = ({isSidebarOpen}) => {
         <h1><span>skills today</span></h1>
       </div>
       <div className='buttonCont'>
-        <button onClick={showAlert}>Join as Advisor</button>
-        <button onClick={showAlert}>Join as Student</button>
+        <Link to='/register' key='Registerbutton'>
+          <button onClick={showAlert}>Join as Advisor</button>
+          <button onClick={showAlert}>Join as Student</button>
+        </Link>
       </div>
 
     </div>

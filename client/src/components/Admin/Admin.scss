@@ -16,8 +16,6 @@
     cursor: pointer;
 }
 
-
-
 .admin-window {
     position: fixed;
     top: 0;
@@ -33,6 +31,7 @@
     border-radius: 10px;
     overflow: auto;
     line-height: normal;
+    color: black;
 
     &--open {
     left: 10px;
@@ -42,5 +41,98 @@
       }
     }
 
+    .positions{
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .users-side{
+      width: 60%;
+    }
+
+    .admin-section-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
     
+    .admin-section-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .admin-section-info {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      width: 30%;
+    }
+    
+    .admin-section-data {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .admin-section-buttons {
+      display: flex;
+      align-items: center;
+    }
+    
+    .check-reviews-button {
+      margin-right: 10px;
+    }
+    
+    .block-account-button {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .unblock-account-button {
+      background-color: #179628;
+      color: white;
+    }
+    
+    
+    .reviews-side{
+      width: 36%;
+      margin: 2%;
+
+
+      table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+      border: 3px solid $primary-color;
+      
+      
+      td, th {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid $primary-color;
+      }
+
+      .tittle{
+        border: 2px solid $primary-color;
+      }
+
+      th {
+        border: 1px solid $primary-color;
+        text-align: center;
+      }
+      
+      
+      .label {
+        font-weight: bold;
+      }
+      
+      .data {
+        text-align: center;
+      }
+    }
+  }
 }
