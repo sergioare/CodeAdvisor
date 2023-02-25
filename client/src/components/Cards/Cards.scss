@@ -7,6 +7,7 @@ body {
 
 .containerPrincipal {
   width: 100%;
+  
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -48,13 +49,6 @@ body {
   }
 }
 
-.pagination-container{
-  background-color: $title-bg-purple;
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-
 .pagination-container {
   background-color: $title-bg-purple;
   width: 100%;
@@ -63,47 +57,50 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end; // align to right
-}
 
-.pagination {
-  display: flex;
-  margin-right: 30px;
+  .pagination {
+    display: flex;
+    margin-right: 30px;
 
-  button {
-    background: $primary-color;
-    color: $title-bg-purple;
-    font-weight: 800;
-    font-size: 12px;
-    padding: 0px 7px; 
-    cursor: pointer;
-    outline: none;
-    transition: background 0.3s ease;
-    border-radius: 6px;
-    margin-left: 2px;
-    margin-right: 2px;
-    border: 1px solid $title-bg-light;
-    padding-bottom: 1px;
+    button {
+      background: $primary-color;
+      color: white;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 0px 7px;
+      cursor: pointer;
+      outline: none;
+      transition: background 0.3s ease;
+      border-radius: 6px;
+      margin-left: 2px;
+      margin-right: 2px;
+      // border: 1px solid $title-bg-light;
+      padding-bottom: 1px;
+      border: none;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
-    &:hover:not(:disabled) {
-      background: $title-bg-light;
+      &:hover:not(:disabled) {
+        background: $title-bg-light;
+      }
+
+      &:disabled {
+        cursor: default;
+      }
     }
 
-    &:disabled {
-      cursor: default;
+    .current-page {
+      background: $primary-color;
+      color: white;
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0 5px;
+      padding: 0px 7px;
+      border-radius: 4px;
+      // border: 1px solid $title-bg-light;
+      padding-bottom: 1px;
+      border: none;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     }
   }
-
-  .current-page {
-    background: $primary-color;
-    color: $title-bg-purple;
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 800;
-    margin: 0 5px;
-    padding: 0px 7px;
-    border-radius: 4px;
-    border: 1px solid $title-bg-light;
-    padding-bottom: 1px;
-  }
 }
-
