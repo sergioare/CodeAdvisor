@@ -35,9 +35,9 @@ const AboutUs = () => {
                                     <p className="ocupation">{(i.ocupation.toString())}</p>
                                     <p className="about">{i.about}</p>
                                     <div className="iconsCont">
-                                        <span className="color"> <a href={i.linkedin}><i class="fa-brands fa-linkedin"></i></a> </span>
-                                        <span> <a href={i.gitHub} > <i class="fa-brands fa-github"></i> </a>  </span>
-                                        <span><a href={i.email} > <i class="fa-regular fa-envelope"></i> </a></span>
+                                        <span className="color"> <a href={i.linkedin}><i className="fa-brands fa-linkedin"></i></a> </span>
+                                        <span> <a href={i.gitHub} > <i className="fa-brands fa-github"></i> </a>  </span>
+                                        <span><a href={i.email} > <i className="fa-regular fa-envelope"></i> </a></span>
 
                                     </div>
                                     {/* <p>{i.phone}</p> */}

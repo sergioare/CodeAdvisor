@@ -13,4 +13,26 @@
         &:hover{
             background-color: $primary-color;
         }
+
+}
+
+.inquiries-btn{
+   
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        background-color: $primary-color;
+        color: $text-bg-purple;
+        border-radius: 10px;
+        text-shadow: 2px 2px 2px $title-bg-light;
+    
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+      
+           
+     
 }

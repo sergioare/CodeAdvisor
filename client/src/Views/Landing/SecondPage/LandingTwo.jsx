@@ -25,8 +25,8 @@ const LandingTwo = () => {
 
       <div className="containerTech">
         {tarjetasMostradas.map((tarjeta) => {
-          return <div className="techs">
-            <h2 key={tarjeta.id}> {tarjeta.id}</h2>
+          return <div className="techs" key={tarjeta.id}>
+            <h2 > {tarjeta.id}</h2>
             <img src={tarjeta.Image} alt='imageTechSkills' />
           </div>
         })}
