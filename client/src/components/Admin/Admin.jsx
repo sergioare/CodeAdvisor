@@ -24,7 +24,7 @@ function Admin ({isProfileOpen, toggleProfile, isConfigBarOpen, closeSideBar, op
     }
 
     const displayInfo = (buttonName) => {
-        setDisplayUsers(buttonName)
+        setDisplayUsers(buttonName);
       }
     
     const showReviews = (id) => {
@@ -66,7 +66,7 @@ function Admin ({isProfileOpen, toggleProfile, isConfigBarOpen, closeSideBar, op
             <div className={`admin-window ${openAdmin ? 'admin-window--open' : ''} ${isConfigBarOpen ? 'config-sidebar-open' : ''}`}>
                 <h1>Platform administrator</h1>
                 <p>Be responsible, be fair. Great power comes with great responsibility.</p>
-                <div>
+                <div className='buttons-positions'>
                     <button onClick={() => displayInfo('Users')}>Users</button>
                     <button onClick={() => displayInfo('Advisors')}>Advisors</button>
                     <button onClick={() => displayInfo('Blocked users')}>Blocked users</button>

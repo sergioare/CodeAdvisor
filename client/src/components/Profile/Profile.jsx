@@ -10,7 +10,7 @@ const auth = getAuth();
 
 
 // hardcodeo de advisor
-const isAdvisor = true
+const isAdvisor = false
   
 //const id = "2Vyng2S1Lfwv8ge4A9Mv"; //cambair id por id de cada cuenta
 const id = auth.currentUser ? auth.currentUser.uid : null;
@@ -136,7 +136,29 @@ return (
               </tr>
               <tr>
                 <td className="data">In progress</td>
-                <td rowSpan="3" className="data" style={{border: "2px solid #794BFF"}}>In progress</td>
+                <td rowSpan="3" className="data" style={{border: "2px solid #794BFF"}}>
+                <div class="calendar">
+                  <div class="calendar-header">
+                    <button class="prev-month-btn">&lt;</button>
+                    <h2 class="calendar-title"></h2>
+                    <button class="next-month-btn">&gt;</button>
+                  </div>
+                  <table class="calendar-table">
+                    <thead>
+                      <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+                </td>
               </tr>
               <tr>
                 <th className="tittle">Meet</th>

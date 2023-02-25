@@ -303,10 +303,13 @@
 
 .profile::-webkit-scrollbar {
   width: 11px;
+  background-color: $primary-color;
 }
 
 .profile::-webkit-scrollbar-track {
   background-color: $title-bg-purple;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 
 .profile::-webkit-scrollbar-thumb {
