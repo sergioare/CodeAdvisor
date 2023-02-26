@@ -55,17 +55,17 @@ const Footer = () => {
         <div className="footer-contact">
             <h1>Contact Us</h1>
                 
-                <p><span>Colombia</span>
-                    - Colombia</p>
+                <p><span>United States</span>
+                    - 420 Kent Dr, Mountain View, CA 94043</p>
             
 
             <div>
                 <i className="fa fa-phone"></i>
-                <p>+57 320 142 1245</p>
+                <p>55-3565-9898</p>
             </div>
             <div>
                 <i className="fa fa-envelope"></i>
-                <p onClick={showAlert}><a  href="CodeAdvisor@gmail.com">CodeAdvisor@gmail.com</a></p>
+                <p onClick={showAlert}><a  href="CodeAdvisor@gmail.com">contact@codeadvisor.com</a></p>
             
         </div>
         </div>

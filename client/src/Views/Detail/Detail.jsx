@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { getDetail } from '../../redux/actions/actions';
 
-export const Detail = () => {
+const Detail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -44,3 +44,4 @@ export const Detail = () => {
     </div>
   )
 }
+export default Detail;

@@ -7,17 +7,18 @@ body {
 
 .containerCardsPrincipal {
   width: 100%;
-
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
+  transition: margin-left 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  margin-top: -20%;
 
   &.sidebar-open {
     margin-left: 260px;
-    margin-top: 90px;
+    padding-left: -260px;
   }
 
   .containeMessage h1 {
@@ -45,7 +46,6 @@ body {
     background-color: $title-bg-purple;
     max-width: 100%;
     padding-top: 0;
-
   }
 
   .pagination-container {

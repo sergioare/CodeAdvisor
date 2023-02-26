@@ -5,7 +5,7 @@
   position: fixed;
   top: 0;
   right: -300px;
-  height: 100%;
+  height: calc(100% - 80px);
   width: 200px;
   background-color: $title-bg-purple;
   border-left: 1px solid $title-bg-purple;
@@ -15,6 +15,7 @@
   border-right: 0;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+  margin-top: 80px;
 
 
   &.open {

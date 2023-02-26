@@ -1,7 +1,8 @@
 import { useState, useRef } from 'react';
+import ModInquiries from '../Modals/ModInquiries';
 import "./ConfigSideBar.scss"
 
-function ConfigSideBar(props) {
+function ConfigSideBar({isConfigBarOpen, toggleConfigBar, toggleProfile, closeSideBar, openAdmin, toggleAdmin, isSidebarOpen, isProfileOpen}) {
     const [isEnglish, setIsEnglish] = useState(true);
     const [isDarkMode, setIsDarkMode] = useState(true);
     const languageToggle = useRef(null);
@@ -26,19 +27,26 @@ function ConfigSideBar(props) {
     }
 
     function handleTitleClick() {
-        props.toggleConfigBar();
+        toggleConfigBar();
+    }
+
+    function handleProfileClick(){
+        toggleProfile();
+        if(isSidebarOpen)closeSideBar();
+        if(openAdmin)toggleAdmin();  
     }
 
     return (
-        <div className={`Configsidebar ${props.isConfigBarOpen ? 'open' : 'closed'}`}>
+        <div className={`Configsidebar ${isConfigBarOpen ? 'open' : 'closed'}`}>
             <button className="config-title" onClick={handleTitleClick}>Configurations</button>
+            <button className="language-toggle" onClick={handleProfileClick}>Profile</button>
             <button ref={languageToggle} className="language-toggle" onClick={handleLanguageToggle}>
                 {isEnglish ? 'English' : 'Español'}
             </button>
             <button ref={themeToggle} className="theme-toggle" onClick={handleThemeToggle}>
                 {isDarkMode ? 'Light Mode' : 'Dark Mode'}
             </button>
-            <a className="signoff-report-button" href="https://example.com/report">Report a problem</a>
+            <ModInquiries/>
             <button className="signoff-report-button" onClick={signOff}>Sign off</button>
         </div>
     );

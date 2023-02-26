@@ -11,11 +11,14 @@
     justify-content: center;
     padding: 15px;
     width: 35%;
-    margin-left: 35%;
+    margin-left: 5%;
     border: 1px solid $primary-color;
     border-radius: 5px;
     background-color: $bg-cards;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-image: url(../../assets/modal-2.png);
+    background-size: 105% 100%;
+    background-repeat: no-repeat;
 
     .reseña {
       font-size: 30px;

@@ -47,19 +47,19 @@ const Searchbar = () => {
       }
     }
 
-    // If there are any matches, redirect to the first match
-    if (results.length > 0) {
-      const advisor = results[0].item;
-      window.location.href = `http://localhost:3000/user/${advisor.id}`;
-    } else if (results) {
-      window.location.href = `http://localhost:3000/user/${results.id}`;
-    } else {
-      setWrongSearch(true);
-      setTimeout(() => {
-        setWrongSearch(false);
-      }, 3000); // 3 seconds delay
-    }
+  // If there are any matches, redirect to the first match
+  if (results.length > 0) {
+    const advisor = results[0].item;
+    window.location.href = `http://localhost:3000/user/${advisor.id}`;
+  } else if(results.id){
+    window.location.href = `http://localhost:3000/user/${results.id}`;
+  } else {
+    setWrongSearch(true);
+    setTimeout(() => {
+      setWrongSearch(false);
+    }, 3000); // 3 seconds delay
   }
+}
 
 
 
