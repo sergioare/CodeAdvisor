@@ -12,7 +12,8 @@ import Navbar from '../../components/Navbar/Navbar';
 import Profile from '../../components/Profile/Profile';
 import Admin from '../../components/Admin/Admin';
 import { useAuth } from "../../context/authContext";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+import Footer from '../Footer/Footer'
 // import { useContext } from 'react';
 import { Video } from '../../Video/Video';
 
@@ -86,9 +87,10 @@ const Home = () => {
           </div>
         ))}
       </div>
-      <Profile isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen}> </Profile>
-      <ConfigSideBar isSidebarOpen={isSidebarOpen} isConfigBarOpen={isConfigBarOpen} toggleConfigBar={toggleConfigBar} toggleProfile={toggleProfile} openAdmin={openAdmin} toggleAdmin={toggleAdmin} closeSideBar={closeSideBar} />
-
+      <Footer/>
+      <Profile  isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen}> </Profile>
+      <ConfigSideBar isSidebarOpen={isSidebarOpen} isConfigBarOpen={isConfigBarOpen} toggleConfigBar={toggleConfigBar} toggleProfile={toggleProfile} openAdmin={openAdmin} toggleAdmin={toggleAdmin} closeSideBar={closeSideBar}/>
+      
       {isAdmin && <Admin openAdmin={openAdmin} toggleAdmin={toggleAdmin} isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen} closeSideBar={closeSideBar}></Admin>}
     </div>
   );

@@ -7,7 +7,7 @@ const ModInquiries = () => {
 
   return (
     <div>
-      <button onClick={openModalInquire} className='inquiries-btn'>Report a Problem</button> 
+      <button onClick={openModalInquire} className='inquiries-btn'><i className="fa-solid fa-circle-question"></i>Report a Problem</button> 
       <Modal isOpen={isOpenInquire} closeModal={closeModalInquire}>
         <Inquiries/>
       </Modal>
