@@ -17,8 +17,8 @@ const Technologies = () => {
       <Navbar />
       <div className="containerTech">
         {techSkills?.map((skill) => {
-          return <div className="techs">
-            <h2 key={skill.id}> {skill.id}</h2>
+          return <div className="techs" key={skill.id}>
+            <h2 > {skill.id}</h2>
             <img src={skill.Image} alt='imageTechSkills' />
           </div>
         })

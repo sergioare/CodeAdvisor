@@ -9,6 +9,8 @@ import {
 } from "../../redux/actions/actions";
 import { Countries, ProgrammingLanguages, Languages, Specialties, SortMethod } from "./data";
 import "./SideBar.scss";
+import Searchbar from '../Searchbar/Searchbar';
+
 
 const SideBar = ({ isSidebarOpen, setIsSidebarOpen, setCurrentPage }) => {
 
@@ -124,6 +126,8 @@ const SideBar = ({ isSidebarOpen, setIsSidebarOpen, setCurrentPage }) => {
           </div>
         </div>
         <div className="blank-space"></div>
+        <Searchbar/>
+
         <div className="sidebar-content">
 
           <div className="sidebar-section">

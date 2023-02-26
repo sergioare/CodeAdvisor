@@ -1,15 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import { Landing, Home, Detail } from './Views/index';
 import AboutUs from "./components/AboutUs/AboutUs"
-// import Navbar from './components/Navbar/Navbar';
-import Login from './components/Login/Login';
-import Register from './components/Register/Register';
 import { AuthProvider } from './context/authContext';
 import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
-// import ConfigSideBar from './components/ConfigSideBar/ConfigSideBar';
 import Technologies from './components/Technologies/Technologies';
 import Contact from './components/Contact/Contact';
-import  Modals  from './components/Modals/Modals';
 import Upload from './components/Upload/upload';
 import AdvisorProfile from './components/Forms/AdvisorProfile/AdvisorProfile';
 import Payment from './components/Payment/Payment';
