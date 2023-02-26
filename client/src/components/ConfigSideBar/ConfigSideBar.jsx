@@ -40,7 +40,7 @@ function ConfigSideBar({isAdmin, isConfigBarOpen, toggleConfigBar, toggleProfile
 
     const handleAdminButtonClick = () => {
         toggleAdmin();
-        closeSideBar();            
+        closeSideBar();       
         if(isProfileOpen){
             toggleProfile();
         }
