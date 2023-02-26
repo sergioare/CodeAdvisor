@@ -4,7 +4,7 @@
 .profile {
     position: fixed;
     top: 0;
-    left: -99vw; 
+    left: -1500px; 
     width: calc(100% - 20px);
     height: calc(100% - 90px);
     background-color: #fff;
@@ -22,7 +22,7 @@
     left: 10px;
   
       &.config-sidebar-open {
-        width: calc(100% - 15vw);
+        width: calc(100% - 220px);
       }
     }
   
