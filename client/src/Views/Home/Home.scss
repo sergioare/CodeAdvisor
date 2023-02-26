@@ -1,125 +1,99 @@
+@use '../../components/Styles/mixins';
 @import '../../components/Styles/variables';
 
-body{
+
+body {
   background-color: $text-bg-purple;
-  
+
 }
+
 .home {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   height: 100vh;
-}
 
-.navbarHome {
-  display: flex;
-  width: 100vw;
-  height: 15vh;
-  margin-bottom: 20vh;
-  color: $title-bg-purple;
-}
-
-.icons {
-  margin: 10px auto;
-  padding: 10px;
-  display: flex;
-  width: 70%;
-  height: fit-content;
-  justify-content: space-between;
-
-  .icon {
+  .navbarHome {
     display: flex;
-    flex-wrap: wrap;
-    width: fit-content;
-    color: $primary-color;
-    font-size: 3vw;
+    width: 100vw;
+    height: 15vh;
+    margin-bottom: 20vh;
+    color: $title-bg-purple;
   }
+
+  .icons {
+    margin: 10px auto;
+    padding: 10px;
+    display: flex;
+    width: 70%;
+    height: fit-content;
+    justify-content: space-between;
+
+    .icon {
+      display: flex;
+      flex-wrap: wrap;
+      width: fit-content;
+      color: $primary-color;
+      font-size: 3vw;
+    }
+  }
+
+
 }
 
-.fifthPage {
-  display: flex;
-  flex-wrap: wrap;
+.contSecctionVideo {
+  @include mixins.create-flexbox;
   width: 100%;
-  background-image: url(../../../../client/src/assets/bg-2.png);
-  background-size: 100% 100% 100%;
+  height: 60%;
+  background-color: $circles-bg-light;
+  margin-top: 15px;
+  border-radius: 90px 0 90px 0;
+  // padding: 10px;
 
-  .circle1 {
-    position: absolute;
-    border-radius: 50%;
-    margin-top: 8vh;
-    margin-left: 10vw;
-    width: 4em;
-    height: 4em;
-    border: .5em solid $text-bg-purple;
+  .ContVideoPlayer,
+  .ContTextVideoplay {
+    width: 50%;
+    float: left;
+    margin-left: 8%;
+
   }
 
-  .circle2 {
-    position: absolute;
-    border-radius: 50%;
-    margin-top: 16vh;
-    margin-left: 5.5vw;
-    width: 2em;
-    height: 2em;
-    border: .3em solid $text-bg-purple;
+  .ContVideoPlayer {
+    // box-shadow: 0px 0px 10px 0px $primary-color;
+    margin-top: 5px
   }
 
-  .circle3 {
-    position: absolute;
-    border-radius: 50%;
-    margin-top: 20vh;
-    margin-left: -1vw;
-    width: 4em;
-    height: 4em;
-    border: .5em solid $text-bg-purple;
+  .ContTextVideoplay {
+    @include mixins.create-flexbox;
+    flex-wrap: wrap;
+    width: 45%;
+    margin-right: 8px;
+    margin-top: 5vh;
+    margin-bottom: 5px;
+
+    h3 {
+      display: flex;
+      flex-wrap: wrap;
+      flex-basis: 70%;
+      // margin-top: -13vh;
+      font-size: 3vw;
+      color: $title-bg-light;
+      text-align: left;
+
+    }
+
+    p {
+      display: flex;
+      flex-basis: 80%;
+      justify-content: space-around;
+      font-size: 1.6vw;
+      color: $text-bg-purple;
+      font-weight: 400;
+      margin-top: -5px;
+    }
   }
 
-  .circle4 {
-    position: absolute;
-    border-radius: 50%;
-    margin-top: 25vh;
-    margin-left: 8vw;
-    width: 8em;
-    height: 8em;
-    border: .5em solid $text-bg-purple;
-  }
 
-  .circle5 {
-    position: absolute;
-    border-radius: 50%;
-    margin-top: 125vh;
-    margin-left: 96vw;
-    width: 4em;
-    height: 4em;
-    border: .5em solid $text-bg-purple;
-  }
 
-  .circle6 {
-    position: absolute;
-    border-radius: 50%;
-    margin-top: 120vh;
-    margin-left: 86vw;
-    width: 6em;
-    height: 6em;
-    border: .5em solid $text-bg-purple;
-  }
 
-  .circle7 {
-    position: absolute;
-    border-radius: 50%;
-    margin-top: 140vh;
-    margin-left: 87vw;
-    width: 4em;
-    height: 4em;
-    border: .5em solid $text-bg-purple;
-  }
-
-  .circle8 {
-    position: absolute;
-    border-radius: 50%;
-    margin-top: 135vh;
-    margin-left: 93vw;
-    width: 2em;
-    height: 2em;
-    border: .3em solid $text-bg-purple;
-  }
 }
