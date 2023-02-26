@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { getDetail } from '../../redux/actions/actions';
 import Reviews from '../../components/Reviews/Reviews';
+import { ReviewsFinish } from '../../components/Reviews/ReviewsFinish';
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const Detail = () => {
           <h4 className='About'> About me: <p className='TextAbout'>{detail.About}</p>
             <Link to={`/payment/${detail.id}`}><button className='ButtonSchedule'>Schedule Advice</button></Link>
             <Link to='/home'><button>Back Home</button></Link></h4>
-          
+
 
           <img src={detail.Img} alt='imageAdvisor' />
           <div className='DataContent'>
@@ -44,8 +45,14 @@ const Detail = () => {
         {/* <>ENLAZAR LOS REVIEWS DEL ASESOR</> */}
         {/* </div> */}
       </div>
-      <Reviews />
-
+      <div className='contRevvv'>
+        <div className='consRev1'>
+          <Reviews />
+        </div>
+        <div className='contRev2'>
+          <ReviewsFinish />
+        </div>
+      </div>
     </div>
   )
 }
