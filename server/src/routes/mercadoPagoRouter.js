@@ -3,17 +3,19 @@ const { mercadopago } = require('../configMercadoPago')
 const mercadoPagoRouter = Router()
 
 mercadoPagoRouter.post('/', (req, res) => {
-    const producto = req.body
+    const prod = req.body;
 
     let preference = {
-        Items: [{
-            id: 4,
-            title: producto.Title, 
+        items: [{
+            id: Math.floor(Math.random() * 999999),
+            title: prod.Title,
             currency_id: "MXN",
-            quantity: producto.Quantity, 
-            unit_price: producto.Price,
-        }
-        ],
+            // description: prod.description,
+            // category_id: prod.category,
+            quantity: prod.Quantity,
+            unit_price: prod.Price
+        }],
+
         back_urls: {
             success : "http://localhost:3002/payment/feedback",
             failure: "http://localhost:3002/payment/feedback",
@@ -24,7 +26,7 @@ mercadoPagoRouter.post('/', (req, res) => {
 
     }
     
-    console.log(producto)
+console.log(producto)
     mercadopago.preferences.create(preference)
     .then((response) => res.status(200).send({ response }))
     .catch((error) => res.status(400).send({ error: error.message }))

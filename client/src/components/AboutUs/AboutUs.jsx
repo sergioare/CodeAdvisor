@@ -10,7 +10,7 @@ const AboutUs = () => {
     const dispatch = useDispatch();
     const autores = useSelector(state => state.autors)
 
-    useEffect(() => {
+    useEffect(() => {  
         dispatch(getAutors())
     }, [dispatch])
 

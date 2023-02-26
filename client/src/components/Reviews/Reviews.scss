@@ -1,0 +1,77 @@
+@import '../Styles/_variables.scss';
+
+.fullContRev {
+  margin: 15px;
+
+
+  .containerReview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    width: 35%;
+    margin-left: 35%;
+    border: 1px solid $primary-color;
+    border-radius: 5px;
+    background-color: $bg-cards;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+    .reseña {
+      font-size: 30px;
+      font-weight: bold;
+      color: $title-bg-light;
+      background-color: $circles-bg-light;
+      padding: 15px;
+      border-radius: 50px 0 50px 0;
+      margin-bottom: -20px;
+      border: 1px solid $title-bg-medium;
+    }
+
+    .estrellas {
+      display: flex;
+      font-size: 26px;
+      margin-block: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: -20px;
+
+      .gris {
+        color: grey;
+      }
+
+      .amarillo {
+        color: #ffce00;
+      }
+    }
+
+    .textareaRev {
+
+      textarea {
+        height: 50px;
+        width: 200px;
+        border: 2px solid $border-purple-ligth;
+        font-size: 16px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        // padding: 10px;
+      }
+    }
+
+    .botonRev {
+      // margin-block: 2rem;
+      font-size: 18px;
+      color: white;
+      border-radius: 8px;
+      width: 100%;
+      background-color: $title-bg-medium;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+
+    .botonRev:hover {
+      background-color: $title-bg-light;
+    }
+
+  }
+}

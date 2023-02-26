@@ -1,11 +1,8 @@
-// import * as React from 'react';
 import dayjs from 'dayjs';
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-
-
 import React, { useEffect, useState } from 'react';
 import './Payment.scss';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,6 +20,7 @@ const Payment = () => {
         dispatch(getDetail(id));
     }, [dispatch, id]);
 
+//----------------Counter----------------------//
 
     const [count, setCount] = useState(1)
 
@@ -35,73 +33,94 @@ const Payment = () => {
         setCount(count + 1);
     }
 
-    const submitHandler = (event)=>{
+//----------------------------Ruote to mercadoPAgo---------------------//
+    const submitHandler = (event) => {
         event.preventDefault()
         axios.post('http://localhost:3002/payment', prod)
-        .then((res) =>
-                (window.location.href = res.data.response.body.init_point ))
-        // console.log(input)
+            .then((res) =>
+                (window.location.href = res.data.response.body.init_point))
+
+                // axios.post('http://localhost:3002/data/XD', agenda)
+                // .then((res)=>alert("info enviada"))
     };
 
-
     const prod = {
-        id: Math.floor(Math.random() * 999999),
+        // id: Math.floor(Math.random() * 999999),
         Title: `${product.Firstname} counseling for ${count} hr`,
         Quantity: count,
         Price: product.Price
     };
     console.log(prod)
 
+//-----------------------Calendar-------------------//
     const [value, setValue] = useState(dayjs('2023-02-24'));
-    console.log(value)
+    const date = value.$d.toString().split(" ")
+    const dateLong = (` ${date[1]} ${date[2]} ${date[3]}`)
+    const time = `${date[4]} hrs`
 
-    console.log(value.$d)
+    // const agenda ={
+    //     date: dateLong,
+    //     time:time
+    // }
+
 
     return (
         <div className='PaymentContainer'>
+            <header className='Header'>
+
             <h1>Schedule Advice</h1>
             <h2 className='TitlesPurple'> <p>{product.Firstname + ' ' + product.Lastname} </p></h2>
+
+            </header>
             {/* <p> {detail.Specialty?.length > 1 ? detail.Specialty.join(', ') : detail.Specialty}</p> */}
             <div className='PaymentDetail'>
                 {/* <img src={prod.Img} alt='imageAdvisor' /> */}
-                
 
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DateTimePicker
-                        renderInput={(props) => <TextField {...props} />}
-                        label="Select Date"
-                        value={value}
-                        onChange={(newValue) => {
-                            setValue(newValue);
-                        }}
-                    />
+                <div>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DateTimePicker
+                            renderInput={(props) => <TextField {...props} />}
+                            label="Select Date"
+                            value={value}
+                            onChange={(newValue) => {
+                                setValue(newValue);
+                            }}
+                        />
                     </LocalizationProvider>
 
+                    <div className='HoursContent'>
+                        <p> Chose number of hours</p>
+                        <div>
+                            <button className='ButtonCounter' onClick={decrease} disabled={count <= 1}>-</button>
+                            <span className='Counter'>{count}</span> <span>hrs</span>
+                            <button className='ButtonCounter' onClick={increase}>+</button>
+                        </div>
+                    </div>
+
+                    <div className='HoursContent'>
+                        <p> Dates not available </p>
+                    </div>
+
+                </div>
 
                 <div className='PaymentContent'>
-                    <p className='DetailTitle'> Payment Details</p>
-                    <p className='Price'>Price: <span className='Numbers'>${product.Price}.00 / hr</span></p>
-                    <div>
+                    <p className='DetailTitle'> Confirm Details</p>
+                    <div className='DetailBorder'>
+                    <span className='Price'>Price: <span className='Numbers'>${product.Price}.00 / hr</span></span>
+                    {/* <div>
                         <button className='ButtonCounter' onClick={decrease} disabled={count <= 1}>-</button>
                         <span className='Counter'>{count}</span> <span>hrs</span>
-                        <button  className='ButtonCounter' onClick={increase}>+</button>
-                    </div>
-                    {/* <div>Date:{value.$d}</div>
-                    <p>Time:</p> */}
+                        <button className='ButtonCounter' onClick={increase}>+</button>
+                    </div> */}
+                    <p>Date: {dateLong}</p>
+                    <p>Time: {time}</p>
                     <span className='TotalPrice'>Total: <span className='Numbers'> ${product.Price * count}.00 </span></span>
-                    <button
-                        className='buttonStandard'
-                        onClick={submitHandler}
-                        // onClick={() => {
-                        //     axios
-                        //     .post('http://localhost:3002/payment', prod)
-                        //     .then(
-                        //         (res) =>
-                        //         (window.location.href = res.data.response.body.init_point)
-                        //         )
-                        //     }}
-                            >
-                        Pay</button>
+                    </div>
+
+                    <button className='buttonStandard'
+                        onClick={submitHandler} >
+                        Go to Pay
+                    </button>
                 </div>
             </div>
 
