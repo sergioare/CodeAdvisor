@@ -48,6 +48,7 @@ body {
   background-color: $circles-bg-light;
   margin-top: 15px;
   border-radius: 90px 0 90px 0;
+  transition: all 0.4s ease-in-out;
   // padding: 10px;
 
   &.sidebar-open {
@@ -59,6 +60,7 @@ body {
     width: 50%;
     float: left;
     margin-left: 8%;
+    transition: all 0.4s ease-in-out;
     
     &.sidebar-open {
 
