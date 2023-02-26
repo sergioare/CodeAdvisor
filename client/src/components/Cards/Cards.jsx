@@ -59,7 +59,7 @@ const Cards = ({ isSidebarOpen, currentPage, setCurrentPage }) => {
   };
   return (
 
-    <div className={`containerPrincipal ${isSidebarOpen ? 'sidebar-open' : ''}`}>
+    <div className={`containerCardsPrincipal ${isSidebarOpen ? 'sidebar-open' : ''}`}>
       <div className="containeMessage">
         <h1>Our Advisors</h1>
         <br />
