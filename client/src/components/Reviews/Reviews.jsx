@@ -70,10 +70,10 @@ export const Reviews = () => {
 
   };
 
-  let btndisabled = !(
-    currentValue &&
-    input.comment.length
-  )
+  // let btndisabled = !(
+  //   currentValue &&
+  //   input.comment.length
+  // )
 
   return (
     <div className='fullContRev'>
