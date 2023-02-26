@@ -36,8 +36,9 @@ const Navbar = (props) => {
         }
         return <Link {...linkProps}><div>{item.name}</div></Link>;
       })}
-        <Searchbar />
-        <i className="config-icon fas fa-cogs" onClick={toggleConfigBar}></i>
+        <div className='conf'>
+        <i className="config-icon fa-solid fa-gear" onClick={toggleConfigBar}></i>
+        </div>
       </div>
     </div>
   );

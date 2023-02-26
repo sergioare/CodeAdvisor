@@ -1,5 +1,8 @@
 import { useState, useRef } from 'react';
+import ModInquiries from '../Modals/ModInquiries';
 import "./ConfigSideBar.scss"
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import Admin from '../Admin/Admin';
 
 function ConfigSideBar({isConfigBarOpen, toggleConfigBar, toggleProfile, closeSideBar, openAdmin, toggleAdmin, isSidebarOpen, isProfileOpen}) {
     const [isEnglish, setIsEnglish] = useState(true);
@@ -34,19 +37,24 @@ function ConfigSideBar({isConfigBarOpen, toggleConfigBar, toggleProfile, closeSi
         if(isSidebarOpen)closeSideBar();
         if(openAdmin)toggleAdmin();  
     }
-
+    
+    function handleAdmin(){
+     console.log("put here the Admin component")
+    }
+  
     return (
         <div className={`Configsidebar ${isConfigBarOpen ? 'open' : 'closed'}`}>
-            <button className="config-title" onClick={handleTitleClick}>Configurations</button>
-            <button className="language-toggle" onClick={handleProfileClick}>Profile</button>
+            <button className="config-title" onClick={handleTitleClick}><i className="fa-solid fa-gear"></i>Settings</button>
+            <button className="language-toggle" onClick={handleProfileClick}><i className="fa-solid fa-user"></i>Your Profile</button>
             <button ref={languageToggle} className="language-toggle" onClick={handleLanguageToggle}>
                 {isEnglish ? 'English' : 'Español'}
             </button>
             <button ref={themeToggle} className="theme-toggle" onClick={handleThemeToggle}>
                 {isDarkMode ? 'Light Mode' : 'Dark Mode'}
             </button>
-            <a className="signoff-report-button" href="https://example.com/report">Report a problem</a>
-            <button className="signoff-report-button" onClick={signOff}>Sign off</button>
+            <ModInquiries/>
+            <button className='dashboard' onClick={handleAdmin}><DashboardIcon className='i'/>Dashboard</button>
+            <button className="signoff-report-button" onClick={signOff}> <i className="fa-solid fa-right-from-bracket"></i>Sign out</button>
         </div>
     );
 }

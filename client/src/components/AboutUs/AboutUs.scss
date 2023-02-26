@@ -47,6 +47,7 @@
         justify-content: space-around;
         padding: 10px;
         padding-bottom: 30px;
+        color:$title-bg-light ;
     }
 
     .image {
@@ -88,8 +89,8 @@
 }
 
 .title {
-    // color: $text-bg-purple;
-    color: black;
+    color: $text-bg-purple;
+    // color: black;
     padding-left: 40px;
     font-size: 60px;
 }
