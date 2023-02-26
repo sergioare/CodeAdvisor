@@ -14,6 +14,7 @@ const AboutUs = () => {
         dispatch(getAutors())
     }, [dispatch])
 
+    console.log(getAutors());
     return (
         <>
 
