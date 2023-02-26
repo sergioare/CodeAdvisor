@@ -4,7 +4,7 @@ import "./ConfigSideBar.scss"
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import Admin from '../Admin/Admin';
 
-function ConfigSideBar({isConfigBarOpen, toggleConfigBar, toggleProfile, closeSideBar, openAdmin, toggleAdmin, isSidebarOpen, isProfileOpen}) {
+function ConfigSideBar({isAdmin, isConfigBarOpen, toggleConfigBar, toggleProfile, closeSideBar, openAdmin, toggleAdmin, isSidebarOpen, isProfileOpen}) {
     const [isEnglish, setIsEnglish] = useState(true);
     const [isDarkMode, setIsDarkMode] = useState(true);
     const languageToggle = useRef(null);
@@ -37,9 +37,13 @@ function ConfigSideBar({isConfigBarOpen, toggleConfigBar, toggleProfile, closeSi
         if(isSidebarOpen)closeSideBar();
         if(openAdmin)toggleAdmin();  
     }
-    
-    function handleAdmin(){
-     console.log("put here the Admin component")
+
+    const handleAdminButtonClick = () => {
+        toggleAdmin();
+        closeSideBar();            
+        if(isProfileOpen){
+            toggleProfile();
+        }
     }
   
     return (
@@ -53,7 +57,7 @@ function ConfigSideBar({isConfigBarOpen, toggleConfigBar, toggleProfile, closeSi
                 {isDarkMode ? 'Light Mode' : 'Dark Mode'}
             </button>
             <ModInquiries/>
-            <button className='dashboard' onClick={handleAdmin}><DashboardIcon className='i'/>Dashboard</button>
+            {isAdmin && <button className='dashboard' onClick={handleAdminButtonClick}><DashboardIcon className='i'/>Dashboard</button>}
             <button className="signoff-report-button" onClick={signOff}> <i className="fa-solid fa-right-from-bracket"></i>Sign out</button>
         </div>
     );
