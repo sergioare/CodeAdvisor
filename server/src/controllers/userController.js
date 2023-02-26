@@ -171,7 +171,15 @@ const updatUserAdvisors = async (req, res, next) => {
         res.status(400).send(error.message);
     }
 };
-
+const addaa = async () => {
+    const data = req.body;
+    try {
+        await firestore.collection('Advisors').add(data);
+        res.send('Advisors añadido');
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+}
 module.exports = {
     getUsers,
 
@@ -180,5 +188,6 @@ module.exports = {
     updateUser,
 
     addUserAdvisors,
-    updatUserAdvisors
+    updatUserAdvisors,
+    addaa
 }
