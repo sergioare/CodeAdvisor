@@ -4,14 +4,10 @@ const { User } = require("../models/Users");
 const firestore = firebase.firestore();
 ///////////////////--Data--\\\\\\\\\\\\\\\\\\\\\\\\\
 const dataTechSkills = [
-    'JS', 'PY', 'Java', 'Ruby', 'CSS',
-    'PHP', 'C++', 'C#', 'C', 'HTML'
+    'JS', 'PY', 'Java', 'Ruby', 'CSS', 'PHP', 'C++', 'C#', 'C', 'HTML'
 ]
 const dataCountries = [
-    'Argentina', 'Bolivia', 'Brazil',
-    'Canada', 'Colombia', 'Chile',
-    'Mexico', 'Paraguay', 'Peru',
-    'U.S.A.', 'U.K.',
+    'Argentina', 'Bolivia', 'Brazil', 'Canada', 'Colombia', 'Chile', 'Mexico', 'Paraguay', 'Peru', 'U.S.A.', 'U.K.',
 ]
 
 ///////////////////--Users--\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -30,7 +26,7 @@ const getUsers = async (req, res, next) => {
                 x.data().About
             )
 
-            yo.push(user)
+            if(x.data().status === true) yo.push(user)
         })
         res.status(200).send(yo)
     } catch (error) {

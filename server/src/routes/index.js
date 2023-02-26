@@ -8,18 +8,15 @@ const dataRoute         = require('./dataRoutes')
 const advisorsRoute     = require('./advisorsRoute');
 const mercadoPagoRouter = require('./mercadoPagoRouter')
 const nodeMailerRoutes = require('./nodeMailer')
- const adminRoute        = require('./adminRoute');
+const adminRoute        = require('./adminRoute');
 const chimpMailerRoutes = require('./nchimpMailerRoute')
 
- 
-router.get("/", (req,res)=>{
-    res.status(200).send('hola mundo');
-})
 
-// router.get("/users", getAllUsers)
+router.get("/", (req,res) => res.status(200).send('welcome to  °˖✧◝(⁰▿⁰)◜✧˖°   CodeAdvisors_back  °˖✧◝(⁰▿⁰)◜✧˖°  '))
+
 // router.use("/user", userRoute);
-router.get("/", (req, res) => res.status(200).end('Hello Cron!'))
 router.use('/User', userRoute)
+
 router.use("/Advisors", advisorsRoute)
 router.use('/data', dataRoute)
 
