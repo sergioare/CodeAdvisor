@@ -13,6 +13,7 @@ import Profile from '../../components/Profile/Profile';
 import Admin from '../../components/Admin/Admin';
 import { useAuth } from "../../context/authContext";
 import {  useNavigate } from "react-router-dom";
+import Footer from '../Footer/Footer'
 // import { useContext } from 'react';
 
 const Home = () => {
@@ -75,6 +76,7 @@ const Home = () => {
           </div>
         ))}
       </div>
+      <Footer/>
       <Profile  isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen}> </Profile>
       <ConfigSideBar isSidebarOpen={isSidebarOpen} isConfigBarOpen={isConfigBarOpen} toggleConfigBar={toggleConfigBar} toggleProfile={toggleProfile} openAdmin={openAdmin} toggleAdmin={toggleAdmin} closeSideBar={closeSideBar}/>
       

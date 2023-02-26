@@ -24,7 +24,7 @@
         padding: 10px;
         border: none;
         cursor: pointer;
-        background-color: $primary-color;
+        background-color: $circles-bg-light;
         color: $text-bg-purple;
         border-radius: 10px;
         text-shadow: 2px 2px 2px $title-bg-light;
@@ -33,6 +33,10 @@
           background-color: darken($primary-color, 10%);
         }
       
+        i{
+                margin-right: 1em;
+                font-size: 1.3em;
+        }
            
      
 }

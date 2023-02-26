@@ -15,7 +15,7 @@ const Footer = () => {
 })
 }
   return(
-    <div>
+    <div className='footer'>
         <footer className="footer-distributed">
 
         <div className="footer-logo">
