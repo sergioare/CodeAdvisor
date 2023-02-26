@@ -6,11 +6,21 @@ import { useState } from 'react';
 // import { useParams } from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
 // import './Reviews.scss';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import './Reviews.scss';
 // import StarRating from '../StarRating/StarRating';
 
 export const Reviews = () => {
+
+  const showAlert = () => {
+    Swal.fire({
+      title: "Sorry, We are working for you",
+      icon: "warning",
+      footer: "<b>Continue to enjoy our services</b>",
+      timer: 3000,
+    })
+  }
+
   const [input, setInput] = useState({
     comment: ""
   })
@@ -105,10 +115,12 @@ export const Reviews = () => {
             className='botonRev'
             gradientDuoTone="purpleToBlue"
             type="submit"
-            disabled={btndisabled}>Send</Button>
+            // disabled={btndisabled}
+            onClick={showAlert}>Send</Button>
 
         </form>
       </div>
     </div>
   )
 }
+export default Reviews;

@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  // height: 100vh;
   margin-top: 10px;
 
 
@@ -13,7 +13,7 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, 'Times New Roman', Times, serif;
     color: $primary-color;
     margin: 0px;
- text-shadow: 2px 2px 2px $border-purple-ligth;
+    text-shadow: 2px 2px 2px $border-purple-ligth;
   }
 
   p {
@@ -29,7 +29,7 @@
     align-items: center;
     justify-content: space-around;
     margin-bottom: 10px;
-    width: 990px;
+    width: 80%;
     height: 380px;
     padding: 20px;
     margin-top: 15px;

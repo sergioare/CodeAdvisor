@@ -11,9 +11,8 @@ export const Video = () => {
         loop
         controls
         playing={true}
-        width='90%'
-        height='50%'
-        
+        width='100%'
+        height='230%'
       />
     </div>
   )
