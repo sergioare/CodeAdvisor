@@ -10,7 +10,7 @@ const Cards = ({ isSidebarOpen, currentPage, setCurrentPage }) => {
   const [cardsPerPage, setCardsPerPage] = useState(8);
 
   // Calculate total number of pages
-  const totalPages = Math.ceil(allAdvisors.length / cardsPerPage);
+  const totalPages = Math.floor(allAdvisors.length / cardsPerPage);
 
   useEffect(() => {
     dispatch(getAdvisors())
