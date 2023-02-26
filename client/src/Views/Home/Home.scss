@@ -50,11 +50,27 @@ body {
   border-radius: 90px 0 90px 0;
   // padding: 10px;
 
+  &.sidebar-open {
+    margin-left: 300px;
+  }
+
   .ContVideoPlayer,
   .ContTextVideoplay {
     width: 50%;
     float: left;
     margin-left: 8%;
+    
+    &.sidebar-open {
+
+      h3{
+        font-size: 28px;
+      }
+
+      p{
+        font-size: 20px;
+      }
+
+    }
 
   }
 
