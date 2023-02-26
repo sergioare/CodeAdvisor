@@ -44,8 +44,11 @@ const Payment = () => {
                 // .then((res)=>alert("info enviada"))
     };
 
+
     const prod = {
         // id: Math.floor(Math.random() * 999999),
+        idAdvisor:product.id,
+        idClient:"",
         Title: `${product.Firstname} counseling for ${count} hr`,
         Quantity: count,
         Price: product.Price
@@ -97,9 +100,9 @@ const Payment = () => {
                         </div>
                     </div>
 
-                    <div className='HoursContent'>
+                    {/* <div className='HoursContent'>
                         <p> Dates not available </p>
-                    </div>
+                    </div> */}
 
                 </div>
 

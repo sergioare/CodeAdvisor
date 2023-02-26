@@ -15,11 +15,12 @@ import { useAuth } from "../../context/authContext";
 import {  useNavigate } from "react-router-dom";
 import Footer from '../Footer/Footer'
 // import { useContext } from 'react';
+import { Video } from '../../Video/Video';
 
 const Home = () => {
 
-  const {user , logout} = useAuth()
-  const navigate = useNavigate();  
+  const { user, logout } = useAuth()
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   //Estado de admin. No se si será necesario o vendra despues de otro lado.
   const [isAdmin, setIsAdmin] = useState(true);
@@ -32,8 +33,9 @@ const Home = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(loadProfessionals());
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
   }, [dispatch])
-  
+
   const handleSignOut = async (e) => {
     e.preventDefault();
     try {
@@ -45,9 +47,9 @@ const Home = () => {
   };
 
   const toggleConfigBar = () => {
-  setIsConfigBarOpen(prevState => !prevState);
+    setIsConfigBarOpen(prevState => !prevState);
   };
-  
+
   const closeSideBar = () => {
     setIsSidebarOpen(false);
   };
@@ -60,13 +62,22 @@ const Home = () => {
     setOpenAdmin(!openAdmin);
   };
 
-    
+
 
   return (
     <div className='home'>
-      <Navbar toggleConfigBar={toggleConfigBar}/>
-      <SideBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} setCurrentPage={setCurrentPage}/>
-      <Commercial isSidebarOpen={isSidebarOpen}/>
+      <Navbar toggleConfigBar={toggleConfigBar} />
+      <SideBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} setCurrentPage={setCurrentPage} />
+      <Commercial isSidebarOpen={isSidebarOpen} />
+      <div className='contSecctionVideo'>
+        <div className='ContVideoPlayer'>
+          <Video isSidebarOpen={isSidebarOpen} />
+        </div>
+        <div className='ContTextVideoplay'>
+          <h3>Have you ever wondered how to write a web page?</h3>
+          <p>There are many different programming languages ​​that allow us to create our web pages. Here we show you what they are and you can also choose who will teach you the programming language that interests you the most.</p>
+        </div>
+      </div>
       <Cards isSidebarOpen={isSidebarOpen} currentPage={currentPage} setCurrentPage={setCurrentPage} />
       <Testimonials />
       <div className='icons'>

@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import './Commercial.scss';
 import Swal from 'sweetalert2';
 
-export const Commercial = ({isSidebarOpen}) => {
+
+export const Commercial = ({ isSidebarOpen }) => {
   const showAlert = () => {
     Swal.fire({
       title: 'Sorry, We are working for you!',
@@ -15,7 +16,7 @@ export const Commercial = ({isSidebarOpen}) => {
   }
   return (
     <div className={`ContPrincipal ${isSidebarOpen ? 'sidebar-open' : ''}`}>
-    {/* <div className='ContPrincipal'> */}
+      {/* <div className='ContPrincipal'> */}
       <div className='textCont'>
         <h1>Teaching in the internet age </h1>
         <h1>means we must teach <p>tomorrow's</p></h1>
@@ -27,7 +28,7 @@ export const Commercial = ({isSidebarOpen}) => {
           <button onClick={showAlert}>Join as Student</button>
         </Link>
       </div>
-
+    
     </div>
   )
 }
