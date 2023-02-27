@@ -3,8 +3,6 @@
 
 // Sidebar styles
 .menu-icon {
-  // width: 23px;
-  // height: 23px;
   width: 30px;
   height: 30px;
   font-size: 25px;
@@ -12,9 +10,6 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  // background-color: $title-bg-purple;
-  // border-radius: 10px;
-  // border: 3px solid $title-bg-purple;
   cursor: pointer;
   margin-left: -250px;
   margin-top: 14px;
@@ -25,17 +20,12 @@
 }
 
 .menu-icon:hover {
-  // background-color: $text-bg-purple;
-  // border: 3px solid $text-bg-purple;
-  // box-shadow: 0px 0px 8px 0.4px $title-bg-light;
   transition: all 0.2s ease-in-out;
   color: $title-bg-purple;
 }
 
 .menu-icon-out {
   position: fixed;
-  // width: 23px;
-  // height: 23px;
   width: 30px;
   height: 30px;
   font-size: 25px;
@@ -43,12 +33,9 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  // background-color: $title-bg-light;
-  // border-radius: 10px;
-  // border: 3px solid $title-bg-light;
   cursor: pointer;
   margin-left: 10px;
-  margin-top: 70px;
+  margin-top: 88px;
   padding-left: 1px;
   padding-top: 1px;
   color: $title-bg-light;
@@ -56,10 +43,7 @@
 }
 
 .menu-icon-out:hover {
-  // background-color: $title-bg-purple;
-  // border: 3px solid $title-bg-purple;
   color: $title-bg-medium;
-  // box-shadow: 0px 0px 8px 0.4px $title-bg-light;
   transition: all 0.2s ease-in-out;
 }
 

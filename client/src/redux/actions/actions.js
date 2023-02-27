@@ -22,7 +22,7 @@ export const UNBLOCK_ACCOUNT = 'UNBLOCK_ACCOUNT'
 
 export const getAutors = () => {
   return async function (dispatch) {
-    const apiData = await axios.get("http://localhost:3002/data/autores/");
+    const apiData = await axios.get("https://code-advisor-xi.vercel.app/data/autores/");
     const autors = apiData.data;
     dispatch({ type: GET_AUTORS, payload: autors });//... este info va al reducer
 
@@ -43,7 +43,7 @@ export const unBlockAccount = (id) => {
 
 export const getAdvisorReviews = (id) => {
   return async function (dispatch) {
-    const apiData = await axios.get(`http://localhost:3002/Advisors/${id}/Reviwers`);
+    const apiData = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`);
     const reviews = apiData.data;
     dispatch({ type: GET_ADVISORS_REVIEWS, payload: reviews });
 
@@ -52,7 +52,7 @@ export const getAdvisorReviews = (id) => {
 
 export const getReviews = () => {
   return async function (dispatch) {
-    const response = await axios.get('http://localhost:3002/data/CommunityComments');
+    const response = await axios.get('https://code-advisor-xi.vercel.app/data/CommunityComments');
     const reviews = response.data;
     dispatch({ type: GET_REVIEWS, payload: reviews });
   };
@@ -60,7 +60,7 @@ export const getReviews = () => {
 
 export const getAdvisors = () => {
   return async function (dispatch) {
-    const response = await axios.get('http://localhost:3002/Advisors');
+    const response = await axios.get('https://code-advisor-xi.vercel.app/Advisors');
     const advisors = response.data;
     dispatch({ type: GET_ADVISORS, payload: advisors })
   };
@@ -68,7 +68,7 @@ export const getAdvisors = () => {
 
 export const getDetail = (id) => {
   return async function (dispatch) {
-    const response = await axios.get(`http://localhost:3002/Advisors/${id}`);
+    const response = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}`);
     const advisor = response.data;
     dispatch({ type: ADVISOR_DETAIL, payload: advisor })
   }
@@ -76,7 +76,7 @@ export const getDetail = (id) => {
 
 export const getProfile = (id) => {
   return async function (dispatch) {
-    const response = await axios.get(`http://localhost:3002/Advisors/${id}`);
+    const response = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}`);
     const advisor = response.data;
     dispatch({ type: GET_PROFILE, payload: advisor })
   }
@@ -84,7 +84,7 @@ export const getProfile = (id) => {
 
 export const getTechSkills = () => {
   return async function (dispatch) {
-    const response = await axios.get('http://localhost:3002/data/TechSkills');
+    const response = await axios.get('https://code-advisor-xi.vercel.app/data/TechSkills');
     const techSkills = response.data;
     dispatch({ type: GET_TECHSKILLS, payload: techSkills })
   }
@@ -92,7 +92,7 @@ export const getTechSkills = () => {
 
 export const loadProfessionals = () => {
   return function (dispatch) {
-    fetch("http://localhost:3002/Advisors")
+    fetch("https://code-advisor-xi.vercel.app/Advisors")
       .then(res => res.json())
       .then(data => dispatch({ type: LOAD_PROFESSIONALS, payload: data }));
   }
