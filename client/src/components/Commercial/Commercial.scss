@@ -1,26 +1,30 @@
+@use '../Styles/mixins';
 @import '../Styles/_variables.scss';
 
 .ContPrincipal {
-  display: flex;
+  @include mixins.create-flexbox;
   flex-wrap: wrap;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  margin-bottom: 1vh;
   transition: margin-left 0.4s ease-in-out;
+  height: 70vh;
 
   .textCont {
-    margin: 20px auto;
-    padding: 10px 0 20px;
+    padding: 5vw;
     text-align: center;
     width: 90%;
-    margin-bottom: 20px;
-    border: 10px solid $title-bg-purple;
+    border: 1vw solid $circles-bg-light;
     border-radius: 40px;
+    background-image: url(../../assets/border.png);
+    background-repeat: no-repeat;
+    background-size: 12em;
+    background-position-x: right ;
+    background-position-y: -3vh ;
+  
 
     h1 {
-      font-size: 2.5rem;
+      margin-top: -50vh;
+      font-size: 3vw;
       font-weight: bold;
       line-height: 1.2;
       margin: 0;
@@ -28,7 +32,7 @@
 
       p {
         display: inline-block;
-        color: $title-bg-medium;
+        color: #e28743;
         margin-bottom: 0;
       }
 
@@ -37,34 +41,87 @@
         margin-bottom: 0;
       }
     }
+    
   }
 
   .buttonCont {
     display: flex;
-    align-items: center;
     position: absolute;
-    justify-content: space-around;
-    top: 40vh;
+    margin-top: 32vh;
+    // justify-content: space-around;
+    
+    // top: 40vh;
     /* ajustar según sea necesario */
 
     button {
-      font-size: 17px;
+      font-size: 1.8vw;
       font-weight: bold;
-      background-color: $title-bg-light;
+      background-color: $primary-color;
       border: none;
       border-radius: 20px;
       color: white;
-      margin: 10px;
-      padding: 7px 17px;
+      margin-right: 5vw;
+      margin-left: 5vw;
+      padding:.3em .6em ;
+    }
+    .btn-one{
+    background-color: #e28743;
+
     }
 
     button:hover {
-      background-color: $primary-color;
+      background-color: $title-bg-light;
       cursor: pointer;
     }
   }
 
   &.sidebar-open {
     margin-left: 300px;
+  }
+
+  .img-right, .img-left{
+    display: flex;
+    width: 10vw;
+    margin-top: -30vh;
+    border-radius: 40% 40%  40% 40%;
+    border-right: 6px solid #48484885;
+    border-bottom:2px solid #484848 ;
+    
+    
+  }
+  .img-right{
+
+  // margin-right: -10vw;
+  margin-left: 60vw;
+ 
+  }
+  .arrow-bot{
+    display: flex;
+    position: absolute;
+    width: 8vw;
+    height: 15vh;
+    z-index: 9999;
+    background-image: url(../../assets/crazy-arrow.png);
+    background-repeat: no-repeat;
+    background-size: 7vw;
+    margin-left: -15vw;
+    margin-top: 57vh;
+   
+
+  }
+  .arrow-left{
+    display: flex;
+    position: absolute;
+    width: 8vw;
+    height: 15vh;
+    z-index: 9999;
+    background-image: url(../../assets/arrow-left.png);
+    background-repeat: no-repeat;
+    background-size: 5vw;
+    margin-left: 30vw;
+    filter: invert(75%) sepia(9%) saturate(6995%) hue-rotate(327deg) brightness(92%) contrast(93%);
+    margin-top: 7vh;
+   
+
   }
 }
