@@ -3,6 +3,7 @@ import './Profile.scss';
 import { getProfile, getAdvisorReviews } from '../../redux/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuth } from 'firebase/auth'
+import ModProfile from '../Modals/ModProfile';
 
 
 function Profile ({isProfileOpen, toggleProfile, isConfigBarOpen}) {
@@ -143,7 +144,7 @@ return (
   <div className={`profile ${isProfileOpen ? 'profile--open' : ''} ${isConfigBarOpen ? 'config-sidebar-open' : ''}`}>
     <div className="profile__header">
       <h2 className="profile__title" onClick={toggleProfile}>{isAdvisor ? "Advisor profile" : "User profile"}</h2>
-      <button className="profile__title" onClick={handleEdit}>Edit</button>
+      <button className="profile__title" onClick={handleEdit}><ModProfile/></button>
       <button className="fas fa-window-close fa-2x" onClick={toggleProfile}></button>
     </div>
     {!editing && (
