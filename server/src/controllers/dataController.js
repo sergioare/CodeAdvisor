@@ -180,7 +180,7 @@ const getSpecialty = async (req, res, next) => {
 //------------/ OTROS XD DE LA PAGINA /--------------------//
 const dx = async (req, res, next) => {
 try {
-    const fire              = await firestore.collection(`/User`)
+    const fire              = await firestore.collection(`/XD`)
     const data             = await fire.get();
     const z = []
     data.forEach((x) =>{            
