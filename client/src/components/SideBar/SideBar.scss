@@ -1,0 +1,193 @@
+@use '../Styles/mixins';
+@import '../Styles/_variables.scss';
+
+// Sidebar styles
+.menu-icon {
+  width: 30px;
+  height: 30px;
+  font-size: 25px;
+  content: "\f0c9";
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+  margin-left: -250px;
+  margin-top: 14px;
+  padding-left: 1px;
+  padding-top: 1px;
+  color: $title-bg-light;
+
+}
+
+.menu-icon:hover {
+  transition: all 0.2s ease-in-out;
+  color: $title-bg-purple;
+}
+
+.menu-icon-out {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  font-size: 25px;
+  content: "\f0c9";
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: 88px;
+  padding-left: 1px;
+  padding-top: 1px;
+  color: $title-bg-light;
+
+}
+
+.menu-icon-out:hover {
+  color: $title-bg-medium;
+  transition: all 0.2s ease-in-out;
+}
+
+
+.sidebar {
+  margin-top: 74px;
+  height: 90%;
+  padding: 20px;
+  position: fixed;
+  left: -305px;
+  top: 0;
+  background-color: $bg-cards;
+  transition: all 0.3s ease-in-out;
+  z-index: 9999;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 302px;
+  overflow: auto;
+
+  .sidebar-header {
+    position: fixed;
+    margin-left: -20px;
+    margin-top: -20px;
+    background-color: $primary-color;
+    padding-bottom: 16px;
+    border-top-right-radius: 10px;
+    width: 302px;
+
+    .sidebar-clear-section {
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 30px;
+      margin-top: -25px;
+
+      .clear-filter-item {
+        background-color: $primary-color;
+        cursor: pointer;
+        font-weight: 600;
+        color: $bg-cards;
+        text-shadow: 1px 1px 1px black;
+        border-radius: 10px;
+        // border: 1px solid $title-bg-light;
+        border: none;
+        padding: 3px 10px;
+        box-shadow: 0 0 4px $title-bg-light;
+
+      }
+
+      .clear-filter-item:hover {
+        background-color: $secundary-color;
+      }
+    }
+  }
+
+  &.open {
+    left: 0;
+  }
+
+}
+
+
+
+
+.filter-container {
+  background-color: $primary-color;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0 0 2px $title-bg-light;
+
+  .option-item {
+    cursor: pointer;
+    font-weight: 600;
+    color: $bg-cards;
+    text-shadow: 1px 1px 1px black;
+
+  }
+
+  .filter-item {
+    margin-right: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    color: $bg-cards;
+    text-shadow: 1px 1px 1px black;
+
+  }
+
+  .filter-item:last-child {
+    margin-right: 0;
+  }
+}
+
+.sidebar-section {
+  border: 1px solid gray;
+  border-radius: 50px 5px;
+  padding: 10px 18px 0;
+  box-shadow: 0 0 2px $title-bg-light;
+  margin-top: 10px;
+
+  .sidebar-title {
+    margin-left: 10px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px $title-bg-medium;
+    font-size: 20px;
+    color: $title-bg-light;
+  }
+}
+
+.sidebar-select {
+  background-color: $primary-color;
+  padding: 8px;
+  border-radius: 10px;
+  width: 120px;
+  cursor: pointer;
+}
+
+
+.filter-container-lot {
+  background-color: $primary-color;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  align-items: center;
+  justify-items: start;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 20px;
+
+
+
+  .filter-item {
+    margin-right: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    color: $bg-cards;
+    text-shadow: 1px 1px 1px black;
+  }
+
+}
+
+.blank-space {
+  height: 50px;
+}

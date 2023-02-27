@@ -1,0 +1,123 @@
+@use '../../../components/Styles/mixins';
+@import '../../../components/Styles/variables';
+
+.landingThree{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-image: url(../../../assets/bg-1.png);
+    background-size: 105% 200%;
+    
+    .leftSide{
+        @include mixins.create-flexbox;
+        width: 55%;
+        color: $title-bg-purple;
+        font-weight: 800;
+        font-size: 3.5vw;
+    
+        img{
+            width: 30vw;
+            height: 55vh;
+            margin-top: -5vh;
+            border-radius: 50%;
+            object-fit: cover;
+            display: flex;
+            border: 8px solid $text-bg-purple;
+    
+        }
+        .image1{
+         position: absolute;
+         margin-top: -65vh;
+         width: 7.3em;
+         height: 7.3em;  
+        }
+        .image2{
+            position: absolute;
+            margin-top: -28vh;
+            margin-left: -33vw;
+            width: 4em;
+            height: 4em; 
+        }
+        .image3{ 
+            position: absolute;
+            margin-left: 3vw;
+            margin-top: 63vh;
+            width: 6em;
+            height: 6em;  
+           
+        }
+        .image4{
+            position: absolute;
+            margin-top: 30vh;
+            margin-left: -30vw;
+            width: 5em;
+            height: 5em;
+            
+        }
+        .image5{
+            position: absolute;
+            margin-top: -30vh;
+            margin-left: 32vw;
+            width: 4.2em;
+            height: 4.2em;  
+        }
+        .image6{
+            position: absolute;
+            margin-top: 28vh;
+            margin-left: 32vw;
+            width: 5em;
+            height: 5em;
+        }
+        .image7{
+            position: absolute;
+            margin-top: 90vh;
+            margin-left: -32vw;
+            width: 3.5em;
+            height: 3.5em; 
+        }
+     }
+    
+    .rightSide{
+        display: flex;
+        flex-wrap: wrap;
+        width: 43%;
+        margin-top: 15vh;
+        color:$text-bg-purple;
+        margin-right: 0vw;  
+        h1{
+            text-align: left;
+        }
+        .benefits{
+            display: flex;
+            flex-wrap: wrap;
+        
+            .left{
+                @include mixins.create-flexbox; 
+                width: 25%;
+                         
+            }
+            
+            .right{
+                display: flex;
+                flex-direction: column;
+                width: 70%;
+                text-align: left;
+           
+                h1{
+                    font-size: 3vw;
+                  
+                }
+               
+                h2{
+                    font-size: 2vw;
+                    margin-bottom: 2vh;
+                    text-align: center;
+                }
+                
+                p{
+                    font-size: 1.5vw;
+                }
+            }
+        }
+    }
+}

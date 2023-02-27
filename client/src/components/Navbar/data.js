@@ -1,14 +1,18 @@
-export const navbarItems =[
+export const navbarItems = [
     {
-        name: 'Home'
+        name: 'Home',
+        path: '/home'
     },
     {
-        name: 'About'
+        name: 'Forum',
+        path: '/forum'
     },
     {
-        name: 'Courses'
+        name: 'Technologies',
+        path: '/technologies'
     },
     {
-        name: 'Contact'
+        name: 'FAQs',
+        path: 'FAQs'
     },
 ]

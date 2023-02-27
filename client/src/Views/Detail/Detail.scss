@@ -1,0 +1,155 @@
+@import '../../components/Styles/variables';
+
+.DetailContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  // height: 100vh;
+  margin-top: 10px;
+
+
+  h1 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, 'Times New Roman', Times, serif;
+    color: $primary-color;
+    margin: 0px;
+    text-shadow: 2px 2px 2px $border-purple-ligth;
+  }
+
+  p {
+    font-weight: bold;
+    font-size: 24px;
+    font-style: italic;
+    color: $secundary-color;
+  }
+
+  .Detail {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    width: 80%;
+    height: 380px;
+    padding: 20px;
+    margin-top: 15px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px 0px $primary-color;
+
+    .ButtonSchedule {
+      width: 150px;
+    }
+
+    .DataContent {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 200px;
+      height: 100px;
+
+      // .DetailTitle {
+      //   font-weight: bold;
+      //   margin-bottom: 15px;
+      //   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, 'Times New Roman', Times, serif;
+      //   font-style: normal;
+
+      // }
+
+      .TitlesPurple {
+        color: $primary-color;
+        font-size: 18px;
+        font-weight: bold;
+        font-style: normal;
+
+      }
+
+      h4 {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif, 'Times New Roman', Times, serif;
+        color: $primary-color;
+        margin: 0px;
+        margin-top: 10px;
+      }
+
+      p {
+        color: black;
+        margin-bottom: 5px;
+        font-size: 16px;
+        font-weight: normal;
+      }
+
+      span {
+        color: black;
+        font-weight: normal;
+
+      }
+
+    }
+
+    .About {
+      width: 250px;
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-weight: bold;
+      color: $primary-color;
+      text-align: justify;
+      font-size: 18px;
+
+
+      .TextAbout {
+        font-weight: normal;
+        color: black;
+        font-size: 16px;
+
+      }
+
+
+    }
+
+    img {
+      width: 350px;
+      height: 350px;
+      object-fit: cover;
+      margin-right: 20px;
+      border-radius: 50%;
+      border: 2px solid $primary-color ;
+      box-shadow: 0px 0px 8px 4px $primary-color;
+    }
+
+    // @media (max-width: 700px) {
+    //   .Detail {
+
+    //     width: 400px;
+    //     height: 800px;
+
+    //   }
+
+    //   img {
+    //     margin-right: 0;
+    //     margin-bottom: 20px;
+
+    //   }
+    // }
+  }
+
+  button {
+    margin-top: 20px;
+    width: 120px;
+    padding: 5px 5px;
+    background-color: $title-bg-light;
+    color: $text-bg-purple;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.609);
+    border: none;
+
+  }
+
+  button:hover {
+    background-color: $primary-color;
+    cursor: pointer;
+  }
+
+
+}
