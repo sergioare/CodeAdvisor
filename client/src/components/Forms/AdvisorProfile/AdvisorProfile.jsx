@@ -9,8 +9,11 @@ import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { getTechSkills } from "../../../redux/actions/actions";
 import Swal from 'sweetalert2'
+import { getAuth } from "firebase/auth";
+import { createAdvisorFromClient } from "../../../handlers/createAdvisorFromClient";
 let auth_token;
 let country_list = [];
+
 
 const AdvisorProfile = () => {
   const techSkills = useSelector(state=> state.techSkills)
@@ -28,6 +31,7 @@ const AdvisorProfile = () => {
     footer: "<b>Continue enjoy our services</b>"
 })
 }
+
   const handleImage = async (event) => {
     const file = event.target.files[0];
     const formData = new FormData();
@@ -98,23 +102,18 @@ const AdvisorProfile = () => {
             cv:"",
           }}
           onSubmit={(values) => {
-            values.contact = phone;
-            values.techSkills.push(techSelected);
-            values.photo = imageCloud;
-          
-            axios
-              .post(
-                "urlpost",
-                values
-              )
-              .then((response) => {
-                setResponseServer(response.data);
-                // navigate("/professionalDashboard");
-               showAlert();
-              })
-              .catch((error) => {
-                setResponseServer(error.message);
-              });
+            const Profile = getAuth();
+            const Uid = Profile.currentUser.uid;
+            
+            values.Contact = phone;
+            //values.TechSkills.push(techSelected);   ---->  no mapea las Techskills 
+            Profile.currentUser.providerData[0].providerId  = 'google.com' ?  
+            values.Image = Profile.currentUser.photoURL : 
+            values.Image = imageCloud ;
+            
+            //console.log(values)
+            // Envío de datos a la DB, creacion de nuevo Advisor 
+            createAdvisorFromClient(values,Uid)
           }}
         >
           {({

@@ -11,6 +11,7 @@ const {
     addAdvisorsSchedules,
     addAdvisorsMyWallet,
     
+    
     updatAdvisorsReviwers,
     updatAdvisorsSchedules,
     
@@ -18,6 +19,7 @@ const {
     deleteAdvisors
 
     } = require('../controllers/advisorsController');
+const { createAdvisorFromClient } = require('../controllers/clientsController');
 
 const advisorsRoute = Router();
 
@@ -30,6 +32,7 @@ advisorsRoute.get('/:id/MyWallet',getAdvisorsAllMyWallet)
 advisorsRoute.post('/:id/Reviwers',addAdvisorsReviwers)
 advisorsRoute.post('/:id/Schedules',addAdvisorsSchedules)
 advisorsRoute.post('/:id/MyWallet',addAdvisorsMyWallet)
+advisorsRoute.post('/Create/:uid', createAdvisorFromClient)
 
 advisorsRoute.put('/:id/Reviwers/:idr',updatAdvisorsReviwers)
 advisorsRoute.put('/:id/Schedules/:idr',updatAdvisorsSchedules)

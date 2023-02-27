@@ -17,6 +17,7 @@ router.get("/", (req,res)=>{
 })
 
 // router.get("/users", getAllUsers)
+//// router.use("/user", userRoute);
 router.use("/Clients", clientsRoute);
 router.get("/", (req, res) => res.status(200).end('Hello Cron!'))
 router.use('/User', userRoute)
