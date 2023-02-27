@@ -69,11 +69,11 @@ const Home = () => {
       <Navbar toggleConfigBar={toggleConfigBar} />
       <SideBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} setCurrentPage={setCurrentPage} />
       <Commercial isSidebarOpen={isSidebarOpen} />
-      <div className='contSecctionVideo'>
+      <div className={`contSecctionVideo ${isSidebarOpen ? 'sidebar-open' : ''}`}>
         <div className='ContVideoPlayer'>
-          <Video isSidebarOpen={isSidebarOpen} />
+          <Video/>
         </div>
-        <div className='ContTextVideoplay'>
+        <div className={`ContTextVideoplay ${isSidebarOpen ? 'sidebar-open' : ''}`}>
           <h3>Have you ever wondered how to write a web page?</h3>
           <p>There are many different programming languages ​​that allow us to create our web pages. Here we show you what they are and you can also choose who will teach you the programming language that interests you the most.</p>
         </div>
@@ -89,7 +89,7 @@ const Home = () => {
       </div>
       <Footer/>
       <Profile  isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen}> </Profile>
-      <ConfigSideBar isSidebarOpen={isSidebarOpen} isConfigBarOpen={isConfigBarOpen} toggleConfigBar={toggleConfigBar} toggleProfile={toggleProfile} openAdmin={openAdmin} toggleAdmin={toggleAdmin} closeSideBar={closeSideBar}/>
+      <ConfigSideBar isAdmin={isAdmin} isSidebarOpen={isSidebarOpen} isConfigBarOpen={isConfigBarOpen} toggleConfigBar={toggleConfigBar} toggleProfile={toggleProfile} openAdmin={openAdmin} toggleAdmin={toggleAdmin} closeSideBar={closeSideBar} isProfileOpen={isProfileOpen}/>
       
       {isAdmin && <Admin openAdmin={openAdmin} toggleAdmin={toggleAdmin} isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen} closeSideBar={closeSideBar}></Admin>}
     </div>

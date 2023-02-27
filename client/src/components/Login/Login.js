@@ -29,7 +29,7 @@ const Login = () => {
         try {
           const LOGIN = await login(user.email, user.password);   //emailVerified 
           console.log(LOGIN)
-          if(LOGIN.user.emailVerified) navigate("/");
+          if(LOGIN.user.emailVerified) navigate("/home");
           else window.alert('Usuario no verificado, GET THE FUCK OUTTA HERE')
           
         } catch (error) {
@@ -56,7 +56,7 @@ const Login = () => {
           const UserUid = await loginWithGoogle();   // uid  = UserUid.user.uid
           const data = {Nickname: UserUid.user.displayName} 
           sendProfileDetails(data, UserUid.user.uid) 
-          navigate("/");
+          navigate("/home");
         } catch (error) {
           setError(error.message);
         }

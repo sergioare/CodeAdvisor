@@ -48,13 +48,31 @@ body {
   background-color: $circles-bg-light;
   margin-top: 15px;
   border-radius: 90px 0 90px 0;
+  transition: all 0.4s ease-in-out;
   // padding: 10px;
+
+  &.sidebar-open {
+    margin-left: 300px;
+  }
 
   .ContVideoPlayer,
   .ContTextVideoplay {
     width: 50%;
     float: left;
     margin-left: 8%;
+
+    
+    &.sidebar-open {
+
+      h3{
+        font-size: 28px;
+      }
+
+      p{
+        font-size: 20px;
+      }
+
+    }
 
   }
 
