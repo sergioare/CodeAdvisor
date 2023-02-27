@@ -15,6 +15,9 @@ const Payment = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const product = useSelector(state => state.advisorDetail)
+    
+    const skillMap =  product.TechSkills
+    console.log(skillMap)
 
     useEffect(() => {
         dispatch(getDetail(id));
@@ -32,6 +35,11 @@ const Payment = () => {
         event.preventDefault();
         setCount(count + 1);
     }
+//------------------TechSkills---------------//
+const [skills, setSkills]=useState("")
+
+
+
 
 //----------------------------Ruote to mercadoPAgo---------------------//
     const submitHandler = (event) => {
@@ -53,7 +61,7 @@ const Payment = () => {
         Quantity: count,
         Price: product.Price
     };
-    console.log(prod)
+    // console.log(prod)
 
 //-----------------------Calendar-------------------//
     const [value, setValue] = useState(dayjs('2023-02-24'));
@@ -100,15 +108,30 @@ const Payment = () => {
                         </div>
                     </div>
 
-                    <div className='HoursContent'>
+                    <div >
+                <label>Tech Skill: </label>
+                <select value={skills} onChange={(e) => setSkills(e.target.value)}>
+                    {skillMap.map((ski)=>(
+                    <option key={ski} value={ski}>
+                        {ski}
+                    </option>
+
+                    ))}
+                </select>
+
+                </div>
+
+                    {/* <div className='HoursContent'>
                         <p> Dates not available </p>
-                    </div>
+                    </div> */}
 
                 </div>
 
                 <div className='PaymentContent'>
                     <p className='DetailTitle'> Confirm Details</p>
                     <div className='DetailBorder'>
+                    <span className='Price'>Tech Skill: <span className='Numbers'>{skills}</span></span>
+
                     <span className='Price'>Price: <span className='Numbers'>${product.Price}.00 / hr</span></span>
                     {/* <div>
                         <button className='ButtonCounter' onClick={decrease} disabled={count <= 1}>-</button>
@@ -132,4 +155,3 @@ const Payment = () => {
     )
 }
 export default Payment;
-
