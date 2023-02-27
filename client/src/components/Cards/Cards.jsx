@@ -19,12 +19,12 @@ const Cards = ({ isSidebarOpen, currentPage, setCurrentPage }) => {
   useEffect(() => {
     if (isSidebarOpen) {
       setCardsPerPage(6);
-      setCurrentPage(Math.floor(currentPage * 1.33))
+      setCurrentPage(Math.round(currentPage * 1.33))
     } else {
       setCardsPerPage(8);
       setCurrentPage(Math.round(currentPage * 0.75))
     }
-  }, [isSidebarOpen, currentPage, setCurrentPage]);
+  }, [isSidebarOpen, setCurrentPage]);
 
   // Calculate indexes of first and last cards on current page
   const indexOfLastCard = currentPage * cardsPerPage;

@@ -41,6 +41,13 @@
       }
     }
 
+    .buttons-positions{
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
     .positions{
       display: flex;
       flex-wrap: wrap;
