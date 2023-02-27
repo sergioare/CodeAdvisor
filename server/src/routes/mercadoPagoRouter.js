@@ -19,8 +19,8 @@ mercadoPagoRouter.post('/', (req, res) => {
         }],
 
         back_urls: {
-            success : "http://localhost:3000/home",
-            failure: "http://localhost:3002/payment/feedback",
+            success : "https://code-advisor-hy1v.vercel.app/home",
+            failure: "https://code-advisor-xi.vercel.app/payment/feedback",
             pending : ""
         },
         auto_return: 'approved',
