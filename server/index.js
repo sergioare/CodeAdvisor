@@ -19,7 +19,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
-const VERCEL_URL = process.env;
+const VERCEL_URL = process.env.VERCEL_URL;
 
 (async function startServer(){
   try{
