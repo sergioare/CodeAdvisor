@@ -23,7 +23,7 @@ const AdvisorProfile = () => {
 
   const showAlert = ()=>{
     Swal.fire({
-    title: "Your profile was created successfuly",
+    title: "Your profile was updated successfuly",
     icon: "success",
     footer: "<b>Continue enjoy our services</b>"
 })
@@ -82,8 +82,8 @@ const AdvisorProfile = () => {
   return (
     
 
-      <div className='containerform'>
-        <h1 className='h1form'>Complete Advisor Profile</h1>
+      <div className='advisorProfile'>
+        
 
         <Formik
           initialValues={{
@@ -124,7 +124,8 @@ const AdvisorProfile = () => {
             values,
            
           }) => (
-            <Form className='Formprofessional'>
+            <Form >
+              <h1>Complete Advisor Profile</h1>
               <Field
                 as="select"
                 name="country"
@@ -135,7 +136,7 @@ const AdvisorProfile = () => {
                 }}
                 // error={errors.town}
                 value={values.country}
-                className='fieldTown'
+                className='input'
               >
                 <option>Select your Country...</option>
                 {country_list.map((country) => {
@@ -151,12 +152,13 @@ const AdvisorProfile = () => {
               </Field>
 
               
-              <h6 className='h6form'>Enter your contact number</h6>
-              <div className='divphone'>
+              <h6>Enter your contact number</h6>
+              <div className='phone'>
                 <PhoneInput
                   initialCountry="ar"
                   value={phone}
                   onChange={(phone) => setPhone(phone)}
+                  className='input'
                 />
               </div>
 
@@ -164,7 +166,7 @@ const AdvisorProfile = () => {
                 touched.contact(<p style={{ color: "red" }}>{errors.contact}</p>)}
 
              
-              <h6 className='h6form'>Insert your portfolio URL</h6>
+              <h6>Insert your portfolio URL</h6>
               <Field
                 type="text"
                 placeholder="URL portfolio"
@@ -172,7 +174,7 @@ const AdvisorProfile = () => {
                 id="portfolio"
                 onChange={handleChange}
                 value={values.portfolio}
-                className='field'
+                className='input'
               />
          
               <Field
@@ -185,7 +187,7 @@ const AdvisorProfile = () => {
                   techSelected(e.target.value);
                 }}
                 value={values.professionselect}
-                className='fieldProf'
+                className='input'
               >
                 <option>Select your Programming Language...</option>
                 {techSkills.map( tech => { 
@@ -203,11 +205,11 @@ const AdvisorProfile = () => {
                 name="description"
                 onChange={handleChange}
                 placeholder="Write a brief description about your work..."
-                className='textareaform'
+                className='textarea'
                 value={values.description}
               />
 
-              <h6 className='h6form'>Upload your profile image</h6>
+              <h6 >Upload your profile image</h6>
               <Field
                 type="file"
                 name="photo"
@@ -218,7 +220,7 @@ const AdvisorProfile = () => {
               {errors.image &&
                 touched.image(<p style={{ color: "red" }}>{errors.image}</p>)}
 
-              <button className='Buttonsend' type="submit">
+              <button className='btn' type="submit" onClick={showAlert}>
                 Send
               </button>
 
