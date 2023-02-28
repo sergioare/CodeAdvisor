@@ -136,7 +136,7 @@ function Register() {
         
 
         <button type="submit" className="btn"> Sign Up </button>
-      <p>Already have an Account?  <span onClick={()=> setIsRegistering(!isRegistering)}>Login</span></p>
+      <p>Already have an Account?  <span onClick={()=> setIsRegistering(!isRegistering)} className='link'>Login</span></p>
       </form>
     </div>
         :<Login/>
