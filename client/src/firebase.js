@@ -36,9 +36,9 @@ export const storage =  getStorage(app)
 
 
 //  Posiblemente aparte de archivo 'File', se puede agregar el nombre del archivo por parametro al fileRef
-export function UploadFile(File) {
+export function UploadFile(File,name) {
   //  Cualquier archivo que se suba tendrá el nombre File.jpg, si ya existe, lo remplaza
-  const fileRef = ref(storage, 'File.jpg');
+  const fileRef = ref(storage, name);
   uploadBytes(fileRef, File).then((snapshot) => {
     console.log(snapshot);
     console.log('Uploaded a blob or file!');

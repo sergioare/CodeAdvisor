@@ -6,11 +6,12 @@ import axios from "axios";
 import './AdvisorProfile.scss'
 import { useNavigate } from "react-router-dom";
 import { PhoneInput } from "react-international-phone";
-import "react-international-phone/style.css";
+//import "react-international-phone/style.css";
 import { getTechSkills } from "../../../redux/actions/actions";
 import Swal from 'sweetalert2'
 import { getAuth } from "firebase/auth";
 import { createAdvisorFromClient } from "../../../handlers/createAdvisorFromClient";
+import { UploadFile } from "../../../firebase";
 let auth_token;
 let country_list = [];
 
@@ -34,22 +35,11 @@ const AdvisorProfile = () => {
 
   const handleImage = async (event) => {
     const file = event.target.files[0];
-    const formData = new FormData();
-    try {
-      formData.append("file", file);
-      formData.append("upload_preset", "zdsy8b2u");
-      await axios
-        .post(
-          "https://api.cloudinary.com/v1_1/ddqsqst5a/image/upload",
-          formData
-        )
-        .then((res) => {
-          console.log(res.data.url);
-          setImageCloud(res.data.url);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    const Uid = getAuth().currentUser.uid;
+    
+    const Image = await UploadFile(file,Uid)
+    setImageCloud(Image)
+    
   };
  
   const get_country = async () => {
@@ -105,16 +95,15 @@ const AdvisorProfile = () => {
             const Profile = getAuth();
             const Uid = Profile.currentUser.uid;
             
-            values.Contact = phone;
-            //values.TechSkills.push(techSelected);   ---->  no mapea las Techskills 
-            Profile.currentUser.providerData[0].providerId  = 'google.com' ?  
-            values.Image = Profile.currentUser.photoURL : 
-            values.Image = imageCloud ;
-            
-            //console.log(values)
+            values.contact = phone;
+            //values.techSkills.push(techSelected);   //---->  no mapea las Techskills 
+            Profile.currentUser.providerData[0].providerId  == 'google.com' ?  
+            values.photo = Profile.currentUser.photoURL : 
+            values.photo = imageCloud ;
             // Envío de datos a la DB, creacion de nuevo Advisor 
             createAdvisorFromClient(values,Uid)
           }}
+          
         >
           {({
             errors,
@@ -209,7 +198,14 @@ const AdvisorProfile = () => {
               />
 
               <h6 >Upload your profile image</h6>
-              <Field
+              <input
+                    type="file"
+                    name="photo"
+                    id="photo"
+                    className="shadow"
+                    onChange={handleImage}
+                />
+              {/* <Field
                 type="file"
                 name="photo"
                 id="photo"
@@ -217,7 +213,7 @@ const AdvisorProfile = () => {
                 className='fieldImg'
               />
               {errors.image &&
-                touched.image(<p style={{ color: "red" }}>{errors.image}</p>)}
+                touched.image(<p style={{ color: "red" }}>{errors.image}</p>)} */}
 
               <button className='btn' type="submit" onClick={showAlert}>
                 Send
