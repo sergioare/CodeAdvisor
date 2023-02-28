@@ -24,9 +24,11 @@
 
 .navRight {
     @include mixins.create-flexbox;
+    justify-content: space-around;
     margin-top: 10px;
     flex: 3;
     gap: 8vw;
+    // width: 50%;
     height: 8vh;
     border-radius: 4em 0 0 4em;
     background-color: $primary-color;
@@ -43,10 +45,16 @@
         }
     }
 }
+
+.shopping{
+    display: flex;
+    margin-right: -5vw;
+    
+
+    }
+
 .conf{
     display: flex;
-    margin-left: 10vw;
-    margin-right: -10vw;
 
 
     .config-icon{
