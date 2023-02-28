@@ -30,7 +30,7 @@ const Login = () => {
           const LOGIN = await login(user.email, user.password);   //emailVerified 
           console.log(LOGIN)
           if(LOGIN.user.emailVerified) navigate("/home");
-          else window.alert('Usuario no verificado, GET THE FUCK OUTTA HERE')
+          else window.alert('User not verified !')
           
         } catch (error) {
           setError(error.message);
@@ -54,7 +54,7 @@ const Login = () => {
       const handleGoogleSignin = async () => {
         try {
           const UserUid = await loginWithGoogle();   // uid  = UserUid.user.uid
-          const data = {Nickname: UserUid.user.displayName} 
+          const data = {Nickname: UserUid.user.displayName , Img : UserUid.user.photoURL} 
           sendProfileDetails(data, UserUid.user.uid) 
           navigate("/home");
         } catch (error) {
