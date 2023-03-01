@@ -52,6 +52,7 @@ const AboutUs = () => {
                     <div className="tools">
                         <h3>Used tools</h3>
                         <div className="containertools" >
+                            <img className="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Vercel_logo_black.svg/2560px-Vercel_logo_black.svg.png" alt="vercel" />
                             <img className="logoReact" src="https://miro.medium.com/max/800/1*meCFnZ5MK_7Fu1ogYfBvNQ.png" alt="reactredux" />
                             <img className="logoSql" src="https://www.pngkey.com/png/full/466-4667821_postgres-logo.png" alt="sql" />
                             <img className="logo" src="https://firebase.google.com/static/downloads/brand-guidelines/PNG/logo-standard.png?hl=es-419" alt="fire" />
