@@ -72,6 +72,8 @@ p{
     .Counter{
       font-size: 25px;
       font-weight: bold;
+      color: black;
+
     }
 
     }
@@ -100,6 +102,8 @@ p{
       .TotalPrice{
         font-weight: bold;
         font-size: 18px;
+        color: black;
+
 
         .Numbers{
           color: $primary-color;
@@ -116,6 +120,7 @@ p{
     }
     
     .Price{ 
+      color: black;
       font-size: 18px;
       font-weight: bold;
       font-style: normal;

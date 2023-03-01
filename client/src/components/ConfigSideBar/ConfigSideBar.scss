@@ -1,20 +1,23 @@
 @use '../Styles/mixins';
 @import '../Styles/_variables.scss';
 
+
 .Configsidebar {
   position: fixed;
   top: 0;
-  right: -300px;
-  height: 100%;
-  width: 200px;
-  background-color: $title-bg-purple;
-  border-left: 1px solid $title-bg-purple;
+  right: -30vw;
+  height: 89vh;
+  width: 15vw;
+  background-color: $bg-sidebar;
+  // border-left: 1px solid $title-bg-purple;
   padding: 20px;
   transition: right 0.4s ease-in-out;
-  border: $primary-color solid 2px;
+  // border: $primary-color solid 2px;
   border-right: 0;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+  margin-top: 11vh;
+ 
 
 
   &.open {
@@ -22,32 +25,41 @@
   }
 
   .config-title {
-    background-color: $title-bg-light;
+    background-color: $circles-bg-light;
     color: $text-bg-purple;
-    font-weight: 800;
+    font-weight: 500;
     padding: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 3vh;
     width: 100%;
     border-radius: 10px;
     text-shadow: 2px 2px 2px black;
-
+    border: 1.5px solid $primary-color;
+    i{
+      margin-right: 1em;
+    
+    }
+    
     &:hover {
       background-color: lighten($title-bg-light, 10%);
     }
   }
   
   .language-toggle, .theme-toggle {
-    display: block;
+    // display: block;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 2vh;
     padding: 10px;
     border: none;
     cursor: pointer;
-    background-color: $primary-color;
+    background-color: $circles-bg-light;
     color: $text-bg-purple;
     border-radius: 10px;
     text-shadow: 2px 2px 2px $title-bg-light;
 
+    i{
+      margin-right: 1em;
+      font-size: 1em;
+    }
     &:hover {
       background-color: darken($primary-color, 10%);
     }
@@ -59,25 +71,42 @@
     color: $text-bg-purple;
   }
   
-  a {
-    display: block;
-    margin-bottom: 10px;
-  }
-  
-  .signoff-report-button {
-    text-decoration: none;
-    display: block;
+  .dashboard{
     width: 100%;
-    margin-top: auto;
+    margin-bottom: 2vh;
     padding: 10px;
     border: none;
     cursor: pointer;
-    background-color: $primary-color;
+    background-color: $circles-bg-light;
+    color: $text-bg-purple;
+    border-radius: 10px;
+    text-shadow: 2px 2px 2px $title-bg-light;
+    font-size: 1.2em;
+
+    .i{
+      margin-right: 1em;
+      font-size: 1.5em;
+    }
+  }
+
+  .signoff-report-button {
+    text-decoration: none;
+    // display: block;
+    width: 100%;
+    margin-top: 28vh ;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: $circles-bg-light;
     color: #fff;
     border-radius: 10px;
-    margin-bottom: 20px;
     text-shadow: 2px 2px 2px $title-bg-light;
-
+    font-size: 1.1em;
+    font-weight: 600;
+    i{
+      margin-right: 1em;
+      font-size: 1em;
+    }
     
     &:hover {
       background-color: darken($primary-color, 10%);

@@ -1,7 +1,10 @@
 import { useState, useRef } from 'react';
+import ModInquiries from '../Modals/ModInquiries';
 import "./ConfigSideBar.scss"
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import Admin from '../Admin/Admin';
 
-function ConfigSideBar(props) {
+function ConfigSideBar({isAdmin, isConfigBarOpen, toggleConfigBar, toggleProfile, closeSideBar, openAdmin, toggleAdmin, isSidebarOpen, isProfileOpen}) {
     const [isEnglish, setIsEnglish] = useState(true);
     const [isDarkMode, setIsDarkMode] = useState(true);
     const languageToggle = useRef(null);
@@ -26,20 +29,36 @@ function ConfigSideBar(props) {
     }
 
     function handleTitleClick() {
-        props.toggleConfigBar();
+        toggleConfigBar();
     }
 
+    function handleProfileClick(){
+        toggleProfile();
+        if(isSidebarOpen)closeSideBar();
+        if(openAdmin)toggleAdmin();  
+    }
+
+    const handleAdminButtonClick = () => {
+        toggleAdmin();
+        closeSideBar();       
+        if(isProfileOpen){
+            toggleProfile();
+        }
+    }
+  
     return (
-        <div className={`Configsidebar ${props.isConfigBarOpen ? 'open' : 'closed'}`}>
-            <button className="config-title" onClick={handleTitleClick}>Configurations</button>
+        <div className={`Configsidebar ${isConfigBarOpen ? 'open' : 'closed'}`}>
+            <button className="config-title" onClick={handleTitleClick}><i className="fa-solid fa-gear"></i>Settings</button>
+            <button className="language-toggle" onClick={handleProfileClick}><i className="fa-solid fa-user"></i>Your Profile</button>
             <button ref={languageToggle} className="language-toggle" onClick={handleLanguageToggle}>
                 {isEnglish ? 'English' : 'Español'}
             </button>
             <button ref={themeToggle} className="theme-toggle" onClick={handleThemeToggle}>
                 {isDarkMode ? 'Light Mode' : 'Dark Mode'}
             </button>
-            <a className="signoff-report-button" href="https://example.com/report">Report a problem</a>
-            <button className="signoff-report-button" onClick={signOff}>Sign off</button>
+            <ModInquiries/>
+            {isAdmin && <button className='dashboard' onClick={handleAdminButtonClick}><DashboardIcon className='i'/>Dashboard</button>}
+            <button className="signoff-report-button" onClick={signOff}> <i className="fa-solid fa-right-from-bracket"></i>Sign out</button>
         </div>
     );
 }
