@@ -15,8 +15,12 @@
 }
 .modal.is-open{
     display: flex;
-
 }
+
+.modal.is-right{
+    justify-content: end;
+    }
+
 .modal-container{
     position:relative;
     padding: 1rem;
@@ -31,8 +35,11 @@
     background-position-y: top, bottom;
     border: .2em solid $secundary-color;
     border-radius: 40px;
+}
 
-
+.modal-container.is-right{
+    width: 20vw;
+    height: 85vh;
 }
 
 .modal-close{

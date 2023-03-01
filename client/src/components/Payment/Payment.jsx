@@ -44,7 +44,7 @@ const [skills, setSkills]=useState("")
 //----------------------------Ruote to mercadoPAgo---------------------//
     const submitHandler = (event) => {
         event.preventDefault()
-        axios.post('http://localhost:3002/payment', prod)
+        axios.post('https://code-advisor-xi.vercel.app/payment', prod)
             .then((res) =>
                 (window.location.href = res.data.response.body.init_point))
 
