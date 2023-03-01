@@ -138,13 +138,13 @@ export const sortAdvisors = (method) => {
     type: SORT_BY_AVAILABILITY,
   };
 }; */
-export const POST_COMMENT ='POST_COMMENT';
-export const GET_COMMENT ='GET_COMMENT';
-export const DELETE_COMMENT ='DELETE_COMMENT';
-export const PUT_RATING ='PUT_RATING';
+export const POST_REVIWER ='POST_REVIWER';
+export const GET_REVIWER ='GET_REVIWER';
+export const DELETE_REVIWER ='DELETE_REVIWER';
+export const PUT_SCORE ='PUT_SCORE';
 
 
-export function postComment(id, comment) {
+export function postReviwer(id, Reviwer) {
   return async function (dispatch) {
     const tokken = window.localStorage.getItem("tokken");
     const json = await axios.post(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`, {
@@ -152,21 +152,21 @@ export function postComment(id, comment) {
         authorization: "Bearer " + tokken,
       },
       id,
-      comment: comment.comment,
+      Reviwer: Reviwer.Reviwer,
     });
     return dispatch({
-      type: POST_COMMENT,
+      type: POST_REVIWER,
       payload: json.data,
     });
   };
 }
 
-export function getComment(id) {
+export function getReviwer(id) {
   try {
     return async function (dispatch) {
       const response = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`);
       dispatch({
-        type: GET_COMMENT,
+        type: GET_REVIWER,
         payload: response.data,
       });
     };
@@ -175,12 +175,12 @@ export function getComment(id) {
   }
 }
 
-export function deleteComment(id) {
+export function deleteReviwer(id) {
   try {
     return async function (dispatch) {
       const response = await axios.delete(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers/${id}`);
       dispatch({
-        type: DELETE_COMMENT,
+        type: DELETE_REVIWER,
         payload: response.data,
       });
     };
@@ -189,15 +189,15 @@ export function deleteComment(id) {
   }
 }
 
-export function putRating(id, rating) {
+export function putScore(id, score) {
   try {
     return async function (dispatch) {
-      console.log(id, rating);
-      const response = await axios.put(`/course/${id}`, {
-        rating: rating,
+      console.log(id, score);
+      const response = await axios.put(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`, {
+        score: score,
       });
       dispatch({
-        type: PUT_RATING,
+        type: PUT_SCORE,
         payload: response.data,
       });
     };
