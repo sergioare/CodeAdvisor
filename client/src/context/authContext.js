@@ -54,9 +54,16 @@ export function AuthProvider({ children }) {
         console.log( currentUser.displayName );
         setUser(currentUser);
         setLoading(false);
+        if (user?.uid) {
+          const token = user.accessToken
+          window.localStorage.setItem("tokken", token)
+          // const tokken = window.localStorage.getItem("tokken")
+        }
       });
       return () => unsubuscribe();
     }, []);
+    
+    
   
     return (
       <authContext.Provider
