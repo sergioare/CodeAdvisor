@@ -31,7 +31,7 @@ const Navbar = (props) => {
           to: item.path,
           key: index
         };
-        if (item.name === 'Forum' || item.name === 'FAQs') {
+        if (item.name === 'Forum') {
           linkProps.onClick = showAlert;
         }
         return <Link {...linkProps}><div>{item.name}</div></Link>;
