@@ -138,3 +138,70 @@ export const sortAdvisors = (method) => {
     type: SORT_BY_AVAILABILITY,
   };
 }; */
+export const POST_COMMENT ='POST_COMMENT';
+export const GET_COMMENT ='GET_COMMENT';
+export const DELETE_COMMENT ='DELETE_COMMENT';
+export const PUT_RATING ='PUT_RATING';
+
+
+export function postComment(id, comment) {
+  return async function (dispatch) {
+    const tokken = window.localStorage.getItem("tokken");
+    const json = await axios.post(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`, {
+      headers: {
+        authorization: "Bearer " + tokken,
+      },
+      id,
+      comment: comment.comment,
+    });
+    return dispatch({
+      type: POST_COMMENT,
+      payload: json.data,
+    });
+  };
+}
+
+export function getComment(id) {
+  try {
+    return async function (dispatch) {
+      const response = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`);
+      dispatch({
+        type: GET_COMMENT,
+        payload: response.data,
+      });
+    };
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+export function deleteComment(id) {
+  try {
+    return async function (dispatch) {
+      const response = await axios.delete(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers/${id}`);
+      dispatch({
+        type: DELETE_COMMENT,
+        payload: response.data,
+      });
+    };
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+export function putRating(id, rating) {
+  try {
+    return async function (dispatch) {
+      console.log(id, rating);
+      const response = await axios.put(`/course/${id}`, {
+        rating: rating,
+      });
+      dispatch({
+        type: PUT_RATING,
+        payload: response.data,
+      });
+    };
+  } catch (error) {
+    console.log(error.message);
+  }
+}
