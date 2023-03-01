@@ -11,7 +11,7 @@
   background-position: center;
   background-size: contain;
   cursor: pointer;
-  margin-left: -250px;
+  margin-left: .5vw;
   margin-top: 14px;
   padding-left: 1px;
   padding-top: 1px;
@@ -62,6 +62,7 @@
   border-bottom-right-radius: 10px;
   width: 302px;
   overflow: auto;
+  border: 1px solid $title-bg-medium;
 
   .sidebar-header {
     position: fixed;
@@ -108,21 +109,22 @@
 
 
 .filter-container {
-  background-color: $primary-color;
+  // background-color: $primary-color;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 3vh;
   border-radius: 10px;
-  padding: 5px;
-  box-shadow: 0 0 2px $title-bg-light;
+  padding: 5px 5px .5vh 5px;
+  // box-shadow: 0 0 2px $title-bg-light;
 
   .option-item {
     cursor: pointer;
     font-weight: 600;
-    color: $bg-cards;
-    text-shadow: 1px 1px 1px black;
+    color: $text-bg-light;
+    font-weight: bold;
+    // text-shadow: 1px 1px 1px white;
 
   }
 
@@ -130,8 +132,10 @@
     margin-right: 4px;
     font-weight: 500;
     cursor: pointer;
-    color: $bg-cards;
-    text-shadow: 1px 1px 1px black;
+    color:  $text-bg-light;
+    font-weight: bold;
+
+    // text-shadow: 1px 1px 1px black;
 
   }
 
@@ -141,17 +145,17 @@
 }
 
 .sidebar-section {
-  border: 1px solid gray;
+  // border: 1px solid gray;
   border-radius: 50px 5px;
   padding: 10px 18px 0;
-  box-shadow: 0 0 2px $title-bg-light;
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,.1), 0 4px 11px 0 rgba(0,0,0,.8);
   margin-top: 10px;
 
   .sidebar-title {
     margin-left: 10px;
-    font-weight: bold;
-    text-shadow: 1px 1px 1px $title-bg-medium;
-    font-size: 20px;
+    font-weight: bolder;
+    // text-shadow: 1px 1px 1px $title-bg-medium;
+    font-size: 1.3em;
     color: $title-bg-light;
   }
 }
@@ -166,24 +170,25 @@
 
 
 .filter-container-lot {
-  background-color: $primary-color;
+  // background-color:$circles-bg-light;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
   align-items: center;
   justify-items: start;
-  border-radius: 10px;
+  border-radius: 15px;
+  border-bottom-right-radius: 30%;
   padding: 5px;
-  margin-bottom: 20px;
-
+  margin-bottom: 2vh;
 
 
   .filter-item {
-    margin-right: 4px;
-    font-weight: 500;
+    margin-right: 2px;
+    font-weight: bold;
     cursor: pointer;
-    color: $bg-cards;
-    text-shadow: 1px 1px 1px black;
+    color: $text-bg-light;
+    
+    // text-shadow: 2px 1px 1px black;
   }
 
 }
