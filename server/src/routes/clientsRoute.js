@@ -1,6 +1,7 @@
 const {Router} = require('express');
 const {
-    addClients
+    addClients,
+    addClientParams
     } = require('../controllers/clientsController');
 
 const {
@@ -11,6 +12,7 @@ const clientsRoute = Router();
 
 
 clientsRoute.post('/:uid',addClients);
+clientsRoute.put('/:uid', addClientParams)
 clientsRoute.post('/Upload', uploadInfo) 
 
 

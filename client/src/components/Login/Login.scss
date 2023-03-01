@@ -62,6 +62,7 @@
     .btn{  
         display: flex;
         margin-left:  42%;
+        margin-bottom: 2vh;
         background-color:$circles-bg-light ;
         color: $text-bg-purple;
         font-weight: bold;
@@ -71,12 +72,25 @@
         }
 
     }
+
+    p{
+        color:$text-bg-light ;
+        opacity: .75;
+    }
+    .link{
+        color: $title-bg-light;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
     hr{
         width: 32.4vw;
         border: 2px solid;
         color: $primary-color;
         margin-bottom: -2vh;
     }
+
+
 
     .icons{
         display: flex;
@@ -99,5 +113,7 @@
         }
         
     }
+
+
     
 }

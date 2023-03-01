@@ -46,7 +46,7 @@ const AboutUs = () => {
                             </div>
                         )
                     })}
-                </div>
+                </div>  
 
                 <div className="toolsContainer">
                     <div className="tools">
