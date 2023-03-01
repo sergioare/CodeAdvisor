@@ -13,6 +13,7 @@ const {
     
     updatAdvisorsReviwers,
     updatAdvisorsSchedules,
+    updatAdvisorsMyWallet,
     
     
     deleteAdvisors
@@ -33,6 +34,7 @@ advisorsRoute.post('/:id/MyWallet',addAdvisorsMyWallet)
 
 advisorsRoute.put('/:id/Reviwers/:idr',updatAdvisorsReviwers)
 advisorsRoute.put('/:id/Schedules/:idr',updatAdvisorsSchedules)
+advisorsRoute.put('/:id/MyWallet/:idr',updatAdvisorsMyWallet)
 
 advisorsRoute.delete('/:id', deleteAdvisors);
 

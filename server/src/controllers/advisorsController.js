@@ -1,3 +1,4 @@
+const {mercadopago}= require('../configMercadoPago')
 const firebase = require("../db/db");
 const firestore = firebase.firestore();
 
@@ -260,6 +261,7 @@ const getAdvisorsAllMyWallet = async (req, res, next) => {
                     doc.data().userName    || "empty", 
                     doc.data().TechSkills  || "empty", 
                     doc.data().myPayment   || "empty", 
+                    doc.data().isPay       || false
                     );
                     if (doc.data().status === true) {
                         myWallets.push(myWallet);
@@ -272,20 +274,23 @@ const getAdvisorsAllMyWallet = async (req, res, next) => {
     }
 };
 
+
+
 const addAdvisorsMyWallet= async (req, res, next) => {
     console.log("Advisors_add_MyWallet",req.params);
     const aid                = req.params.id
     const uid                = req.body.id
     const dataAdvisor = {
-        userName : req.body.userName,
-        TechSkills : req.body.TechSkills,
-        myPayment : req.body.price,
-        status : true
+        userName : req.body.dataAdvisor.userName,
+        TechSkills : req.body.dataAdvisor.TechSkills,
+        myPayment : req.body.dataAdvisor.myPayment,
+        status : true,
+        isPay: false
     };
     const dataUser = {
-        advisorName : req.body.advisorName,
-        TechSkills : req.body.TechSkills,
-        myPurchase : req.body.price,
+        advisorName : req.body.dataUser.advisorName,
+        TechSkills : req.body.dataUser.TechSkills,
+        myPurchase : req.body.dataUser.myPurchase,
         status : true
     };
     try {
@@ -297,6 +302,20 @@ const addAdvisorsMyWallet= async (req, res, next) => {
         await fireAdvisors.update({statusMyWallet:true});
         await fireUser.update({statusMyCart:true});
         res.send("MyWallet successfuly");
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+};
+
+const updatAdvisorsMyWallet = async (req, res, next) => {
+    console.log("updat_Advisors_MyWalet");
+    const id = req.params.id;
+    const idr = req.params.idr;
+    const data = req.body;
+    try {
+        const rev = await firestore.collection(`/Advisors/${id}/MyWallet`).doc(idr);
+        await rev.update(data);
+        res.send("MyWallet updated successfuly");
     } catch (error) {
         res.status(400).send(error.message);
     }
@@ -325,6 +344,7 @@ module.exports = {
 
     updatAdvisorsReviwers,
     updatAdvisorsSchedules,
+    updatAdvisorsMyWallet,
     
     getAdvisorsAllMyWallet,
     addAdvisorsMyWallet,

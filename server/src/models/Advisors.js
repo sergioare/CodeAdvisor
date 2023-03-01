@@ -56,10 +56,11 @@ class Schedules {
     }
 }
 class MyWallet {
-    constructor(userName,TechSkills, myPayment){
+    constructor(userName,TechSkills, myPayment, isPay){
         this.userName = userName
         this.TechSkills = TechSkills
         this.myPayment = myPayment
+        this.isPAy = isPay
     }
 }
 
