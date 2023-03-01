@@ -18,6 +18,7 @@ export const GET_PROFILE = 'GET_PROFILE'
 export const GET_ADVISORS_REVIEWS = 'GET_ADVISORS_REVIEWS'
 export const BLOCK_ACCOUNT = 'BLOCK_ACCOUNT'
 export const UNBLOCK_ACCOUNT = 'UNBLOCK_ACCOUNT'
+export const GET_DATES = "GET_DATES"
 
 
 export const getAutors = () => {
@@ -138,3 +139,12 @@ export const sortAdvisors = (method) => {
     type: SORT_BY_AVAILABILITY,
   };
 }; */
+
+export const getDates = () => {
+  return async function (dispatch) {
+    const datesData = await axios.get(`https://code-advisor-xi.vercel.app/data/XD`);
+    const dates = datesData.data;
+    // console.log(dates)
+    dispatch({ type: GET_DATES, payload: dates });//... este info va al reducer
+  };
+};

@@ -24,7 +24,7 @@ const Detail = () => {
 
         <div className='Detail'>
           <h4 className='About'> About me: <p className='TextAbout'>{detail.About}</p>
-            <Link to={`/payment/${detail.id}`}><button className='ButtonSchedule'>Schedule Advice</button></Link>
+            <Link to={`/payment/${detail.id}`}><button className='ButtonSchedule'>Book Meeting</button></Link>
             <Link to='/home'><button>Back Home</button></Link></h4>
           
 

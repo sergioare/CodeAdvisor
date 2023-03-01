@@ -6,7 +6,7 @@ import {
   FILTER_BY_RESIDENCE,
   SORT_ADVISORS,
   GET_AUTORS, GET_REVIEWS, GET_ADVISORS, ADVISOR_DETAIL, GET_TECHSKILLS, GET_PROFILE, GET_ADVISORS_REVIEWS,
-  BLOCK_ACCOUNT, UNBLOCK_ACCOUNT,
+  BLOCK_ACCOUNT, UNBLOCK_ACCOUNT, GET_DATES,
 } from '../actions/actions';
 
 const initialState = {
@@ -28,6 +28,7 @@ const initialState = {
     F_Residence: [],
   },
   sortMethod: "",
+  dates:[],
 }
 
 
@@ -176,6 +177,13 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state, techSkills: action.payload
       }
+
+      case GET_DATES:
+      return {
+        ...state,
+        dates: action.payload
+      };
+
       default:
         return { ...state }
   }
