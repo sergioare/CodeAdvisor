@@ -6,11 +6,15 @@ import axios from "axios";
 import './AdvisorProfile.scss'
 import { useNavigate } from "react-router-dom";
 import { PhoneInput } from "react-international-phone";
-import "react-international-phone/style.css";
+//import "react-international-phone/style.css";
 import { getTechSkills } from "../../../redux/actions/actions";
 import Swal from 'sweetalert2'
+import { getAuth } from "firebase/auth";
+import { createAdvisorFromClient } from "../../../handlers/createAdvisorFromClient";
+import { UploadFile } from "../../../firebase";
 let auth_token;
 let country_list = [];
+
 
 const AdvisorProfile = () => {
   const techSkills = useSelector(state=> state.techSkills)
@@ -23,29 +27,19 @@ const AdvisorProfile = () => {
 
   const showAlert = ()=>{
     Swal.fire({
-    title: "Your profile was created successfuly",
+    title: "Your profile was updated successfuly",
     icon: "success",
     footer: "<b>Continue enjoy our services</b>"
 })
 }
+
   const handleImage = async (event) => {
     const file = event.target.files[0];
-    const formData = new FormData();
-    try {
-      formData.append("file", file);
-      formData.append("upload_preset", "zdsy8b2u");
-      await axios
-        .post(
-          "https://api.cloudinary.com/v1_1/ddqsqst5a/image/upload",
-          formData
-        )
-        .then((res) => {
-          console.log(res.data.url);
-          setImageCloud(res.data.url);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    const Uid = getAuth().currentUser.uid;
+    
+    const Image = await UploadFile(file,Uid)
+    setImageCloud(Image)
+    
   };
  
   const get_country = async () => {
@@ -82,8 +76,8 @@ const AdvisorProfile = () => {
   return (
     
 
-      <div className='containerform'>
-        <h1 className='h1form'>Complete Advisor Profile</h1>
+      <div className='advisorProfile'>
+        
 
         <Formik
           initialValues={{
@@ -98,24 +92,18 @@ const AdvisorProfile = () => {
             cv:"",
           }}
           onSubmit={(values) => {
+            const Profile = getAuth();
+            const Uid = Profile.currentUser.uid;
+            
             values.contact = phone;
-            values.techSkills.push(techSelected);
-            values.photo = imageCloud;
-          
-            axios
-              .post(
-                "urlpost",
-                values
-              )
-              .then((response) => {
-                setResponseServer(response.data);
-                // navigate("/professionalDashboard");
-               showAlert();
-              })
-              .catch((error) => {
-                setResponseServer(error.message);
-              });
+            //values.techSkills.push(techSelected);   //---->  no mapea las Techskills 
+            Profile.currentUser.providerData[0].providerId  == 'google.com' ?  
+            values.photo = Profile.currentUser.photoURL : 
+            values.photo = imageCloud ;
+            // Envío de datos a la DB, creacion de nuevo Advisor 
+            createAdvisorFromClient(values,Uid)
           }}
+          
         >
           {({
             errors,
@@ -124,7 +112,8 @@ const AdvisorProfile = () => {
             values,
            
           }) => (
-            <Form className='Formprofessional'>
+            <Form >
+              <h1>Complete Advisor Profile</h1>
               <Field
                 as="select"
                 name="country"
@@ -135,7 +124,7 @@ const AdvisorProfile = () => {
                 }}
                 // error={errors.town}
                 value={values.country}
-                className='fieldTown'
+                className='input'
               >
                 <option>Select your Country...</option>
                 {country_list.map((country) => {
@@ -151,12 +140,13 @@ const AdvisorProfile = () => {
               </Field>
 
               
-              <h6 className='h6form'>Enter your contact number</h6>
-              <div className='divphone'>
+              <h6>Enter your contact number</h6>
+              <div className='phone'>
                 <PhoneInput
                   initialCountry="ar"
                   value={phone}
                   onChange={(phone) => setPhone(phone)}
+                  className='input'
                 />
               </div>
 
@@ -164,7 +154,7 @@ const AdvisorProfile = () => {
                 touched.contact(<p style={{ color: "red" }}>{errors.contact}</p>)}
 
              
-              <h6 className='h6form'>Insert your portfolio URL</h6>
+              <h6>Insert your portfolio URL</h6>
               <Field
                 type="text"
                 placeholder="URL portfolio"
@@ -172,7 +162,7 @@ const AdvisorProfile = () => {
                 id="portfolio"
                 onChange={handleChange}
                 value={values.portfolio}
-                className='field'
+                className='input'
               />
          
               <Field
@@ -185,7 +175,7 @@ const AdvisorProfile = () => {
                   techSelected(e.target.value);
                 }}
                 value={values.professionselect}
-                className='fieldProf'
+                className='input'
               >
                 <option>Select your Programming Language...</option>
                 {techSkills.map( tech => { 
@@ -203,12 +193,19 @@ const AdvisorProfile = () => {
                 name="description"
                 onChange={handleChange}
                 placeholder="Write a brief description about your work..."
-                className='textareaform'
+                className='textarea'
                 value={values.description}
               />
 
-              <h6 className='h6form'>Upload your profile image</h6>
-              <Field
+              <h6 >Upload your profile image</h6>
+              <input
+                    type="file"
+                    name="photo"
+                    id="photo"
+                    className="shadow"
+                    onChange={handleImage}
+                />
+              {/* <Field
                 type="file"
                 name="photo"
                 id="photo"
@@ -216,9 +213,9 @@ const AdvisorProfile = () => {
                 className='fieldImg'
               />
               {errors.image &&
-                touched.image(<p style={{ color: "red" }}>{errors.image}</p>)}
+                touched.image(<p style={{ color: "red" }}>{errors.image}</p>)} */}
 
-              <button className='Buttonsend' type="submit">
+              <button className='btn' type="submit" onClick={showAlert}>
                 Send
               </button>
 

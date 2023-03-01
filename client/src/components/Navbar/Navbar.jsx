@@ -1,8 +1,8 @@
 import './Navbar.scss'
 import { navbarItems } from './data';
-import Searchbar from '../Searchbar/Searchbar';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import ModShopping from '../Modals/ModShopping';
 
 const Navbar = (props) => {
   const { toggleConfigBar } = props;
@@ -31,11 +31,14 @@ const Navbar = (props) => {
           to: item.path,
           key: index
         };
-        if (item.name === 'Forum' || item.name === 'FAQs') {
+        if (item.name === 'Forum') {
           linkProps.onClick = showAlert;
         }
         return <Link {...linkProps}><div>{item.name}</div></Link>;
       })}
+      <div className="shopping">
+        <ModShopping/>
+      </div>
         <div className='conf'>
         <i className="config-icon fa-solid fa-gear" onClick={toggleConfigBar}></i>
         </div>

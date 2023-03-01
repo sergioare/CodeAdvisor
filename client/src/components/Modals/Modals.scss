@@ -40,3 +40,20 @@
            
      
 }
+
+.shopping-btn{
+     
+        display: flex;
+        border: 2px solid $circles-bg-light;
+        border-radius: 20%;
+        background-color:$circles-bg-light ;
+        color: $text-bg-purple;
+        font-weight: bold;
+        padding: .2em .5em .2em .5em;
+
+        &:hover{
+            background-color: $primary-color;
+        }
+
+}
+    
