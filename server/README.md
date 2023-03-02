@@ -90,30 +90,75 @@ the `URL` of the back will be in local `http://localhost:3002` and by vercel `ht
 
 - ### __rutas user__:
 
-  - GET ==> [ URL ] __/User__
-    - Obtener un listado de User
-    - Devuelve solo los datos necesarios para la ruta principal
-  - POST => [ URL ] __/User__
-    - Recibe los datos recolectados desde el formulario controlado de la ruta de creación de User por body
-    - Crea un nuevo User en la base de datos, relacionado a su registro
-  - PUT ==> [ URL ] __/User__
-    - Recibe los datos recolectados desde el formulario controlado de la ruta de modificacion de User por body
-    - Modifica solo los datos enviados en la base de datos sin afectar los otros
+    - [__GET__]() ==> __URL/User/__
+        - Obtener un listado de User
+        - Devuelve solo los datos necesarios para la ruta principal
+    - [__POST__]() =>  __URL/User/__
+        - Recibe los datos recolectados desde el formulario controlado de la ruta de creación de User por body
+        - Crea un nuevo User en la base de datos, relacionado a su registro por id
+    - [__PUT__]() ==> __URL/User/:uId__
+        - Recibe los datos recolectados desde el formulario controlado de la ruta de modificacion de User por body
+        - Modifica solo los datos enviados en la base de datos sin afectar los otros
+
+    Advisor
+    - [__POST__]() => __URL/User/:uId/Advisor__
+       - Recibe los datos recolectados desde el formulario controlado de la ruta de creación de User_Advisor por body
+        - Crea un nuevo Advisor en la base de datos, relacionado a su User por id
+    - [__PUT__]() ==> __URL/User/:uId/Advisor/:aId__
+        - Recibe los datos recolectados desde el formulario controlado de la ruta de modificacion de User_Advisor por body
+        - Modifica solo los datos enviados en la base de datos sin afectar los otros
+
+    MyCart
+    - [__GET__]() ==> __URL/User/:uId/MyCart__
+
 - ### __rutas advisor__:
 
-  - GET ==> [ URL ] __/Advisors__
-  - POST => [ URL ] __/Advisors__
-  - PUT ==> [ URL ] __/Advisors__
+    - [__GET__]() ==> __URL/Advisor/__
+    - [__GET__]() ==> __URL/Advisor/aId__
+
+    Reviwers
+    - [__GET__]() ==> __URL/Advisor/aId/Reviwers/__
+    - [__POST__]() => __URL/Advisor/aId/Reviwers/__
+    - [__PUT__]() ==> __URL/Advisor/aId/Reviwers/rId__
+
+    Schedules
+    - [__GET__]() ==> __URL/Advisor/aId/Schedules/__
+    - [__POST__]() => __URL/Advisor/aId/Schedules/__
+    - [__PUT__]() ==> __URL/Advisor/aId/Schedules/rId__
+
+    MyWallet
+    - [__GET__]() ==> __URL/Advisor/aId/MyWallet/__
+    - [__PUT__]() ==> __URL/Advisor/__
 - ### __rutas payment__:
 
-  - GET ==> [ URL ] __/payment__
-  - POST => [ URL ] __/payment__
-  - PUT ==> [ URL ] __/payment__
+    - [__GET__]() ==> __URL/payment/__
+    - [__POST__]() => __URL/payment/__
+    - [__PUT__]() ==> __URL/payment/__
 - ### __rutas data__:
+    Autores
+    - [__GET__]() ==> __URL/data/Autores/__
 
-  - GET ==> [ URL ] __/data__
-  - POST => [ URL ] __/data__
-  - PUT ==> [ URL ] __/data__
+    CommunityComments
+    - [__GET__]() ==> __URL/data/CommunityComments/__
+    - [__POST__]() => __URL/data/CommunityComments/__
+    - [__PUT__]() ==> __URL/data/CommunityComments/__
+
+    TechSkills
+    - [__GET__]() ==> __URL/data/TechSkills/__
+    - [__GET__]() ==> __URL/data/TechSkills/:tId__
+
+    Contacts
+    - [__GET__]() ==> __URL/data/Contacts/__
+    - [__POST__]() => __URL/data/Contacts/__
+
+    Specialty
+    - [__GET__]() ==> __URL/data/Specialty/__
+
+    XD(rutas que seran eliminadas pronto)
+    - [__GET__]() ==> __URL/data/XD/__
+    - [__GET__]() ==> __URL/data/XD/:id__
+    - [__POST__]() => __URL/data/XD/__
+    - [__PUT__]() ==> __URL/data/XD/:id__
 
 ## Base de datos __`firebase`__
 
