@@ -5,6 +5,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getDetail } from '../../redux/actions/actions';
 import Reviews from '../../components/Reviews/Reviews';
 import { ReviewsFinish } from '../../components/Reviews/ReviewsFinish';
+import StarRating from '../../components/StarRating/StarRating';
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -36,9 +37,9 @@ const Detail = () => {
             <h4 className='TitlesPurple'>Conutry: <p>{detail.Residence}</p></h4>
             <h4 className='TitlesPurple'>Languages: <p>{detail.Language/*?.length > 1 ? detail.Language.join(', ') : detail.Language*/}</p></h4>
             <h4 className='TitlesPurple'>Tech Skills: <p>{detail.TechSkills?.join(', ')}</p></h4>
-            <h4 className='TitlesPurple'>Score: <span>⭐{detail.Score}</span></h4>
             <h4 className='TitlesPurple'>Price: <span>${detail.Price} / hr</span></h4>
-
+            <h4 className='TitlesPurple'>Score: <span>{(detail.Score).toFixed(1)}{<StarRating rating={detail.Score} />}</span></h4>
+            <span>{detail.Reviews.length} reviews</span>
           </div>
         </div>
         {/* <div> */}

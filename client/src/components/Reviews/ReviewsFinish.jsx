@@ -3,7 +3,7 @@ import React from 'react';
 import StarRating from '../StarRating/StarRating';
 import './ReviewsFinish.scss'
 import { useDispatch, useSelector } from 'react-redux';
-import { getReviwer, getDetail } from '../../redux/actions/actions';
+import { getDetail } from '../../redux/actions/actions';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -28,8 +28,8 @@ export const ReviewsFinish = () => {
                 <h2>{review.Name}</h2>
               </div>
               <p>{review.Reviwer}</p>
-              {/* <span>{<StarRating rating={review.score} />}</span> */}
-              <span>{review.score}</span>
+              <span>{<StarRating rating={review.score} />}</span>
+              {/* <span>{review.score}</span> */}
             </div>
           )
         })}
