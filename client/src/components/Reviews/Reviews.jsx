@@ -6,35 +6,18 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 import './Reviews.scss';
-import { postReviwer, getReviwer, putScore } from '../../redux/actions/actions';
+import { postReviwer, getDetail } from '../../redux/actions/actions';
 // import StarRating from '../StarRating/StarRating';
 
 export const Reviews = () => {
-
-
-  const showAlert = () => {
-    Swal.fire({
-      title: "Sorry, We are working for you",
-      icon: "warning",
-      footer: "<b>Continue to enjoy our services</b>",
-      timer: 3000,
-    })
-  }
-
-  const [input, setInput] = useState({
-    Reviwer: "",
-    // score:0
-  })
-
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const [currentValue, setcurrentValue] = useState({
-    score: ""
-  })
+  const [currentValue, setcurrentValue] = useState(0)
   const [hoverValue, sethoverValue] = useState(undefined)
   const stars = Array(5).fill(0)
 
+  const [input, setInput] = useState({ Reviwer: "", score: "" })
 
   const handleChange = (event) => {
     setInput({
@@ -58,18 +41,11 @@ export const Reviews = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(postReviwer(id, input));
-    dispatch(putScore(id, currentValue))
-    setInput({
-      Reviwer: ""
-    });
-    dispatch(getReviwer())
+    dispatch(postReviwer(id, input, currentValue));
+    setInput({ Reviwer: "" });
     sethoverValue(undefined)
-    setcurrentValue({
-      score: ""
-    })
-    Swal("¡Excelente!", "Gracias por tu comentario", "success").then(() => { dispatch(getReviwer()) })
-
+    setcurrentValue(0)
+    new Swal("Excellent!", "Thank you for your comment", "success").then(() => { dispatch(getDetail(id)) })
   };
 
   let btndisabled = !(
@@ -86,7 +62,7 @@ export const Reviews = () => {
           <div className='estrellas'>
             {stars.map((_, index) => {
               return (
-                <div>
+                <div key={index}>
                   <FaStar
                     className={(hoverValue || currentValue) > index ? 'amarillo' : 'gris'}
                     key={index}
@@ -117,8 +93,7 @@ export const Reviews = () => {
             className='botonRev'
             gradientDuoTone="purpleToBlue"
             type="submit"
-            disabled={btndisabled}
-            onClick={showAlert}>Send</Button>
+            disabled={btndisabled}>Send</Button>
 
         </form>
       </div>

@@ -138,22 +138,26 @@ export const sortAdvisors = (method) => {
     type: SORT_BY_AVAILABILITY,
   };
 }; */
-export const POST_REVIWER ='POST_REVIWER';
-export const GET_REVIWER ='GET_REVIWER';
-export const DELETE_REVIWER ='DELETE_REVIWER';
-export const PUT_SCORE ='PUT_SCORE';
+export const POST_REVIWER = 'POST_REVIWER';
+export const DELETE_REVIWER = 'DELETE_REVIWER';
+// export const PUT_SCORE = 'PUT_SCORE';
 
 
-export function postReviwer(id, Reviwer) {
+export function postReviwer(id, Reviwer, score) {
   return async function (dispatch) {
     const tokken = window.localStorage.getItem("tokken");
-    const json = await axios.post(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`, {
-      headers: {
-        authorization: "Bearer " + tokken,
+    const json = await axios.post(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`,
+      {
+        id,
+        Reviwer: Reviwer.Reviwer,
+        score: score
       },
-      id,
-      Reviwer: Reviwer.Reviwer,
-    });
+      {
+        headers: {
+          authorization: "Bearer " + tokken,
+        },
+      }
+    );
     return dispatch({
       type: POST_REVIWER,
       payload: json.data,
@@ -161,19 +165,22 @@ export function postReviwer(id, Reviwer) {
   };
 }
 
-export function getReviwer(id) {
-  try {
-    return async function (dispatch) {
-      const response = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`);
-      dispatch({
-        type: GET_REVIWER,
-        payload: response.data,
-      });
-    };
-  } catch (error) {
-    console.log(error.message);
-  }
-}
+// export function putScore(id, score) {
+//   return async function (dispatch) {
+//     console.log(id, score);
+//     try {
+//       const response = await axios.put(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`, {
+//         score: score,
+//       });
+//       dispatch({
+//         type: PUT_SCORE,
+//         payload: response.data,
+//       });
+//     } catch (error) {
+//       console.log(error.message);
+//     }
+//   }
+// }
 
 export function deleteReviwer(id) {
   try {
@@ -181,23 +188,6 @@ export function deleteReviwer(id) {
       const response = await axios.delete(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers/${id}`);
       dispatch({
         type: DELETE_REVIWER,
-        payload: response.data,
-      });
-    };
-  } catch (error) {
-    console.log(error.message);
-  }
-}
-
-export function putScore(id, score) {
-  try {
-    return async function (dispatch) {
-      console.log(id, score);
-      const response = await axios.put(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`, {
-        score: score,
-      });
-      dispatch({
-        type: PUT_SCORE,
         payload: response.data,
       });
     };

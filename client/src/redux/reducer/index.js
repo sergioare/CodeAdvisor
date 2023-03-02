@@ -7,8 +7,8 @@ import {
   SORT_ADVISORS,
   GET_AUTORS, GET_REVIEWS, GET_ADVISORS, ADVISOR_DETAIL, GET_TECHSKILLS, GET_PROFILE, GET_ADVISORS_REVIEWS,
   BLOCK_ACCOUNT, UNBLOCK_ACCOUNT,
-  POST_REVIWER, GET_REVIWER, PUT_SCORE,
-  // DELETE_REVIWER,
+  POST_REVIWER,
+  // DELETE_REVIWER,PUT_SCORE,
 } from '../actions/actions';
 
 const initialState = {
@@ -181,10 +181,9 @@ const rootReducer = (state = initialState, action) => {
       }
     case POST_REVIWER:
       return { ...state, comments: action.payload }
-    case GET_REVIWER:
-      return { ...state, comments: action.payload }
-    case PUT_SCORE:
-      return { ...state, comments: action.payload}
+
+    // case PUT_SCORE:
+    //   return { ...state, comments: action.payload }
 
     default:
       return { ...state }
