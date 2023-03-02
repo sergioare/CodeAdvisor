@@ -6,9 +6,9 @@ import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
 import Technologies from './components/Technologies/Technologies';
 import Contact from './components/Contact/Contact';
 import Upload from './components/Upload/upload';
-import AdvisorProfile from './components/Forms/AdvisorProfile/AdvisorProfile';
 import Payment from './components/Payment/Payment';
 import { Reviews } from './components/Reviews/Reviews';
+import Faqs from './Views/Faqs/Faqs'
 
 
 
@@ -16,10 +16,6 @@ function App() {
   // const location = useLocation();
   return (
 
-    
-    <div className="bg-slate-300 text-black h-screen flex text-white" align = 'center'>
-     
-      
       <AuthProvider>
         <Routes>
           <Route exact path='/' element={<Landing />} /> 
@@ -39,14 +35,12 @@ function App() {
           </ProtectedRoute>
 
            } />
-          <Route path='/profadv' element={<AdvisorProfile />} />
           <Route path='/payment/:id' element={<Payment/>} />
           <Route path='/reviews' element={<Reviews/>}/>
+          <Route path='/faqs' element={<Faqs/>}/>
         </Routes>
       </AuthProvider>
-      </div>
-
-  
+     
   );
 }
 

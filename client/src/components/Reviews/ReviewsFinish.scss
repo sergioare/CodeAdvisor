@@ -1,0 +1,59 @@
+@import '../Styles/_variables.scss';
+
+.ContainRevFin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  // margin: 5px;
+
+  .RevFin {
+
+    .cardRevFin {
+      width: 80%;
+      // height: 160px;
+      max-width: 600px;
+      background-color: $circles-bg-light;
+      padding: 12px;
+      // box-shadow: 0px 0px 10px 0px $primary-color;
+      border-radius: 5px;
+      margin: 5px;
+      justify-content: flex-start;
+      align-items: center;
+
+      .HeadRevFin {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        h2 {
+          color: $text-bg-light;
+          font-weight: bold;
+          font-size: 20px;
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+        }
+
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+      }
+
+      p {
+        font-size: 15px;
+        margin-bottom: 0;
+        color: $text-bg-light;
+      }
+      span{
+        color: gray;
+        font-size: 17px;
+      }
+    }
+  }
+}
