@@ -11,7 +11,7 @@
   .RevFin {
 
     .cardRevFin {
-      width: 80%;
+      width: 25vw;
       // height: 160px;
       max-width: 600px;
       background-color: $circles-bg-light;
@@ -50,7 +50,8 @@
         margin-bottom: 0;
         color: $text-bg-light;
       }
-      span{
+
+      span {
         color: gray;
         font-size: 17px;
       }
