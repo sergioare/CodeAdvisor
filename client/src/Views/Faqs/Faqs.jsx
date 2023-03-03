@@ -2,13 +2,15 @@ import { questionAndAnswer, textLeftFaqs } from './data';
 import './Faqs.scss'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-
+import Navbar from '../../components/Navbar/Navbar'
 const Faqs = () => {
     const [isOpen,setIsOpen]=useState(
         { 0: false, 1: false, 2: false, 3: false, 4: false }
     );
     
     return (
+        <>
+        <Navbar/>
         <div className='faqs'>
             <div className="wrapper">
 
@@ -50,6 +52,7 @@ const Faqs = () => {
             </div>
            
         </div>
+        </>
     );
 };
 

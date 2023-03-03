@@ -4,26 +4,25 @@
 .faqs{
     @include mixins.create-flexbox;
     width: 100%;
-    height: 100vh;
+    height: auto;
     
 }
 .wrapper{
     @include mixins.create-flexbox;
     flex-wrap: wrap;
     width: 80%;
-    height: 100vh;
+    height: auto;
 
     .left{
         @include mixins.create-flexbox;
         flex-wrap: wrap;
         padding: 2vw;        
         width: 40%;
-        height: 100vh;
 
         h1{
             font-weight: 700;
             font-size: 3vw;
-            margin-bottom: 8vh;
+            margin-bottom: 5vh;
         }
         p{
             font-size: 1.3vw;
@@ -34,7 +33,7 @@
             flex-direction: column;
             justify-content: center;
             width: 50%;
-            margin-top: 5vh;
+            margin-top: 2vh;
 
             h3{
                 color:$circles-bg-light ;
