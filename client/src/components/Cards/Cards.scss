@@ -1,40 +1,46 @@
+@use '../Styles/mixins';
+
 @import "~bootstrap/scss/bootstrap";
 @import '../Styles/_variables.scss';
 
-body {
-  background-color: $text-bg-purple;
-}
 
 .containerCardsPrincipal {
   width: 100%;
-  display: flex;
+  @include mixins.create-flexbox;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
   transition: margin-left 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
-  margin-top: 15px;
+  margin-top: 10vh;
+  background-image: url(../../assets/bg-1.png);
+  background-size: 105%  100%;
+  background-repeat: no-repeat;
+
 
   &.sidebar-open {
     margin-left: 260px;
     padding-left: -260px;
+    margin-bottom: 8vh;
   }
 
-  .containeMessage h1 {
-    color: $title-bg-light;
-    font-size: 40px;
-    font-weight: bold;
+  .containeMessage{ 
+    width: 100%;
+    @include mixins.create-flexbox;
+    flex-direction: column;
 
+    h1 {
+      margin-top: 2vh;
+      color: $title-bg-purple;
+      font-size: 3vw;
+      font-weight: bold;
+    }
+    p {
+      color: $text-bg-purple;
+      font-size: 1.4vw;
+  
+    }
   }
 
-  .containeMessage p {
-    margin-top: -10px;
-    color: $text-bg-light;
-    font-size: 16px;
-    font-weight: bold;
-
-  }
 
   .container {
     display: grid;
@@ -43,43 +49,42 @@ body {
     padding: 30px;
     place-content: center;
     margin-top: 0;
-    background-color: $title-bg-purple;
-    max-width: 100%;
+    max-width: 80%;
     padding-top: 0;
   }
 
   .pagination-container {
-    background-color: $title-bg-purple;
     width: 100%;
     height: 50px;
     padding-bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end; // align to right
+    @include mixins.create-flexbox;
+    margin-bottom: 4vh;
+    margin-top: 2vh;
 
+    
     .pagination {
       display: flex;
-      margin-right: 30px;
+      gap: 5vw; // align to right
+     
 
       button {
-        background: $primary-color;
+        background-color:$circles-bg-light ;
         color: white;
-        font-weight: 600;
-        font-size: 15px;
-        padding: 0px 7px;
+        font-weight: bolder;
+        font-size: 16px;
+        padding: 0px 10px;
         cursor: pointer;
         outline: none;
         transition: background 0.3s ease;
         border-radius: 6px;
-        margin-left: 2px;
-        margin-right: 2px;
+      
         // border: 1px solid $title-bg-light;
         padding-bottom: 1px;
         border: none;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        // box-shadow: 0 0 10px $text-bg-purple;
 
         &:hover:not(:disabled) {
-          background: $title-bg-light;
+          background-color: $primary-color;
         }
 
         &:disabled {
@@ -88,18 +93,18 @@ body {
       }
 
       .current-page {
-        background: $primary-color;
+        background-color:$circles-bg-light ;
         color: white;
         display: inline-block;
-        font-size: 14px;
-        font-weight: 600;
+        font-size: 1em;
+        font-weight: bolder;
         margin: 0 5px;
         padding: 0px 7px;
         border-radius: 4px;
         // border: 1px solid $title-bg-light;
         padding-bottom: 1px;
         border: none;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        // box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       }
     }
   }

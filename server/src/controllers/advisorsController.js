@@ -121,6 +121,7 @@ const getIdAdvisors = async (req, res, next) => {
 const getAdvisorsAllReviwers = async (req, res, next) => {
     console.log("get:Advisors_All_Reviews");
     const id = req.params.id
+    console.log(req.params)
     const reviwers = [];
     try {
         const fire = await firestore.collection(`/Advisors/${id}/Reviwers`);
