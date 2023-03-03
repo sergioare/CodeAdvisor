@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { getDetail } from '../../redux/actions/actions';
 import Reviews from '../../components/Reviews/Reviews';
+import { ReviewsFinish } from '../../components/Reviews/ReviewsFinish';
+import StarRating from '../../components/StarRating/StarRating';
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -26,7 +28,7 @@ const Detail = () => {
           <h4 className='About'> About me: <p className='TextAbout'>{detail.About}</p>
             <Link to={`/payment/${detail.id}`}><button className='ButtonSchedule'>Schedule Advice</button></Link>
             <Link to='/home'><button>Back Home</button></Link></h4>
-          
+
 
           <img src={detail.Img} alt='imageAdvisor' />
           <div className='DataContent'>
@@ -35,17 +37,23 @@ const Detail = () => {
             <h4 className='TitlesPurple'>Conutry: <p>{detail.Residence}</p></h4>
             <h4 className='TitlesPurple'>Languages: <p>{detail.Language/*?.length > 1 ? detail.Language.join(', ') : detail.Language*/}</p></h4>
             <h4 className='TitlesPurple'>Tech Skills: <p>{detail.TechSkills?.join(', ')}</p></h4>
-            <h4 className='TitlesPurple'>Score: <span>⭐{detail.Score}</span></h4>
             <h4 className='TitlesPurple'>Price: <span>${detail.Price} / hr</span></h4>
-
+            <h4 className='TitlesPurple'>Score: <span>{(detail.Score).toFixed(1)}{<StarRating rating={detail.Score} />}</span></h4>
+            <span>{detail.Reviews.length} reviews</span>
           </div>
         </div>
         {/* <div> */}
         {/* <>ENLAZAR LOS REVIEWS DEL ASESOR</> */}
         {/* </div> */}
       </div>
-      <Reviews />
-
+      <div className='contRevvv'>
+        <div className='consRev1'>
+          <Reviews />
+        </div>
+        <div className='contRev2'>
+          <ReviewsFinish />
+        </div>
+      </div>
     </div>
   )
 }
