@@ -6,11 +6,12 @@ import axios from "axios";
 import './AdvisorProfile.scss'
 import { useNavigate } from "react-router-dom";
 import { PhoneInput } from "react-international-phone";
-import "react-international-phone/style.css";
+//import "react-international-phone/style.css";
 import { getTechSkills } from "../../../redux/actions/actions";
 import Swal from 'sweetalert2'
 import { getAuth } from "firebase/auth";
 import { createAdvisorFromClient } from "../../../handlers/createAdvisorFromClient";
+import { UploadFile } from "../../../firebase";
 let auth_token;
 let country_list = [];
 
@@ -23,6 +24,11 @@ const AdvisorProfile = () => {
   const [techSelected, setTechSelected] = useState([]);
   const navigate = useNavigate();
   const [imageCloud, setImageCloud] = useState("");
+  const TechSkills = [{name:'PY'}, {name:'HTML'},{name:'C#'},{name:'C++'},{name:'CSS'},{name:'JS'},{name:'Java'},{name:'PHP'},{name:'Ruby'}];
+  const Specialties = [{name: 'Freelancer'}, {name: 'Advisor'}]
+  const [CV_Cloud, setCV_Cloud] = useState("");
+  const [Specialty, setSpecialty] = useState([]);
+  
 
   const showAlert = ()=>{
     Swal.fire({
@@ -34,23 +40,20 @@ const AdvisorProfile = () => {
 
   const handleImage = async (event) => {
     const file = event.target.files[0];
-    const formData = new FormData();
-    try {
-      formData.append("file", file);
-      formData.append("upload_preset", "zdsy8b2u");
-      await axios
-        .post(
-          "https://api.cloudinary.com/v1_1/ddqsqst5a/image/upload",
-          formData
-        )
-        .then((res) => {
-          console.log(res.data.url);
-          setImageCloud(res.data.url);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    const Uid = getAuth().currentUser.uid;
+    
+    const Image = await UploadFile(file,Uid)
+    setImageCloud(Image)
   };
+
+  const handleCV = async (event) => {
+    const file = event.target.files[0];
+    const Uid = getAuth().currentUser.uid;
+    
+    const CV = await UploadFile(file,'CV-'+Uid)
+    setCV_Cloud(CV)
+  };
+
  
   const get_country = async () => {
     const conf = {
@@ -74,12 +77,14 @@ const AdvisorProfile = () => {
         },
       })
       .then((res) => (country_list = res.data))
+
+      
   };
 
   
   useEffect(() => {
     get_country();
-    getTechSkills();
+    //getTechSkills();
   }, []);
 
 
@@ -91,14 +96,14 @@ const AdvisorProfile = () => {
 
         <Formik
           initialValues={{
-            description: "",
-            photo: "",
-            country: "",
-            state: "",
-            town: "",
-            contact: "",
+            About: "",
+            Img: "",
+            Residence: "",
+            Price: '0',
+            Specialty:"",
+            Contact: "",
             portfolio: "",
-            techSkills:[],
+            TechSkills:[],
             cv:"",
           }}
           onSubmit={(values) => {
@@ -106,15 +111,17 @@ const AdvisorProfile = () => {
             const Uid = Profile.currentUser.uid;
             
             values.Contact = phone;
-            //values.TechSkills.push(techSelected);   ---->  no mapea las Techskills 
-            Profile.currentUser.providerData[0].providerId  = 'google.com' ?  
-            values.Image = Profile.currentUser.photoURL : 
-            values.Image = imageCloud ;
-            
-            //console.log(values)
+            values.TechSkills= [...techSelected]
+            Profile.currentUser.providerData[0].providerId  == 'google.com' ?  
+            values.Img = Profile.currentUser.photoURL : 
+            values.Img = imageCloud ;
+            values.cv = CV_Cloud;
+            values.Price = parseInt(values.Price)
+            values.Specialty = Specialty
             // Envío de datos a la DB, creacion de nuevo Advisor 
             createAdvisorFromClient(values,Uid)
           }}
+          
         >
           {({
             errors,
@@ -127,14 +134,14 @@ const AdvisorProfile = () => {
               <h1>Complete Advisor Profile</h1>
               <Field
                 as="select"
-                name="country"
-                id="country"
+                name="Residence"
+                id="Residence"
                 onChange={(e) => {
                   setcountrySelected(e.target.value);
                   handleChange(e);
                 }}
                 // error={errors.town}
-                value={values.country}
+                value={values.Residence}
                 className='input'
               >
                 <option>Select your Country...</option>
@@ -161,8 +168,8 @@ const AdvisorProfile = () => {
                 />
               </div>
 
-              {errors.contact &&
-                touched.contact(<p style={{ color: "red" }}>{errors.contact}</p>)}
+              {errors.Contact &&
+                touched.Contact(<p style={{ color: "red" }}>{errors.Contact}</p>)}
 
              
               <h6>Insert your portfolio URL</h6>
@@ -178,20 +185,20 @@ const AdvisorProfile = () => {
          
               <Field
                 as="select"
-                name="professionselect"
+                name="TechSkills"
                 id="professionselect"
                 placeholder="Select your Profession..."
                 onChange={(e) => {
                   handleChange(e);
-                  techSelected(e.target.value);
+                  setTechSelected([...techSelected,e.target.value]);
                 }}
-                value={values.professionselect}
+                value={values.TechSkills}
                 className='input'
               >
                 <option>Select your Programming Language...</option>
-                {techSkills.map( tech => { 
+                {TechSkills.map( tech => { 
                   return (
-                    <option key={tech.id} value={tech.name}>
+                    <option key={tech.name} value={tech.name}>
                       {tech.name}
                     </option>
                   );
@@ -201,23 +208,67 @@ const AdvisorProfile = () => {
               <h6 className='h6form'>Tell people about your work</h6>
               <Field
                 as="textarea"
-                name="description"
+                name="About"
                 onChange={handleChange}
                 placeholder="Write a brief description about your work..."
                 className='textarea'
-                value={values.description}
+                value={values.About}
               />
 
-              <h6 >Upload your profile image</h6>
+              <h6>Set your price per hour</h6>
               <Field
-                type="file"
-                name="photo"
-                id="photo"
-                onChange={handleImage}
-                className='fieldImg'
+                type="text"
+                placeholder="USD/hr"
+                name="Price"
+                id="Price"
+                onChange={handleChange}
+                value={values.Price}
+                className='input'
               />
+
+              <Field
+                as="select"
+                name="Specialty"
+                id="Specialty"
+                placeholder="Select your specialty"
+                onChange={(e) => {
+                  handleChange(e);
+                  setSpecialty([...Specialty,e.target.value]);
+                }}
+                value={values.Specialty}
+                className='input'
+              >
+                <option>Select your Specialties</option>
+                {Specialties.map( tech => { 
+                  return (
+                    <option key={tech.name} value={tech.name}>
+                      {tech.name}
+                    </option>
+                  );
+                })}
+              </Field>
+
+
+              <h6 >Upload your profile image</h6>
+              <input
+                    type="file"
+                    name="photo"
+                    id="photo"
+                    className="shadow"
+                    onChange={handleImage}
+                />
+
+              <h6 >Upload your Curriculum vitae</h6>
+              <input
+                    type="file"
+                    name="cv"
+                    id="cv"
+                    className="shadow"
+                    onChange={handleCV}
+                />
+             
               {errors.image &&
-                touched.image(<p style={{ color: "red" }}>{errors.image}</p>)}
+                touched.image(<p style={{ color: "red" }}>{errors.image}</p>)} 
 
               <button className='btn' type="submit" onClick={showAlert}>
                 Send

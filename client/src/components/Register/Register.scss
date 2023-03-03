@@ -12,7 +12,7 @@
     border-radius: 40px;
 
     form {
-        width: 100%;
+        width: 80%;
         background-image: url('../../assets/registerimg.png');
         background-size: 20%;
         background-repeat: no-repeat;
@@ -27,8 +27,9 @@
         color: red;
         font-size: smaller;
         margin-bottom: -2vh;
+        
     }
-
+    
     h1 {
         margin-bottom: 8vh;
         color: $primary-color;
@@ -94,5 +95,15 @@
             background-color: $primary-color;
         }
 
+    }
+
+    p{
+        color:$text-bg-light ;
+    }
+    .link{
+        color: $title-bg-light;
+        font-size: 1.2em;
+        cursor: pointer;
+        text-decoration: underline;
     }
 }

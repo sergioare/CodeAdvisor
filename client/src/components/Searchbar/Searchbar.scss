@@ -3,22 +3,19 @@
 .searchbar {
     background-color: white;
     display: flex;
-    width: 15vw;
+    width: 100%;
     border-radius: 2em;
-    height: 4.3vh;
-    border: 1px solid white;
+    height: 3vh;
+    border: 1px solid $text-bg-light;
+    margin-bottom: 2vh;
 
-    &.red {
-        border: 1px solid rgb(196, 0, 0);
-  
-      }
 
     .input {
         width: 70%;
-        height: 4vh;
+        height: 2.7vh;
         border: none;
         border-radius: 2em;
-        font-size: 1.1vw;
+        font-size: 1.5em;
         padding-left: 10px;
         outline: none;
 
@@ -30,10 +27,13 @@
     }
 
     .btn {
+        display: flex;
+        justify-content: end;
+        align-items: center;
         width: 30%;
         background: none;
         border: none;
-        font-size: 1.2vw;
+        font-size: 1.5em;
 
     }
 }

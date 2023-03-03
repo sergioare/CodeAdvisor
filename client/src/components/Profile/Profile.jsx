@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAuth } from 'firebase/auth'
 import ModProfile from '../Modals/ModProfile';
 import { updateDates, updateAvailability  } from '../../redux/actions/actions';
+import { months, startTime, endTime, timeSlots } from './data';
 
 
 //let dateClickHandlerAdded = false;
@@ -67,13 +68,36 @@ const dates = useSelector(state => state.dates);
 const [selectedDate, setSelectedDate] = useState(null);
 const [Dmonth, setMonth] = useState(dates.month);
 const [Dyear, setYear] = useState(dates.year);
-
 // getting new date
 let date = new Date();
-// storing full name of all months in array
-const months = ["January", "February", "March", "April", "May", "June", "July",
-              "August", "September", "October", "November", "December"];
 
+const prevNextClick = (direction) => { 
+  let currMonth = Dmonth
+  let currYear = Dyear
+  if (direction === "prev") {
+    if (currMonth === 0) {
+      currMonth = 11;
+      currYear = currYear - 1;
+    } else {
+      currMonth = currMonth - 1;
+    }
+  } else {
+    if (currMonth === 11) {
+      currMonth = 0;
+      currYear = currYear + 1;
+    } else {
+      currMonth = currMonth + 1;
+    }
+  }
+  dispatch(updateDates({ month: currMonth, year: currYear }));
+
+  setMonth(currMonth)
+  setYear(currYear)
+
+  monthChanged = true
+
+  renderCalendar(currYear, currMonth, selectedDate, monthChanged, availableDates); // Pass currMonth and currYear as arguments to renderCalendar function
+};
 
 const renderCalendar = (year, month, selectedDate, monthChanged, availableDatesRender) => {
   console.log("avai render")
@@ -89,7 +113,6 @@ const renderCalendar = (year, month, selectedDate, monthChanged, availableDatesR
     }
 
     for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
-        // adding today class to li if the current day, month, and year matched
         let isToday = i === date.getDate() && month === new Date().getMonth() && year === new Date().getFullYear() ? "today" : "";
         let isSelected = selectedDate && i.toString() === selectedDate.date && month === selectedDate.month && year === selectedDate.year ? "selected" : "";
         let isActive = "inactive" !== isToday.trim() && "inactive" !== isSelected.trim() ? "active" : "";
@@ -120,48 +143,12 @@ const renderCalendar = (year, month, selectedDate, monthChanged, availableDatesR
 }
 }
 
-
-const prevNextClick = (direction) => { 
-  let currMonth = Dmonth
-  let currYear = Dyear
-  if (direction === "prev") {
-    if (currMonth === 0) {
-      currMonth = 11;
-      currYear = currYear - 1;
-    } else {
-      currMonth = currMonth - 1;
-    }
-  } else {
-    if (currMonth === 11) {
-      currMonth = 0;
-      currYear = currYear + 1;
-    } else {
-      currMonth = currMonth + 1;
-    }
-  }
-  dispatch(updateDates({ month: currMonth, year: currYear }));
-
-  setMonth(currMonth)
-  setYear(currYear)
-
-  monthChanged = true
-
-  renderCalendar(currYear, currMonth, selectedDate, monthChanged, availableDates); // Pass currMonth and currYear as arguments to renderCalendar function
-};
-
 //renderizamos el calendar una vez se hayan cargado los datos y solo si esta el profile abierto y cuando no se habian seleccionado fechas o cambiado los meses
-/* useEffect(() => {
-  if (!dateClickHandlerAdded) {
-    dateClickHandlerAdded = true
-    renderCalendar(currMonth, currYear, selectedDate);
-  }
-}, []); */
+if(currentDate && isProfileOpen)renderCalendar(Dyear, Dmonth, selectedDate, false, availableDates);
 
-
-//codigo de periodos de tiempo:
-const startTime = 0;
-const endTime = 24;
-const timeSlots = [];
+//codigo de timeSpans:
+const [selectedTimeSpan, setSelectedTimeSpan] = useState(timeSlots);
+const [timeState, setTimeState] = useState("blocked");
 
 for (let hour = startTime; hour < endTime; hour++) {
   timeSlots.push({
@@ -174,9 +161,6 @@ for (let hour = startTime; hour < endTime; hour++) {
     state: 'blocked'
   });
 }
-
-const [selectedTimeSpan, setSelectedTimeSpan] = useState(timeSlots);
-const [timeState, setTimeState] = useState("blocked");
 
 const handleStateButtonClick = (state) => {
   setTimeState(state);
@@ -191,18 +175,13 @@ const handleTimeSpanClick = (index) => {
   renderCalendar(Dyear, Dmonth, selectedDate);
 }
 
-/* useEffect(() => {
-  dispatch(updateAvailability(selectedTimeSpan));
-}, [selectedTimeSpan]); */
-
 useEffect(() => {
   selectedTimeSpan.forEach(timeSpan => {
     console.log(timeSpan)
     dispatch(updateAvailability(timeSpan));
   });
 }, [selectedTimeSpan]);
-
-    
+  
 useEffect(() => {
   setSelectedTimeSpan(prevState => {
     const newState = [...prevState];
@@ -216,8 +195,6 @@ useEffect(() => {
   });
 }, [selectedDate]);
 
-console.log(availableDates)
-
 return (
   <div className={`profile ${isProfileOpen ? 'profile--open' : ''} ${isConfigBarOpen ? 'config-sidebar-open' : ''}`}>
     <div className="profile__header">
@@ -225,7 +202,7 @@ return (
       <button className="profile__title" onClick={handleEdit}><ModProfile/></button>
       <button className="fas fa-window-close fa-2x" onClick={toggleProfile}></button>
     </div>
-    {!editing && (
+      /* perfil base */
     <div>
     <div className="profile__content">
       <div className="profile__left">
@@ -284,14 +261,13 @@ return (
               <tr>
                 <td className="data">In progress</td>
                 <td rowSpan="3" className="data" style={{border: "2px solid #794BFF"}}>
-                <div>
-                <div className="wrapper">
-                  <div className='calendarHours'>
+                <div>{/* calendario en user */}
+                  <div className="calendar-wrapper">
                     <header>
                       <p className="current-date"></p>
                       <div className="icons">
-                        <button onClick={()=>{prevNextClick("prev")}} className="material-symbols-rounded">&lt;</button>
-                        <button onClick={()=>{prevNextClick("next")}} className="material-symbols-rounded">&gt;</button>
+                        <button onClick={()=>{prevNextClick("prev")}} className="prev-next-buttons">&lt;</button>
+                        <button onClick={()=>{prevNextClick("next")}} className="prev-next-buttons">&gt;</button>
                       </div>
                     </header>
                     <div className="calendar">
@@ -307,11 +283,8 @@ return (
                       <ul className="days"></ul>
                     </div>
                   </div>
-                  
                 </div>
-                
-              </div>
-                </td>
+              </td>
               </tr>
               <tr>
                 <th className="tittle">Meet</th>
@@ -391,6 +364,7 @@ return (
           </tbody>
         </table>
       </div>
+      {/* tabla con calendario (en advisor) */}
         <div className="table-wrapper">
           <table className="table-2">
             <tbody>
@@ -401,12 +375,12 @@ return (
               <tr>
                 <td className="data">In progress</td>
                 <div>
-                <div className="wrapper">
+                <div className="calendar-wrapper">
                   <header>
                     <p className="current-date"></p>
                     <div className="icons">
-                    <button onClick={()=>{prevNextClick("prev")}} className="material-symbols-rounded">&lt;</button>
-                    <button onClick={()=>{prevNextClick("next")}} className="material-symbols-rounded">&gt;</button>
+                    <button onClick={()=>{prevNextClick("prev")}} className="prev-next-buttons">&lt;</button>
+                    <button onClick={()=>{prevNextClick("next")}} className="prev-next-buttons">&gt;</button>
                     </div>
                   </header>
                   <div className="calendar">
@@ -422,6 +396,7 @@ return (
                     <ul className="days"></ul>
                   </div>
                 </div>
+                {/* barra de horarios */}
                 <table className='timesTable'>
                       <thead>
                       <tr>
@@ -430,26 +405,26 @@ return (
 
                       </thead>
                       <div>
-  <div>
-    <button onClick={() => handleStateButtonClick("blocked")}>Blocked</button>
-    <button onClick={() => handleStateButtonClick("available")}>Available</button>
-    <button onClick={() => handleStateButtonClick("reserved")}>Reserved</button>
-  </div>
-  <table>
-    <tbody>
-      {selectedTimeSpan.map((timeSpan, index) => (
-        <tr key={index}>
-          <td>
-            <button onClick={() => handleTimeSpanClick(index)}>
-              {timeSpan.startingHour}:00 - {timeSpan.endingHour}:00
-            </button>
-          </td>
-          <td>{timeSpan.state}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
+                        <div>
+                          <button onClick={() => handleStateButtonClick("blocked")}>Blocked</button>
+                          <button onClick={() => handleStateButtonClick("available")}>Available</button>
+                          <button onClick={() => handleStateButtonClick("reserved")}>Reserved</button>
+                        </div>
+                        <table>
+                          <tbody>
+                            {selectedTimeSpan.map((timeSpan, index) => (
+                              <tr key={index}>
+                                <td>
+                                  <button onClick={() => handleTimeSpanClick(index)}>
+                                    {timeSpan.startingHour}:00 - {timeSpan.endingHour}:00
+                                  </button>
+                                </td>
+                                <td>{timeSpan.state}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
                     </table>
                 
               </div>
@@ -509,15 +484,6 @@ return (
     
         )}
     </div>
-    )}
-    {editing && (
-<div className="form">
-  <h1>form de editar datos</h1>
-</div>
-)}
-
-    
-
     </div>
   
 );

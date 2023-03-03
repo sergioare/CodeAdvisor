@@ -21,23 +21,35 @@ body {
     color: $title-bg-purple;
   }
 
-  .icons {
-    margin: 10px auto;
-    padding: 10px;
+  .icons{
     display: flex;
-    width: 70%;
+    width: 100%;
     height: fit-content;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    margin-top: 5vh;
+    color:$primary-color;
 
-    .icon {
+    
+    .icon{
       display: flex;
-      flex-wrap: wrap;
-      width: fit-content;
-      color: $primary-color;
-      font-size: 3vw;
-    }
-  }
+        flex-wrap: wrap;
+        width: fit-content;
+        color:$primary-color;
+        font-size: 3vw;
+        cursor: pointer;
+        text-decoration: none;
 
+        
+            &:hover{
+                transition: all 1s cubic-bezier(.25, .4, .45, 1.4)  ;
+                font-size: 5vw;
+            }
+        
+
+
+    }
+}
+ 
 
 }
 
@@ -45,10 +57,51 @@ body {
   @include mixins.create-flexbox;
   width: 100%;
   height: 60%;
-  background-color: $circles-bg-light;
-  margin-top: 15px;
+  // background-color: $circles-bg-light;
+  margin-top: 2vh;
+  margin-bottom: 3vh;
   border-radius: 90px 0 90px 0;
   transition: all 0.4s ease-in-out;
+  
+
+  .circle1{
+    position: absolute;
+    border-radius: 50%;
+    margin-top: 25vh;
+    right: 10vw;
+    width: 15vw;
+    height: 15vw;
+    background-color: $circles-bg-light;
+    opacity: .70;
+}
+.circle2{
+    position: absolute;
+    border-radius: 50%;
+    margin-top: 56vh;
+    right: 25vw;
+    width: 8em;
+    height: 8em;
+    border: .5em solid $circles-bg-light;
+}
+.circle3{
+    position: absolute;
+    border-radius: 50%;
+    margin-top: 60vh;
+    right: 20vw;
+    width: 3em;
+    height: 3em;
+    border: .3em solid $circles-bg-light;
+}
+
+.circle4{
+  position: absolute;
+  border-radius: 50%;
+  margin-top: 70vh;
+  right: 35vw;
+  width: 2em;
+  height: 2em;
+  border: .3em solid $circles-bg-light;
+}
   // padding: 10px;
 
   &.sidebar-open {
@@ -65,11 +118,11 @@ body {
     &.sidebar-open {
 
       h3{
-        font-size: 28px;
+        font-size: 2vw;
       }
 
       p{
-        font-size: 20px;
+        font-size: 1.4vw;
       }
 
     }
@@ -88,15 +141,18 @@ body {
     margin-right: 8px;
     margin-top: 5vh;
     margin-bottom: 5px;
+    // border: 2px solid red;
 
     h3 {
       display: flex;
       flex-wrap: wrap;
-      flex-basis: 70%;
+      flex-basis: 100%;
       // margin-top: -13vh;
       font-size: 3vw;
+      font-weight: bolder;
       color: $title-bg-light;
       text-align: left;
+      z-index: 999;
 
     }
 
@@ -104,14 +160,16 @@ body {
       display: flex;
       flex-basis: 80%;
       justify-content: space-around;
-      font-size: 1.6vw;
-      color: $text-bg-purple;
+      font-size: 1.4vw;
+      color: $text-bg-light;
       font-weight: 400;
       margin-top: -5px;
+      z-index: 999;
+
     }
   }
 
-
+  
 
 
 }

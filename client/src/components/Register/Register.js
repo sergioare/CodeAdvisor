@@ -49,9 +49,9 @@ function Register() {
       const UserUid = await signup(user.email, user.password );   // uid  = UserUid.user.uid
       await verifyEmail()
       const data = {Nickname: user.Nickname}
-      sendProfileDetails(data, UserUid.user.uid) 
+      sendProfileDetails(data, UserUid.user.uid) ;
+      navigate("/home");
 
-      navigate("/");
     } catch (error) {
       setError(error.message);
     }
@@ -136,7 +136,7 @@ function Register() {
         
 
         <button type="submit" className="btn"> Sign Up </button>
-      <p>Already have an Account?  <span onClick={()=> setIsRegistering(!isRegistering)}>Login</span></p>
+      <p>Already have an Account?  <span onClick={()=> setIsRegistering(!isRegistering)} className='link'>Login</span></p>
       </form>
     </div>
         :<Login/>

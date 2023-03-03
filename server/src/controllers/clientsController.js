@@ -31,7 +31,7 @@ const createAdvisorFromClient = async (req,res,next)=>{
   try {
     const data = req.body;
     const uid = req.params.uid;
-    await firestore.collection("Advisors").doc(uid).set(data);
+    await firestore.collection("Advisors").doc(uid).set(data,{merge:true});
     res.send("Advisor created successfuly");
   } catch (error) {
     res.status(400).send(error.message);

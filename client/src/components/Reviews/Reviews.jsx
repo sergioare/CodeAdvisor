@@ -1,43 +1,28 @@
 import React from 'react';
-// import { reviews } from './data';
 import { FaStar } from "react-icons/fa";
 import { Label, Textarea, Button } from "flowbite-react";
 import { useState } from 'react';
-// import { useParams } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
-// import './Reviews.scss';
+import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 import './Reviews.scss';
+import { postReviwer, getDetail } from '../../redux/actions/actions';
 // import StarRating from '../StarRating/StarRating';
 
 export const Reviews = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
 
-  const showAlert = () => {
-    Swal.fire({
-      title: "Sorry, We are working for you",
-      icon: "warning",
-      footer: "<b>Continue to enjoy our services</b>",
-      timer: 3000,
-    })
-  }
-
-  const [input, setInput] = useState({
-    comment: ""
-  })
-
-  // const { id } = useParams()
-  // const dispatch = useDispatch()
-  const [currentValue, setcurrentValue] = useState({
-    rating: ""
-  })
+  const [currentValue, setcurrentValue] = useState(0)
   const [hoverValue, sethoverValue] = useState(undefined)
   const stars = Array(5).fill(0)
 
+  const [input, setInput] = useState({ Reviwer: "", score: "" })
 
-  const handleChange = (ev) => {
+  const handleChange = (event) => {
     setInput({
       ...input,
-      [ev.target.name]: ev.target.value,
+      [event.target.name]: event.target.value,
     });
   }
 
@@ -54,25 +39,18 @@ export const Reviews = () => {
     sethoverValue(undefined)
   }
 
-  const handleSubmit = (ev) => {
-    ev.preventDefault();
-    // dispatch(postComment(id, input));
-    // dispatch(putRating(id, currentValue))
-    setInput({
-      comment: ""
-    });
-    // dispatch(getComment())
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(postReviwer(id, input, currentValue));
+    setInput({ Reviwer: "" });
     sethoverValue(undefined)
-    setcurrentValue({
-      rating: ""
-    })
-    // Swal("¡Excelente!", "Gracias por tu comentario", "success").then(() => { dispatch(getComment()) })
-
+    setcurrentValue(0)
+    new Swal("Excellent!", "Thank you for your comment", "success").then(() => { dispatch(getDetail(id)) })
   };
 
   let btndisabled = !(
     currentValue &&
-    input.comment.length
+    input.Reviwer.length
   )
 
   return (
@@ -84,7 +62,7 @@ export const Reviews = () => {
           <div className='estrellas'>
             {stars.map((_, index) => {
               return (
-                <div>
+                <div key={index}>
                   <FaStar
                     className={(hoverValue || currentValue) > index ? 'amarillo' : 'gris'}
                     key={index}
@@ -99,24 +77,23 @@ export const Reviews = () => {
 
           <div id="textarea" className='textareaRev'>
             <div className="mb-2-block">
-              <Label htmlFor="comment" /> </div>
+              <Label htmlFor="Reviwer" /> </div>
             <Textarea
-              id="comment"
+              id="Reviwer"
               className='textarea'
-              placeholder="Leave a comment..."
+              placeholder="Leave a Reviwer..."
               required={true}
               rows={4}
               onChange={(e) => handleChange(e)}
-              name="comment"
-              value={input.comment} />
+              name="Reviwer"
+              value={input.Reviwer} />
           </div>
 
           <Button
             className='botonRev'
             gradientDuoTone="purpleToBlue"
             type="submit"
-            // disabled={btndisabled}
-            onClick={showAlert}>Send</Button>
+            disabled={btndisabled}>Send</Button>
 
         </form>
       </div>

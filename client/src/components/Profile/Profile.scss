@@ -17,7 +17,6 @@
     overflow: auto;
     color: black;
 
-    
     &--open {
     left: 10px;
   
@@ -58,7 +57,6 @@
     .fas:hover{
       color: $title-bg-light;
     }
-
   
     &__content {
         height: calc(100% - 64px); /* Take up remaining space */
@@ -67,7 +65,6 @@
         display: flex;
         align-items: stretch;
     }
-
   
     &__left {
         width: 30%;
@@ -105,8 +102,6 @@
       border-radius: 50%;
     }
     
-    
-  
     &__nickname {
       margin: 0;
       font-size: 20px;
@@ -316,17 +311,12 @@ body {
   background: $secundary-color;
 }
 
-.wrapper {
+.calendar-wrapper {
   width: 450px;
   background: white;
   border-radius: 10px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.12);
   position: relative;
-
-
-  .calendarHours{
-  justify-content: space-around;    
-  }
   
   header {
     display: flex;
@@ -334,28 +324,27 @@ body {
     padding: 25px 30px 10px;
     justify-content: space-between;
 
-    .icons {
+    &:last-child {
+      margin-right: -10px;
+    }
+
+    .prev-next-buttons {
       display: flex;
+      height: 38px;
+      width: 38px;
+      margin: 0 1px;
+      cursor: pointer;
+      color: #878787;
+      text-align: center;
+      line-height: 38px;
+      font-size: 1.9rem;
+      user-select: none;
+      padding-left: 10px;
       
-      span {
-        height: 38px;
-        width: 38px;
-        margin: 0 1px;
-        cursor: pointer;
-        color: #878787;
-        text-align: center;
-        line-height: 38px;
-        font-size: 1.9rem;
-        user-select: none;
-        border-radius: 50%;
-        
-        &:last-child {
-          margin-right: -10px;
-        }
-        
-        &:hover {
-          background: #f2f2f2;
-        }
+      
+      &:hover {
+        background: $primary-color;
+        color: white;
       }
     }
     
@@ -365,8 +354,6 @@ body {
     }
   }
 
-
-  
   .calendar {
     padding: 20px;
     
@@ -385,6 +372,8 @@ body {
       }
 
     }
+
+    //días del mes
     
     ul.days {
       display: flex;
@@ -462,6 +451,7 @@ body {
 
 }
 
+//scrollbar:
 
 .profile::-webkit-scrollbar {
   width: 11px;
