@@ -146,6 +146,7 @@ export const DELETE_REVIWER = 'DELETE_REVIWER';
 export function postReviwer(id, Reviwer, score) {
   return async function (dispatch) {
     const tokken = window.localStorage.getItem("tokken");
+    console.log(tokken)
     const json = await axios.post(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`,
       {
         id,
