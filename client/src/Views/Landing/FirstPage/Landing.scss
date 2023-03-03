@@ -35,6 +35,15 @@
             width: fit-content;
             color:$primary-color;
             font-size: 3vw;
+            cursor: pointer;
+            text-decoration: none;
+            
+                &:hover{
+                    transition: all 1s cubic-bezier(.25, .4, .45, 1.4)  ;
+                    font-size: 5vw;
+                }
+            
+
 
         }
     }

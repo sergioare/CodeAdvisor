@@ -3,17 +3,18 @@
 .ContainerTest {
   margin: 0 auto;
   padding: 20px;
-  max-width: 1300px;
+  max-width: 80vw;
+  height: 80vh;
 
   h1 {
-    font-size: 36px;
+    font-size: 3vw;
     margin-bottom: 10px;
     text-align: center;
     color: $title-bg-light;
   }
 
   h4 {
-    font-size: 18px;
+    font-size: 1.4vw;
     margin-bottom: 30px;
     text-align: center;
     color: $text-bg-light;
@@ -45,7 +46,7 @@
         h2 {
           color: $text-bg-light;
           font-weight: bold;
-          font-size: 20px;
+          font-size: 2vw;
           display: flex;
           align-items: center;
           margin-bottom: 10px;
@@ -61,7 +62,7 @@
       }
 
       p {
-        font-size: 15px;
+        font-size: 1.4vw;
         margin-top: -10px;
         color: $text-bg-light;
         margin-bottom: 0;
