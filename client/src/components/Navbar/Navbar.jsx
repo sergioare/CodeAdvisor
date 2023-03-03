@@ -3,9 +3,13 @@ import { navbarItems } from './data';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import ModShopping from '../Modals/ModShopping';
+import { getAuth } from 'firebase/auth';
 
 const Navbar = (props) => {
   const { toggleConfigBar } = props;
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
+
 
   const showAlert = (e)=>{
     e.preventDefault();
@@ -36,6 +40,10 @@ const Navbar = (props) => {
         }
         return <Link {...linkProps}><div>{item.name}</div></Link>;
       })}
+      {currentUser?
+        <div className='user'> Hi, {currentUser.displayName}</div>
+        :null
+      }
       <div className="shopping">
         <ModShopping/>
       </div>
