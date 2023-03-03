@@ -3,7 +3,7 @@ import contact from "../../assets/contacUs2.png"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import axios from "axios"
-
+import Navbar from '../Navbar/Navbar'
 
 const Contact = () => {
 
@@ -28,8 +28,9 @@ const submitHandler=(event)=>{
 };
 
     return (
+        <>
+            <Navbar/>
         <div className="containerPrincipal" >
-
             <div className="bgpurple">
                 <p className="textcontact">Contact Us</p>
                 <p> Questions, bug reports, feedback, We are here to help you.</p>
@@ -53,8 +54,10 @@ const submitHandler=(event)=>{
                 </div>
                     <img className="img" src={contact} alt="contact" />
             </div>
-            <Link to='/home'><button className="buttonBack">Back Home</button></Link>
+            
         </div>
+        </>
+
     )
 }
 export default Contact;

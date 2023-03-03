@@ -49,7 +49,10 @@ const PreLanding = () => {
       <div className='icons'>
         {icons.map((icon, index) => (
           <div className='icon' key={index}>
+            <Link to={icon.path} className='icon'>
+
             {icon.name}
+            </Link>
           </div>
         ))}
       </div>

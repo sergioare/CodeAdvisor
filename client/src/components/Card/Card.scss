@@ -1,14 +1,14 @@
+@use '../Styles/mixins';
 @import '../Styles/_variables.scss';
 
 .cardContainer {
-  display: flex;
+  @include mixins.create-flexbox;
   flex-wrap: wrap;
-  justify-content: center;
+
 
   .cardMain {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+      @include mixins.create-flexbox;
+
     flex-direction: column;
     background-color: $title-bg-purple;
     width: 300px;
@@ -63,19 +63,20 @@
       }
 
       button {
-        background-color: $title-bg-light;
+        background-color:$circles-bg-light ;       
         color: $text-bg-purple;
         border: none;
         padding: 7px 17px;
         font-size: 15px;
         border-radius: 5px;
         margin-top: 5px;
+        cursor: pointer;
+        
+        &:hover {
+          background-color: $primary-color;
+        }
       }
 
-      button:hover {
-        background-color: $primary-color;
-        cursor: pointer;
-      }
     }
   }
 }

@@ -32,7 +32,7 @@
 
       p {
         display: inline-block;
-        color: #e28743;
+        color: $bg-btn;
         margin-bottom: 0;
       }
 
@@ -65,7 +65,7 @@
       padding:.3em .6em ;
     }
     .btn-one{
-    background-color: #e28743;
+    background-color: $bg-btn;
 
     }
 
@@ -119,8 +119,7 @@
     background-repeat: no-repeat;
     background-size: 5vw;
     margin-left: 30vw;
-    filter: invert(75%) sepia(9%) saturate(6995%) hue-rotate(327deg) brightness(92%) contrast(93%);
-    margin-top: 7vh;
+    filter: invert(42%) sepia(40%) saturate(5962%) hue-rotate(236deg) brightness(102%) contrast(100%);    margin-top: 7vh;
    
 
   }
