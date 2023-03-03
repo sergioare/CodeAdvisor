@@ -4,7 +4,10 @@ import { getProfile, getAdvisorReviews } from '../../redux/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuth } from 'firebase/auth'
 import ModProfile from '../Modals/ModProfile';
+import { updateDates, updateAvailability  } from '../../redux/actions/actions';
 
+
+//let dateClickHandlerAdded = false;
 
 function Profile ({isProfileOpen, toggleProfile, isConfigBarOpen}) {
 const auth = getAuth();
@@ -30,18 +33,6 @@ const profileData = useSelector(state => state.profile)
 const Reviews = useSelector(state => state.advisorReviews)
 
 const [editing, setEditing] = useState(false);
-/*   const [profile, setProfile] = useState(profileData);
-
-const handleProfileUpdate = (updatedProfile) => {
-  setEditing(false);
-  setProfile(updatedProfile);
-};
-
-const handleProfileDataUpdate = (updatedData) => {
-  const updatedProfile = { ...profile, ...updatedData };
-  setProfile(updatedProfile);
-}; */
-
 
 const handleEdit = () => {
   if(editing){
@@ -53,11 +44,6 @@ const handleEdit = () => {
   setEditing(!editing);
 };
   
-/* if(isProfileOpen){
-  if(isSidebarOpen)closeSideBar();
-  if(openAdmin)toggleAdmin();
-} */
-
 let lowestScore, averageScore, highestScore;
 
 if (Reviews && Reviews.length > 0) {
@@ -72,33 +58,30 @@ if (Reviews && Reviews.length > 0) {
 }
 
 // a partir de acá codigo de calendar: 
-
-const [selectedDate, setSelectedDate] = useState(null);
-
-function handleDateClick(e) {
-  const clickedDate = e.target.innerText;
-  setSelectedDate(clickedDate);
-  console.log(clickedDate)
-}
-
+var monthChanged = false
 const daysTag = document.querySelector(".days"),
-currentDate = document.querySelector(".current-date"),
-prevNextIcon = document.querySelectorAll(".icons span");
+currentDate = document.querySelector(".current-date");
 
-// getting new date, current year and month
-let date = new Date(),
-currYear = date.getFullYear(),
-currMonth = date.getMonth();
+const availableDates = useSelector(state => state.availability)
+const dates = useSelector(state => state.dates);
+const [selectedDate, setSelectedDate] = useState(null);
+const [Dmonth, setMonth] = useState(dates.month);
+const [Dyear, setYear] = useState(dates.year);
 
+// getting new date
+let date = new Date();
 // storing full name of all months in array
 const months = ["January", "February", "March", "April", "May", "June", "July",
               "August", "September", "October", "November", "December"];
 
-const renderCalendar = () => {
-    let firstDayofMonth = new Date(currYear, currMonth, 1).getDay(), // getting first day of month
-    lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate(), // getting last date of month
-    lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay(), // getting last day of month
-    lastDateofLastMonth = new Date(currYear, currMonth, 0).getDate(); // getting last date of previous month
+
+const renderCalendar = (year, month, selectedDate, monthChanged, availableDatesRender) => {
+  console.log("avai render")
+  console.log(availableDatesRender)
+    let firstDayofMonth = new Date(year, month, 1).getDay(), // getting first day of month
+        lastDateofMonth = new Date(year, month + 1, 0).getDate(), // getting last date of month
+        lastDayofMonth = new Date(year, month, lastDateofMonth).getDay(), // getting last day of month
+        lastDateofLastMonth = new Date(year, month, 0).getDate(); // getting last date of previous month
     let liTag = "";
 
     for (let i = firstDayofMonth; i > 0; i--) { // creating li of previous month last days
@@ -107,39 +90,134 @@ const renderCalendar = () => {
 
     for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
         // adding today class to li if the current day, month, and year matched
-        let isToday = i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear() ? "today" : "";
-        let isSelected = i.toString() === selectedDate ? "selected" : "";
-        liTag += `<li class="${isToday} ${isSelected}" onClick="${handleDateClick}">${i}</li>`;
+        let isToday = i === date.getDate() && month === new Date().getMonth() && year === new Date().getFullYear() ? "today" : "";
+        let isSelected = selectedDate && i.toString() === selectedDate.date && month === selectedDate.month && year === selectedDate.year ? "selected" : "";
+        let isActive = "inactive" !== isToday.trim() && "inactive" !== isSelected.trim() ? "active" : "";
+        let hasAvailable = availableDatesRender.flatMap(arr => arr).some(obj => obj.id === id && obj.date == i.toString() && obj.month === month && obj.year === year && obj.state === "available") ? "available" : "";
+        let hasReserved = availableDatesRender.flatMap(arr => arr).some(obj => obj.id === id && obj.date == i.toString() && obj.month === month && obj.year === year && obj.state === "reserved") ? "reserved" : "";
+        liTag += `<li class="${isToday} ${isActive} ${isSelected} ${hasAvailable} ${hasReserved}">${i}</li>`;
     }
-
 
     for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days
         liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`
     }
-    currentDate.innerText = `${months[currMonth]} ${currYear}`; // passing current mon and yr as currentDate text
+    currentDate.innerText = `${months[month]} ${year}`; // passing current mon and yr as currentDate text
     daysTag.innerHTML = liTag;
+
+    
+    if(monthChanged){
+      //const clonedElement = daysTag.cloneNode(true);
+      //daysTag.replaceWith(clonedElement);
+      //daysTag.removeEventListener("click", (e)=>{});
+      daysTag.addEventListener("click", (e)=>{
+        e.preventDefault()
+        const clickedDate = e.target.innerText;
+        const newSelectedDate = { date: clickedDate, month: month, year: year };
+        setSelectedDate(newSelectedDate);
+        renderCalendar(year, month, newSelectedDate, false, availableDates); // Call renderCalendar function with updated month and year values
+      });
+    monthChanged = false
+}
 }
 
-prevNextIcon.forEach(icon => { // getting prev and next icons
-    icon.addEventListener("click", () => { // adding click event on both icons
-        // if clicked icon is previous icon then decrement current month by 1 else increment it by 1
-        currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
 
-        if(currMonth < 0 || currMonth > 11) { // if current month is less than 0 or greater than 11
-            // creating a new date of current year & month and pass it as date value
-            date = new Date(currYear, currMonth, new Date().getDate());
-            currYear = date.getFullYear(); // updating current year with new date year
-            currMonth = date.getMonth(); // updating current month with new date month
-        } else {
-            date = new Date(); // pass the current date as date value
-        }
-        renderCalendar(); // calling renderCalendar function
-    });
-});
+const prevNextClick = (direction) => { 
+  let currMonth = Dmonth
+  let currYear = Dyear
+  if (direction === "prev") {
+    if (currMonth === 0) {
+      currMonth = 11;
+      currYear = currYear - 1;
+    } else {
+      currMonth = currMonth - 1;
+    }
+  } else {
+    if (currMonth === 11) {
+      currMonth = 0;
+      currYear = currYear + 1;
+    } else {
+      currMonth = currMonth + 1;
+    }
+  }
+  dispatch(updateDates({ month: currMonth, year: currYear }));
 
-//renderizamos el calendar una vez se hayan cargado los datos y solo si esta el profile abierto
-if(currentDate && isProfileOpen)renderCalendar();
+  setMonth(currMonth)
+  setYear(currYear)
+
+  monthChanged = true
+
+  renderCalendar(currYear, currMonth, selectedDate, monthChanged, availableDates); // Pass currMonth and currYear as arguments to renderCalendar function
+};
+
+//renderizamos el calendar una vez se hayan cargado los datos y solo si esta el profile abierto y cuando no se habian seleccionado fechas o cambiado los meses
+/* useEffect(() => {
+  if (!dateClickHandlerAdded) {
+    dateClickHandlerAdded = true
+    renderCalendar(currMonth, currYear, selectedDate);
+  }
+}, []); */
+
+
+//codigo de periodos de tiempo:
+const startTime = 0;
+const endTime = 24;
+const timeSlots = [];
+
+for (let hour = startTime; hour < endTime; hour++) {
+  timeSlots.push({
+    id: id,
+    date: selectedDate?.date,
+    month: selectedDate?.month,
+    year: selectedDate?.year,
+    startingHour: hour,
+    endingHour: hour + 1,
+    state: 'blocked'
+  });
+}
+
+const [selectedTimeSpan, setSelectedTimeSpan] = useState(timeSlots);
+const [timeState, setTimeState] = useState("blocked");
+
+const handleStateButtonClick = (state) => {
+  setTimeState(state);
+}
+
+const handleTimeSpanClick = (index) => {
+  setSelectedTimeSpan(prevState => {
+    const newState = [...prevState];
+    newState[index].state = timeState;
+    return newState;
+  });
+  renderCalendar(Dyear, Dmonth, selectedDate);
+}
+
+/* useEffect(() => {
+  dispatch(updateAvailability(selectedTimeSpan));
+}, [selectedTimeSpan]); */
+
+useEffect(() => {
+  selectedTimeSpan.forEach(timeSpan => {
+    console.log(timeSpan)
+    dispatch(updateAvailability(timeSpan));
+  });
+}, [selectedTimeSpan]);
+
     
+useEffect(() => {
+  setSelectedTimeSpan(prevState => {
+    const newState = [...prevState];
+    for (let hour = startTime; hour < endTime; hour++) {
+    newState[hour].date = selectedDate?.date;
+    newState[hour].month = selectedDate?.month;
+    newState[hour].year = selectedDate?.year;
+    newState[hour].state = "blocked";
+    }
+    return newState;
+  });
+}, [selectedDate]);
+
+console.log(availableDates)
+
 return (
   <div className={`profile ${isProfileOpen ? 'profile--open' : ''} ${isConfigBarOpen ? 'config-sidebar-open' : ''}`}>
     <div className="profile__header">
@@ -208,25 +286,28 @@ return (
                 <td rowSpan="3" className="data" style={{border: "2px solid #794BFF"}}>
                 <div>
                 <div className="wrapper">
-                  <header>
-                    <p className="current-date"></p>
-                    <div className="icons">
-                      <span id="prev" className="material-symbols-rounded">&lt;</span>
-                      <span id="next" className="material-symbols-rounded">&gt;</span>
+                  <div className='calendarHours'>
+                    <header>
+                      <p className="current-date"></p>
+                      <div className="icons">
+                        <button onClick={()=>{prevNextClick("prev")}} className="material-symbols-rounded">&lt;</button>
+                        <button onClick={()=>{prevNextClick("next")}} className="material-symbols-rounded">&gt;</button>
+                      </div>
+                    </header>
+                    <div className="calendar">
+                      <ul className="weeks">
+                        <li>Sun</li>
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Wed</li>
+                        <li>Thu</li>
+                        <li>Fri</li>
+                        <li>Sat</li>
+                      </ul>
+                      <ul className="days"></ul>
                     </div>
-                  </header>
-                  <div className="calendar">
-                    <ul className="weeks">
-                      <li>Sun</li>
-                      <li>Mon</li>
-                      <li>Tue</li>
-                      <li>Wed</li>
-                      <li>Thu</li>
-                      <li>Fri</li>
-                      <li>Sat</li>
-                    </ul>
-                    <ul className="days"></ul>
                   </div>
+                  
                 </div>
                 
               </div>
@@ -324,8 +405,8 @@ return (
                   <header>
                     <p className="current-date"></p>
                     <div className="icons">
-                      <span id="prev" className="material-symbols-rounded">&lt;</span>
-                      <span id="next" className="material-symbols-rounded">&gt;</span>
+                    <button onClick={()=>{prevNextClick("prev")}} className="material-symbols-rounded">&lt;</button>
+                    <button onClick={()=>{prevNextClick("next")}} className="material-symbols-rounded">&gt;</button>
                     </div>
                   </header>
                   <div className="calendar">
@@ -341,6 +422,35 @@ return (
                     <ul className="days"></ul>
                   </div>
                 </div>
+                <table className='timesTable'>
+                      <thead>
+                      <tr>
+                      <th>{selectedDate ? `${months[selectedDate.month]} ${selectedDate.date} / ${selectedDate.year}` : "Select a date"}</th>
+                    </tr>
+
+                      </thead>
+                      <div>
+  <div>
+    <button onClick={() => handleStateButtonClick("blocked")}>Blocked</button>
+    <button onClick={() => handleStateButtonClick("available")}>Available</button>
+    <button onClick={() => handleStateButtonClick("reserved")}>Reserved</button>
+  </div>
+  <table>
+    <tbody>
+      {selectedTimeSpan.map((timeSpan, index) => (
+        <tr key={index}>
+          <td>
+            <button onClick={() => handleTimeSpanClick(index)}>
+              {timeSpan.startingHour}:00 - {timeSpan.endingHour}:00
+            </button>
+          </td>
+          <td>{timeSpan.state}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+                    </table>
                 
               </div>
               </tr>

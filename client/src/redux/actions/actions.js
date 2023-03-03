@@ -18,7 +18,15 @@ export const GET_PROFILE = 'GET_PROFILE'
 export const GET_ADVISORS_REVIEWS = 'GET_ADVISORS_REVIEWS'
 export const BLOCK_ACCOUNT = 'BLOCK_ACCOUNT'
 export const UNBLOCK_ACCOUNT = 'UNBLOCK_ACCOUNT'
+export const UPDATE_DATES = 'UPDATE_DATES'
+export const UPDATE_AVAILABILITY = 'UPDATE_AVAILABILITY'
 
+
+export const updateAvailability = (timeSpans) => {
+  return async function (dispatch) {
+    dispatch({ type: UPDATE_AVAILABILITY, payload: timeSpans })
+  };
+}
 
 export const getAutors = () => {
   return async function (dispatch) {
@@ -28,6 +36,12 @@ export const getAutors = () => {
 
   };
 };
+
+export const updateDates = (dates) => {
+  return async function (dispatch) {
+    dispatch({ type: UPDATE_DATES, payload: dates })
+  };
+}
 
 export const blockAccount = (id) => {
   return async function (dispatch) {

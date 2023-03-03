@@ -7,6 +7,7 @@ import {
   SORT_ADVISORS,
   GET_AUTORS, GET_REVIEWS, GET_ADVISORS, ADVISOR_DETAIL, GET_TECHSKILLS, GET_PROFILE, GET_ADVISORS_REVIEWS,
   BLOCK_ACCOUNT, UNBLOCK_ACCOUNT,
+  UPDATE_DATES, UPDATE_AVAILABILITY
 } from '../actions/actions';
 
 const initialState = {
@@ -19,6 +20,18 @@ const initialState = {
   profile: [],
   advisorReviews: [],
   blockedAccounts: [],
+  dates: {
+    month: new Date().getMonth(),
+    year: new Date().getFullYear(),
+  },
+  availability: [
+    {id: '2Vyng2S1Lfwv8ge4A9Mv', date: '4', month: 1, year: 2023, startingHour: 7, endingHour: 8, state: "available"},
+    {id: '2Vyng2S1Lfwv8ge4A9Mv', date: '4', month: 1, year: 2023, startingHour: 8, endingHour: 9, state: "reserved"},
+    {id: '2Vyng2S1Lfwv8ge4A9Mv', date: '5', month: 1, year: 2023, startingHour: 8, endingHour: 9, state: "available"},
+    {id: '2Vyng2S1Lfwv8ge4A9Mv', date: '5', month: 1, year: 2023, startingHour: 15, endingHour: 16, state: "available"},
+    {id: '2Vyng2S1Lfwv8ge4A9Mv', date: '6', month: 1, year: 2023, startingHour: 12, endingHour: 13, state: "reserved"},
+    {id: '2Vyng2S1Lfwv8ge4A9Mv', date: '6', month: 1, year: 2023, startingHour: 13, endingHour: 14, state: "reserved"},
+  ],
 
   advisorsInDisplay: [],
   filters: {
@@ -35,6 +48,48 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
 
   switch (action.type) {
+    case UPDATE_AVAILABILITY:
+      const newAvailability = [...state.availability];
+      //console.log("reducer")
+      //console.log(newAvailability)
+      let matchingObjectIndex = -1;
+
+      /* for (let i = 0; i < newAvailability.length; i++) {
+        if (newAvailability[i].id === action.payload.id
+            && newAvailability[i].date === action.payload.date
+            && newAvailability[i].month === action.payload.month
+            && newAvailability[i].year === action.payload.year) {
+          matchingObjectIndex = i;
+          break;
+        }
+      }
+
+      if (matchingObjectIndex >= 0) {
+        if (action.payload.state === "available" || action.payload.state === "reserved") {
+          newAvailability[matchingObjectIndex] = action.payload;
+        } else if (action.payload.state === "blocked") {
+          newAvailability.splice(matchingObjectIndex, 1);
+        }
+      } else */ if (action.payload.state === "available" || action.payload.state === "reserved") {
+        console.log("aca")
+        newAvailability.push(action.payload);
+      }
+
+      return {
+        ...state,
+        availability: newAvailability,
+      };
+
+
+    case UPDATE_DATES:
+      return {
+        ...state,
+        dates: {
+          month: action.payload.month,
+          year: action.payload.year,
+        }
+      }
+
     case BLOCK_ACCOUNT:
     const blockedUser = state.users.find(a => a.id === action.payload);
     const blockedAdvisor = state.advisors.find(a => a.id === action.payload);

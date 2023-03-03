@@ -321,6 +321,12 @@ body {
   background: white;
   border-radius: 10px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  position: relative;
+
+
+  .calendarHours{
+  justify-content: space-around;    
+  }
   
   header {
     display: flex;
@@ -358,6 +364,8 @@ body {
       font-weight: 500;
     }
   }
+
+
   
   .calendar {
     padding: 20px;
@@ -405,11 +413,30 @@ body {
           }
         }
 
+        &.available{
+            color: $title-bg-light;
+          
+          &::before {
+            border: 5px solid yellow;
+            border-radius: 0;
+            background-color: yellow;
+          }
+        }
+
+        &.reserved{
+          color: $title-bg-light;
+          
+          &::before {
+            border-radius: 0;
+            background: rgb(0, 194, 16);
+          }
+        }
+
         &.selected{
           color: #fff;
           
           &::before {
-            background: $secundary-color;
+            background: rgb(0, 3, 194);
           }
         }
         
@@ -425,7 +452,7 @@ body {
           transform: translate(-50%, -50%);
         }
         
-        &:not(.active):hover::before {
+        &:not(.inactive):hover::before {
           background: $primary-color;
         }
       }
