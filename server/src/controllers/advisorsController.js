@@ -83,8 +83,8 @@ const getIdAdvisors = async (req, res, next) => {
         if (!data.exists) {
             res.status(404).send(`Advisor with id: ${id}. Does not exist`);
         } else {
-            let reviwers = ["empty",0]
-            let schedules = ["empty"]
+            let reviwers = [[],0]
+            let schedules = []
             if(data.data().statusReviwers === true) {
                 reviwers = await getAllReviews(data.id)
             }

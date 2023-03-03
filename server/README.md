@@ -1,7 +1,7 @@
-# CodeAdvisor
+# CodeAdvisor BACK
 
 <p align="legth">
-  <img height="200" src="image/README/1677673339165.jpg" />
+  <img height="200" src="image/README/logo_2.jpeg" />
 </p>
 
 welcome to this part of henry's final project (FP)
