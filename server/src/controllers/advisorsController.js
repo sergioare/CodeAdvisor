@@ -277,7 +277,9 @@ const getAdvisorsAllMyWallet = async (req, res, next) => {
 
 const addAdvisorsMyWallet = async (req, res, next) => {
     console.log("Advisors_add_MyWallet", req.params);
-    const aid = req.params.id
+    
+    try {
+        const aid = req.params.id
     const uid = req.body.id
     const dataAdvisor = {
         userName: req.body.dataAdvisor.userName,
@@ -299,7 +301,6 @@ const addAdvisorsMyWallet = async (req, res, next) => {
         unit_price: req.body.itemsOrder.unit_price,
                         
     };
-    try {
         await firestore.collection(`/Advisors/${aid}/MyWallet`).add(dataAdvisor);
         await firestore.collection(`/Clients/${uid}/MyCart`).add(dataUser);
 
@@ -309,7 +310,8 @@ const addAdvisorsMyWallet = async (req, res, next) => {
         await fireUser.update({ statusMyCart: true })
             .then(respuesta => {
                 let preference = {
-                    items: [{
+                    // metadata: {"payments_group_size":1,"payments_group_timestamp":"2022-11-18T15:01:44Z","payments_group_uuid":"96cfd2a4-0b06-4dea-b25f-c5accb02ba10"},
+                        items: [{
                         id: Math.floor(Math.random() * 999999),
                         title: itemsOrder.title,
                         currency_id: "MXN",
