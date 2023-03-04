@@ -1,0 +1,11 @@
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25%;
+  border-radius: 20px;
+  /* Player ratio: 100 / (1280 / 720) */
+}
+.player-wrapper .react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}/*# sourceMappingURL=Video.css.map */

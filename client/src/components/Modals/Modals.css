@@ -1,0 +1,45 @@
+.login-btn {
+  display: flex;
+  border: 2px solid #AD90FF;
+  border-radius: 20%;
+  background-color: #AD90FF;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+}
+.login-btn:hover {
+  background-color: #794BFF;
+}
+
+.inquiries-btn {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #AD90FF;
+  color: #ffffff;
+  border-radius: 10px;
+  text-shadow: 2px 2px 2px #0B036B;
+}
+.inquiries-btn:hover {
+  background-color: #5318ff;
+}
+.inquiries-btn i {
+  margin-right: 1em;
+  font-size: 1.3em;
+}
+
+.shopping-btn {
+  display: flex;
+  border: 2px solid #AD90FF;
+  border-radius: 20%;
+  background-color: #AD90FF;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+}
+.shopping-btn:hover {
+  background-color: #794BFF;
+}/*# sourceMappingURL=Modals.css.map */

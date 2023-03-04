@@ -1,0 +1,14 @@
+.rating {
+  display: inline-block;
+  font-size: 0;
+  /* Elimina el espacio entre las estrellas */
+}
+
+.star {
+  color: #ffce00;
+  font-size: 18px;
+}
+
+.star.empty {
+  color: rgb(176, 174, 174);
+}/*# sourceMappingURL=StarRating.css.map */

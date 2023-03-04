@@ -1,5 +1,5 @@
-@use '../Styles/mixins';
-@import '../Styles/_variables.scss';
+@use '../../components/Styles/mixins';
+@import '../../components/Styles/variables';
 
 .ContPrincipal {
   @include mixins.create-flexbox;

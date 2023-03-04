@@ -1,0 +1,68 @@
+.cardContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cardContainer .cardMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #D9D9D9;
+  width: 300px;
+  margin: 5px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.cardContainer .cardMain img {
+  width: 100%;
+  height: 150px;
+  border-radius: 15px 15px 0 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 0 0;
+     object-position: 0 0;
+}
+.cardContainer .cardMain .cardBg {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: #e9e9e9;
+  padding: 10px;
+  border-radius: 0 0 15px 15px;
+  text-align: center;
+}
+.cardContainer .cardMain .cardBg h1 {
+  color: #5c2ee7;
+  font-size: 24px;
+  font-weight: bold;
+}
+.cardContainer .cardMain .cardBg .letra h2 {
+  color: #875DFF;
+  font-size: 17px;
+  margin-top: 5px;
+}
+.cardContainer .cardMain .cardBg .letra p {
+  color: #484848;
+  font-size: 16px;
+  margin: 0;
+  margin-top: -12px;
+}
+.cardContainer .cardMain .cardBg button {
+  background-color: #AD90FF;
+  color: #ffffff;
+  border: none;
+  padding: 7px 17px;
+  font-size: 15px;
+  border-radius: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.cardContainer .cardMain .cardBg button:hover {
+  background-color: #794BFF;
+}/*# sourceMappingURL=Card.css.map */
