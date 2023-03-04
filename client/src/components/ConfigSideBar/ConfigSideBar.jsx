@@ -4,6 +4,7 @@ import "./ConfigSideBar.scss"
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import Admin from '../Admin/Admin';
 import { useAuth } from '../../context/authContext';
+import { Link } from 'react-router-dom';
 
 function ConfigSideBar({isAdmin, isConfigBarOpen, toggleConfigBar, toggleProfile, closeSideBar, openAdmin, toggleAdmin, isSidebarOpen, isProfileOpen}) {
     const [isEnglish, setIsEnglish] = useState(true);
@@ -55,14 +56,19 @@ function ConfigSideBar({isAdmin, isConfigBarOpen, toggleConfigBar, toggleProfile
         <div className={`Configsidebar ${isConfigBarOpen ? 'open' : 'closed'}`}>
             <button className="config-title" onClick={handleTitleClick}><i className="fa-solid fa-gear"></i>Settings</button>
             <button className="language-toggle" onClick={handleProfileClick}><i className="fa-solid fa-user"></i>Your Profile</button>
-            <button ref={languageToggle} className="language-toggle" onClick={handleLanguageToggle}>
+            {/* <button ref={languageToggle} className="language-toggle" onClick={handleLanguageToggle}>
                 {isEnglish ? 'English' : 'Español'}
             </button>
             <button ref={themeToggle} className="theme-toggle" onClick={handleThemeToggle}>
                 {isDarkMode ? 'Light Mode' : 'Dark Mode'}
-            </button>
+            </button> */}
             <ModInquiries/>
             {isAdmin && <button className='dashboard' onClick={handleAdminButtonClick}><DashboardIcon className='i'/>Dashboard</button>}
+            <button className='documentation'>
+                <Link to='https://sergios-organization-2.gitbook.io/code-advisor/' className='link' target='_blank'>
+                    <i className="fa-solid fa-book"></i>Documentation
+                    </Link></button>
+            
             <button className="signoff-report-button" onClick={signOff}> <i className="fa-solid fa-right-from-bracket"></i>Sign out</button>
         </div>
     );

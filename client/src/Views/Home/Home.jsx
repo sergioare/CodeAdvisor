@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadProfessionals } from '../../redux/actions/actions';
 import { icons } from '../../Utils/utils';
-import { Commercial } from '../../components/Commercial/Commercial';
+import { Commercial } from '../../Views/Commercial/Commercial';
 import Cards from "../../components/Cards/Cards"
-import Testimonials from '../../components/Testimonials/Testimonials';
+import Testimonials from '../../Views/Testimonials/Testimonials';
 import SideBar from '../../components/SideBar/SideBar';
 import ConfigSideBar from '../../components/ConfigSideBar/ConfigSideBar';
 import Navbar from '../../components/Navbar/Navbar';

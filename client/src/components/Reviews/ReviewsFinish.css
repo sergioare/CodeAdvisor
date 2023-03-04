@@ -1,0 +1,46 @@
+.ContainRevFin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+}
+.ContainRevFin .RevFin .cardRevFin {
+  width: 80%;
+  max-width: 600px;
+  background-color: #AD90FF;
+  padding: 12px;
+  border-radius: 5px;
+  margin: 5px;
+  justify-content: flex-start;
+  align-items: center;
+}
+.ContainRevFin .RevFin .cardRevFin .HeadRevFin {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ContainRevFin .RevFin .cardRevFin .HeadRevFin h2 {
+  color: #484848;
+  font-weight: bold;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.ContainRevFin .RevFin .cardRevFin .HeadRevFin img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.ContainRevFin .RevFin .cardRevFin p {
+  font-size: 15px;
+  margin-bottom: 0;
+  color: #484848;
+}
+.ContainRevFin .RevFin .cardRevFin span {
+  color: gray;
+  font-size: 17px;
+}/*# sourceMappingURL=ReviewsFinish.css.map */
