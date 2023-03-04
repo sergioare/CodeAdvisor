@@ -41,7 +41,7 @@ router.use("/Advisors", advisorsRoute)
 router.use('/data', dataRoute)
 
 router.use("/Admin", adminRoute)
-router.use('/payment', mercadoPagoRouter)
+router.use('/store', mercadoPagoRouter)
 router.use('/contactUs', nodeMailerRoutes)
 router.use('/subcribe', chimpMailerRoutes)
 
