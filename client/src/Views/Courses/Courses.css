@@ -1,0 +1,11 @@
+.imgConteiner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 500px;
+  align-items: center;
+}
+.imgConteiner .imgNotFound {
+  width: 450px;
+  height: 400px;
+}/*# sourceMappingURL=Courses.css.map */
