@@ -179,22 +179,33 @@ const getSpecialty = async (req, res, next) => {
 
 //------------/ OTROS XD DE LA PAGINA /--------------------//
 const dx = async (req, res, next) => {
-try {
-    const fire              = await firestore.collection(`/XD`)
-    const data             = await fire.get();
-    const z = []
-    data.forEach((x) =>{            
-        let a = {
-            id: x.id,
-            data: x.data()
-        }
-        z.push(a)        
-    })
-    res.status(200).send(z);
-} catch (error) {
-    res.status(400).send(error.message);
-
+    try {
+        const fire              = await firestore.collection(`/XD`)
+        const data             = await fire.get();
+        const z = []
+        data.forEach((x) =>{            
+            let a = {
+                id: x.id,
+                data: x.data()
+            }
+            z.push(a)        
+        })
+        res.status(200).send(z);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
 }
+const xc = async (req,res,next) => {
+    const id = req.params.id
+    const a = {id}
+    try {
+        const fire = await firestore.collection("XD").doc(id)
+        const data = await fire.get()
+        a.data = data.data()
+        res.status(200).send(a);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
 }
 const xd = async (req, res, next) => {
     try {
@@ -218,6 +229,7 @@ module.exports = {
 
     getContacts,
     addContacts,
+    
 
-    getSpecialty,xd,dx
+    getSpecialty,xd,xc,dx
 }

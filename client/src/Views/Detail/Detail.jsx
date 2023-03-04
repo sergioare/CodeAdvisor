@@ -38,8 +38,8 @@ const Detail = () => {
             <h4 className='TitlesPurple'>Languages: <p>{detail.Language/*?.length > 1 ? detail.Language.join(', ') : detail.Language*/}</p></h4>
             <h4 className='TitlesPurple'>Tech Skills: <p>{detail.TechSkills?.join(', ')}</p></h4>
             <h4 className='TitlesPurple'>Price: <span>${detail.Price} / hr</span></h4>
-            <h4 className='TitlesPurple'>Score: <span>{(detail.Score).toFixed(1)}{<StarRating rating={detail.Score} />}</span></h4>
-            <span>{detail.Reviews.length} reviews</span>
+            <h4 className='TitlesPurple'>Score: <span>{/*(detail.Score).toFixed(1)*/}{<StarRating rating={detail.Score} />}</span></h4>
+            {/* <span>{detail.Reviews.length} reviews</span> */}
           </div>
         </div>
         {/* <div> */}
