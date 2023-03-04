@@ -65,7 +65,7 @@ function ConfigSideBar({isAdmin, isConfigBarOpen, toggleConfigBar, toggleProfile
             <ModInquiries/>
             {isAdmin && <button className='dashboard' onClick={handleAdminButtonClick}><DashboardIcon className='i'/>Dashboard</button>}
             <button className='documentation'>
-                <Link to='https://sergios-organization-2.gitbook.io/code-advisor/' className='link'>
+                <Link to='https://sergios-organization-2.gitbook.io/code-advisor/' className='link' target='_blank'>
                     <i className="fa-solid fa-book"></i>Documentation
                     </Link></button>
             
