@@ -26,12 +26,14 @@ const LandingTwo = () => {
       <div className="containerTech">
         {tarjetasMostradas.map((tarjeta) => {
           return <div className="techs" key={tarjeta.id}>
-            <h2 > {tarjeta.id}</h2>
             <img src={tarjeta.Image} alt='imageTechSkills' />
+            {/* <h2 > {tarjeta.id}</h2> */}
           </div>
         })}
-        {/* AQUI VAN LAS CARDS */}
       </div>
+      
+        <h4>Find out how our latest courses can help you...</h4>
+      
     </div>
   );
 };

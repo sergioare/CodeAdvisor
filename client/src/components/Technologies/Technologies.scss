@@ -1,38 +1,35 @@
+@use '../Styles/mixins';
 @import '../Styles/_variables.scss';
 
-// .imgConteiner {
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: center;
-//     height: 500px;
-//     align-items: center;
 
-//     .imgNotFound {
-//         width: 450px;
-//         height: 400px;
-
-//     }
-// }
 .containerTech {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 40px;
+  // align-items: baseline;
+  margin-top: 3vh;
 
   .techs {
-    width: 25%;
-    height: 30%;
-    margin: 10px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
+    display: flex;
     align-items: center;
-
+    flex-direction: column;
+    margin: 3vw;
+    width: 27%;
+    height: 50% ;
+    border-radius: 10px;
+    margin-bottom: 7vh;
+    // box-shadow: 0px 8px 5px 0px rgba(0, 0, 0, 0.2);
+    
     h2 {
-      margin: 0;
+      display: flex;
+      width: 100%;
+      background-color: $bg-btn;
+      opacity: .6;
       padding: 10px;
-      background-color: $title-bg-light;
       color: white;
+      border-radius: 20px;
+      font-size: 2vw;
+      font-weight: bolder;
     }
 
     h4 {
@@ -40,14 +37,18 @@
     }
 
     img {
-      width: 100%;
-      height: 200px;
+      @include mixins.create-flexbox;
+      width: fit-content;
+      height: 20vh;
       object-fit: cover;
+      margin-bottom: 2vh;
+
       // object-position: ;
     }
 
     p {
       margin: 10px;
+      font-size: 1.4vw;
     }
   }
 }
