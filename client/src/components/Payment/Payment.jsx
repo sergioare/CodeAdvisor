@@ -57,23 +57,25 @@ const Payment = () => {
 
     //----------------------------Ruote to mercadoPAgo---------------------//
     const submitHandler = (event) => {
-        event.preventDefault()
-        axios.post('https://code-advisor-xi.vercel.app/payment', prod)
-            .then((res) =>
-                (window.location.href = res.data.response.body.init_point));
+        // event.preventDefault()
+        // axios.post('https://code-advisor-xi.vercel.app/payment', prod)
+        //     .then((res) =>
+        //         (window.location.href = res.data.response.body.init_point));
 
         axios.post('http://localhost:3002/data/XD', agenda)
             // .then(res => alert("date Send"))
     };
 
+   
 
-    const prod = {
+
+    // const prod = {
         
-        idAdvisor: product.id,
-        Title: `${product.Firstname} counseling for ${count} hr`,
-        Quantity: count,
-        Price: product.Price
-    };
+    //     idAdvisor: product.id,
+    //     Title: `${product.Firstname} counseling for ${count} hr`,
+    //     Quantity: count,
+    //     Price: product.Price
+    // };
 
 
     //-----------------------Calendar-------------------//
@@ -82,13 +84,14 @@ const Payment = () => {
     const dateLong = (` ${date[1]} ${date[2]} ${date[3]}`)
     const time = `${date[4]} hrs`
 
+
     const agenda = {
         idAdvisor: product.id,
+        advisor: "",
         date: dateLong,
         time: time,
         // idClient: idClient,
     }
-    // console.log(agenda)
 
 
 
@@ -134,7 +137,7 @@ const Payment = () => {
                         <select className='option' value={skills}
                             onChange={(e) => setSkills(e.target.value)}
                         >
-                            {tskill.map((ski, index) => (
+                            {tskill?.map((ski, index) => (
                                 <option key={index} value={ski}>
                                     {ski}
                                 </option>)

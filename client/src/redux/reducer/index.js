@@ -8,6 +8,7 @@ import {
   GET_AUTORS, GET_REVIEWS, GET_ADVISORS, ADVISOR_DETAIL, GET_TECHSKILLS, GET_PROFILE, GET_ADVISORS_REVIEWS,
   BLOCK_ACCOUNT, UNBLOCK_ACCOUNT, GET_DATES,
 } from '../actions/actions';
+import { TYPES } from '../actions/actions';
 
 const initialState = {
   users: [],
@@ -29,6 +30,7 @@ const initialState = {
   },
   sortMethod: "",
   dates:[],
+  cart:[],
 }
 
 
@@ -183,6 +185,22 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         dates: action.payload
       };
+
+      case TYPES.ADD_TO_CART:{
+
+      }
+
+      case TYPES.REMOVE_ONE_FROM_CART:{
+        
+      }
+
+      case TYPES.REMOVE_ALL_FROM_CART:{
+        
+      }
+
+      case TYPES.CLEAR_CART:{
+        
+      }
 
       default:
         return { ...state }

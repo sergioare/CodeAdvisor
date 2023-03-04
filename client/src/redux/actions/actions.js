@@ -19,7 +19,12 @@ export const GET_ADVISORS_REVIEWS = 'GET_ADVISORS_REVIEWS'
 export const BLOCK_ACCOUNT = 'BLOCK_ACCOUNT'
 export const UNBLOCK_ACCOUNT = 'UNBLOCK_ACCOUNT'
 export const GET_DATES = "GET_DATES"
-
+export const TYPES ={
+  ADD_TO_CART:"ADD_TO_CART",
+  REMOVE_ONE_FROM_CART : "REMOVE_ONE_FROM_CART",
+  REMOVE_ALL_FROM_CART : "REMOVE_ALL_FROM_CART",
+  CLEAR_CART: "CLEAR_CART",
+}
 
 export const getAutors = () => {
   return async function (dispatch) {
@@ -148,3 +153,4 @@ export const getDates = () => {
     dispatch({ type: GET_DATES, payload: dates });//... este info va al reducer
   };
 };
+
