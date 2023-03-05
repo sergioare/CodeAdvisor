@@ -18,6 +18,11 @@ const Detail = () => {
 
   const detail = useSelector(state => state.advisorDetail)
   // console.log(detail);
+  const detScore = detail.Score;
+  const numReviews = Array.isArray(detail.Reviews) ? detail.Reviews.length : 0;
+  console.log(detail.Reviews)
+  console.log(numReviews)
+
   return (
     <div>
       <div className='DetailContainer'>
@@ -32,22 +37,20 @@ const Detail = () => {
 
           <img src={detail.Img} alt='imageAdvisor' />
           <div className='DataContent'>
-            {/* <p className='DetailTitle'>Details</p> */}
-            {/* <p className='TitlesPurple'> Name: <p>{detail.Firstname + ' ' + detail.Lastname} </p></p> */}
             <h4 className='TitlesPurple'>Conutry: <p>{detail.Residence}</p></h4>
             <h4 className='TitlesPurple'>Languages: <p>{detail.Language/*?.length > 1 ? detail.Language.join(', ') : detail.Language*/}</p></h4>
             <h4 className='TitlesPurple'>Tech Skills: <p>{detail.TechSkills?.join(', ')}</p></h4>
             <h4 className='TitlesPurple'>Price: <span>${detail.Price} / hr</span></h4>
-            <h4 className='TitlesPurple'>Score: <span>{/*(detail.Score).toFixed(1)*/}{<StarRating rating={detail.Score} />}</span></h4>
-            {/* <span>{detail.Reviews.length} reviews</span> */}
           </div>
         </div>
-        {/* <div> */}
-        {/* <>ENLAZAR LOS REVIEWS DEL ASESOR</> */}
-        {/* </div> */}
       </div>
       <div className='contRevvv'>
         <div className='consRev1'>
+          <div className='reviewSummary'>
+            <h2 className='TitlesPurple'>{detScore}</h2>
+            <p className='TitlesPurple'>{<StarRating rating={detScore} />}</p>
+            <span>{numReviews} user reviews.</span>
+          </div>
           <Reviews />
         </div>
         <div className='contRev2'>
