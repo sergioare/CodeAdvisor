@@ -1,19 +1,20 @@
+@use '../Styles/mixins';
 @import '../Styles/_variables.scss';
 
 .containerPrincipal {
-  margin-top: 0px;
-  display: flex;
-  align-items: center;
+  @include mixins.create-flexbox;
+  flex-wrap: wrap;
 
   .bgpurple {
-    background-color: #794BFF;
+    background-color: $primary-color;
     width: 100%;
     height: 250px;
+    margin-top: 7vh;
 
 
     p {
       margin-left: 100px;
-      color: white;
+      color: $text-bg-purple;
 
     }
   }
@@ -24,7 +25,7 @@
     margin-left: 100px;
     margin-bottom: 0px;
     margin-top: 35px;
-    color: white;
+    color: $text-bg-purple;
   }
 
   .conteinerContact {
@@ -39,7 +40,7 @@
       width: 300px;
 
       i {
-        color: #794BFF;
+        color: $primary-color;
       }
     }
 
@@ -51,7 +52,7 @@
       border-radius: .5em;
       padding: 20px;
       color: black;
-      background-color: #ffffff;
+      background-color: $text-bg-purple;
       width: 600px;
       height: 350px;
       margin-top: -72px;
@@ -66,7 +67,7 @@
         margin-right: 20px;
 
         input {
-          background-color: #ffffff;
+          background-color: $text-bg-purple;
           margin-bottom: 10px;
           border: 0;
           border-bottom: 2px solid black;
@@ -78,7 +79,7 @@
 
         .MesasgeCont {
           height: 50px;
-          background-color: #ffffff;
+          background-color: $text-bg-purple;
           margin-bottom: 10px;
           border: 0;
           border-bottom: 2px solid black;
@@ -88,11 +89,10 @@
 
         .button {
           border-radius: .5em;
-          background-color: black;
-          color: #ffffff;
+          background-color: $circles-bg-light;
+          color: $text-bg-purple;
           padding: 5px 0px;
           border: none;
-          color: $text-bg-purple;
         }
 
         .button:hover {
@@ -109,21 +109,6 @@
 
   }
 
-  .buttonBack {
-    margin-top: 30px;
-    border-radius: .3em;
-    background-color: $title-bg-light;
-    color: $text-bg-purple;
-    border: 0;
-    width: 200px;
-    padding: 5px 0px;
-
-  }
-
-  .buttonBack:hover {
-    background-color: $primary-color;
-    cursor: pointer;
-
-  }
+ 
 
 }

@@ -1,8 +1,10 @@
 import { createContext , useContext, useEffect, useState} from "react";
 import {createUserWithEmailAndPassword ,signOut, signInWithEmailAndPassword, 
     GoogleAuthProvider,sendPasswordResetEmail, onAuthStateChanged,
-    signInWithPopup, getAuth, sendEmailVerification } from 'firebase/auth';
+    signInWithPopup, getAuth, sendEmailVerification, setPersistence, browserSessionPersistence, browserLocalPersistence } from 'firebase/auth';
 import {auth} from '../firebase';
+import Swal from 'sweetalert2'
+
 
 export const authContext = createContext();
  
@@ -17,24 +19,35 @@ export const useAuth = ()=>{
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-  
 
-    const verifyEmail = ()=>{
-      const auth = getAuth();
+    const showAlert = ()=>{
+      Swal.fire({
+      title: "Please, confirm your email inbox",
+      icon: "info",
+      footer: "<b>Continue to enjoy our services</b>",
+      timer: 3000,
+  })}
+
+  const auth = getAuth();
+   setPersistence(auth, browserLocalPersistence)
+ 
+  const verifyEmail = ()=>{
     sendEmailVerification(auth.currentUser)
     .then(() => {
           console.log('Current user',auth.currentUser)
-          alert('confirm your email')
-    });
-
-    }
-    
+          showAlert()    
+        });
+  }
 
     const signup = (email, password) => {
+      setPersistence(auth, browserLocalPersistence)
+
       return createUserWithEmailAndPassword(auth, email, password);
     };
   
     const login = (email, password) => {
+      setPersistence(auth, browserLocalPersistence)
+
       return signInWithEmailAndPassword(auth, email, password);
     };
   
@@ -49,16 +62,12 @@ export function AuthProvider({ children }) {
   
     useEffect(() => {
       const unsubuscribe = onAuthStateChanged(auth, (currentUser) => {
-        console.log( currentUser );
+        // console.log( currentUser );
         
-        console.log( currentUser.displayName );
+        // console.log( currentUser.displayName );
         setUser(currentUser);
         setLoading(false);
-        if (user?.uid) {
-          const token = user.accessToken
-          window.localStorage.setItem("tokken", token)
-          // const tokken = window.localStorage.getItem("tokken")
-        }
+    
       });
       return () => unsubuscribe();
     }, []);

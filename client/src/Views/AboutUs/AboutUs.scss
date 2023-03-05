@@ -1,0 +1,163 @@
+@use '../../components/Styles/mixins';
+@import '../../components/Styles/_variables.scss';
+
+.containerAbout {
+    // background-color: #794BFF;
+    margin-top: 0px;
+    margin-bottom: 50px;
+    padding-top: 5px;
+}
+
+.aboutConten {
+    // background-color: #794BFF;
+    //  margin: 10px;
+    // padding-top: 20px;
+    // padding-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 395px);
+    gap: 30px;
+    place-content: center;
+    margin-top: 30px;
+    padding: 10px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-left: 0px;
+    margin-right: 0px;
+    background-color: #794BFF;
+
+}
+
+.cardCont {
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 50px;
+
+    .text {
+        background-color: white;
+        border-radius: 1em;
+        border: solid 3px rgba(136, 93, 255, 0.4666666667);
+        width: 310px;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: space-around;
+        padding: 10px;
+        padding-bottom: 30px;
+        color:$title-bg-light ;
+    }
+
+    .image {
+        border-radius: 50%;
+        width: 135px;
+        height: 135px;
+        border: solid 3px rgba(252, 252, 252, 0.4666666667);
+        margin-right: 350px;
+        margin-top: 20px;
+        position: absolute;
+    }
+
+    .iconsCont {
+        width: 200px;
+        height: 20px;
+        font-size: 28px;
+        color: black;
+    }
+
+    .name {
+        font-weight: bold;
+        font-size: 22px;
+        margin: 0px 20px 0px 20px;
+
+    }
+}
+
+
+.about {
+    font-style: italic;
+    border-radius: .5em;
+    padding: 10px;
+    background-color: #885dff38;
+    font-size: 14px;
+    width: 250px;
+ 
+
+
+}
+
+.title {
+    color: $text-bg-purple;
+    // color: black;
+    padding-left: 40px;
+    font-size: 60px;
+}
+
+.subtitle {
+    // color: $text-bg-purple;
+    color: black;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.ocupation {
+    font-size: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0px 15px 0px 15px;
+}
+
+.toolsContainer {
+    display: flex;
+    justify-content: center;
+
+    .tools {
+        margin-top: 30px;
+        border-radius: 1em;
+        border: solid 3px rgba(136, 93, 255, 0.4666666667);
+        background-color: #ffff;
+        width: 1000px;
+        height: 190px;
+        text-align: center;
+        padding-top: 15px;
+        margin-top: 80px;
+        margin-bottom: 50px;
+
+
+        .containertools {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+
+        }
+    }
+
+}
+
+.logoReact {
+    width: 140px;
+    height: 60px;
+}
+
+.logo {
+    width: 170px;
+    height: 50px;
+}
+
+.logoSql {
+    width: 76px;
+    height: 71px;
+}
+
+
+
+
+h3 {
+    margin-bottom: 30px;
+}

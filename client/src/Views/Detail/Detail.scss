@@ -1,3 +1,4 @@
+@use '../../components/Styles/mixins';
 @import '../../components/Styles/variables';
 
 .DetailContainer {
@@ -152,4 +153,23 @@
   }
 
 
+}
+
+.contRevvv {
+  @include mixins.create-flexbox;
+  width: 80%;
+  height: 60%;
+  // background-color: $circles-bg-light;
+  // margin-top: 15px;
+  border-radius: 90px 0 90px 0;
+
+  .consRev1,
+  .consRev2 {
+    width: 50%;
+    float: left;
+    margin-left: 8%;
+  }
+.consRev1{
+  justify-content: flex-start;
+}
 }

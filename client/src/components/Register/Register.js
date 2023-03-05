@@ -49,9 +49,9 @@ function Register() {
       const UserUid = await signup(user.email, user.password );   // uid  = UserUid.user.uid
       await verifyEmail()
       const data = {Nickname: user.Nickname}
-      sendProfileDetails(data, UserUid.user.uid) 
+      sendProfileDetails(data, UserUid.user.uid) ;
+      navigate("/home");
 
-      navigate("/");
     } catch (error) {
       setError(error.message);
     }
