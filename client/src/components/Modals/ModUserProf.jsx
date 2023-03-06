@@ -1,20 +1,20 @@
 import Modal from "./Modal/Modal";
 import useModal from "../../Hooks/useModal";
 import './Modals.scss'
-import AdvisorProfile from "../Forms/AdvisorProfile/AdvisorProfile";
+import CompleteProfUser from "../Forms/CompleteProfUser";
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 
 
-    const ModProfile = () => {
+const ModUserProf = () => {
     const [isOpenProfile, openModalProfile,closeModalProfile]=useModal(false);
     return (
         <div>
             <button onClick={openModalProfile} className='edit-profile-btn'>Edit your profile <AutoFixHighIcon className="icon"/></button> 
             <Modal isOpen={isOpenProfile} closeModal={closeModalProfile} isProfile='true'>
-                <AdvisorProfile/>
+                <CompleteProfUser/>
             </Modal>
         </div>
-    );
+    )
 };
 
-export default ModProfile;
+export default ModUserProf;
