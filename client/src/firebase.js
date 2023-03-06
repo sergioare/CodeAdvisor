@@ -17,13 +17,13 @@ import {getStorage,ref,uploadBytes,getDownloadURL} from 'firebase/storage'
 // } = process.env;
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDQVoL7G5EOxnbYZaigRuj9DQuzY9nkPlM",
-  authDomain: 'fb-2do.firebaseapp.com',
-  projectId: "fb-2do",
-  storageBucket: 'fb-2do.appspot.com',
-  messagingSenderId: '812758619537',
-  appId: "1:812758619537:web:269beeda8245a2f1a9f630",
-  measurementId: 'G-CGZZGWFR0F',
+  apiKey: "AIzaSyDKd3GIIfTmZ41ZVDziBlNWPi2fsrspFL4",
+  authDomain: 'pf-beta-ang31.firebaseapp.com',
+  projectId: "pf-beta-ang31",
+  storageBucket: 'pf-beta-ang31.appspot.com',
+  messagingSenderId: '441630734207',
+  appId: "1:441630734207:web:1ae8bcd766af85730b0c4a",
+  measurementId: 'G-30PVTTBKSE',
   
 };
 

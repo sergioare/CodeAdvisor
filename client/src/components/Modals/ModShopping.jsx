@@ -16,7 +16,7 @@ const ModShopping = () => {
     const dispatch = useDispatch();
     // const productsInCart = products.MyCart
     const productsInCart = productsIN?.cart?.MyCart
-    console.log(productsInCart)
+    // console.log(productsInCart)
 
 
 

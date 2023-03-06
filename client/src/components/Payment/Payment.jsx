@@ -11,16 +11,17 @@ import { getDetail } from '../../redux/actions/actions';
 // import { getDates } from '../../redux/actions/actions';
 import booking from "../../assets/booking.png"
 import axios from "axios"
-// import { getAuth } from 'firebase/auth'
+import { getAuth } from 'firebase/auth'
 
-// const auth = getAuth();
-// const idClient = auth.currentUser.reloadUserInfo.localId
-// const idClient = auth.currentUser.uid
 
-// console.log(idClient)
 
 
 const Payment = () => {
+
+    const auth = getAuth();
+const idClient = auth.currentUser ? auth.currentUser.uid : null;
+console.log(auth.currentUser)
+console.log(idClient)
 
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -64,7 +65,7 @@ const Payment = () => {
         //     .then((res) =>
         //         (window.location.href = res.data.response.body.init_point));
 
-        axios.post('https://code-advisor-back.vercel.app/User/001/MyCart', agenda)
+        axios.post('https://code-advisor-back.vercel.app/User/${idClient}/MyCart', agenda)
             .then(res => alert("added to cart"));
 
         
@@ -113,7 +114,7 @@ const Payment = () => {
      
         
 
-console.log(agenda)
+// console.log(agenda)
 // ---------------------Filter dates not availables -------------------------//
     // if (datesInDb.length !== 0) {
     //     let searchDate = datesInDb.filter((d) => d.data.date === dateLong)
