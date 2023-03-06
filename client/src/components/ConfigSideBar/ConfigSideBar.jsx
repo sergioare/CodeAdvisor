@@ -4,13 +4,14 @@ import "./ConfigSideBar.scss"
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import Admin from '../Admin/Admin';
 import { useAuth } from '../../context/authContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function ConfigSideBar({isAdmin, isConfigBarOpen, toggleConfigBar, toggleProfile, closeSideBar, openAdmin, toggleAdmin, isSidebarOpen, isProfileOpen}) {
     const [isEnglish, setIsEnglish] = useState(true);
     const [isDarkMode, setIsDarkMode] = useState(true);
     const languageToggle = useRef(null);
     const themeToggle = useRef(null);
+    const navigate=useNavigate()
 
   const { logout} = useAuth();
 
@@ -31,6 +32,8 @@ function ConfigSideBar({isAdmin, isConfigBarOpen, toggleConfigBar, toggleProfile
     const signOff= async (e) => {
         e.preventDefault();
         await logout()
+        navigate('/')
+        
         // code to sign off the user
     }
 
