@@ -1,6 +1,8 @@
 const { Router } = require('express');
 const nodemailer = require("nodemailer");
 const nodeMailerRoutes = Router()
+require('dotenv').config()
+const passwor= process.env.NODEMAILER_SMTP
 
 nodeMailerRoutes.post('/',  (req, res) => {
 
@@ -11,15 +13,15 @@ nodeMailerRoutes.post('/',  (req, res) => {
         port: 465,
         secure: true, 
         auth: {
-          user: 'david.morales.developer.01@gmail.com' , 
-          pass: 'rghadxhawzweepph', 
+          user: 'codeadvisorlatam@gmail.com' , 
+          pass: passwor, 
         },
       });
 
       
       let mailInfo =  {
         from: data.email, 
-        to: "david.morales.developer.01@gmail.com", 
+        to:"codeadvisorlatam@gmail.com" , 
         subject: `Contact me by${data.fullName}` , // Subject line
         text: data.mensaje, // plain text body
         
