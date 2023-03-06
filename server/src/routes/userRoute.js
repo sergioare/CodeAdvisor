@@ -1,9 +1,9 @@
 const {Router} = require('express');
 const { 
     getUsers,
-    addUser,
-
     getUser,
+    
+    addUser,
     updateUser,
 
     addUserAdvisors,
@@ -14,16 +14,19 @@ const {
 
 const userRoute = Router();
 
-userRoute.get("/", getUsers)
-userRoute.post("/", addUser)
+userRoute.get("/",     getUsers)
+userRoute.get("/:uId", getUser)
 
-userRoute.get("/:Uid", getUser)
-userRoute.put("/:Uid", updateUser)
+userRoute.post("/",     addUser)
+userRoute.put ("/:uId", updateUser)
+
+userRoute.post("/:uId/Advisor/",     addUserAdvisors)
+userRoute.put ("/:uId/Advisor/:aId", updatUserAdvisors)
+
+
 
 userRoute.post("/addAdvisor/", addaa)
 
-userRoute.post("/:Uid/Advisor/", addUserAdvisors)
-userRoute.put("/:Uid/Advisor/", updatUserAdvisors)
 
 
 module.exports = userRoute;

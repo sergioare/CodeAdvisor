@@ -2,8 +2,10 @@
 const express = require('express');
 const router = express.Router();
 
-const clientsRoute = require("./clientsRoute");
 const userRoute         = require('./userRoute');
+
+
+const clientsRoute = require("./clientsRoute");
 const dataRoute         = require('./dataRoutes')
 const advisorsRoute     = require('./advisorsRoute');
 const mercadoPagoRouter = require('./mercadoPagoRouter')
@@ -32,10 +34,15 @@ router.get("/", (req,res)=>{
 // router.get("/users", getAllUsers)
 // router.use("/user", userRoute);
 router.use("/Clients", clientsRoute);
+router.get("/", (req, res) => res.status(200).end('Hello Cron!'))
 
 
 
 router.use('/User', userRoute)
+
+
+
+router.use("/Clients", clientsRoute);
 
 router.use("/Advisors", advisorsRoute)
 router.use('/data', dataRoute)

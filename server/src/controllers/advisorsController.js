@@ -84,9 +84,9 @@ const getIdAdvisors = async (req, res, next) => {
         if (!data.exists) {
             res.status(404).send(`Advisor with id: ${id}. Does not exist`);
         } else {
-            let reviwers = ["empty", 0]
+            let reviwers = ["empty",0]
             let schedules = ["empty"]
-            if (data.data().statusReviwers === true) {
+            if(data.data().statusReviwers === true) {
                 reviwers = await getAllReviews(data.id)
             }
             if (data.data().statusSchedules === true) {
@@ -259,24 +259,22 @@ const getAdvisorsAllMyWallet = async (req, res, next) => {
         } else {
             data.forEach((doc) => {
                 const myWallet = new MyWallet(
-                    doc.data().userName || "empty",
-                    doc.data().TechSkills || "empty",
-                    doc.data().myPayment || "empty",
-                    doc.data().isPay || false
-                );
-                if (doc.data().status === true) {
-                    myWallets.push(myWallet);
-                }
-            });
-            res.send(myWallets);
-        }
+                    doc.data().userName    || "empty", 
+                    doc.data().TechSkills  || "empty", 
+                    doc.data().myPayment   || "empty", 
+                    );
+                    if (doc.data().status === true) {
+                        myWallets.push(myWallet);
+                    }
+                });
+                res.send(myWallets);
+            }
     } catch (error) {
         res.status(400).send(error.message);
     }
 };
 
-
-const addAdvisorsMyWallet = async (req, res, next) => {
+const addAdvisorsMyWallet= async (req, res, next) => {
     console.log("Advisors_add_MyWallet", req.params);
     
     try {
@@ -337,7 +335,8 @@ const addAdvisorsMyWallet = async (req, res, next) => {
         res.status(400).send(error.message);
     }
 };
-// ----------------------
+
+// ----------------update
 const updatAdvisorsMyWallet = async (req, res, next) => {
     console.log("updat_Advisors_MyWalet");
     const id = req.params.id;
@@ -351,7 +350,6 @@ const updatAdvisorsMyWallet = async (req, res, next) => {
         res.status(400).send(error.message);
     }
 };
-
 
 //------------/ Delete  /-------------------------------------//
 const deleteAdvisors = async (req, res, next) => {
@@ -375,8 +373,7 @@ module.exports = {
 
     updatAdvisorsReviwers,
     updatAdvisorsSchedules,
-    updatAdvisorsMyWallet,
-
+    
     getAdvisorsAllMyWallet,
     addAdvisorsMyWallet,
 

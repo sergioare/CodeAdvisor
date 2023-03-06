@@ -7,9 +7,24 @@ import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 import './Reviews.scss';
 import { postReviwer, getDetail } from '../../redux/actions/actions';
+import { getAuth } from "firebase/auth";
 // import StarRating from '../StarRating/StarRating';
 
 export const Reviews = () => {
+  const showAlert = () => {
+    Swal.fire({
+      title: "Please, login",
+      icon: "warning",
+    })
+  }
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
+  // console.log(currentUser)
+
+  const uid = currentUser ? currentUser.uid : showAlert;
+  const photoUser = currentUser ? currentUser.photoURL : showAlert;
+  const nameUser = currentUser ? currentUser.displayName : showAlert;
+
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -17,7 +32,7 @@ export const Reviews = () => {
   const [hoverValue, sethoverValue] = useState(undefined)
   const stars = Array(5).fill(0)
 
-  const [input, setInput] = useState({ Reviwer: "", score: "" })
+  const [input, setInput] = useState({ uid: "", Img: "", Name: "", Reviwer: "", score: "" })
 
   const handleChange = (event) => {
     setInput({
@@ -41,8 +56,8 @@ export const Reviews = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(postReviwer(id, input, currentValue));
-    setInput({ Reviwer: "" });
+    dispatch(postReviwer(id, uid, photoUser, nameUser, input, currentValue));
+    setInput({ uid: "", Img: "", Name: "", Reviwer: "", score: "" });
     sethoverValue(undefined)
     setcurrentValue(0)
     new Swal("Excellent!", "Thank you for your comment", "success").then(() => { dispatch(getDetail(id)) })

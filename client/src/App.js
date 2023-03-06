@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { Landing, Home, Detail } from './Views/index';
-import AboutUs from "./components/AboutUs/AboutUs"
+import AboutUs from "./Views/AboutUs/AboutUs"
 import { AuthProvider } from './context/authContext';
 import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
 import Technologies from './components/Technologies/Technologies';
@@ -9,6 +9,7 @@ import Upload from './components/Upload/upload';
 import Payment from './components/Payment/Payment';
 import { Reviews } from './components/Reviews/Reviews';
 import Faqs from './Views/Faqs/Faqs'
+import Donate from './components/Donate/Donate';
 
 
 
@@ -38,6 +39,7 @@ function App() {
           <Route path='/payment/:id' element={<Payment/>} />
           <Route path='/reviews' element={<Reviews/>}/>
           <Route path='/faqs' element={<Faqs/>}/>
+          <Route path='/donate' element={<Donate/>} />
         </Routes>
       </AuthProvider>
      

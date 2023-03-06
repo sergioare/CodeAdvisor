@@ -1,0 +1,68 @@
+.ContainerTest {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 80vw;
+  height: 80vh;
+}
+.ContainerTest h1 {
+  font-size: 3vw;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #0B036B;
+}
+.ContainerTest h4 {
+  font-size: 1.4vw;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #484848;
+}
+.ContainerTest .Testimonials {
+  display: flex;
+  justify-content: space-between;
+}
+.ContainerTest .Testimonials .cardTest {
+  width: calc(50% - 10px);
+  padding: 7px 17px;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 10px;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.ContainerTest .Testimonials .cardTest .Head {
+  display: flex;
+  padding: 10px;
+  margin-bottom: 20px;
+  max-width: 600px;
+}
+.ContainerTest .Testimonials .cardTest .Head h2 {
+  color: #484848;
+  font-weight: bold;
+  font-size: 2vw;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.ContainerTest .Testimonials .cardTest .Head img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.ContainerTest .Testimonials .cardTest p {
+  font-size: 1.4vw;
+  margin-top: -10px;
+  color: #484848;
+  margin-bottom: 0;
+}
+.ContainerTest .Testimonials .cardTest span {
+  font-size: 17px;
+  font-weight: bold;
+  margin-left: 8px;
+  color: gray;
+}/*# sourceMappingURL=Testimonials.css.map */
