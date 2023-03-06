@@ -93,8 +93,12 @@
     text-decoration: none;
     // display: block;
     width: 100%;
-    margin-top: 28vh ;
-    padding: 10px;
+    //margin-top: 28vh ;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+
+    padding: 20px 10px; 
     border: none;
     cursor: pointer;
     background-color: $circles-bg-light;
