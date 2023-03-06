@@ -19,12 +19,13 @@ export const GET_ADVISORS_REVIEWS = 'GET_ADVISORS_REVIEWS'
 export const BLOCK_ACCOUNT = 'BLOCK_ACCOUNT'
 export const UNBLOCK_ACCOUNT = 'UNBLOCK_ACCOUNT'
 export const GET_DATES = "GET_DATES"
-export const TYPES ={
-  ADD_TO_CART:"ADD_TO_CART",
-  REMOVE_ONE_FROM_CART : "REMOVE_ONE_FROM_CART",
-  REMOVE_ALL_FROM_CART : "REMOVE_ALL_FROM_CART",
-  CLEAR_CART: "CLEAR_CART",
-}
+export const GET_CART_ITEMS = "GET_CART_ITEMS"
+export const ADD_TO_CART="ADD_TO_CART"
+export const CLEAR_CART= "CLEAR_CART"
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART"
+
+
+
 
 export const getAutors = () => {
   return async function (dispatch) {
@@ -144,13 +145,96 @@ export const sortAdvisors = (method) => {
     type: SORT_BY_AVAILABILITY,
   };
 }; */
+export const POST_REVIWER = 'POST_REVIWER';
+export const DELETE_REVIWER = 'DELETE_REVIWER';
+// export const PUT_SCORE = 'PUT_SCORE';
 
-export const getDates = () => {
+
+export function postReviwer(id, uid, photoUser, nameUser, Reviwer, score) {
   return async function (dispatch) {
-    const datesData = await axios.get(`https://code-advisor-xi.vercel.app/data/XD`);
-    const dates = datesData.data;
-    // console.log(dates)
-    dispatch({ type: GET_DATES, payload: dates });//... este info va al reducer
+    const tokken = window.localStorage.getItem("tokken");
+    console.log(tokken)
+    const json = await axios.post(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`,
+      {
+        id,
+        uid: uid,
+        Img: photoUser,
+        Name: nameUser,
+        Reviwer: Reviwer.Reviwer,
+        score: score,
+        
+      },
+      {
+        headers: {
+          authorization: "Bearer " + tokken,
+        },
+      }
+    );
+    return dispatch({
+      type: POST_REVIWER,
+      payload: json.data,
+    });
   };
-};
+}
+
+// export function putScore(id, score) {
+//   return async function (dispatch) {
+//     console.log(id, score);
+//     try {
+//       const response = await axios.put(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`, {
+//         score: score,
+//       });
+//       dispatch({
+//         type: PUT_SCORE,
+//         payload: response.data,
+//       });
+//     } catch (error) {
+//       console.log(error.message);
+//     }
+//   }
+// }
+
+// export function deleteReviwer(id) {
+//   try {
+//     return async function (dispatch) {
+//       const response = await axios.delete(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers/${id}`);
+//       dispatch({
+//         type: DELETE_REVIWER,
+//         payload: response.data,
+//       });
+//     };
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// }
+
+// export const getDates = (id) => {
+//   return async function (dispatch) {
+//     const datesData = await axios.get(`https://code-advisor-xi.vercel.app/data/XD/${id}`);
+//     const dates = datesData.data;
+//     // console.log(dates)
+//     dispatch({ type: GET_DATES, payload: dates });//... este info va al reducer
+//   };
+// };
+
+  export const getCartItems = () => {
+    return async function (dispatch){
+      const cartData = await axios.get('https://code-advisor-back.vercel.app/User/001');
+      // console.log(cartData)
+      const cartItems= cartData.data;
+      dispatch({type: GET_CART_ITEMS, payload: cartItems})
+    };
+  };
+
+
+  export const clearCart = () => {
+    return {
+      type: CLEAR_CART
+    };
+  };
+
+  export const removeFromCart = (cId) => {
+    dispatch({type: REMOVE_FROM_CART, payload: cId})
+  };
+
 

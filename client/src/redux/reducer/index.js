@@ -7,14 +7,17 @@ import {
   SORT_ADVISORS,
   GET_AUTORS, GET_REVIEWS, GET_ADVISORS, ADVISOR_DETAIL, GET_TECHSKILLS, GET_PROFILE, GET_ADVISORS_REVIEWS,
   BLOCK_ACCOUNT, UNBLOCK_ACCOUNT, GET_DATES,
+  POST_REVIWER,
+  GET_CART_ITEMS, CLEAR_CART, REMOVE_FROM_CART
+  // DELETE_REVIWER,PUT_SCORE,
 } from '../actions/actions';
-import { TYPES } from '../actions/actions';
 
 const initialState = {
   users: [],
   advisors: [],
   advisorDetail: [],
   reviews: [],
+  comments: [],
   autors: [],
   techSkills: [],
   profile: [],
@@ -31,6 +34,7 @@ const initialState = {
   sortMethod: "",
   dates:[],
   cart:[],
+  productsInCart:[],
 }
 
 
@@ -39,43 +43,43 @@ const rootReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case BLOCK_ACCOUNT:
-    const blockedUser = state.users.find(a => a.id === action.payload);
-    const blockedAdvisor = state.advisors.find(a => a.id === action.payload);
+      const blockedUser = state.users.find(a => a.id === action.payload);
+      const blockedAdvisor = state.advisors.find(a => a.id === action.payload);
 
-    return {
-      ...state,
-      users: state.users.filter(a => a.id !== action.payload),
-      advisors: state.advisors.filter(a => a.id !== action.payload),
-      blockedAccounts: [
-        ...state.blockedAccounts,
-        blockedUser || blockedAdvisor // add the filtered user or advisor object
-      ]
-    };
+      return {
+        ...state,
+        users: state.users.filter(a => a.id !== action.payload),
+        advisors: state.advisors.filter(a => a.id !== action.payload),
+        blockedAccounts: [
+          ...state.blockedAccounts,
+          blockedUser || blockedAdvisor // add the filtered user or advisor object
+        ]
+      };
 
 
 
     case UNBLOCK_ACCOUNT:
-    const unblockedAccount = state.blockedAccounts.find(a => a.id === action.payload);
-    
-    if (!unblockedAccount) {
-      return state; // if the account isn't blocked, do nothing
-    }
+      const unblockedAccount = state.blockedAccounts.find(a => a.id === action.payload);
 
-    const updatedUsers = [...state.users];
-    const updatedAdvisors = [...state.advisors];
+      if (!unblockedAccount) {
+        return state; // if the account isn't blocked, do nothing
+      }
 
-    if (unblockedAccount.Specialty) {
-      updatedAdvisors.push(unblockedAccount);
-    } else {
-      updatedUsers.push(unblockedAccount);
-    }
+      const updatedUsers = [...state.users];
+      const updatedAdvisors = [...state.advisors];
 
-    return {
-      ...state,
-      blockedAccounts: state.blockedAccounts.filter(a => a.id !== action.payload),
-      users: updatedUsers,
-      advisors: updatedAdvisors
-    };
+      if (unblockedAccount.Specialty) {
+        updatedAdvisors.push(unblockedAccount);
+      } else {
+        updatedUsers.push(unblockedAccount);
+      }
+
+      return {
+        ...state,
+        blockedAccounts: state.blockedAccounts.filter(a => a.id !== action.payload),
+        users: updatedUsers,
+        advisors: updatedAdvisors
+      };
 
 
     case GET_ADVISORS_REVIEWS:
@@ -90,15 +94,15 @@ const rootReducer = (state = initialState, action) => {
         autors: action.payload
       };
 
-      case LOAD_PROFESSIONALS:
-        return {
+    case LOAD_PROFESSIONALS:
+      return {
         ...state,
         advisors: action.payload,
         advisorsInDisplay: action.payload,
       };
-      case FILTER_BY_SPECIALTY:
-        const filteredBySpecialty = filterApplyer(state.advisors, {
-          ...state.filters,
+    case FILTER_BY_SPECIALTY:
+      const filteredBySpecialty = filterApplyer(state.advisors, {
+        ...state.filters,
         F_Specialty: action.payload,
       }, state.sortMethod);
       return {
@@ -110,8 +114,8 @@ const rootReducer = (state = initialState, action) => {
         advisorsInDisplay: filteredBySpecialty,
       };
 
-      case FILTER_BY_LANGUAGE:
-        return {
+    case FILTER_BY_LANGUAGE:
+      return {
         ...state,
         filters: {
           ...state.filters,
@@ -134,7 +138,7 @@ const rootReducer = (state = initialState, action) => {
           F_Programming_L: action.payload,
         }, state.sortMethod),
       };
-      case FILTER_BY_RESIDENCE:
+    case FILTER_BY_RESIDENCE:
       return {
         ...state,
         filters: {
@@ -147,20 +151,20 @@ const rootReducer = (state = initialState, action) => {
         }, state.sortMethod),
       };
 
-      case SORT_ADVISORS:
-        const sortedAdvisors = sortAdvisors(state.advisorsInDisplay, action.payload);
-        return {
-          ...state,
+    case SORT_ADVISORS:
+      const sortedAdvisors = sortAdvisors(state.advisorsInDisplay, action.payload);
+      return {
+        ...state,
         sortMethod: action.payload,
         advisorsInDisplay: sortedAdvisors,
       };
 
-      case GET_REVIEWS:
-        return {
+    case GET_REVIEWS:
+      return {
         ...state, reviews: action.payload
       }
 
-      case GET_ADVISORS:
+    case GET_ADVISORS:
       return {
         ...state, advisors: action.payload
       }
@@ -179,6 +183,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state, techSkills: action.payload
       }
+    case POST_REVIWER:
+      return { ...state, comments: action.payload }
+
+    // case PUT_SCORE:
+    //   return { ...state, comments: action.payload }
+
 
       case GET_DATES:
       return {
@@ -186,24 +196,32 @@ const rootReducer = (state = initialState, action) => {
         dates: action.payload
       };
 
-      case TYPES.ADD_TO_CART:{
+      case GET_CART_ITEMS:
+        return{
+          ...state,
+        cart: action.payload,
+        productsInCart: {cart: action.payload}
+      };
 
-      }
 
-      case TYPES.REMOVE_ONE_FROM_CART:{
+      case REMOVE_FROM_CART:
+        return{
+          ...state,
+          productsInCart: state.productsInCart.cart.MyCart.filter((item)=> item.cId !== action.payload)
+        }
+        console.log(state.productsInCart.cart.MyCart)
+
+      
+
+      case CLEAR_CART: 
+      return {...state, 
+        productsInCart:[]
+        }
         
-      }
+      
 
-      case TYPES.REMOVE_ALL_FROM_CART:{
-        
-      }
-
-      case TYPES.CLEAR_CART:{
-        
-      }
-
-      default:
-        return { ...state }
+    default:
+      return { ...state }
   }
 }
 

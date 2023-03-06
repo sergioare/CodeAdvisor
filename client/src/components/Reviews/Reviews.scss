@@ -2,17 +2,18 @@
 
 .fullContRev {
   display: flex;
-  margin: 10px;
+  margin-top: 4%;
   align-items: flex-start;
 
   .containerReview {
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 15px;
-    width: 30%;
-    margin-left: 10%;
+    width: 70%;
+    margin-left: 1px;
     // border: 1px solid $primary-color;
     border-radius: 5px;
     background-color: $bg-cards;
@@ -21,7 +22,7 @@
     background-size: 97%;
     background-repeat: no-repeat;
     background-position-x: right;
-    background-position-y: 9vh;
+    background-position-y: 11vh;
     // opacity: 1.75;
 
     .reseña {
@@ -57,7 +58,7 @@
 
       textarea {
         height: 70px;
-        width: 300px;
+        width: 250px;
         border: 2px solid $border-purple-ligth;
         font-size: 16px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);

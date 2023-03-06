@@ -8,13 +8,15 @@ import './Payment.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { getDetail } from '../../redux/actions/actions';
-import { getDates } from '../../redux/actions/actions';
+// import { getDates } from '../../redux/actions/actions';
 import booking from "../../assets/booking.png"
 import axios from "axios"
 // import { getAuth } from 'firebase/auth'
 
 // const auth = getAuth();
 // const idClient = auth.currentUser.reloadUserInfo.localId
+// const idClient = auth.currentUser.uid
+
 // console.log(idClient)
 
 
@@ -23,17 +25,17 @@ const Payment = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const product = useSelector(state => state.advisorDetail)
-    const datesInDb = useSelector(state => state.dates)
-    // console.log(datesInDb.length)
+    const products = useSelector(state => state.cart)
+    
 
     
     useEffect(() => {
         dispatch(getDetail(id));
     }, [dispatch, id]);
 
-    useEffect(() => {
-        dispatch(getDates());
-    }, [dispatch, id,]);
+    // useEffect(() => {
+    //     dispatch(getDates(id));
+    // }, [dispatch, id,]);
 
     //----------------Counter----------------------//
 
@@ -62,8 +64,10 @@ const Payment = () => {
         //     .then((res) =>
         //         (window.location.href = res.data.response.body.init_point));
 
-        axios.post('http://localhost:3002/data/XD', agenda)
-            // .then(res => alert("date Send"))
+        axios.post('https://code-advisor-back.vercel.app/User/001/MyCart', agenda)
+            .then(res => alert("added to cart"));
+
+        
     };
 
    
@@ -81,26 +85,42 @@ const Payment = () => {
     //-----------------------Calendar-------------------//
     const [value, setValue] = useState(dayjs('2023-02-24'));
     const date = value.$d.toString().split(" ")
+    // console.log(value)
     const dateLong = (` ${date[1]} ${date[2]} ${date[3]}`)
-    const time = `${date[4]} hrs`
+    // const time = `${date[4]} hrs`
 
 
     const agenda = {
-        idAdvisor: product.id,
-        advisor: "",
-        date: dateLong,
-        time: time,
+        aId: product.id,
+        Firstname: product.Firstname + ' ' + product.Lastname,
+        techskill: skills,
+        Price: product.Price,
+        hours:count,
+        Day: value.$D, 
+        Month: value.$M + 1, 
+        Year: value.$y, 
+        StartingHour: value.$H, 
+        EndingHour: value.$H + count,
         // idClient: idClient,
+        // clientName:"",
+        status:"pending"
     }
 
+       
+      
+     
+      
+     
+        
 
+console.log(agenda)
+// ---------------------Filter dates not availables -------------------------//
+    // if (datesInDb.length !== 0) {
+    //     let searchDate = datesInDb.filter((d) => d.data.date === dateLong)
+    //     let searchTime = datesInDb.filter((t) => t.data.time === time)
 
-    if (datesInDb.length !== 0) {
-        let searchDate = datesInDb.filter((d) => d.data.date === dateLong)
-        let searchTime = datesInDb.filter((t) => t.data.time === time)
-
-        if (searchDate.length > 0 && searchTime.length > 0) { alert("Time not available choose another one") }
-    }
+    //     if (searchDate.length > 0 && searchTime.length > 0) { alert("Time not available choose another one") }
+    // }
 
     return (
         <div className='PaymentContainer'>
@@ -149,10 +169,10 @@ const Payment = () => {
 
                     <div className='LeftContent'>
                         <h2> Dates not available </h2>
-                        {datesInDb.map((d, index) => (
+                        {/* {datesInDb.map((d, index) => (
                             <span key={index}>{d.data.date} {d.data.time}</span>
 
-                        ))}
+                        ))} */}
 
                     </div>
 
@@ -176,7 +196,7 @@ const Payment = () => {
                             <h2>Date:</h2>
                             <p>{dateLong}</p>
                             <h2>Time:</h2>
-                            <p>{time}</p>
+                            <p>{value.$H}:00 hrs - {value.$H+count}:00 hrs </p>
                             <h2>Hours:</h2>
                             <p>{count}</p>
                         </div>

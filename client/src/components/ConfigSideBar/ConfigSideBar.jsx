@@ -3,12 +3,16 @@ import ModInquiries from '../Modals/ModInquiries';
 import "./ConfigSideBar.scss"
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import Admin from '../Admin/Admin';
+import { useAuth } from '../../context/authContext';
 
 function ConfigSideBar({isAdmin, isConfigBarOpen, toggleConfigBar, toggleProfile, closeSideBar, openAdmin, toggleAdmin, isSidebarOpen, isProfileOpen}) {
     const [isEnglish, setIsEnglish] = useState(true);
     const [isDarkMode, setIsDarkMode] = useState(true);
     const languageToggle = useRef(null);
     const themeToggle = useRef(null);
+
+  const { logout} = useAuth();
+
 
     function handleLanguageToggle() {
         setIsEnglish(!isEnglish);
@@ -23,8 +27,9 @@ function ConfigSideBar({isAdmin, isConfigBarOpen, toggleConfigBar, toggleProfile
         themeToggle.current.classList.toggle('active', isDarkMode);
     }
 
-    function signOff() {
-        console.log("signing off");
+    const signOff= async (e) => {
+        e.preventDefault();
+        await logout()
         // code to sign off the user
     }
 
