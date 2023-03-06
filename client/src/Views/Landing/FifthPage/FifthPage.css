@@ -1,0 +1,79 @@
+.fifthPage {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  background-image: url(../../../assets/bg-2.png);
+  background-size: 100% 100%;
+}
+.fifthPage .circle1 {
+  position: absolute;
+  border-radius: 50%;
+  margin-top: 8vh;
+  margin-left: 10vw;
+  width: 4em;
+  height: 4em;
+  border: 0.5em solid #ffffff;
+}
+.fifthPage .circle2 {
+  position: absolute;
+  border-radius: 50%;
+  margin-top: 16vh;
+  margin-left: 5.5vw;
+  width: 2em;
+  height: 2em;
+  border: 0.3em solid #ffffff;
+}
+.fifthPage .circle3 {
+  position: absolute;
+  border-radius: 50%;
+  margin-top: 20vh;
+  margin-left: -1vw;
+  width: 4em;
+  height: 4em;
+  border: 0.5em solid #ffffff;
+}
+.fifthPage .circle4 {
+  position: absolute;
+  border-radius: 50%;
+  margin-top: 25vh;
+  margin-left: 8vw;
+  width: 8em;
+  height: 8em;
+  border: 0.5em solid #ffffff;
+}
+.fifthPage .circle5 {
+  position: absolute;
+  border-radius: 50%;
+  margin-top: 125vh;
+  margin-left: 96vw;
+  width: 4em;
+  height: 4em;
+  border: 0.5em solid #ffffff;
+}
+.fifthPage .circle6 {
+  position: absolute;
+  border-radius: 50%;
+  margin-top: 120vh;
+  margin-left: 86vw;
+  width: 6em;
+  height: 6em;
+  border: 0.5em solid #ffffff;
+}
+.fifthPage .circle7 {
+  position: absolute;
+  border-radius: 50%;
+  margin-top: 140vh;
+  margin-left: 87vw;
+  width: 4em;
+  height: 4em;
+  border: 0.5em solid #ffffff;
+}
+.fifthPage .circle8 {
+  position: absolute;
+  border-radius: 50%;
+  margin-top: 135vh;
+  margin-left: 93vw;
+  width: 2em;
+  height: 2em;
+  border: 0.3em solid #ffffff;
+}/*# sourceMappingURL=FifthPage.css.map */

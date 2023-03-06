@@ -88,12 +88,33 @@
       font-size: 1.5em;
     }
   }
+  .documentation{
+    width: 100%;
+    margin-bottom: 2vh;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: $circles-bg-light;
+    color: $text-bg-purple;
+    border-radius: 10px;
+    text-shadow: 2px 2px 2px $title-bg-light;
+    font-size: 1.2em;
+
+    .link{
+      color: $text-bg-purple;
+      text-decoration: none;
+
+      i{
+        margin-right: 1em;
+      }
+    }
+
+  }
 
   .signoff-report-button {
     text-decoration: none;
     // display: block;
     width: 100%;
-    margin-top: 28vh ;
     padding: 10px;
     border: none;
     cursor: pointer;

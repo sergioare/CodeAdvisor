@@ -4,7 +4,8 @@ import { getProfile, getAdvisorReviews } from '../../redux/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuth } from 'firebase/auth'
 import ModProfile from '../Modals/ModProfile';
-
+import ModUserProf from '../Modals/ModUserProf';
+import { imgDefault, textProfile } from './data';
 
 function Profile ({isProfileOpen, toggleProfile, isConfigBarOpen}) {
 const auth = getAuth();
@@ -142,62 +143,80 @@ if(currentDate && isProfileOpen)renderCalendar();
     
 return (
   <div className={`profile ${isProfileOpen ? 'profile--open' : ''} ${isConfigBarOpen ? 'config-sidebar-open' : ''}`}>
-    <div className="profile__header">
-      <h2 className="profile__title" onClick={toggleProfile}>{isAdvisor ? "Advisor profile" : "User profile"}</h2>
-      <button className="profile__title" onClick={handleEdit}><ModProfile/></button>
-      <button className="fas fa-window-close fa-2x" onClick={toggleProfile}></button>
+
+    <div className="header">
+        <h2 className="title" onClick={toggleProfile}>{isAdvisor ? "Advisor profile" : "User profile"}</h2>
+        {/* <button className="title" onClick={handleEdit}><ModProfile/></button> */}
+        <button className='fas' onClick={toggleProfile}>x</button>
     </div>
+
     {!editing && (
     <div>
-    <div className="profile__content">
-      <div className="profile__left">
-        <div className="profile__left__container">
-          <div className="profile__image-container">
-          <img 
-            className="profile__image" 
-            src={profileData.Img || 'https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg'} 
-            alt="Profile"
-            onClick={!profileData.Img ? handleEdit : undefined}
-            style={!profileData.Img ? { cursor: "pointer" } : undefined}
-          />
+    <div className="content">
+      <div className="left">
+        <div className="left_container">
+          <div className="image-container">
+            <img 
+              className="image" 
+              src={profileData.Img ||imgDefault } 
+              alt="Profile"
+              onClick={!profileData.Img ? handleEdit : undefined}
+              style={!profileData.Img ? { cursor: "pointer" } : undefined}
+            />
           </div>
-          <h2 className="profile__nickname">{profileData.Nickname || <button className="complete-your-data" onClick={handleEdit}>Complete your data</button>}</h2>
+          <h2 className="nickname">{profileData.Nickname || 'Nickname'}</h2>
         </div>
       </div>
-      <div className="profile__right">
-        <div className="profile__right__container">
-          <div className="profile__info-row">
-            <div className="profile__info-column">
-              <span className="profile__label">First Name:</span>
-              <span className="profile__value">{profileData.Firstname || <button className="complete-your-data" onClick={handleEdit}>Complete your data</button>}</span>
+
+      <div className="phrase">
+       {isAdvisor
+        ?<h1>{textProfile.h1Advisor}</h1>
+        : <h1>{textProfile.h1User}</h1>
+        }
+      <hr/>
+      </div>
+
+      <div className="right">
+        <div className="right__container">
+            <div className="info-column">
+              <span className="label">First Name:</span>
+              <span className="value">{profileData.Firstname || null}</span>
             </div>
-            <div className="profile__info-column">
-              <span className="profile__label">Last Name:</span>
-              <span className="profile__value">{profileData.Lastname || <button className="complete-your-data" onClick={handleEdit}>Complete your data</button>}</span>
+            <div className="info-column">
+              <span className="label">Last Name:</span>
+              <span className="value">{profileData.Lastname || null}</span>
             </div>
-          </div>
-          <div className="profile__info-row">
-            <div className="profile__info-column">
-              <span className="profile__label">Contact:</span>
-              <span className="profile__value">{profileData.Contact || <button className="complete-your-data" onClick={handleEdit}>Complete your data</button>}</span>
+         
+            <div className="info-column">
+              <span className="label">Contact:</span>
+              <span className="value">{profileData.Contact || null}</span>
             </div>
-            <div className="profile__info-column">
-              <span className="profile__label">Email:</span>
-              <span className="profile__value">{userEmail || <button className="complete-your-data" onClick={handleEdit}>Complete your data</button>}</span>
+            
+            <div className="info-column">
+              <span className="label">Email:</span>
+              <span className="value">{userEmail || null}</span>
             </div>
-          </div>
-          <div className="profile__about-me">
-            <h3 className="profile__label">About Me</h3>
-            <p className="profile__about-me-text">{profileData.About || <button className="complete-your-data" onClick={handleEdit}>Complete your data</button>}</p>
+         
+          <div className="info-column">
+            <h3 className="label">About Me</h3>
+            <p className="about-me-text">{profileData.About || null}</p>
           </div>
         </div>
+      </div>
+      <div className="edit">
+        {isAdvisor
+        ? <ModProfile/>
+        : <ModUserProf/>
+        }
       </div>
     </div>
+
+
     {!isAdvisor && (
       <div className="tables-section">
         <div className="tables-container">        
           <div className="table-wrapper-full-width">
-          <table className="table-3">
+          <table>
             <tbody>
               <tr>
                 <th className="tittle">Class</th>
@@ -245,165 +264,174 @@ return (
       </div>
     </div>
     )}
-    {isAdvisor && (
-      <div className="tables-section">
-      <div className="tables-container">
-      <div className="table-wrapper">
-        <table className="table-1">
-          <thead>
-            <tr>
-              <th colSpan="2">Details:</th>
-              <th colSpan="2"  className="tittle">Tech Skills</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th className="tittle">Residence</th>
-              <td>{profileData.Residence || <button className="complete-your-data" onClick={handleEdit}>Complete your data</button>}</td>
-              <td rowSpan="4"  className="data" style={{border: "2px solid #794BFF"}}>
-                {profileData.TechSkills
-                  ? (
-                    <ul>
-                      {profileData.TechSkills.map((item, index) => (
-                        <li key={index}>{item}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p>{<button className="complete-your-data" onClick={handleEdit}>Complete your data</button>}</p>
-                  )}
-              </td>
-            </tr>
-            <tr>
-              <th className="tittle">Speciality</th>
-              <td>
-                {profileData.Specialty
-                  ? (
-                    <ul>
-                      {profileData.Specialty.map((item, index) => (
-                        <li key={index}>{item}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p>{<button className="complete-your-data" onClick={handleEdit}>Complete your data</button>}</p>
-                  )}
-              </td>
-            </tr>
-            <tr>
-              <th className="tittle">Language</th>
-              <td>
-                {profileData.Language
-                  ? (
-                    <ul>
-                      {profileData.Language.map((item, index) => (
-                        <li key={index}>{item}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p>{<button className="complete-your-data" onClick={handleEdit}>Complete your data</button>}</p>
-                  )}
-              </td>
-            </tr>
-            <tr>
-              <th className="tittle">Price per hour</th>
-              <td>{profileData.Price || <button className="complete-your-data" onClick={handleEdit}>Complete your data</button>}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-        <div className="table-wrapper">
-          <table className="table-2">
-            <tbody>
-              <tr>
-                <th className="tittle" style={{ width: "30%" }}>Class</th>
-                <th className="tittle" style={{ width: "70%" }}>Calendar</th>
-              </tr>
-              <tr>
-                <td className="data">In progress</td>
-                <div>
-                <div className="wrapper">
-                  <header>
-                    <p className="current-date"></p>
-                    <div className="icons">
-                      <span id="prev" className="material-symbols-rounded">&lt;</span>
-                      <span id="next" className="material-symbols-rounded">&gt;</span>
-                    </div>
-                  </header>
-                  <div className="calendar">
-                    <ul className="weeks">
-                      <li>Sun</li>
-                      <li>Mon</li>
-                      <li>Tue</li>
-                      <li>Wed</li>
-                      <li>Thu</li>
-                      <li>Fri</li>
-                      <li>Sat</li>
-                    </ul>
-                    <ul className="days"></ul>
-                  </div>
-                </div>
-                
-              </div>
-              </tr>
-              <tr>
-                <th className="tittle">Meet</th>
-              </tr>
-              <tr>
-              <td className="data">In progress</td>
-              </tr>
 
-            </tbody>
-          </table>
-        </div>
-        <div className="table-wrapper-full-width">
-          <table className="table-3">
-            <tbody>
-              <tr>
-                <th className="col-1" colSpan="3">Score</th>
-              </tr>
-              <tr>
-                <th className="tittle">Lowest</th>
-                <th className="tittle">Average</th>
-                <th className="tittle">Highest</th>
-              </tr>
-              <tr>
-                <td className="data">{lowestScore}</td>
-                <td className="data">{averageScore}</td>
-                <td className="data">{highestScore}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="table-wrapper-full-width">
-          <table className="table-3">
-            <tbody>
-              <tr>
-                <th className="col-1" colSpan="5">Reviews</th>
-              </tr>
-              <tr>
-                <th className="tittle" style={{ width: "15%" }}>Name</th>
-                <th className="tittle" style={{ width: "5%" }}>Score</th>
-                <th className="tittle" style={{ width: "80%" }}>Review</th>
-              </tr>
-              {Reviews.map((review, index) => (
-                <tr key={index}>
-                  <td className="data" >{review.Name}</td>
-                  <td className="data" >{review.score}</td>
-                  <td className="data" >{review.Reviwer}</td>
+
+    {isAdvisor && ( 
+      <div className="tables-section">
+        <div className="tables-container">
+          <div className="table-wrapper">
+
+          {/* -----------------table 1 ----------------- */}
+
+            <table className="table-1">
+              <thead>
+                <tr>
+                  <th colSpan="2" className="tittle">Details:</th>
+                  <th colSpan="1  "  className="tittle">Tech Skills</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <tr>
+                  <th className="tittle">Residence</th>
+                  <td>{profileData.Residence || "---"}</td>
+                  <td rowSpan="4"  className="tech">
+                    {profileData.TechSkills
+                      ? (
+                        <ul>
+                          {profileData.TechSkills.map((item, index) => (
+                            <li key={index}>{item}</li>
+                          ))}
+                        </ul>
+                      ) : "---"}
+                  </td>
+                </tr>
+                <tr>
+
+                  <th className="tittle">Speciality</th>
+                  <td>
+                    {profileData.Specialty
+                      ? (
+                        <ul>
+                          {profileData.Specialty.map((item, index) => (
+                            <li key={index}>{item}</li>
+                          ))}
+                        </ul>
+                      ) : "---"}
+                  </td>
+                </tr>
+
+                <tr>
+                  <th className="tittle">Language</th>
+                  <td>
+                    {profileData.Language
+                      ? (
+                        <ul>
+                          {profileData.Language.map((item, index) => (
+                            <li key={index}>{item}</li>
+                          ))}
+                        </ul>
+                      ) : "---"}
+                  </td>
+                </tr>
+
+                <tr>
+                  <th className="tittle">Price per hour</th>
+                  <td>{profileData.Price || "---"}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          {/* -----------------table 2 ----------------- */}
+            <div className="table-wrapper">
+              <table className="table-2">
+                <tbody>
+                  <tr>
+                    <th className="tittle" style={{ width: "30%" }}>Class</th>
+                    <th className="tittle" style={{ width: "100%" }}>Calendar</th>
+                  </tr>
+                  <tr>
+                    <td className="data"></td>
+                    <div>
+                    <div className="wrapper">
+                      <header>
+                        <p className="current-date"></p>
+                        <div className="icons">
+                          <span id="prev" className="material-symbols-rounded">&lt;</span>
+                          <span id="next" className="material-symbols-rounded">&gt;</span>
+                        </div>
+                      </header>
+                      <div className="calendar">
+                        <ul className="weeks">
+                          <li>Sun</li>
+                          <li>Mon</li>
+                          <li>Tue</li>
+                          <li>Wed</li>
+                          <li>Thu</li>
+                          <li>Fri</li>
+                          <li>Sat</li>
+                        </ul>
+                        <ul className="days"></ul>
+                      </div>
+                    </div>
+                    <hr/>
+                  </div>
+                  </tr>
+                  <tr>
+                    <th className="tittle">Meet</th>
+                    <td>---</td>
+                  </tr>
+                  <tr>
+                  <th className="tittle">In progress</th>
+                  <td>---</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+          {/* -----------------table 3 ----------------- */}
+
+            <div className="table-wrapper-full-width">
+              <table className="table-3">
+                <tbody>
+                  <tr>
+                    <th className="col-1" colSpan="3">Score</th>
+                  </tr>
+                  <tr>
+                    <th className="tittle">Lowest</th>
+                    <th className="tittle">Average</th>
+                    <th className="tittle">Highest</th>
+                  </tr>
+                  <tr>
+                    <td className="data">{lowestScore}</td>
+                    <td className="data">{averageScore}</td>
+                    <td className="data">{highestScore}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          {/* -----------------table 4 ----------------- */}
+
+            <div className="table-wrapper-full-width">
+              <table className="table-4">
+                <tbody>
+                  <tr>
+                    <th className="col-1" colSpan="5">Reviews</th>
+                  </tr>
+                  <tr>
+                    <th className="tittle" style={{ width: "15%" }}>Name</th>
+                    <th className="tittle" style={{ width: "5%" }}>Score</th>
+                    <th className="tittle" style={{ width: "80%" }}>Review</th>
+                  </tr>
+                  {Reviews.map((review, index) => (
+                    <tr key={index}>
+                      <td className="data" >{review.Name}</td>
+                      <td className="data" >{review.score}</td>
+                      <td className="data" >{review.Reviwer}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
         </div>
-      </div>
     </div>
     
         )}
     </div>
     )}
     {editing && (
-<div className="form">
-  <h1>form de editar datos</h1>
-</div>
+<ModProfile/>
 )}
 
     

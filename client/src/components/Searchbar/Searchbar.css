@@ -1,0 +1,30 @@
+.searchbar {
+  background-color: white;
+  display: flex;
+  width: 100%;
+  border-radius: 2em;
+  height: 3vh;
+  border: 1px solid #484848;
+  margin-bottom: 2vh;
+}
+.searchbar .input {
+  width: 70%;
+  height: 2.7vh;
+  border: none;
+  border-radius: 2em;
+  font-size: 1.5em;
+  padding-left: 10px;
+  outline: none;
+}
+.searchbar i {
+  color: #794BFF;
+}
+.searchbar .btn {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 30%;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+}/*# sourceMappingURL=Searchbar.css.map */

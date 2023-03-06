@@ -1,0 +1,101 @@
+@charset "UTF-8";
+.ContPrincipal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  transition: margin-left 0.4s ease-in-out;
+  height: 70vh;
+}
+.ContPrincipal .textCont {
+  padding: 5vw;
+  text-align: center;
+  width: 90%;
+  border: 1vw solid #AD90FF;
+  border-radius: 40px;
+  background-image: url(../../assets/border.png);
+  background-repeat: no-repeat;
+  background-size: 12em;
+  background-position-x: right;
+  background-position-y: -3vh;
+}
+.ContPrincipal .textCont h1 {
+  margin-top: -50vh;
+  font-size: 3vw;
+  font-weight: bold;
+  line-height: 1.2;
+  margin: 0;
+  color: #484848;
+}
+.ContPrincipal .textCont h1 p {
+  display: inline-block;
+  color: #6F3DFF;
+  margin-bottom: 0;
+}
+.ContPrincipal .textCont h1 span {
+  color: #875DFF;
+  margin-bottom: 0;
+}
+.ContPrincipal .buttonCont {
+  display: flex;
+  position: absolute;
+  margin-top: 32vh;
+  /* ajustar según sea necesario */
+}
+.ContPrincipal .buttonCont button {
+  font-size: 1.8vw;
+  font-weight: bold;
+  background-color: #794BFF;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  margin-right: 5vw;
+  margin-left: 5vw;
+  padding: 0.3em 0.6em;
+}
+.ContPrincipal .buttonCont .btn-one {
+  background-color: #6F3DFF;
+}
+.ContPrincipal .buttonCont button:hover {
+  background-color: #0B036B;
+  cursor: pointer;
+}
+.ContPrincipal.sidebar-open {
+  margin-left: 300px;
+}
+.ContPrincipal .img-right, .ContPrincipal .img-left {
+  display: flex;
+  width: 10vw;
+  margin-top: -30vh;
+  border-radius: 40% 40% 40% 40%;
+  border-right: 6px solid rgba(72, 72, 72, 0.5215686275);
+  border-bottom: 2px solid #484848;
+}
+.ContPrincipal .img-right {
+  margin-left: 60vw;
+}
+.ContPrincipal .arrow-bot {
+  display: flex;
+  position: absolute;
+  width: 8vw;
+  height: 15vh;
+  background-image: url(../../assets/crazy-arrow.png);
+  background-repeat: no-repeat;
+  background-size: 7vw;
+  margin-left: -15vw;
+  margin-top: 57vh;
+}
+.ContPrincipal .arrow-left {
+  display: flex;
+  position: absolute;
+  width: 8vw;
+  height: 15vh;
+  background-image: url(../../assets/arrow-left.png);
+  background-repeat: no-repeat;
+  background-size: 5vw;
+  margin-left: 30vw;
+  filter: invert(42%) sepia(40%) saturate(5962%) hue-rotate(236deg) brightness(102%) contrast(100%);
+  margin-top: 7vh;
+}/*# sourceMappingURL=Commercial.css.map */

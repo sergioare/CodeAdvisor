@@ -1,0 +1,111 @@
+.faqs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 80%;
+  height: auto;
+}
+.wrapper .left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 2vw;
+  width: 40%;
+}
+.wrapper .left h1 {
+  font-weight: 700;
+  font-size: 3vw;
+  margin-bottom: 5vh;
+}
+.wrapper .left p {
+  font-size: 1.3vw;
+  width: 100%;
+}
+.wrapper .left .call-to-contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  margin-top: 2vh;
+}
+.wrapper .left .call-to-contact h3 {
+  color: #AD90FF;
+}
+.wrapper .left .call-to-contact .link {
+  text-decoration: none;
+}
+.wrapper .left .call-to-contact .btn {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2vh;
+  background-color: #AD90FF;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1vw;
+}
+.wrapper .left .call-to-contact .btn:hover {
+  background-color: #794BFF;
+}
+.wrapper .right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 60%;
+  min-height: 100vh;
+  height: auto;
+  padding: 2vw;
+}
+.wrapper .right .container-QA {
+  width: 100%;
+}
+.wrapper .right .container-QA .question {
+  position: relative;
+  background: #875DFF;
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.1), 0 4px 11px 0 rgba(0, 0, 0, 0.08);
+  color: #D9D9D9;
+  padding: 0.5vw;
+  margin-bottom: 5vh;
+  border-radius: 1vw;
+}
+.wrapper .right .container-QA .question .plus {
+  position: absolute;
+  right: 0.5vw;
+  padding: 0.3vw;
+  border-radius: 50%;
+  background-color: #D9D9D9;
+  color: #875DFF;
+  bottom: -2vh;
+  cursor: pointer;
+}
+.wrapper .right .container-QA .answer {
+  border-radius: 0.4vw;
+  line-height: 1.4;
+  position: relative;
+  opacity: 0.5;
+  transition: display 0.3 ease;
+  display: none;
+  box-shadow: 0 5px 11px 2px rgba(0, 0, 0, 0.1), 0 4px 11px 2px rgba(0, 0, 0, 0.8);
+  margin-bottom: 10vh;
+}
+.wrapper .right .container-QA .answer p {
+  font-size: 1.3em;
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
+  text-align: justify;
+}
+.wrapper .right .container-QA .answer.is-open {
+  display: flex;
+}/*# sourceMappingURL=Faqs.css.map */

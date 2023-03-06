@@ -18,8 +18,9 @@ const Technologies = () => {
       <div className="containerTech">
         {techSkills?.map((skill) => {
           return <div className="techs" key={skill.id}>
-            <h2 > {skill.id}</h2>
             <img src={skill.Image} alt='imageTechSkills' />
+            <h2 > {skill.id}</h2>
+            <p>{skill.Description}</p>
           </div>
         })
         }

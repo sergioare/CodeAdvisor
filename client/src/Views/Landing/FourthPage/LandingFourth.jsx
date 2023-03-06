@@ -2,16 +2,32 @@ import { textLandingFourth } from './data';
 import './LandingFourth.scss'
 import image from '../../../assets/profesor.png'
 import Swal from 'sweetalert2'
+import { getAuth } from 'firebase/auth';
 
 const LandingFourth = () => {
+    
+    const auth = getAuth()
+    const currentUser = auth.currentUser;
+    const id = currentUser? currentUser.uid : null
+    
+
+    
+
     const showAlert = ()=>{
         Swal.fire({
-        title: "Sorry, We are working for you",
+        title: "Please, Login to continue with process",
         icon: "warning",
-        footer: "<b>Continue to enjoy our services</b>",
+        footer: "<b>You will be the best advisor</b>",
         timer: 3000,
     })
     }
+    const handleAdvisor = ()=>{
+        id
+        ? console.log(id)
+        : showAlert()
+
+    }
+
     return (
         <div className="landingFourth">
             <div className="leftSide">
@@ -19,7 +35,7 @@ const LandingFourth = () => {
                     <h1>{textLandingFourth.h1}</h1>
                     <p>{textLandingFourth.p1}</p>
                     <p>{textLandingFourth.p2}</p>
-                    <button className='btn' onClick={showAlert}>{textLandingFourth.btn}</button>
+                    <button className='btn' onClick={handleAdvisor}>{textLandingFourth.btn}</button>
                 </div>
             </div>
             <div className="rightSide">

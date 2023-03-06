@@ -1,0 +1,167 @@
+.PaymentContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+.PaymentContainer .Header {
+  background-color: #794BFF;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.PaymentContainer p {
+  font-weight: bold;
+  font-size: 18px;
+  font-style: italic;
+  color: white;
+}
+.PaymentContainer h1 {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif, "Times New Roman", Times, serif;
+  color: white;
+  margin: 0px;
+}
+.PaymentContainer .PaymentDetail {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  width: 990px;
+  height: 380px;
+  padding: 20px;
+  margin-top: 30px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.PaymentContainer .PaymentDetail .HoursContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 255px;
+  height: 130px;
+  align-items: center;
+  box-shadow: 0px 0px 8px 0px #794BFF;
+  margin-top: 30px;
+}
+.PaymentContainer .PaymentDetail .HoursContent p {
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif, "Times New Roman", Times, serif;
+  font-style: normal;
+  font-size: 15px;
+  font-style: italic;
+  color: black;
+}
+.PaymentContainer .PaymentDetail .HoursContent .ButtonCounter {
+  width: 35px;
+  border: none;
+  background-color: transparent;
+  color: black;
+  margin: 0px 10px 0px 10px;
+  font-size: 30px;
+}
+.PaymentContainer .PaymentDetail .HoursContent .Counter {
+  font-size: 25px;
+  font-weight: bold;
+  color: black;
+}
+.PaymentContainer .PaymentDetail .PaymentContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 350px;
+  height: 375px;
+  align-items: center;
+  box-shadow: 0px 0px 8px 0px #794BFF;
+}
+.PaymentContainer .PaymentDetail .PaymentContent .DetailBorder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  align-items: center;
+  box-shadow: 0px 0px 8px 0px #794BFF;
+  border-radius: 1em;
+}
+.PaymentContainer .PaymentDetail .PaymentContent .TotalPrice {
+  font-weight: bold;
+  font-size: 18px;
+  color: black;
+}
+.PaymentContainer .PaymentDetail .PaymentContent .TotalPrice .Numbers {
+  color: #794BFF;
+}
+.PaymentContainer .PaymentDetail .PaymentContent .DetailTitle {
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif, "Times New Roman", Times, serif;
+  font-style: normal;
+  font-size: 25px;
+  font-style: italic;
+}
+.PaymentContainer .PaymentDetail .PaymentContent .Price {
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: normal;
+}
+.PaymentContainer .PaymentDetail .PaymentContent .Price .Numbers {
+  color: #794BFF;
+}
+.PaymentContainer .PaymentDetail .PaymentContent .Price .Price {
+  font-size: 18px;
+  font-weight: bold;
+  font-style: normal;
+}
+.PaymentContainer .PaymentDetail .PaymentContent .Price .Price .Numbers {
+  color: #794BFF;
+}
+.PaymentContainer .PaymentDetail .PaymentContent .Price p {
+  color: black;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: normal;
+}
+.PaymentContainer .PaymentDetail .PaymentContent .Price .ButtonCounter {
+  width: 35px;
+  border: none;
+  background-color: transparent;
+  color: black;
+  margin: 0px 10px 0px 10px;
+  font-size: 30px;
+}
+.PaymentContainer .PaymentDetail .PaymentContent .Price .Counter {
+  font-size: 25px;
+  font-weight: bold;
+}
+.PaymentContainer .PaymentDetail .PaymentContent .Price span {
+  font-size: 20px;
+}
+.PaymentContainer .PaymentDetail .PaymentContent img {
+  width: 250px;
+  height: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 20px;
+  border-radius: 50%;
+  border: 4px solid #794BFF;
+}
+.PaymentContainer .PaymentDetail .buttonStandard {
+  margin-top: 20px;
+  width: 120px;
+  padding: 5px 5px;
+  background-color: #0B036B;
+  color: #ffffff;
+  border-radius: 10px;
+  border: none;
+}
+.PaymentContainer .PaymentDetail button:hover {
+  background-color: #794BFF;
+  cursor: pointer;
+}/*# sourceMappingURL=Payment.css.map */
