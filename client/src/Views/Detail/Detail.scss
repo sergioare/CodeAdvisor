@@ -157,9 +157,10 @@
 
 .contRevvv {
   @include mixins.create-flexbox;
-  width: 80%;
-  height: 60%;
-  // background-color: $circles-bg-light;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  // background-color: blue;
   // margin-top: 15px;
   border-radius: 90px 0 90px 0;
 
@@ -167,9 +168,42 @@
   .consRev2 {
     width: 50%;
     float: left;
-    margin-left: 8%;
+
   }
-.consRev1{
-  justify-content: flex-start;
-}
+
+  .consRev1 {
+    // background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // gap: 10px;
+    // padding: 1px;
+
+    .reviewSummary {
+      width: 20vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      background-color: $circles-bg-light;
+      border-radius: 5px;
+
+      h2 {
+        color: $text-bg-purple;
+        font-size: 40px;
+
+      }
+
+      p {
+        font-size: 18px;
+        margin-bottom: 0;
+      }
+
+      span {
+        color: $title-bg-light;
+        font-size: 18px;
+        font-weight: 400;
+      }
+    }
+  }
 }
