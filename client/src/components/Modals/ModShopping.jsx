@@ -5,28 +5,33 @@ import './ModShopping.scss';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getCartItems } from "../../redux/actions/actions"
-import { clearCart } from "../../redux/actions/actions";
-import { removeFromCart } from "../../redux/actions/actions";
+import { getCartItems, clearCart, removeFromCart} from "../../redux/actions/actions"
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const ModShopping = () => {
     // const products = useSelector(state => state.cart)
     const productsIN = useSelector(state => state.productsInCart)
-
+    const { id } = useParams();
     const dispatch = useDispatch();
     // const productsInCart = products.MyCart
-    const productsInCart = productsIN?.cart?.MyCart
-    // console.log(productsInCart)
-
-
+    // const productsInCart = productsIN?.cart?.MyCart
+    const productsInCart = [{
+        Firstname: "Yoel",
+        techskill: "Jss",
+        Price: 50,
+        Day: "5",
+        Month:"12",
+        Year:"2023",
+        StartingHour: "13",
+        EndingHour: "15",
+        hours: 2,
+    }]
 
     useEffect(() => {
-        dispatch(getCartItems());
-    }, [dispatch]);
+        dispatch(getCartItems(id));
+    }, [dispatch, id]);
 
-    // useEffect(() => {
-    //     dispatch(clearCart());
-    // }, [dispatch]);
 
     const handlerClear = () => {
         dispatch(clearCart())
@@ -34,6 +39,22 @@ const ModShopping = () => {
     // const handleRemove =()=>{
     //     dispatch(removeFromCart())
     // }
+
+    const payHandler = (event) => {
+        event.preventDefault()
+        axios.post('https://code-advisor-xi.vercel.app/payment', prod)
+            .then((res) =>
+                (window.location.href = res.data.response.body.init_point));
+    };
+
+    const prod = {
+        // idAdvisor: product.id,
+        Title: "Yoel",
+        Quantity: 2,
+        Price: 500
+    };
+    console.log(prod)
+
     const [isOpenShop, openModalShop, closeModalShop] = useModal(false);
     return (
         <div>
@@ -44,29 +65,23 @@ const ModShopping = () => {
                 {productsInCart?.length === 0 ? null : productsInCart?.map((p) => {
                     return (
                         <div className="itemsCart">
-                            <h2> Advisor: </h2>
-                            <p>{p.Firstname} </p>
-                            <h2>Tech Skill: </h2>
-                            <p>{p.techskill}</p>
-                            <h2>Price: </h2>
-                            <p>${p.Price}.00 / hr</p>
-                            <h2>Date:</h2>
-                            <p>{p.Month}/{p.Day}/{p.Year}</p>
-                            <h2>Time:</h2>
-                            <p>{p.StartingHour}:00 hrs - {p.EndingHour}:00 hrs </p>
-                            <h2>Hours:</h2>
-                            <p>{p.hours}</p>
-                            <h2>Total:</h2>
-                            <p>{p.Price * p.hours}</p>
-                            <button onClick={()=>{
-        dispatch(removeFromCart(p.cId))}}>Delete Meeting</button>
-                            <button> Pay </button>
+                            <h2> Advisor: <span>{p.Firstname} </span> </h2> 
+                            <h2>Tech Skill: <span>{p.techskill}</span> </h2>
+                            <h2>Price: <span>${p.Price}.00 / hr</span> </h2> 
+                            <h2>Date: <span>{p.Month}/{p.Day}/{p.Year}</span> </h2>
+                            <h2>Time: <span>{p.StartingHour}:00 hrs - {p.EndingHour}:00 hrs </span> </h2>
+                            <h2>Hours: <span>{p.hours} hrs</span> </h2>
+                            {/* <h2>Total: <span>{p.Price * p.hours}</span> </h2> */}
+                            <div className="btnconteiner">
+                            <button onClick={payHandler}> Pay ${p.Price * p.hours} </button>
+                            <button className="btnDelete" onClick={()=>{removeFromCart(p.cId)}}> <i class="fa-solid fa-trash"></i> </button>
+                            </div>
+                          
                         </div>
                     )
-
                 }
                 ) }
-                {productsInCart?.length !== 0 ? <button onClick={handlerClear}> Clear Cart</button> : null}
+                {productsInCart?.length !== 0 ? <button className="btnClear" onClick={handlerClear}> Clear Cart</button> : null}
 
             </Modal>
 

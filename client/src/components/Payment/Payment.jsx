@@ -20,8 +20,8 @@ const Payment = () => {
 
     const auth = getAuth();
 const idClient = auth.currentUser ? auth.currentUser.uid : null;
-console.log(auth.currentUser)
-console.log(idClient)
+// console.log(auth.currentUser)
+// console.log(idClient)
 
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -59,19 +59,14 @@ console.log(idClient)
 
 
     //----------------------------Ruote to mercadoPAgo---------------------//
-    const submitHandler = (event) => {
-        // event.preventDefault()
+    const addToCardHandler = (event) => {
+        event.preventDefault()
         // axios.post('https://code-advisor-xi.vercel.app/payment', prod)
         //     .then((res) =>
         //         (window.location.href = res.data.response.body.init_point));
-
-        axios.post('https://code-advisor-back.vercel.app/User/${idClient}/MyCart', agenda)
+       axios.post(`https://code-advisor-back.vercel.app/User/${idClient}/MyCart`, agenda)
             .then(res => alert("added to cart"));
-
-        
-    };
-
-   
+        };
 
 
     // const prod = {
@@ -106,13 +101,6 @@ console.log(idClient)
         // clientName:"",
         status:"pending"
     }
-
-       
-      
-     
-      
-     
-        
 
 // console.log(agenda)
 // ---------------------Filter dates not availables -------------------------//
@@ -207,7 +195,7 @@ console.log(idClient)
                     <h2> Total: <span> ${product.Price * count}.00 </span> </h2>
 
                     <button className='buttonStandard'
-                        onClick={submitHandler} >
+                        onClick={addToCardHandler} >
                         add to cart <i class="fa-solid fa-cart-shopping"></i>
 
                     </button>

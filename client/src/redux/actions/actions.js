@@ -217,9 +217,9 @@ export function postReviwer(id, uid, photoUser, nameUser, Reviwer, score) {
 //   };
 // };
 
-  export const getCartItems = () => {
+  export const getCartItems = (id) => {
     return async function (dispatch){
-      const cartData = await axios.get('https://code-advisor-back.vercel.app/User/001');
+      const cartData = await axios.get(`https://code-advisor-back.vercel.app/User/${id}`);
       // console.log(cartData)
       const cartItems= cartData.data;
       dispatch({type: GET_CART_ITEMS, payload: cartItems})
