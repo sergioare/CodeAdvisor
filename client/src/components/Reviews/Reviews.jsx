@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa";
 import { Label, Textarea, Button } from "flowbite-react";
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import './Reviews.scss';
 import { postReviwer, getDetail } from '../../redux/actions/actions';
@@ -34,11 +34,15 @@ export const Reviews = () => {
 
   const [input, setInput] = useState({ uid: "", Img: "", Name: "", Reviwer: "", score: "" })
 
+  // const [canLeaveReview, setCanLeaveReview] = useState(false);
+  // const { purchases } = useSelector((state) => state.advisorDetail.Schedules);
+
   const [isLogged, setIsLogged] = useState(false);
   useEffect(() => {
     if (currentUser) {
       setIsLogged(true);
     }
+    
   }, []);
 
   const handleChange = (event) => {

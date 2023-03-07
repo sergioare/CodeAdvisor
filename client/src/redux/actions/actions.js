@@ -139,9 +139,7 @@ export const sortAdvisors = (method) => {
   };
 }; */
 export const POST_REVIWER = 'POST_REVIWER';
-export const DELETE_REVIWER = 'DELETE_REVIWER';
-// export const PUT_SCORE = 'PUT_SCORE';
-
+// export const DELETE_REVIWER = 'DELETE_REVIWER';
 
 export function postReviwer(id, uid, photoUser, nameUser, Reviwer, score) {
   return async function (dispatch) {
@@ -155,7 +153,7 @@ export function postReviwer(id, uid, photoUser, nameUser, Reviwer, score) {
         Name: nameUser,
         Reviwer: Reviwer.Reviwer,
         score: score,
-        
+
       },
       {
         headers: {
@@ -169,23 +167,6 @@ export function postReviwer(id, uid, photoUser, nameUser, Reviwer, score) {
     });
   };
 }
-
-// export function putScore(id, score) {
-//   return async function (dispatch) {
-//     console.log(id, score);
-//     try {
-//       const response = await axios.put(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`, {
-//         score: score,
-//       });
-//       dispatch({
-//         type: PUT_SCORE,
-//         payload: response.data,
-//       });
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   }
-// }
 
 // export function deleteReviwer(id) {
 //   try {
