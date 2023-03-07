@@ -95,17 +95,22 @@ const ModShopping = () => {
                     )
                 }
                 )}
-
-                <p>Subtotal : ${sumaPriceTotal}</p>
-                <button onClick={
-                    (event) => {
-                        event.preventDefault()
-                        axios.post('https://code-advisor-xi.vercel.app/payment', { Title: "CodeAdvisor", Quantity: 1, Price: sumaPriceTotal })
-                            .then((res) =>
-                                (window.location.href = res.data.response.body.init_point));
-                    }
+                {productStatusPending ?
+                    <p>Subtotal : ${sumaPriceTotal}</p> : null
                 }
-                > Pay all  </button>
+
+                {productStatusPending ?
+                    <button className="btnPayAll" onClick={
+                        (event) => {
+                            event.preventDefault()
+                            axios.post('https://code-advisor-xi.vercel.app/payment', { Title: "CodeAdvisor", Quantity: 1, Price: sumaPriceTotal })
+                                .then((res) =>
+                                    (window.location.href = res.data.response.body.init_point));
+                        }
+                    }
+                    > Pay all  </button> : null
+
+                }
 
                 {productStatusPending ? <button className="btnClear" onClick={handlerClear}> Clear Cart</button> : null}
 
