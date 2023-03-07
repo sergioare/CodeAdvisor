@@ -63,7 +63,6 @@
       color: $text-bg-purple;
       background-color:$title-bg-light ;
     }
-
   
     .content {
         display: flex;
@@ -77,7 +76,6 @@
         background-repeat: no-repeat;
         gap: 7vw;
     }
-
   
     .left {
         width: 30%;
@@ -413,7 +411,7 @@ body {
   background: $secundary-color;
 }
 
-.wrapper {
+.calendar-wrapper {
   width: 450px;
   background: white;
   border-radius: 10px;
@@ -429,26 +427,21 @@ body {
 
     .icons {
       display: flex;
+      height: 38px;
+      width: 38px;
+      margin: 0 1px;
+      cursor: pointer;
+      color: #878787;
+      text-align: center;
+      line-height: 38px;
+      font-size: 1.9rem;
+      user-select: none;
+      padding-left: 10px;
       
-      span {
-        height: 38px;
-        width: 38px;
-        margin: 0 1px;
-        cursor: pointer;
-        color: #878787;
-        text-align: center;
-        line-height: 38px;
-        font-size: 1.9rem;
-        user-select: none;
-        border-radius: 50%;
-        
-        &:last-child {
-          margin-right: -10px;
-        }
-        
-        &:hover {
-          background: #f2f2f2;
-        }
+      
+      &:hover {
+        background: $primary-color;
+        color: white;
       }
     }
     
@@ -457,7 +450,7 @@ body {
       font-weight: 500;
     }
   }
-  
+
   .calendar {
     padding: 20px;
     
@@ -476,6 +469,8 @@ body {
       }
 
     }
+
+    //días del mes
     
     ul.days {
       display: flex;
@@ -504,11 +499,30 @@ body {
           }
         }
 
+        &.available{
+            color: $title-bg-light;
+          
+          &::before {
+            border: 5px solid yellow;
+            border-radius: 0;
+            background-color: yellow;
+          }
+        }
+
+        &.reserved{
+          color: $title-bg-light;
+          
+          &::before {
+            border-radius: 0;
+            background: rgb(0, 194, 16);
+          }
+        }
+
         &.selected{
           color: #fff;
           
           &::before {
-            background: $secundary-color;
+            background: rgb(0, 3, 194);
           }
         }
         
@@ -524,16 +538,98 @@ body {
           transform: translate(-50%, -50%);
         }
         
-        &:not(.active):hover::before {
+        &:not(.inactive):hover::before {
           background: $primary-color;
         }
       }
     }
   }
 }
+// scss de la tabla de horarios:
+.time-slots {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .state-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    button {
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+
+      &.blocked {
+        background-color: red;
+      }
+
+      &.available {
+        background-color: yellow;
+      }
+
+      &.reserved {
+        background-color: green;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .time-slots-container {
+    max-height: 200px;
+    overflow-y: scroll;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid black;
+
+      th,
+      td {
+        text-align: center;
+        border: 1px solid black;
+        padding: 10px;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+
+      tr.blocked {
+        background-color: red;
+      }
+
+      tr.available {
+        background-color: yellow;
+      }
+
+      tr.reserved {
+        background-color: green;
+      }
+    }
+  }
+
+  h1 {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+}
+
 
 }
 
+//scrollbar:
 
 .profile::-webkit-scrollbar {
   width: 11px;
