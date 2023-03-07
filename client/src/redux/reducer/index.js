@@ -9,7 +9,7 @@ import {
   BLOCK_ACCOUNT, UNBLOCK_ACCOUNT,
   POST_REVIWER,
   // DELETE_REVIWER,PUT_SCORE,
-  UPDATE_DATES, UPDATE_AVAILABILITY
+  UPDATE_DATES, UPDATE_AVAILABILITY, GET_AVAILABILITY
 } from '../actions/actions';
 
 const initialState = {
@@ -28,12 +28,14 @@ const initialState = {
     year: new Date().getFullYear(),
   },
   availability: [
-    {id: '2Vyng2S1Lfwv8ge4A9Mv', date: '4', month: 1, year: 2023, startingHour: 7, endingHour: 8, state: "available"},
-    {id: '2Vyng2S1Lfwv8ge4A9Mv', date: '4', month: 1, year: 2023, startingHour: 8, endingHour: 9, state: "reserved"},
-    {id: '2Vyng2S1Lfwv8ge4A9Mv', date: '5', month: 1, year: 2023, startingHour: 8, endingHour: 9, state: "available"},
-    {id: '2Vyng2S1Lfwv8ge4A9Mv', date: '5', month: 1, year: 2023, startingHour: 15, endingHour: 16, state: "available"},
-    {id: '2Vyng2S1Lfwv8ge4A9Mv', date: '6', month: 1, year: 2023, startingHour: 12, endingHour: 13, state: "reserved"},
-    {id: '2Vyng2S1Lfwv8ge4A9Mv', date: '6', month: 1, year: 2023, startingHour: 13, endingHour: 14, state: "reserved"},
+    {Day: '4', Month: 1, Year: 2023, StartingHour: 7, EndingHour: 8, State: "available"},
+    {Day: '4', Month: 1, Year: 2023, StartingHour: 8, EndingHour: 9, State: "reserved"},
+    {Day: '5', Month: 1, Year: 2023, StartingHour: 8, EndingHour: 9, State: "available"},
+    {Day: '5', Month: 1, Year: 2023, StartingHour: 15, EndingHour: 16, State: "available"},
+    {Day: '6', Month: 1, Year: 2023, StartingHour: 12, EndingHour: 13, State: "reserved"},
+    {Day: '6', Month: 1, Year: 2023, StartingHour: 13, EndingHour: 14, State: "reserved"},
+    {Day: '7', Month: 1, Year: 2023, StartingHour: 0, EndingHour: 1, State: "available"},
+    {Day: '7', Month: 1, Year: 2023, StartingHour: 1, EndingHour: 2, State: "reserved"},
   ],
 
   advisorsInDisplay: [],
@@ -51,36 +53,19 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case UPDATE_AVAILABILITY:
-      const newAvailability = [...state.availability];
-      //console.log("reducer")
-      //console.log(newAvailability)
-      let matchingObjectIndex = -1;
-
-      /* for (let i = 0; i < newAvailability.length; i++) {
-        if (newAvailability[i].id === action.payload.id
-            && newAvailability[i].date === action.payload.date
-            && newAvailability[i].month === action.payload.month
-            && newAvailability[i].year === action.payload.year) {
-          matchingObjectIndex = i;
-          break;
-        }
-      }
-
-      if (matchingObjectIndex >= 0) {
-        if (action.payload.state === "available" || action.payload.state === "reserved") {
-          newAvailability[matchingObjectIndex] = action.payload;
-        } else if (action.payload.state === "blocked") {
-          newAvailability.splice(matchingObjectIndex, 1);
-        }
-      } else */ if (action.payload.state === "available" || action.payload.state === "reserved") {
-        console.log("aca")
-        newAvailability.push(action.payload);
-      }
+    case GET_AVAILABILITY:
 
       return {
         ...state,
-        availability: newAvailability,
+        //availability: action.payload.Schedules
+        //para poder usar lo hardcodeado, cambiar por la version comentada cuando este todo listo :D
+        availability: [...state.availability, ...action.payload.Schedules]
+      }
+
+    case UPDATE_AVAILABILITY:
+      return {
+        ...state,
+        availability: action.payload,
       };
 
 

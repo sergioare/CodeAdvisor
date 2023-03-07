@@ -1,0 +1,123 @@
+.DetailContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10px;
+}
+.DetailContainer h1 {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif, "Times New Roman", Times, serif;
+  color: #794BFF;
+  margin: 0px;
+  text-shadow: 2px 2px 2px rgba(136, 93, 255, 0.4666666667);
+}
+.DetailContainer p {
+  font-weight: bold;
+  font-size: 24px;
+  font-style: italic;
+  color: #875DFF;
+}
+.DetailContainer .Detail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  width: 80%;
+  height: 380px;
+  padding: 20px;
+  margin-top: 15px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0px 0px 8px 0px #794BFF;
+}
+.DetailContainer .Detail .ButtonSchedule {
+  width: 150px;
+}
+.DetailContainer .Detail .DataContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 200px;
+  height: 100px;
+}
+.DetailContainer .Detail .DataContent .TitlesPurple {
+  color: #794BFF;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: normal;
+}
+.DetailContainer .Detail .DataContent h4 {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif, "Times New Roman", Times, serif;
+  color: #794BFF;
+  margin: 0px;
+  margin-top: 10px;
+}
+.DetailContainer .Detail .DataContent p {
+  color: black;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: normal;
+}
+.DetailContainer .Detail .DataContent span {
+  color: black;
+  font-weight: normal;
+}
+.DetailContainer .Detail .About {
+  width: 250px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: bold;
+  color: #794BFF;
+  text-align: justify;
+  font-size: 18px;
+}
+.DetailContainer .Detail .About .TextAbout {
+  font-weight: normal;
+  color: black;
+  font-size: 16px;
+}
+.DetailContainer .Detail img {
+  width: 350px;
+  height: 350px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 20px;
+  border-radius: 50%;
+  border: 2px solid #794BFF;
+  box-shadow: 0px 0px 8px 4px #794BFF;
+}
+.DetailContainer button {
+  margin-top: 20px;
+  width: 120px;
+  padding: 5px 5px;
+  background-color: #0B036B;
+  color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.609);
+  border: none;
+}
+.DetailContainer button:hover {
+  background-color: #794BFF;
+  cursor: pointer;
+}
+
+.contRevvv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 60%;
+  border-radius: 90px 0 90px 0;
+}
+.contRevvv .consRev1,
+.contRevvv .consRev2 {
+  width: 50%;
+  float: left;
+  margin-left: 8%;
+}
+.contRevvv .consRev1 {
+  justify-content: flex-start;
+}/*# sourceMappingURL=Detail.css.map */
