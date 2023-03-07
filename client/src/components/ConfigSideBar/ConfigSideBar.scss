@@ -32,7 +32,7 @@
     margin-bottom: 3vh;
     width: 100%;
     border-radius: 10px;
-    text-shadow: 2px 2px 2px black;
+    font-weight: bolder;
     border: 1.5px solid $primary-color;
     i{
       margin-right: 1em;
@@ -54,7 +54,7 @@
     background-color: $circles-bg-light;
     color: $text-bg-purple;
     border-radius: 10px;
-    text-shadow: 2px 2px 2px $title-bg-light;
+    font-weight: bolder;
 
     i{
       margin-right: 1em;
@@ -80,8 +80,7 @@
     background-color: $circles-bg-light;
     color: $text-bg-purple;
     border-radius: 10px;
-    text-shadow: 2px 2px 2px $title-bg-light;
-    font-size: 1.2em;
+    font-weight: bolder;
 
     .i{
       margin-right: 1em;
@@ -97,8 +96,7 @@
     background-color: $circles-bg-light;
     color: $text-bg-purple;
     border-radius: 10px;
-    text-shadow: 2px 2px 2px $title-bg-light;
-    font-size: 1.2em;
+    font-weight: bolder;
 
     .link{
       color: $text-bg-purple;
@@ -121,9 +119,9 @@
     background-color: $circles-bg-light;
     color: #fff;
     border-radius: 10px;
-    text-shadow: 2px 2px 2px $title-bg-light;
-    font-size: 1.1em;
-    font-weight: 600;
+    font-weight: bolder;
+    font-size: 1.2em;
+    margin-top: 10vh;
     i{
       margin-right: 1em;
       font-size: 1em;
