@@ -3,6 +3,7 @@ import { blockAccount, unBlockAccount } from "../../redux/actions/actions"
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAdvisorReviews } from '../../redux/actions/actions';
+import Graphs from '../Graphs/Graphs'
 
 function Admin ({isProfileOpen, toggleProfile, isConfigBarOpen, closeSideBar, openAdmin, toggleAdmin}) {
     const [displayUsers, setDisplayUsers] = useState("Users")
@@ -68,6 +69,7 @@ function Admin ({isProfileOpen, toggleProfile, isConfigBarOpen, closeSideBar, op
                     <button onClick={() => displayInfo('Users')}>Users</button>
                     <button onClick={() => displayInfo('Advisors')}>Advisors</button>
                     <button onClick={() => displayInfo('Blocked users')}>Blocked users</button>
+                    <button onClick={() => displayInfo('Graphs')}>Graphs</button>
                 </div>
                 <div className='positions'>
                     <div className='users-side'>
@@ -135,7 +137,7 @@ function Admin ({isProfileOpen, toggleProfile, isConfigBarOpen, closeSideBar, op
                             </div>
                         )}
                     </div>
-                    <div className='reviews-side'>
+                    {(displayUsers === 'Blocked users' || displayUsers === 'Advisors' || displayUsers === 'Users') && (<div className='reviews-side'>
                     <table className="table-3">
                         <tbody>
                         <tr>
@@ -155,8 +157,13 @@ function Admin ({isProfileOpen, toggleProfile, isConfigBarOpen, closeSideBar, op
                         ))}
                         </tbody>
                     </table>
-                    </div>
+                    </div>)}
                 </div>
+                {displayUsers === 'Graphs' && (       
+                    <div>
+                        <Graphs></Graphs>
+                    </div>
+                )}
             </div>
         </div>
     );
