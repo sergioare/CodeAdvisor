@@ -8,8 +8,9 @@ import {
   GET_AUTORS, GET_REVIEWS, GET_ADVISORS, ADVISOR_DETAIL, GET_TECHSKILLS, GET_PROFILE, GET_ADVISORS_REVIEWS,
   BLOCK_ACCOUNT, UNBLOCK_ACCOUNT, GET_DATES,
   POST_REVIWER,
-  GET_CART_ITEMS, CLEAR_CART, REMOVE_FROM_CART
+  GET_CART_ITEMS, CLEAR_CART,
   // DELETE_REVIWER,PUT_SCORE,
+  UPDATE_DATES, UPDATE_AVAILABILITY, GET_AVAILABILITY
 } from '../actions/actions';
 
 const initialState = {
@@ -23,6 +24,20 @@ const initialState = {
   profile: [],
   advisorReviews: [],
   blockedAccounts: [],
+  dates: {
+    month: new Date().getMonth(),
+    year: new Date().getFullYear(),
+  },
+  availability: [
+    {Day: '4', Month: 1, Year: 2023, StartingHour: 7, EndingHour: 8, State: "available"},
+    {Day: '4', Month: 1, Year: 2023, StartingHour: 8, EndingHour: 9, State: "reserved"},
+    {Day: '5', Month: 1, Year: 2023, StartingHour: 8, EndingHour: 9, State: "available"},
+    {Day: '5', Month: 1, Year: 2023, StartingHour: 15, EndingHour: 16, State: "available"},
+    {Day: '6', Month: 1, Year: 2023, StartingHour: 12, EndingHour: 13, State: "reserved"},
+    {Day: '6', Month: 1, Year: 2023, StartingHour: 13, EndingHour: 14, State: "reserved"},
+    {Day: '7', Month: 1, Year: 2023, StartingHour: 0, EndingHour: 1, State: "available"},
+    {Day: '7', Month: 1, Year: 2023, StartingHour: 1, EndingHour: 2, State: "reserved"},
+  ],
 
   advisorsInDisplay: [],
   filters: {
@@ -42,6 +57,31 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
 
   switch (action.type) {
+    case GET_AVAILABILITY:
+
+      return {
+        ...state,
+        //availability: action.payload.Schedules
+        //para poder usar lo hardcodeado, cambiar por la version comentada cuando este todo listo :D
+        availability: [...state.availability, ...action.payload.Schedules]
+      }
+
+    case UPDATE_AVAILABILITY:
+      return {
+        ...state,
+        availability: action.payload,
+      };
+
+
+    case UPDATE_DATES:
+      return {
+        ...state,
+        dates: {
+          month: action.payload.month,
+          year: action.payload.year,
+        }
+      }
+
     case BLOCK_ACCOUNT:
       const blockedUser = state.users.find(a => a.id === action.payload);
       const blockedAdvisor = state.advisors.find(a => a.id === action.payload);
@@ -203,23 +243,11 @@ const rootReducer = (state = initialState, action) => {
         productsInCart: {cart: action.payload}
       };
 
-
-      case REMOVE_FROM_CART:
-        return{
-          ...state,
-          productsInCart: state.productsInCart.cart.MyCart.filter((item)=> item.cId !== action.payload)
-        }
-        console.log(state.productsInCart.cart.MyCart)
-
-      
-
       case CLEAR_CART: 
       return {...state, 
         productsInCart:[]
         }
         
-      
-
     default:
       return { ...state }
   }
