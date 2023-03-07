@@ -3,7 +3,7 @@ import './Testimonials.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { getReviews } from '../../redux/actions/actions';
 import { useEffect } from 'react';
-import StarRating from '../StarRating/StarRating';
+import StarRating from '../../components/StarRating/StarRating'
 
 const Testimonials = () => {
   const dispatch = useDispatch();

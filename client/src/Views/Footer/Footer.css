@@ -1,0 +1,63 @@
+.footer {
+  background-image: url(../../assets/bg-2.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.footer-distributed {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  padding: 3vw 3vw 3vw 3vw;
+  margin-top: 25vh;
+  font-size: 1.4vw;
+  color: #ffffff;
+}
+.footer-distributed a:link,
+.footer-distributed a:visited {
+  text-decoration: none;
+  color: #D9D9D9;
+}
+.footer-distributed h1 {
+  color: #ffffff;
+  margin-bottom: 3vw;
+  font-size: 3vw;
+  font-weight: bold;
+}
+.footer-distributed .footer-logo {
+  margin-right: 10vw;
+}
+.footer-distributed .footer-logo .linkLogo {
+  display: flex;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 3vw;
+  text-decoration: none;
+  color: #ffffff;
+  margin-bottom: 3vh;
+}
+.footer-distributed .footer-logo .icons-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-evenly;
+  font-size: 2vw;
+  color: #ffffff;
+  cursor: pointer;
+}
+.footer-distributed .footer-logo .icons-footer .icon:hover {
+  transition: all 1s cubic-bezier(0.25, 0.4, 0.45, 1.4);
+  font-size: 3vw;
+}
+.footer-distributed .links-company {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+}
+.footer-distributed .rights {
+  justify-content: center;
+  font-size: 1.2vw;
+  color: #ffffff;
+}/*# sourceMappingURL=Footer.css.map */

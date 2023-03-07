@@ -1,0 +1,52 @@
+.newsletter {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.newsletter .form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 40%;
+  padding: 2vw;
+  border: 2px solid #AD90FF;
+  border-radius: 20px;
+}
+.newsletter .form h1 {
+  color: #0B036B;
+  margin-bottom: 5vh;
+  display: flex;
+  text-align: center;
+}
+.newsletter .form p {
+  color: #484848;
+  font-size: 1.4vw;
+  text-align: center;
+  margin-bottom: 5vh;
+}
+.newsletter .form .input-name {
+  width: 80%;
+  height: 6vh;
+  margin-bottom: 3vh;
+  border: 3px solid #AD90FF;
+  border-radius: 20px;
+  font-size: 1.3vw;
+  text-align: center;
+}
+.newsletter .form .input-email {
+  height: 6vh;
+  width: 80%;
+  border: 3px solid #AD90FF;
+  border-radius: 20px;
+  margin-bottom: 5vh;
+  font-size: 1.3vw;
+  text-align: center;
+}
+.newsletter .form .btn {
+  background-color: #6F3DFF;
+  font-size: 1.3vw;
+  width: 40%;
+  color: #ffffff;
+  font-weight: bolder;
+}/*# sourceMappingURL=Newsletter.css.map */

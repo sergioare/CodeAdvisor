@@ -1,0 +1,93 @@
+.Configsidebar {
+  position: fixed;
+  top: 0;
+  right: -30vw;
+  height: 89vh;
+  width: 15vw;
+  background-color: rgba(255, 255, 255, 0.4588235294);
+  padding: 20px;
+  transition: right 0.4s ease-in-out;
+  border-right: 0;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  margin-top: 11vh;
+}
+.Configsidebar.open {
+  right: 0;
+}
+.Configsidebar .config-title {
+  background-color: #AD90FF;
+  color: #ffffff;
+  font-weight: 500;
+  padding: 10px;
+  margin-bottom: 3vh;
+  width: 100%;
+  border-radius: 10px;
+  text-shadow: 2px 2px 2px black;
+  border: 1.5px solid #794BFF;
+}
+.Configsidebar .config-title i {
+  margin-right: 1em;
+}
+.Configsidebar .config-title:hover {
+  background-color: #10049d;
+}
+.Configsidebar .language-toggle, .Configsidebar .theme-toggle {
+  width: 100%;
+  margin-bottom: 2vh;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #AD90FF;
+  color: #ffffff;
+  border-radius: 10px;
+  text-shadow: 2px 2px 2px #0B036B;
+}
+.Configsidebar .language-toggle i, .Configsidebar .theme-toggle i {
+  margin-right: 1em;
+  font-size: 1em;
+}
+.Configsidebar .language-toggle:hover, .Configsidebar .theme-toggle:hover {
+  background-color: #5318ff;
+}
+.Configsidebar .theme-toggle.active {
+  background-color: #000;
+  color: #ffffff;
+}
+.Configsidebar .dashboard {
+  width: 100%;
+  margin-bottom: 2vh;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #AD90FF;
+  color: #ffffff;
+  border-radius: 10px;
+  text-shadow: 2px 2px 2px #0B036B;
+  font-size: 1.2em;
+}
+.Configsidebar .dashboard .i {
+  margin-right: 1em;
+  font-size: 1.5em;
+}
+.Configsidebar .signoff-report-button {
+  text-decoration: none;
+  width: 100%;
+  margin-top: 28vh;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #AD90FF;
+  color: #fff;
+  border-radius: 10px;
+  text-shadow: 2px 2px 2px #0B036B;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+.Configsidebar .signoff-report-button i {
+  margin-right: 1em;
+  font-size: 1em;
+}
+.Configsidebar .signoff-report-button:hover {
+  background-color: #5318ff;
+}/*# sourceMappingURL=ConfigSideBar.css.map */

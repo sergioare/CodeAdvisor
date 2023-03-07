@@ -1,5 +1,5 @@
 import "./AboutUs.scss"
-import Navbar from "../Navbar/Navbar"
+import Navbar from "../../components/Navbar/Navbar"
 import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { getAutors } from "../../redux/actions/actions"

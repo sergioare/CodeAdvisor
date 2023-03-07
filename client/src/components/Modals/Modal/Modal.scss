@@ -1,3 +1,4 @@
+@use '../../Styles/mixins';
 @import '../../Styles/variables';
 
 .modal{
@@ -35,6 +36,18 @@
     background-position-y: top, bottom;
     border: .2em solid $secundary-color;
     border-radius: 40px;
+}
+.modal-container.is-profile{
+    border: 3px solid $secundary-color;
+    @include mixins.create-flexbox;
+     width: 60vw;
+     padding: 5px;
+    
+    .modal-close{
+        top: 1rem;
+        right: 4rem;
+    }
+
 }
 
 .modal-container.is-right{

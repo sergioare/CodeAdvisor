@@ -1,3 +1,4 @@
+@use '../../components/Styles/mixins';
 @import '../../components/Styles/variables';
 
 .login-btn{
@@ -27,8 +28,7 @@
         background-color: $circles-bg-light;
         color: $text-bg-purple;
         border-radius: 10px;
-        text-shadow: 2px 2px 2px $title-bg-light;
-    
+        font-weight: bolder;
         &:hover {
           background-color: darken($primary-color, 10%);
         }
@@ -44,6 +44,8 @@
 .shopping-btn{
      
         display: flex;
+        justify-content: center;
+        align-items: center;
         border: 2px solid $circles-bg-light;
         border-radius: 20%;
         background-color:$circles-bg-light ;
@@ -55,5 +57,25 @@
             background-color: $primary-color;
         }
 
+}
+
+.edit-profile-btn{
+        display: flex;
+        border: none;
+        border-radius: 10px;
+        gap: 15px;
+        background-color:$circles-bg-light ;
+        color: $text-bg-purple;
+        font-weight: bold;
+        
+        .icon{
+         @include mixins.create-flexbox;
+         margin-top: 2%;
+         font-size: 1em;
+
+        }
+        &:hover{
+            background-color: $primary-color;
+        } 
 }
     
