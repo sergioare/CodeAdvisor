@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaStar } from "react-icons/fa";
 import { Label, Textarea, Button } from "flowbite-react";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useSelector} from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
@@ -30,6 +30,11 @@ export const Reviews = () => {
 
   const [currentValue, setcurrentValue] = useState(0)
   const [hoverValue, sethoverValue] = useState(undefined)
+  
+  //const detail = useSelector(state => state.advisorDetail)
+  
+  
+  
   const stars = Array(5).fill(0)
 
   const [input, setInput] = useState({ uid: "", Img: "", Name: "", Reviwer: "", score: "" })
@@ -63,6 +68,7 @@ export const Reviews = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    //if (detail) console.log(detail)
     dispatch(postReviwer(id, uid, photoUser, nameUser, input, currentValue));
     setInput({ uid: "", Img: "", Name: "", Reviwer: "", score: "" });
     sethoverValue(undefined)

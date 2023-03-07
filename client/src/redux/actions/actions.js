@@ -21,6 +21,9 @@ export const UNBLOCK_ACCOUNT = 'UNBLOCK_ACCOUNT'
 export const UPDATE_DATES = 'UPDATE_DATES'
 export const UPDATE_AVAILABILITY = 'UPDATE_AVAILABILITY'
 export const GET_AVAILABILITY = 'GET_AVAILABILITY'
+const SantaUrl = 'https://code-advisor-4mjear53q-codigojaguar.vercel.app';
+const AngelUrl = 'https://code-advisor-back.vercel.app'   // link1   ------> https://github.com/Angel-pv/CodeAdvisor_Back/
+const AngelUrl2= 'https://code-advisor-xi.vercel.app'     //  link2   ------> https://github.com/sergioare/CodeAdvisor/tree/main/server
 
 
 
@@ -28,7 +31,7 @@ export const updateAvailability = (timeSpans,id) => {
   return async function (dispatch) {
     
     try {
-      const apiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
+      const apiData = await axios.get(`${SantaUrl}/Advisors/${id}`);   // link1 
       const schedules = apiData.data.Schedules;
       console.log("schedules " + schedules)
 
@@ -51,7 +54,7 @@ export const updateAvailability = (timeSpans,id) => {
         await axios.put(`ruta para remplazar los horarios`, schedules);
       }
 
-      const updatedApiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
+      const updatedApiData = await axios.get(`${SantaUrl}/Advisors/${id}`);     // link1
       const updatedSchedules = updatedApiData.data.Schedules;
 
       dispatch({ type: UPDATE_AVAILABILITY, payload: updatedSchedules });
@@ -65,7 +68,7 @@ export const updateAvailability = (timeSpans,id) => {
 
 export const getAvailability = (id) => {
   return async function (dispatch) {
-    const apiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
+    const apiData = await axios.get(`${SantaUrl}/Advisors/${id}`);    // link1 
     //const apiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/001`);
     const timeSpans = apiData.data;
     dispatch({ type: GET_AVAILABILITY, payload: timeSpans });
@@ -76,7 +79,7 @@ export const getAvailability = (id) => {
 
 export const getAutors = () => {
   return async function (dispatch) {
-    const apiData = await axios.get("https://code-advisor-xi.vercel.app/data/autores/");
+    const apiData = await axios.get(`${SantaUrl}/data/autores/`);      // link2
     const autors = apiData.data;
     dispatch({ type: GET_AUTORS, payload: autors });//... este info va al reducer
 
@@ -103,7 +106,7 @@ export const unBlockAccount = (id) => {
 
 export const getAdvisorReviews = (id) => {
   return async function (dispatch) {
-    const apiData = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`);
+    const apiData = await axios.get(`${SantaUrl}/Advisors/${id}/Reviwers`);   // link2
     const reviews = apiData.data;
     dispatch({ type: GET_ADVISORS_REVIEWS, payload: reviews });
 
@@ -112,7 +115,7 @@ export const getAdvisorReviews = (id) => {
 
 export const getReviews = () => {
   return async function (dispatch) {
-    const response = await axios.get('https://code-advisor-xi.vercel.app/data/CommunityComments');
+    const response = await axios.get(`${SantaUrl}/data/CommunityComments`);   // link2
     const reviews = response.data;
     dispatch({ type: GET_REVIEWS, payload: reviews });
   };
@@ -120,7 +123,7 @@ export const getReviews = () => {
 
 export const getAdvisors = () => {
   return async function (dispatch) {
-    const response = await axios.get('https://code-advisor-xi.vercel.app/Advisors');
+    const response = await axios.get(`${SantaUrl}/Advisors`);     // link2
     const advisors = response.data;
     dispatch({ type: GET_ADVISORS, payload: advisors })
   };
@@ -128,7 +131,7 @@ export const getAdvisors = () => {
 
 export const getDetail = (id) => {
   return async function (dispatch) {
-    const response = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}`);
+    const response = await axios.get(`${AngelUrl}/Advisors/${id}`);   // link2
     const advisor = response.data;
     dispatch({ type: ADVISOR_DETAIL, payload: advisor })
   }
@@ -136,7 +139,7 @@ export const getDetail = (id) => {
 
 export const getProfile = (id) => {
   return async function (dispatch) {
-    const response = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}`);
+    const response = await axios.get(`${SantaUrl}/Advisors/${id}`);   // link2
     const advisor = response.data;
     dispatch({ type: GET_PROFILE, payload: advisor })
   }
@@ -144,7 +147,7 @@ export const getProfile = (id) => {
 
 export const getTechSkills = () => {
   return async function (dispatch) {
-    const response = await axios.get('https://code-advisor-xi.vercel.app/data/TechSkills');
+    const response = await axios.get(`${SantaUrl}/data/TechSkills`);  // link2
     const techSkills = response.data;
     dispatch({ type: GET_TECHSKILLS, payload: techSkills })
   }
@@ -152,7 +155,7 @@ export const getTechSkills = () => {
 
 export const loadProfessionals = () => {
   return function (dispatch) {
-    fetch("https://code-advisor-xi.vercel.app/Advisors")
+    fetch(`${SantaUrl}/Advisors`)         // link2
       .then(res => res.json())
       .then(data => dispatch({ type: LOAD_PROFESSIONALS, payload: data }));
   }
@@ -202,7 +205,7 @@ export function postReviwer(id, uid, photoUser, nameUser, Reviwer, score) {
   return async function (dispatch) {
     const tokken = window.localStorage.getItem("tokken");
     console.log(tokken)
-    const json = await axios.post(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`,
+    const json = await axios.post(`${SantaUrl}/Advisors/${id}/Reviwers`,          // link2
       {
         id,
         uid: uid,
@@ -211,7 +214,7 @@ export function postReviwer(id, uid, photoUser, nameUser, Reviwer, score) {
         Reviwer: Reviwer.Reviwer,
         score: score,
         
-      },
+      },          
       {
         headers: {
           authorization: "Bearer " + tokken,
