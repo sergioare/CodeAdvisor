@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaStar } from "react-icons/fa";
 import { Label, Textarea, Button } from "flowbite-react";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
@@ -13,7 +13,7 @@ import { getAuth } from "firebase/auth";
 export const Reviews = () => {
   const showAlert = () => {
     Swal.fire({
-      title: "Please, login",
+      title: "Please, login.",
       icon: "warning",
     })
   }
@@ -21,9 +21,9 @@ export const Reviews = () => {
   const currentUser = auth.currentUser;
   // console.log(currentUser)
 
-  const uid = currentUser ? currentUser.uid : showAlert;
-  const photoUser = currentUser ? currentUser.photoURL : showAlert;
-  const nameUser = currentUser ? currentUser.displayName : showAlert;
+  const uid = currentUser ? currentUser.uid : '';
+  const photoUser = currentUser ? currentUser.photoURL : null;
+  const nameUser = currentUser ? currentUser.displayName : '';
 
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -33,6 +33,13 @@ export const Reviews = () => {
   const stars = Array(5).fill(0)
 
   const [input, setInput] = useState({ uid: "", Img: "", Name: "", Reviwer: "", score: "" })
+
+  const [isLogged, setIsLogged] = useState(false);
+  useEffect(() => {
+    if (currentUser) {
+      setIsLogged(true);
+    }
+  }, []);
 
   const handleChange = (event) => {
     setInput({
@@ -65,7 +72,7 @@ export const Reviews = () => {
 
   let btndisabled = !(
     currentValue &&
-    input.Reviwer.length
+    input.Reviwer.length && isLogged
   )
 
   return (
@@ -101,14 +108,20 @@ export const Reviews = () => {
               rows={4}
               onChange={(e) => handleChange(e)}
               name="Reviwer"
-              value={input.Reviwer} />
+              value={input.Reviwer}
+              onClick={() => {
+                if (!isLogged) {
+                  showAlert();
+                }
+              }} />
           </div>
 
           <Button
             className='botonRev'
             gradientDuoTone="purpleToBlue"
             type="submit"
-            disabled={btndisabled}>Send</Button>
+            disabled={btndisabled}
+          >Send</Button>
 
         </form>
       </div>

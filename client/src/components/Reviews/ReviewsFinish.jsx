@@ -20,7 +20,7 @@ export const ReviewsFinish = () => {
   return (
     <div className='ContainRevFin'>
       <div className='RevFin'>
-        {reviewsByUsers?.map((review) => {
+        {Array.isArray(reviewsByUsers) && reviewsByUsers?.map((review) => {
           return (
             <div className='cardRevFin' key={review.id}>
               <div className='HeadRevFin'>

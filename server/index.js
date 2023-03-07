@@ -20,8 +20,9 @@ dotenv.config();
 
 
 const PORT = process.env.PORT || 3002;
-const VERCEL_URL = process.env.VERCEL_URL || "https://code-advisor-hy1v.vercel.app/";
-
+//const VERCEL_URL = process.env.VERCEL_URL || "https://code-advisor-hy1v.vercel.app/"; 
+const VERCEL_URL = process.env.VERCEL_URL ||   "https://code-advisor-4mjear53q-codigojaguar.vercel.app/";
+//const VERCEL_URL = 'http://localhost:3002';
 /**
 * Inicie el servidor en el puerto 8080 y registra cualquier error en la consola.
 */

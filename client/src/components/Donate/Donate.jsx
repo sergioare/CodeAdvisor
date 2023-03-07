@@ -26,7 +26,7 @@ useEffect(() => {
     const submitHandler=(event)=>{
     event.preventDefault();
     console.log('Go to Binance')
-    
+
     };
 
     return (
@@ -39,7 +39,7 @@ useEffect(() => {
             </div>
             <div className="conteinerContact">
                 <div className="contact">
-                  
+
                     <div className="contactDetail">
                         {donations?.map(wallet=>{
                           return  <p> {wallet} </p>
@@ -57,8 +57,8 @@ useEffect(() => {
             <Link to='https://www.binance.com/'>
                 Donate
             </Link>
-            
-            
+
+
         </div>
         </>
 
