@@ -18,6 +18,61 @@ export const GET_PROFILE = 'GET_PROFILE'
 export const GET_ADVISORS_REVIEWS = 'GET_ADVISORS_REVIEWS'
 export const BLOCK_ACCOUNT = 'BLOCK_ACCOUNT'
 export const UNBLOCK_ACCOUNT = 'UNBLOCK_ACCOUNT'
+export const UPDATE_DATES = 'UPDATE_DATES'
+export const UPDATE_AVAILABILITY = 'UPDATE_AVAILABILITY'
+export const GET_AVAILABILITY = 'GET_AVAILABILITY'
+
+
+
+export const updateAvailability = (timeSpansArray, id) => {
+  return async function (dispatch) {
+    try {
+      const apiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
+      const schedules = apiData.data.Schedules;
+
+      for (let i = 0; i < timeSpansArray.length; i++) {
+        let matchingObjectIndex = -1;
+
+        for (let j = 0; j < schedules.length; j++) {
+          if (schedules[j].Day === timeSpansArray[i].Day &&
+              schedules[j].Month === timeSpansArray[i].Month &&
+              schedules[j].Year === timeSpansArray[i].Year) {
+            matchingObjectIndex = j;
+            break;
+          }
+        }
+
+        if (matchingObjectIndex >= 0) {
+          schedules[matchingObjectIndex].State = timeSpansArray[i].State;
+        } else if (timeSpansArray[i].State === "reserved" || timeSpansArray[i].State === "available") {
+          schedules.push(timeSpansArray[i]);
+        }
+      }
+                        //ruta debe ser actualizada
+      await axios.put(`https://code-advisor-back.vercel.app/Advisors/${id}`, schedules);
+
+      const updatedApiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
+      const updatedSchedules = updatedApiData.data.Schedules;
+
+      dispatch({ type: UPDATE_AVAILABILITY, payload: updatedSchedules });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+
+
+
+export const getAvailability = (id) => {
+  return async function (dispatch) {
+    const apiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
+    //const apiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/001`);
+    const timeSpans = apiData.data;
+    dispatch({ type: GET_AVAILABILITY, payload: timeSpans });
+
+  };
+};
 
 
 export const getAutors = () => {
@@ -28,6 +83,12 @@ export const getAutors = () => {
 
   };
 };
+
+export const updateDates = (dates) => {
+  return async function (dispatch) {
+    dispatch({ type: UPDATE_DATES, payload: dates })
+  };
+}
 
 export const blockAccount = (id) => {
   return async function (dispatch) {
@@ -133,11 +194,6 @@ export const sortAdvisors = (method) => {
   };
 };
 
-/* export const sortByAvailability = () => {
-  return {
-    type: SORT_BY_AVAILABILITY,
-  };
-}; */
 export const POST_REVIWER = 'POST_REVIWER';
 export const DELETE_REVIWER = 'DELETE_REVIWER';
 // export const PUT_SCORE = 'PUT_SCORE';
