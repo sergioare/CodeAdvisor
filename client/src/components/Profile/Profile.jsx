@@ -194,7 +194,7 @@ useEffect(() => {
 
 
 useEffect(() => {
-    //dispatch(updateAvailability(selectedTimeSpan, id));
+    dispatch(updateAvailability(selectedTimeSpan, id));
 }, [selectedTimeSpan]);
 
 //renderizamos el calendar una vez se hayan cargado los datos y solo si esta el profile abierto y cuando no se habian seleccionado fechas o cambiado los meses
