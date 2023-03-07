@@ -12,7 +12,7 @@ const listMembers = async (req, res, next) => {
   try {
     //trae todos los que esta subcritos
     const response = await mailchimp.lists.getListMembersInfo("0ad7923748");
-    console.log(response);
+    // console.log(response);
 
     res.status(200).send(response);
   } catch (error) {
@@ -29,17 +29,13 @@ const addSuscriber = async (req, res, next) => {
       full_name: data.full_name,
       status: "subscribed"
     });
-    console.log(response);
+    // console.log(response);
 
     res.status(200).send(response);
   } catch (error) {
     res.status(400).send(error.message);
   }
 };
-
-
 //finciona agregar a un contacto
-
-
 
 module.exports = { addSuscriber, listMembers }
