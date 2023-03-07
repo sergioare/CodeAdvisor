@@ -16,7 +16,7 @@ const auth = getAuth();
 const currentUser = auth.currentUser;
 
 // hardcodeo de advisor
-const isAdvisor = true
+const isAdvisor = false
   
 const id = "001"; //cambair id por id de cada cuenta
 //const id = currentUser ? currentUser.uid : '2Vyng2S1Lfwv8ge4A9Mv';
@@ -194,9 +194,7 @@ useEffect(() => {
 
 
 useEffect(() => {
-  selectedTimeSpan.forEach(timeSpan => {
-    //dispatch(updateAvailability(timeSpan, id));
-  });
+    //dispatch(updateAvailability(selectedTimeSpan, id));
 }, [selectedTimeSpan]);
 
 //renderizamos el calendar una vez se hayan cargado los datos y solo si esta el profile abierto y cuando no se habian seleccionado fechas o cambiado los meses
@@ -274,55 +272,82 @@ return (
 
 
     {!isAdvisor && (
-      <div className="tables-section">
-        <div className="tables-container">        
-          <div className="table-wrapper-full-width">
-          <table>
-            <tbody>
-              <tr>
-                <th className="tittle">Class</th>
-                <th className="tittle">Calendar</th>
-              </tr>
-              <tr>
-                <td className="data">In progress</td>
-                <td rowSpan="3" className="data" style={{border: "2px solid #794BFF"}}>
-                <div>{/* calendario en user */}
-                  <div className="calendar-wrapper">
-                    <header>
-                      <p className="current-date"></p>
-                      <div className="icons">
-                        <button onClick={()=>{prevNextClick("prev")}} className="prev-next-buttons">&lt;</button>
-                        <button onClick={()=>{prevNextClick("next")}} className="prev-next-buttons">&gt;</button>
+      <div>
+        <div className="tables-section">
+          <div className="tables-container">        
+            <div className="table-wrapper-full-width">
+            <table>
+              <tbody>
+                <tr>
+                  <th className="tittle">Class</th>
+                  <th className="tittle">Calendar</th>
+                </tr>
+                <tr>
+                  <td className="data">In progress</td>
+                  <td rowSpan="3" className="data" style={{border: "2px solid #794BFF"}}>
+                  <div>{/* calendario en user */}
+                    <div className="calendar-wrapper">
+                      <header>
+                        <p className="current-date"></p>
+                        <div className="icons">
+                          <button onClick={()=>{prevNextClick("prev")}} className="prev-next-buttons">&lt;</button>
+                          <button onClick={()=>{prevNextClick("next")}} className="prev-next-buttons">&gt;</button>
+                        </div>
+                      </header>
+                      <div className="calendar">
+                        <ul className="weeks">
+                          <li>Sun</li>
+                          <li>Mon</li>
+                          <li>Tue</li>
+                          <li>Wed</li>
+                          <li>Thu</li>
+                          <li>Fri</li>
+                          <li>Sat</li>
+                        </ul>
+                        <ul className="days"></ul>
                       </div>
-                    </header>
-                    <div className="calendar">
-                      <ul className="weeks">
-                        <li>Sun</li>
-                        <li>Mon</li>
-                        <li>Tue</li>
-                        <li>Wed</li>
-                        <li>Thu</li>
-                        <li>Fri</li>
-                        <li>Sat</li>
-                      </ul>
-                      <ul className="days"></ul>
                     </div>
                   </div>
-                </div>
-              </td>
-              </tr>
-              <tr>
-                <th className="tittle">Meet</th>
-              </tr>
-              <tr>
-              <td className="data">In progress</td>
-              </tr>
+                </td>
+                </tr>
+                <tr>
+                  <th className="tittle">Meet</th>
+                </tr>
+                <tr>
+                <td className="data">In progress</td>
+                </tr>
 
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        {/* -----------------time Spans buttons ----------------- */}
+
+        <div class="time-slots">
+          <h1>Available Time Slots - {months[selectedDate?.month]} {selectedDate?.date} {selectedDate?.year}</h1>
+          <div class="time-slots-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Time Slot</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {selectedTimeSpan.filter(timeSpan => timeSpan.state !== 'blocked').map((timeSpan, index) => (
+                  <tr key={index} class={timeSpan.state}>
+                    <td>
+                      {timeSpan.StartingHour}:00 - {timeSpan.EndingHour}:00
+                    </td>
+                    <td>{timeSpan.state}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
+      </div>
     )}
 
 
