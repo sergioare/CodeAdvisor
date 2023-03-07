@@ -373,6 +373,7 @@ module.exports = {
 
     updatAdvisorsReviwers,
     updatAdvisorsSchedules,
+    updatAdvisorsMyWallet,
     
     getAdvisorsAllMyWallet,
     addAdvisorsMyWallet,

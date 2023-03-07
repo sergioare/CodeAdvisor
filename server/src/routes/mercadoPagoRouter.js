@@ -123,44 +123,9 @@ mercadoPagoRouter.post("/webhooks/", async (req, res) => {
         })
 
 
-mercadoPagoRouter.post('/', async (req, res) => {
 
-    
-    console.log(req.body)
-    // try {
-     
-    //     const { data } = await axios.get(
-    //       `https://api.mercadopago.com/v1/payments/${id}`,
-    //       {
-    //         headers: {
-    //           Authorization: "Bearer " + process.env.ACCESS_TOKEN,
-    //         },
-    //       }
-    //     );
-    //     console.log(data);
-       
-        
-      
-    // } catch (error) {
-    //   console.log(error);
-    // }
-  
-    return res.status(200).send("OK");
-
-})
 
 module.exports = mercadoPagoRouter
 
 
-  // try {
-    //     if (req.query.status === 'approved') {
-    //         const rev = await firestore.collection(`/Advisors/${id}/MyWallet`).doc(idr);
-    //     await rev.update(data);
-    //     res.send("MyWallet updated successfuly")
-    //         .catch(error => {
-    //             console.log(error);
-    //         })
-    //       }
-    // } catch (error) {
-        
-    // }
+  

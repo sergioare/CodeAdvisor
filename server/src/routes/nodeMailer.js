@@ -20,9 +20,9 @@ nodeMailerRoutes.post('/',  (req, res) => {
 
       
       let mailInfo =  {
-        from: data.email, 
-        to:"codeadvisorlatam@gmail.com" , 
-        subject: `Contact me by${data.fullName}` , // Subject line
+        from: data.email , 
+        to: "codeadvisorlatam@gmail.com" , 
+        subject: `Contact me by ${data.fullName} Email: ${data.email}` , // Subject line
         text: data.mensaje, // plain text body
         
       };
@@ -36,6 +36,51 @@ nodeMailerRoutes.post('/',  (req, res) => {
         }
 
       })
+
+})
+
+
+//email de compra
+
+nodeMailerRoutes.post('/payment',  (req, res) => {
+
+  const data = req.body
+
+  let transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true, 
+      auth: {
+        user: 'codeadvisorlatam@gmail.com' , 
+        pass: passwor, 
+      },
+    });
+
+    
+    let mailInfo =  {
+      from:"codeadvisorlatam@gmail.com" , 
+      to: data.email , 
+      subject: `Pago exitoso` , // Subject line
+      html: 
+      `<h1>  Payment Success </h1>
+       <p> Advice :  </p>
+       <p> Data :  </p>
+       <p> Time :  </p>
+       
+      `,
+      
+      
+    };
+    transporter.sendMail(mailInfo,(error, info)=>{
+
+      if(error){
+          res.status(500).send(error.message)
+      }else{
+          console.log('Email enviado!!')
+          res.status(200).json(req.body)
+      }
+
+    })
 
 })
 
