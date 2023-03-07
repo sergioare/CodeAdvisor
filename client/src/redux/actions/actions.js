@@ -18,6 +18,60 @@ export const GET_PROFILE = 'GET_PROFILE'
 export const GET_ADVISORS_REVIEWS = 'GET_ADVISORS_REVIEWS'
 export const BLOCK_ACCOUNT = 'BLOCK_ACCOUNT'
 export const UNBLOCK_ACCOUNT = 'UNBLOCK_ACCOUNT'
+export const UPDATE_DATES = 'UPDATE_DATES'
+export const UPDATE_AVAILABILITY = 'UPDATE_AVAILABILITY'
+export const GET_AVAILABILITY = 'GET_AVAILABILITY'
+
+
+
+export const updateAvailability = (timeSpans, id) => {
+  return async function (dispatch) {
+
+    try {
+      const apiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
+      const schedules = apiData.data.Schedules;
+      console.log("schedules " + schedules)
+
+      let matchingObjectIndex = -1;
+
+      for (let i = 0; i < schedules.length; i++) {
+        if (schedules[i].Day === timeSpans.Day &&
+          schedules[i].Month === timeSpans.Month &&
+          schedules[i].Year === timeSpans.Year) {
+          matchingObjectIndex = i;
+          break;
+        }
+      }
+
+      if (matchingObjectIndex >= 0) {
+        schedules[matchingObjectIndex].State = timeSpans.State;
+        await axios.put(`ruta para remplazar los horarios`, schedules);
+      } else if (timeSpans.State === "reserved" || timeSpans.State === "available") {
+        schedules.push(timeSpans);
+        await axios.put(`ruta para remplazar los horarios`, schedules);
+      }
+
+      const updatedApiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
+      const updatedSchedules = updatedApiData.data.Schedules;
+
+      dispatch({ type: UPDATE_AVAILABILITY, payload: updatedSchedules });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+
+
+export const getAvailability = (id) => {
+  return async function (dispatch) {
+    const apiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
+    //const apiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/001`);
+    const timeSpans = apiData.data;
+    dispatch({ type: GET_AVAILABILITY, payload: timeSpans });
+
+  };
+};
 
 
 export const getAutors = () => {
@@ -28,6 +82,12 @@ export const getAutors = () => {
 
   };
 };
+
+export const updateDates = (dates) => {
+  return async function (dispatch) {
+    dispatch({ type: UPDATE_DATES, payload: dates })
+  };
+}
 
 export const blockAccount = (id) => {
   return async function (dispatch) {
@@ -68,7 +128,8 @@ export const getAdvisors = () => {
 
 export const getDetail = (id) => {
   return async function (dispatch) {
-    const response = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}`);
+    // const response = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}`);
+    const response = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
     const advisor = response.data;
     dispatch({ type: ADVISOR_DETAIL, payload: advisor })
   }
@@ -133,11 +194,6 @@ export const sortAdvisors = (method) => {
   };
 };
 
-/* export const sortByAvailability = () => {
-  return {
-    type: SORT_BY_AVAILABILITY,
-  };
-}; */
 export const POST_REVIWER = 'POST_REVIWER';
 // export const DELETE_REVIWER = 'DELETE_REVIWER';
 
@@ -145,7 +201,8 @@ export function postReviwer(id, uid, photoUser, nameUser, Reviwer, score) {
   return async function (dispatch) {
     const tokken = window.localStorage.getItem("tokken");
     console.log(tokken)
-    const json = await axios.post(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`,
+    // const json = await axios.post(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`,
+    const json = await axios.post(`https://code-advisor-back.vercel.app/Advisors/${id}/Reviwers`,
       {
         id,
         uid: uid,

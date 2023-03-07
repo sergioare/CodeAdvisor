@@ -28,8 +28,7 @@
         background-color: $circles-bg-light;
         color: $text-bg-purple;
         border-radius: 10px;
-        text-shadow: 2px 2px 2px $title-bg-light;
-    
+        font-weight: bolder;
         &:hover {
           background-color: darken($primary-color, 10%);
         }

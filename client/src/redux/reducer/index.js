@@ -7,7 +7,7 @@ import {
   SORT_ADVISORS,
   GET_AUTORS, GET_REVIEWS, GET_ADVISORS, ADVISOR_DETAIL, GET_TECHSKILLS, GET_PROFILE, GET_ADVISORS_REVIEWS,
   BLOCK_ACCOUNT, UNBLOCK_ACCOUNT,
-  POST_REVIWER, 
+  POST_REVIWER, GET_AVAILABILITY, UPDATE_AVAILABILITY, UPDATE_DATES
   // DELETE_REVIWER,
 } from '../actions/actions';
 
@@ -22,6 +22,20 @@ const initialState = {
   profile: [],
   advisorReviews: [],
   blockedAccounts: [],
+  dates: {
+    month: new Date().getMonth(),
+    year: new Date().getFullYear(),
+  },
+  availability: [
+    {Day: '4', Month: 1, Year: 2023, StartingHour: 7, EndingHour: 8, State: "available"},
+    {Day: '4', Month: 1, Year: 2023, StartingHour: 8, EndingHour: 9, State: "reserved"},
+    {Day: '5', Month: 1, Year: 2023, StartingHour: 8, EndingHour: 9, State: "available"},
+    {Day: '5', Month: 1, Year: 2023, StartingHour: 15, EndingHour: 16, State: "available"},
+    {Day: '6', Month: 1, Year: 2023, StartingHour: 12, EndingHour: 13, State: "reserved"},
+    {Day: '6', Month: 1, Year: 2023, StartingHour: 13, EndingHour: 14, State: "reserved"},
+    {Day: '7', Month: 1, Year: 2023, StartingHour: 0, EndingHour: 1, State: "available"},
+    {Day: '7', Month: 1, Year: 2023, StartingHour: 1, EndingHour: 2, State: "reserved"},
+  ],
 
   advisorsInDisplay: [],
   filters: {
@@ -38,6 +52,31 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
 
   switch (action.type) {
+    case GET_AVAILABILITY:
+
+      return {
+        ...state,
+        //availability: action.payload.Schedules
+        //para poder usar lo hardcodeado, cambiar por la version comentada cuando este todo listo :D
+        availability: [...state.availability, ...action.payload.Schedules]
+      }
+
+    case UPDATE_AVAILABILITY:
+      return {
+        ...state,
+        availability: action.payload,
+      };
+
+
+    case UPDATE_DATES:
+      return {
+        ...state,
+        dates: {
+          month: action.payload.month,
+          year: action.payload.year,
+        }
+      }
+
     case BLOCK_ACCOUNT:
       const blockedUser = state.users.find(a => a.id === action.payload);
       const blockedAdvisor = state.advisors.find(a => a.id === action.payload);

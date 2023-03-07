@@ -34,15 +34,11 @@ export const Reviews = () => {
 
   const [input, setInput] = useState({ uid: "", Img: "", Name: "", Reviwer: "", score: "" })
 
-  // const [canLeaveReview, setCanLeaveReview] = useState(false);
-  // const { purchases } = useSelector((state) => state.advisorDetail.Schedules);
-
   const [isLogged, setIsLogged] = useState(false);
   useEffect(() => {
     if (currentUser) {
       setIsLogged(true);
     }
-    
   }, []);
 
   const handleChange = (event) => {
