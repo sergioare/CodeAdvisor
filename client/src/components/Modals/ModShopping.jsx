@@ -89,7 +89,14 @@ const ModShopping = () => {
                                 }>
                                     Pay ${p.Price * p.hours} </button>
                             </div>
-                            <button className="btnDelete" onClick={handleRemove}> <i class="fa-solid fa-trash"></i> </button>
+                            
+                            <button className="btnDelete" onClick={
+                                (event) => {
+                                    event.preventDefault()
+                                    axios.put(`https://code-advisor-back.vercel.app/User/${idClient}/MyCart/${p.uId}`, { status: "deleted" })
+
+                                }
+                            }> <i class="fa-solid fa-trash"></i> </button>
 
                         </div>
                     )
