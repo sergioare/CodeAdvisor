@@ -10,6 +10,8 @@ const Technologies = () => {
   const techSkills = useSelector(state => state.techSkills);
 
   useEffect(() => {
+  console.log("El error es de Tere, Aqui en Tech")
+
     dispatch(getTechSkills())
   }, [dispatch])
   return (

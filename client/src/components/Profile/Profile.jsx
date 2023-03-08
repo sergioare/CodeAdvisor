@@ -25,6 +25,8 @@ const userEmail = currentUser ? currentUser.email : null;
 
 const dispatch = useDispatch();
 useEffect(() => {
+  console.log("El error es de Nico, Aqui en Profile")
+
   if (id) {
     dispatch(getProfile(id)); 
     dispatch(getAdvisorReviews(id));
@@ -166,6 +168,7 @@ const handleTimeSpanClick = (index) => {
 }
   
 useEffect(() => {
+  console.log("El error es de Nico, Aqui en Profile")
   setSelectedTimeSpan(prevState => {
     const newState = [...prevState];
     for (let hour = startTime; hour < endTime; hour++) {
@@ -192,12 +195,6 @@ useEffect(() => {
   });
 }, [availableDates, selectedDate, startTime, endTime]);
 
-
-useEffect(() => {
-  selectedTimeSpan.forEach(timeSpan => {
-    //dispatch(updateAvailability(timeSpan, id));
-  });
-}, [selectedTimeSpan]);
 
 //renderizamos el calendar una vez se hayan cargado los datos y solo si esta el profile abierto y cuando no se habian seleccionado fechas o cambiado los meses
 if(currentDate && isProfileOpen && !calendarRenderd){
@@ -274,55 +271,82 @@ return (
 
 
     {!isAdvisor && (
-      <div className="tables-section">
-        <div className="tables-container">        
-          <div className="table-wrapper-full-width">
-          <table>
-            <tbody>
-              <tr>
-                <th className="tittle">Class</th>
-                <th className="tittle">Calendar</th>
-              </tr>
-              <tr>
-                <td className="data">In progress</td>
-                <td rowSpan="3" className="data" style={{border: "2px solid #794BFF"}}>
-                <div>{/* calendario en user */}
-                  <div className="calendar-wrapper">
-                    <header>
-                      <p className="current-date"></p>
-                      <div className="icons">
-                        <button onClick={()=>{prevNextClick("prev")}} className="prev-next-buttons">&lt;</button>
-                        <button onClick={()=>{prevNextClick("next")}} className="prev-next-buttons">&gt;</button>
+      <div>
+        <div className="tables-section">
+          <div className="tables-container">        
+            <div className="table-wrapper-full-width">
+            <table>
+              <tbody>
+                <tr>
+                  <th className="tittle">Class</th>
+                  <th className="tittle">Calendar</th>
+                </tr>
+                <tr>
+                  <td className="data">In progress</td>
+                  <td rowSpan="3" className="data" style={{border: "2px solid #794BFF"}}>
+                  <div>{/* calendario en user */}
+                    <div className="calendar-wrapper">
+                      <header>
+                        <p className="current-date"></p>
+                        <div className="icons">
+                          <button onClick={()=>{prevNextClick("prev")}} className="prev-next-buttons">&lt;</button>
+                          <button onClick={()=>{prevNextClick("next")}} className="prev-next-buttons">&gt;</button>
+                        </div>
+                      </header>
+                      <div className="calendar">
+                        <ul className="weeks">
+                          <li>Sun</li>
+                          <li>Mon</li>
+                          <li>Tue</li>
+                          <li>Wed</li>
+                          <li>Thu</li>
+                          <li>Fri</li>
+                          <li>Sat</li>
+                        </ul>
+                        <ul className="days"></ul>
                       </div>
-                    </header>
-                    <div className="calendar">
-                      <ul className="weeks">
-                        <li>Sun</li>
-                        <li>Mon</li>
-                        <li>Tue</li>
-                        <li>Wed</li>
-                        <li>Thu</li>
-                        <li>Fri</li>
-                        <li>Sat</li>
-                      </ul>
-                      <ul className="days"></ul>
                     </div>
                   </div>
-                </div>
-              </td>
-              </tr>
-              <tr>
-                <th className="tittle">Meet</th>
-              </tr>
-              <tr>
-              <td className="data">In progress</td>
-              </tr>
+                </td>
+                </tr>
+                <tr>
+                  <th className="tittle">Meet</th>
+                </tr>
+                <tr>
+                <td className="data">In progress</td>
+                </tr>
 
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        {/* -----------------time Spans buttons ----------------- */}
+
+        <div className="time-slots">
+          <h1>Available Time Slots - {months[selectedDate?.month]} {selectedDate?.date} {selectedDate?.year}</h1>
+          <div className="time-slots-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Time Slot</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {selectedTimeSpan.filter(timeSpan => timeSpan.state !== 'blocked').map((timeSpan, index) => (
+                  <tr key={index} className={timeSpan.state}>
+                    <td>
+                      {timeSpan.StartingHour}:00 - {timeSpan.EndingHour}:00
+                    </td>
+                    <td>{timeSpan.state}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
+      </div>
     )}
 
 
@@ -400,31 +424,33 @@ return (
                     <th className="tittle" style={{ width: "100%" }}>Calendar</th>
                   </tr>
                   <tr>
-                    <td className="data"></td>
-                    <div>
-                    <div className="calendar-wrapper">
-                      <header>
-                        <p className="current-date"></p>
-                        <div className="icons">
-                        <button onClick={()=>{prevNextClick("prev")}} className="material-symbols-rounded">&lt;</button>
-                        <button onClick={()=>{prevNextClick("next")}} className="material-symbols-rounded">&gt;</button>
+                    <td className="data">
+
+                          <div>
+                          <div className="calendar-wrapper">
+                            <header>
+                              <p className="current-date"></p>
+                              <div className="icons">
+                              <button onClick={()=>{prevNextClick("prev")}} className="material-symbols-rounded">&lt;</button>
+                              <button onClick={()=>{prevNextClick("next")}} className="material-symbols-rounded">&gt;</button>
+                              </div>
+                            </header>
+                            <div className="calendar">
+                              <ul className="weeks">
+                                <li>Sun</li>
+                                <li>Mon</li>
+                                <li>Tue</li>
+                                <li>Wed</li>
+                                <li>Thu</li>
+                                <li>Fri</li>
+                                <li>Sat</li>
+                              </ul>
+                              <ul className="days"></ul>
+                            </div>
+                          </div>
+                          <hr/>
                         </div>
-                      </header>
-                      <div className="calendar">
-                        <ul className="weeks">
-                          <li>Sun</li>
-                          <li>Mon</li>
-                          <li>Tue</li>
-                          <li>Wed</li>
-                          <li>Thu</li>
-                          <li>Fri</li>
-                          <li>Sat</li>
-                        </ul>
-                        <ul className="days"></ul>
-                      </div>
-                    </div>
-                    <hr/>
-                  </div>
+                    </td>
                   </tr>
                   <tr>
                     <th className="tittle">Meet</th>
@@ -439,14 +465,14 @@ return (
               </table>
             </div>
             {/* -----------------time Spans buttons ----------------- */}
-            <div class="time-slots">
+            <div className="time-slots">
               <h1>Available Time Slots - {months[selectedDate?.month]} {selectedDate?.date} {selectedDate?.year}</h1>
-              <div class="state-buttons">
-                <button class="blocked" onClick={() => handleStateButtonClick("blocked")}>Blocked</button>
-                <button class="available" onClick={() => handleStateButtonClick("available")}>Available</button>
-                <button class="reserved" onClick={() => handleStateButtonClick("reserved")}>Reserved</button>
+              <div className="state-buttons">
+                <button className="blocked" onClick={() => handleStateButtonClick("blocked")}>Blocked</button>
+                <button className="available" onClick={() => handleStateButtonClick("available")}>Available</button>
+                <button className="reserved" onClick={() => handleStateButtonClick("reserved")}>Reserved</button>
               </div>
-              <div class="time-slots-container">
+              <div className="time-slots-container">
                 <table>
                   <thead>
                     <tr>
@@ -456,7 +482,7 @@ return (
                   </thead>
                   <tbody>
                     {selectedTimeSpan.map((timeSpan, index) => (
-                    <tr key={index} class={timeSpan.state}>
+                    <tr key={index} className={timeSpan.state}>
                       <td>
                         <button onClick={() => handleTimeSpanClick(index)}>
                           {timeSpan.StartingHour}:00 - {timeSpan.EndingHour}:00

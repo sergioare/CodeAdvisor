@@ -12,6 +12,7 @@ export const ReviewsFinish = () => {
   const { id } = useParams();
 
   useEffect(() => {
+  console.log("El error es de Tereeeeeeeeeeeeeeeeeeeeeeeeeee, Aqui en ReviewsFInish")
     dispatch(getDetail(id));
   }, [dispatch, id]);
 

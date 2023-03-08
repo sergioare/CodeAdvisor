@@ -17,6 +17,7 @@ const Payment = () => {
     const product = useSelector(state => state.advisorDetail)
 
     useEffect(() => {
+        console.log("El error es de Yoel, Aqui en Payment")
         dispatch(getDetail(id));
     }, [dispatch, id]);
 
