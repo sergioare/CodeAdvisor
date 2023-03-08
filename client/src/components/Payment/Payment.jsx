@@ -31,6 +31,7 @@ const idClient = auth.currentUser ? auth.currentUser.uid : null;
 
     
     useEffect(() => {
+        console.log("El error es de Yoel, Aqui en Payment")
         console.log("aguas perro payment")
         dispatch(getDetail(id));
     }, [dispatch, id]);

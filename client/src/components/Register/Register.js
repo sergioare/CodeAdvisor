@@ -46,7 +46,8 @@ function Register() {
     e.preventDefault();
     setError({});
     try {
-      const UserUid = await signup(user.email, user.password );   // uid  = UserUid.user.uid
+      const UserUid = await signup(user.email, user.password )
+      console.log(UserUid.user.uid)   // uid  = UserUid.user.uid
       await verifyEmail()
       const data = {Nickname: user.Nickname}
       sendProfileDetails(data, UserUid.user.uid) ;
@@ -109,10 +110,12 @@ function Register() {
           <input
             type="password"
             name="password"
+            id="password"
             value={user.password}
             onChange={changeHandler}
             className="input"
             placeholder="*******"
+            autoComplete="on"
           />
           {error.password && 
           <p className='warning'>{error.password}</p>}
@@ -126,9 +129,12 @@ function Register() {
           <input
             type="password"
             name="password2"
+            id="password"
             onChange={changeHandler}
             className='input'
             placeholder="*******"
+            autoComplete="on"
+
           />
           {error.password2 && 
           <p className='warning'>{error.password2}</p>}

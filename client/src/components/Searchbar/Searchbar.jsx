@@ -50,9 +50,9 @@ const Searchbar = () => {
   // If there are any matches, redirect to the first match
   if (results.length > 0) {
     const advisor = results[0].item;
-    window.location.href = `http://localhost:3000/user/${advisor.id}`;
+    window.location.href = `https://code-advisor-back.vercel.app/Advisors/${advisor.id}`;
   } else if(results.id){
-    window.location.href = `http://localhost:3000/user/${results.id}`;
+    window.location.href = `https://code-advisor-back.vercel.app/Advisors/${results.id}`;
   } else {
     setWrongSearch(true);
     setTimeout(() => {

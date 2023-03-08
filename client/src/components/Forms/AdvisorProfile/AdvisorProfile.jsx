@@ -20,7 +20,7 @@ const AdvisorProfile = () => {
   const techSkills = useSelector(state=> state.techSkills)
   const [phone, setPhone] = useState("");
   const [responseServer, setResponseServer] = useState(null);
-  const [countrySelected, setcountrySelected] = useState("");
+  const [countrySelected, setcountrySelected] = useState('');
   const [techSelected, setTechSelected] = useState([]);
   const navigate = useNavigate();
   const [imageCloud, setImageCloud] = useState("");
@@ -240,6 +240,7 @@ const AdvisorProfile = () => {
                     }}
                     value={values.TechSkills}
                     className='input'
+                    multiple
                   >
                     <option>Select your Programming Language...</option>
                     {TechSkills.map( tech => { 
