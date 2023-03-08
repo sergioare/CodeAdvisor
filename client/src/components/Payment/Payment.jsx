@@ -103,7 +103,7 @@ const idClient = auth.currentUser ? auth.currentUser.uid : null;
         status:"pending"
     }
 
-// console.log(agenda)
+console.log(agenda)
 // ---------------------Filter dates not availables -------------------------//
     // if (datesInDb.length !== 0) {
     //     let searchDate = datesInDb.filter((d) => d.data.date === dateLong)
