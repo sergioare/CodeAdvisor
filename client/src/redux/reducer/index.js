@@ -47,7 +47,7 @@ const initialState = {
     F_Residence: [],
   },
   sortMethod: "",
-  dates:[],
+  datesBack:[],
   cart:[],
   productsInCart:[],
 }

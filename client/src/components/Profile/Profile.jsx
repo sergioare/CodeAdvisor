@@ -1,37 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import './Profile.scss';
-import { getProfile, getAdvisorReviews } from '../../redux/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAuth } from 'firebase/auth'
 import ModProfile from '../Modals/ModProfile';
-import { updateDates, updateAvailability, getAvailability  } from '../../redux/actions/actions';
-import { months, startTime, endTime, timeSlots } from './data';
 import ModUserProf from '../Modals/ModUserProf';
 import { imgDefault, textProfile } from './data';
+import { getProfile, getAdvisorReviews, updateDates, updateAvailability, getAvailability  } from '../../redux/actions/actions';
+import { months, startTime, endTime, timeSlots, checkIfAdvisor } from './data';
 
 let calendarRenderd = false;
 
 function Profile ({isProfileOpen, toggleProfile, isConfigBarOpen}) {
 const auth = getAuth();
 const currentUser = auth.currentUser;
+const [isAdvisor, setIsAdvisor] = useState(false);
+const dispatch = useDispatch();
 
-// hardcodeo de advisor
-const isAdvisor = false
-  
+
 const id = "001"; //cambair id por id de cada cuenta
 //const id = currentUser ? currentUser.uid : '2Vyng2S1Lfwv8ge4A9Mv';
 const userEmail = currentUser ? currentUser.email : null;
 
+async function checkIfAdvisorFunction(id) {
+  const isAdvisor = await checkIfAdvisor(id);
+  console.log(isAdvisor);
+  return isAdvisor
+}
 
-const dispatch = useDispatch();
 useEffect(() => {
-  console.log("El error es de Nico, Aqui en Profile")
-
-  if (id) {
-    dispatch(getProfile(id)); 
-    dispatch(getAdvisorReviews(id));
-    dispatch(getAvailability(id))
+  console.log("del inicio")
+  async function fetchData() {
+    if (id) {
+      dispatch(getProfile(id)); 
+      dispatch(getAdvisorReviews(id));
+      dispatch(getAvailability(id))
+      const advisorStatus = await checkIfAdvisorFunction(id);
+      //setIsAdvisor(advisorStatus);
+    }
   }
+  fetchData();
 }, []);
 
   
@@ -98,6 +105,7 @@ const prevNextClick = (direction) => {
 };
 
 const renderCalendar = (year, month, selectedDate, monthChanged, availableDatesRender) => {
+  
     let firstDayofMonth = new Date(year, month, 1).getDay(), // getting first day of month
         lastDateofMonth = new Date(year, month + 1, 0).getDate(), // getting last date of month
         lastDayofMonth = new Date(year, month, lastDateofMonth).getDay(), // getting last day of month
@@ -168,7 +176,7 @@ const handleTimeSpanClick = (index) => {
 }
   
 useEffect(() => {
-  console.log("El error es de Nico, Aqui en Profile")
+  console.log("setSelectedTimeSpan(prevState => ")
   setSelectedTimeSpan(prevState => {
     const newState = [...prevState];
     for (let hour = startTime; hour < endTime; hour++) {
@@ -193,8 +201,13 @@ useEffect(() => {
     }
     return newState;
   });
-}, [availableDates, selectedDate, startTime, endTime]);
+}, [availableDates, selectedDate]);
 
+
+useEffect(() => {
+  console.log("{dispatch(updateAvailability(selectedTimeSpan, id));}")
+    dispatch(updateAvailability(selectedTimeSpan, id));
+}, [selectedTimeSpan]);
 
 //renderizamos el calendar una vez se hayan cargado los datos y solo si esta el profile abierto y cuando no se habian seleccionado fechas o cambiado los meses
 if(currentDate && isProfileOpen && !calendarRenderd){
@@ -322,9 +335,9 @@ return (
         </div>
         {/* -----------------time Spans buttons ----------------- */}
 
-        <div className="time-slots">
-          <h1>Available Time Slots - {months[selectedDate?.month]} {selectedDate?.date} {selectedDate?.year}</h1>
-          <div className="time-slots-container">
+        <div class="time-slots">
+          <h1>Reserved Time Slots - {months[selectedDate?.month]} {selectedDate?.date} {selectedDate?.year}</h1>
+          <div class="time-slots-container">
             <table>
               <thead>
                 <tr>
