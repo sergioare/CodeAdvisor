@@ -24,32 +24,32 @@ export const GET_AVAILABILITY = 'GET_AVAILABILITY'
 
 
 
-export const updateAvailability = (timeSpans, id) => {
+export const updateAvailability = (timeSpansArray, id) => {
   return async function (dispatch) {
-
     try {
       const apiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
       const schedules = apiData.data.Schedules;
-      console.log("schedules " + schedules)
 
-      let matchingObjectIndex = -1;
+      for (let i = 0; i < timeSpansArray.length; i++) {
+        let matchingObjectIndex = -1;
 
-      for (let i = 0; i < schedules.length; i++) {
-        if (schedules[i].Day === timeSpans.Day &&
-          schedules[i].Month === timeSpans.Month &&
-          schedules[i].Year === timeSpans.Year) {
-          matchingObjectIndex = i;
-          break;
+        for (let j = 0; j < schedules.length; j++) {
+          if (schedules[j].Day === timeSpansArray[i].Day &&
+              schedules[j].Month === timeSpansArray[i].Month &&
+              schedules[j].Year === timeSpansArray[i].Year) {
+            matchingObjectIndex = j;
+            break;
+          }
+        }
+
+        if (matchingObjectIndex >= 0) {
+          schedules[matchingObjectIndex].State = timeSpansArray[i].State;
+        } else if (timeSpansArray[i].State === "reserved" || timeSpansArray[i].State === "available") {
+          schedules.push(timeSpansArray[i]);
         }
       }
-
-      if (matchingObjectIndex >= 0) {
-        schedules[matchingObjectIndex].State = timeSpans.State;
-        await axios.put(`ruta para remplazar los horarios`, schedules);
-      } else if (timeSpans.State === "reserved" || timeSpans.State === "available") {
-        schedules.push(timeSpans);
-        await axios.put(`ruta para remplazar los horarios`, schedules);
-      }
+                        //ruta debe ser actualizada
+      await axios.put(`https://code-advisor-back.vercel.app/Advisors/${id}`, schedules);
 
       const updatedApiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
       const updatedSchedules = updatedApiData.data.Schedules;
@@ -60,6 +60,7 @@ export const updateAvailability = (timeSpans, id) => {
     }
   };
 };
+
 
 
 
@@ -210,7 +211,6 @@ export function postReviwer(id, uid, photoUser, nameUser, Reviwer, score) {
         Name: nameUser,
         Reviwer: Reviwer.Reviwer,
         score: score,
-
       },
       {
         headers: {
