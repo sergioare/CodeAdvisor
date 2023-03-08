@@ -22,7 +22,7 @@ const Detail = () => {
   const auth = getAuth();
   const currentUser = auth.currentUser;
   const uid = currentUser ? currentUser.uid : null;
-  // const purchase = detail.MyWallet;
+  const purchase = detail.MyWallet;
   // console.log(uid)
 
   useEffect(() => {
@@ -58,8 +58,8 @@ const Detail = () => {
             <p className='TitlesPurple'>{<StarRating rating={detScore} />}</p>
             <span>{numReviews} user reviews.</span>
           </div>
-          <Reviews />
-          {/* {purchase?.includes(uid) && <Reviews /> } */}
+          {/* <Reviews /> */}
+          {purchase?.includes(uid) && <Reviews /> }
         </div>
         <div className='contRev2'>
           <ReviewsFinish />
