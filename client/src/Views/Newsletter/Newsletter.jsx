@@ -18,7 +18,9 @@ const Newsletter = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     axios.post('https://code-advisor-back.vercel.app/XD/', input)
+
       .then(res => {
         setInput({
           full_name: "",

@@ -3,7 +3,7 @@ import { FaStar } from "react-icons/fa";
 import { Label, Textarea, Button } from "flowbite-react";
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import './Reviews.scss';
 import { postReviwer, getDetail } from '../../redux/actions/actions';
@@ -36,6 +36,7 @@ export const Reviews = () => {
 
   const [isLogged, setIsLogged] = useState(false);
   useEffect(() => {
+  console.log("El error es de Tere, Aqui en Reviews")
     if (currentUser) {
       setIsLogged(true);
     }

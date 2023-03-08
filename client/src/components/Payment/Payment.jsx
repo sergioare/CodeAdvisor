@@ -31,6 +31,7 @@ console.log(idClient)
 
     
     useEffect(() => {
+        console.log("El error es de Yoel, Aqui en Payment")
         console.log("aguas perro payment")
         dispatch(getDetail(id));
     }, [dispatch, id]);
@@ -101,7 +102,7 @@ console.log(idClient)
         status:"pending"
     }
 
-// console.log(agenda)
+console.log(agenda)
 // ---------------------Filter dates not availables -------------------------//
     // if (datesInDb.length !== 0) {
     //     let searchDate = datesInDb.filter((d) => d.data.date === dateLong)
