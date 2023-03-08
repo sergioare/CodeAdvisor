@@ -28,7 +28,7 @@ const VERCEL_URL = process.env.VERCEL_URL || "https://code-advisor-hy1v.vercel.a
 */
 (async function startServer(){
   try{
-    server.listen(PORT, ()=> console.log(`Server running on http://localhost:${PORT}. or ${VERCEL_URL}`))
+    server.listen(PORT, ()=> console.log(`Server running on http://localhost:${PORT}.`))
   }catch(error){
     console.log('Unable to initiate', error)
   }
