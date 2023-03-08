@@ -6,10 +6,13 @@ import {
   FILTER_BY_RESIDENCE,
   SORT_ADVISORS,
   GET_AUTORS, GET_REVIEWS, GET_ADVISORS, ADVISOR_DETAIL, GET_TECHSKILLS, GET_PROFILE, GET_ADVISORS_REVIEWS,
-  BLOCK_ACCOUNT, UNBLOCK_ACCOUNT,
+
+  BLOCK_ACCOUNT, UNBLOCK_ACCOUNT, GET_DATES,
   POST_REVIWER,
+  GET_CART_ITEMS, CLEAR_CART,
   // DELETE_REVIWER,PUT_SCORE,
   UPDATE_DATES, UPDATE_AVAILABILITY, GET_AVAILABILITY
+
 } from '../actions/actions';
 
 const initialState = {
@@ -46,6 +49,9 @@ const initialState = {
     F_Residence: [],
   },
   sortMethod: "",
+  datesBack:[],
+  cart:[],
+  productsInCart:[],
 }
 
 
@@ -225,6 +231,25 @@ const rootReducer = (state = initialState, action) => {
     // case PUT_SCORE:
     //   return { ...state, comments: action.payload }
 
+
+      case GET_DATES:
+      return {
+        ...state,
+        dates: action.payload
+      };
+
+      case GET_CART_ITEMS:
+        return{
+          ...state,
+        cart: action.payload,
+        productsInCart: {cart: action.payload}
+      };
+
+      case CLEAR_CART: 
+      return {...state, 
+        productsInCart:[]
+        }
+        
     default:
       return { ...state }
   }

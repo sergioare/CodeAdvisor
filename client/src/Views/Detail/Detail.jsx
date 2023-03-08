@@ -6,20 +6,29 @@ import { getDetail } from '../../redux/actions/actions';
 import Reviews from '../../components/Reviews/Reviews';
 import { ReviewsFinish } from '../../components/Reviews/ReviewsFinish';
 import StarRating from '../../components/StarRating/StarRating';
+import { getAuth } from 'firebase/auth';
 
 const Detail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const detail = useSelector(state => state.advisorDetail)
+  
+  // const detScore = detail.Score?.toFixed(1);
+  const detScore = detail.score?.toFixed(1);
+  // const numReviews = Array.isArray(detail.Reviews) ? detail.Reviews.length : 0;
+  const numReviews = Array.isArray(detail.Reviwers) ? detail.Reviwers.length : 0;
+
+
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
+  const uid = currentUser ? currentUser.uid : null;
+  const purchase = detail.MyWallet;
+  // console.log(uid)
 
   useEffect(() => {
     dispatch(getDetail(id));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [dispatch, id]);
-
-  const detail = useSelector(state => state.advisorDetail)
- 
-  const detScore = detail.Score?.toFixed(1);
-  const numReviews = Array.isArray(detail.Reviews) ? detail.Reviews.length : 0;
 
   return (
     <div>
@@ -29,7 +38,7 @@ const Detail = () => {
 
         <div className='Detail'>
           <h4 className='About'> About me: <p className='TextAbout'>{detail.About}</p>
-            <Link to={`/payment/${detail.id}`}><button className='ButtonSchedule'>Schedule Advice</button></Link>
+            <Link to={`/payment/${detail.id}`}><button className='ButtonSchedule'>Book Meeting</button></Link>
             <Link to='/home'><button>Back Home</button></Link></h4>
 
 
@@ -49,7 +58,8 @@ const Detail = () => {
             <p className='TitlesPurple'>{<StarRating rating={detScore} />}</p>
             <span>{numReviews} user reviews.</span>
           </div>
-          <Reviews />
+          {/* <Reviews /> */}
+          {purchase?.includes(uid) && <Reviews /> }
         </div>
         <div className='contRev2'>
           <ReviewsFinish />
