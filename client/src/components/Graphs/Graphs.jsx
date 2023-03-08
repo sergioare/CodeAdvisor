@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import './Graphs.scss';
-import Chart from 'chart.js/auto';
+// import Chart from 'chart.js/auto';
 
 const Graphs = () => {
   useEffect(() => {
