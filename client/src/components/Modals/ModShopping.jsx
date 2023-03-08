@@ -27,17 +27,14 @@ const ModShopping = () => {
     //----------------- filter to choose the Product -------------//
     const productStatusPending = productsInCart?.filter((s) => s.status === "pending")
 
-const refreshCart =()=>{
-    return{
-        productsInCart
-
-    }
-}
 
     useEffect(() => {
         console.log("apagalo oto cart")
         dispatch(getCartItems(idClient));
-    }, [ModShopping, dispatch,]);
+
+    }, [ModShopping, dispatch]);
+
+    
 
 
     const handlerClear = () => {
@@ -80,7 +77,11 @@ const refreshCart =()=>{
                                             .then((res) =>
                                                 (window.location.href = res.data.response.body.init_point));
 
-                                                axios.put(`https://code-advisor-back.vercel.app/User/${idClient}/MyCart/${p.cId}`, { status: "success" })
+
+                                        axios.put(`https://code-advisor-back.vercel.app/User/${idClient}/MyCart/${p.cId}`, { status: "success" })
+
+                                            
+
                                     }
                                 }>
                                     Pay ${p.Price * p.hours} </button>
@@ -88,8 +89,13 @@ const refreshCart =()=>{
                             <button className="btnDelete" onClick={
                                 (event) => {
                                     event.preventDefault()
-                                    axios.put(`https://code-advisor-back.vercel.app/User/${idClient}/MyCartDlt/${p.cId}`, { status: "deleted" })
+
+                                    axios.put(`https://code-advisor-back.vercel.app/User/${idClient}/MyCart/${p.cId}`, { status: "deleted" })
+                                    
+
+                                 
                                           
+
                                 }
                             }> <i class="fa-solid fa-trash"></i> </button>
                             </div>

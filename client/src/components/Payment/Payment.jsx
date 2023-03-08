@@ -21,7 +21,7 @@ const Payment = () => {
     const auth = getAuth();
 const idClient = auth.currentUser ? auth.currentUser.uid : null;
 // console.log(auth.currentUser)
-// console.log(idClient)
+console.log(idClient)
 
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -36,9 +36,7 @@ const idClient = auth.currentUser ? auth.currentUser.uid : null;
         dispatch(getDetail(id));
     }, [dispatch, id]);
 
-    // useEffect(() => {
-    //     dispatch(getDates(id));
-    // }, [dispatch, id,]);
+    
 
     //----------------Counter----------------------//
 

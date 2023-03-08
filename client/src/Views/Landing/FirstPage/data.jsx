@@ -1,7 +1,7 @@
 
 export const textLanding=
     {
-        h1:"One programmer closer than you can imagine",
+        h1:"A programmer closer than you can imagine",
         p1:"We are a platform committed to fostering a supportive community for developers of all levels of experience.",
         
     }
