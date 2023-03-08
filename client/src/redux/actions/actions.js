@@ -230,9 +230,10 @@ export function postReview(id, uid, photoUser, nameUser, Reviwer, score) {
 
 export const getCartItems = (id) => {
   return async function (dispatch){
-    const cartData = await axios.get(`${localhost}/User/${id}`);   // back.vercel
+    const cartData = await axios.get(`${localhost}/Clients/MyCart/${id}`);           // back.vercel
     // console.log(cartData)
     const cartItems= cartData.data;
+    console.log(cartItems)
     dispatch({type: GET_CART_ITEMS, payload: cartItems})
   };
 };

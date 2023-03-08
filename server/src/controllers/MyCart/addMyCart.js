@@ -1,4 +1,4 @@
-const firebase = require("../db/db");
+const firebase = require("../../db/db");
 const firestore = firebase.firestore();
 
 
