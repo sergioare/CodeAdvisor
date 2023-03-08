@@ -9,10 +9,10 @@ const Landing = () => {
     return (
         <div>  
             <PreLanding/>
-            <LandingTwo/>
+            {/* <LandingTwo/> */}
             <LandingThree/>
             <LandingFourth/>
-            <Testimonials/>
+            {/* <Testimonials/> */}
             <FifthPage/>
             
         </div>

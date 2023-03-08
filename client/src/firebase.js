@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app";
-import {getAuth} from "firebase/auth";
+import { initializeApp } from 'firebase/app';
+import {getAuth} from 'firebase/auth';
 import {getFirestore} from 'firebase/firestore'
 import {getStorage,ref,uploadBytes,getDownloadURL} from 'firebase/storage'
 
@@ -16,16 +16,18 @@ import {getStorage,ref,uploadBytes,getDownloadURL} from 'firebase/storage'
 //     MEASUREMENT_ID
 // } = process.env;
 
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyDQVoL7G5EOxnbYZaigRuj9DQuzY9nkPlM",
-  authDomain: 'fb-2do.firebaseapp.com',
+  authDomain: "fb-2do.firebaseapp.com",
   projectId: "fb-2do",
-  storageBucket: 'fb-2do.appspot.com',
-  messagingSenderId: '812758619537',
+  storageBucket: "fb-2do.appspot.com",
+  messagingSenderId: "812758619537",
   appId: "1:812758619537:web:269beeda8245a2f1a9f630",
-  measurementId: 'G-CGZZGWFR0F',
-  
+  measurementId: "G-CGZZGWFR0F"
 };
+
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app)
