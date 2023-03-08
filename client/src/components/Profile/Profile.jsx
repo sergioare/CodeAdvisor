@@ -28,7 +28,6 @@ async function checkIfAdvisorFunction(id) {
 }
 
 useEffect(() => {
-  console.log("del inicio")
   async function fetchData() {
     if (id) {
       dispatch(getProfile(id)); 
@@ -176,7 +175,6 @@ const handleTimeSpanClick = (index) => {
 }
   
 useEffect(() => {
-  console.log("setSelectedTimeSpan(prevState => ")
   setSelectedTimeSpan(prevState => {
     const newState = [...prevState];
     for (let hour = startTime; hour < endTime; hour++) {
@@ -205,7 +203,6 @@ useEffect(() => {
 
 
 useEffect(() => {
-  console.log("{dispatch(updateAvailability(selectedTimeSpan, id));}")
     dispatch(updateAvailability(selectedTimeSpan, id));
 }, [selectedTimeSpan]);
 

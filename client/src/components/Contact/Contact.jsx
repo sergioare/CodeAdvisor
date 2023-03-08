@@ -22,7 +22,7 @@ const Contact = () => {
 
   const submitHandler = (event) => {
     event.preventDefault()
-    axios.post('http://localhost:3002/contactUs', input)
+    axios.post('https://code-advisor-xi.vercel.app/contactUs', input)
       .then(res => {
         setInput({
           email: "",
