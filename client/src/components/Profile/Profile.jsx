@@ -16,7 +16,7 @@ const auth = getAuth();
 const currentUser = auth.currentUser;
 
 // hardcodeo de advisor
-const isAdvisor = true
+const isAdvisor = false
   
 const id = "001"; //cambair id por id de cada cuenta
 //const id = currentUser ? currentUser.uid : '2Vyng2S1Lfwv8ge4A9Mv';

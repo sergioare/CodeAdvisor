@@ -41,7 +41,7 @@ const Navbar = (props) => {
         return <Link {...linkProps}><div>{item.name}</div></Link>;
       })}
       {currentUser?
-        <div className='user'> Hi, {"User" || currentUser.displayName}</div>
+        <div className='user'> Hi, {currentUser.displayName || "User"}</div>
         :null
       }
       <div className="shopping">
