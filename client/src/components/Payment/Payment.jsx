@@ -31,6 +31,7 @@ const idClient = auth.currentUser ? auth.currentUser.uid : null;
 
     
     useEffect(() => {
+        console.log("aguas perro payment")
         dispatch(getDetail(id));
     }, [dispatch, id]);
 

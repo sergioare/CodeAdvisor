@@ -31,6 +31,7 @@ const ModShopping = () => {
 
 
     useEffect(() => {
+        console.log("apagalo oto cart")
         dispatch(getCartItems(idClient));
     }, [dispatch, idClient, productStatusPending]);
 
