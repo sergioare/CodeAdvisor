@@ -6,7 +6,13 @@ import {
   FILTER_BY_RESIDENCE,
   SORT_ADVISORS,
   GET_AUTORS, GET_REVIEWS, GET_ADVISORS, ADVISOR_DETAIL, GET_TECHSKILLS, GET_PROFILE, GET_ADVISORS_REVIEWS,
-  BLOCK_ACCOUNT, UNBLOCK_ACCOUNT,
+
+  BLOCK_ACCOUNT, UNBLOCK_ACCOUNT, GET_DATES,
+  POST_REVIWER,
+  GET_CART_ITEMS, CLEAR_CART,
+  // DELETE_REVIWER,PUT_SCORE,
+  UPDATE_DATES, UPDATE_AVAILABILITY, GET_AVAILABILITY
+
 } from '../actions/actions';
 
 const initialState = {
@@ -14,11 +20,26 @@ const initialState = {
   advisors: [],
   advisorDetail: [],
   reviews: [],
+  comments: [],
   autors: [],
   techSkills: [],
   profile: [],
   advisorReviews: [],
   blockedAccounts: [],
+  dates: {
+    month: new Date().getMonth(),
+    year: new Date().getFullYear(),
+  },
+  availability: [
+    {Day: '4', Month: 1, Year: 2023, StartingHour: 7, EndingHour: 8, State: "available"},
+    {Day: '4', Month: 1, Year: 2023, StartingHour: 8, EndingHour: 9, State: "reserved"},
+    {Day: '5', Month: 1, Year: 2023, StartingHour: 8, EndingHour: 9, State: "available"},
+    {Day: '5', Month: 1, Year: 2023, StartingHour: 15, EndingHour: 16, State: "available"},
+    {Day: '6', Month: 1, Year: 2023, StartingHour: 12, EndingHour: 13, State: "reserved"},
+    {Day: '6', Month: 1, Year: 2023, StartingHour: 13, EndingHour: 14, State: "reserved"},
+    {Day: '7', Month: 1, Year: 2023, StartingHour: 0, EndingHour: 1, State: "available"},
+    {Day: '7', Month: 1, Year: 2023, StartingHour: 1, EndingHour: 2, State: "reserved"},
+  ],
 
   advisorsInDisplay: [],
   filters: {
@@ -28,6 +49,9 @@ const initialState = {
     F_Residence: [],
   },
   sortMethod: "",
+  datesBack:[],
+  cart:[],
+  productsInCart:[],
 }
 
 
@@ -35,44 +59,69 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case BLOCK_ACCOUNT:
-    const blockedUser = state.users.find(a => a.id === action.payload);
-    const blockedAdvisor = state.advisors.find(a => a.id === action.payload);
+    case GET_AVAILABILITY:
 
-    return {
-      ...state,
-      users: state.users.filter(a => a.id !== action.payload),
-      advisors: state.advisors.filter(a => a.id !== action.payload),
-      blockedAccounts: [
-        ...state.blockedAccounts,
-        blockedUser || blockedAdvisor // add the filtered user or advisor object
-      ]
-    };
+      return {
+        ...state,
+        //availability: action.payload.Schedules
+        //para poder usar lo hardcodeado, cambiar por la version comentada cuando este todo listo :D
+        availability: [...state.availability, ...action.payload.Schedules]
+      }
+
+    case UPDATE_AVAILABILITY:
+      return {
+        ...state,
+        availability: action.payload,
+      };
+
+
+    case UPDATE_DATES:
+      return {
+        ...state,
+        dates: {
+          month: action.payload.month,
+          year: action.payload.year,
+        }
+      }
+
+    case BLOCK_ACCOUNT:
+      const blockedUser = state.users.find(a => a.id === action.payload);
+      const blockedAdvisor = state.advisors.find(a => a.id === action.payload);
+
+      return {
+        ...state,
+        users: state.users.filter(a => a.id !== action.payload),
+        advisors: state.advisors.filter(a => a.id !== action.payload),
+        blockedAccounts: [
+          ...state.blockedAccounts,
+          blockedUser || blockedAdvisor // add the filtered user or advisor object
+        ]
+      };
 
 
 
     case UNBLOCK_ACCOUNT:
-    const unblockedAccount = state.blockedAccounts.find(a => a.id === action.payload);
-    
-    if (!unblockedAccount) {
-      return state; // if the account isn't blocked, do nothing
-    }
+      const unblockedAccount = state.blockedAccounts.find(a => a.id === action.payload);
 
-    const updatedUsers = [...state.users];
-    const updatedAdvisors = [...state.advisors];
+      if (!unblockedAccount) {
+        return state; // if the account isn't blocked, do nothing
+      }
 
-    if (unblockedAccount.Specialty) {
-      updatedAdvisors.push(unblockedAccount);
-    } else {
-      updatedUsers.push(unblockedAccount);
-    }
+      const updatedUsers = [...state.users];
+      const updatedAdvisors = [...state.advisors];
 
-    return {
-      ...state,
-      blockedAccounts: state.blockedAccounts.filter(a => a.id !== action.payload),
-      users: updatedUsers,
-      advisors: updatedAdvisors
-    };
+      if (unblockedAccount.Specialty) {
+        updatedAdvisors.push(unblockedAccount);
+      } else {
+        updatedUsers.push(unblockedAccount);
+      }
+
+      return {
+        ...state,
+        blockedAccounts: state.blockedAccounts.filter(a => a.id !== action.payload),
+        users: updatedUsers,
+        advisors: updatedAdvisors
+      };
 
 
     case GET_ADVISORS_REVIEWS:
@@ -87,15 +136,15 @@ const rootReducer = (state = initialState, action) => {
         autors: action.payload
       };
 
-      case LOAD_PROFESSIONALS:
-        return {
+    case LOAD_PROFESSIONALS:
+      return {
         ...state,
         advisors: action.payload,
         advisorsInDisplay: action.payload,
       };
-      case FILTER_BY_SPECIALTY:
-        const filteredBySpecialty = filterApplyer(state.advisors, {
-          ...state.filters,
+    case FILTER_BY_SPECIALTY:
+      const filteredBySpecialty = filterApplyer(state.advisors, {
+        ...state.filters,
         F_Specialty: action.payload,
       }, state.sortMethod);
       return {
@@ -107,8 +156,8 @@ const rootReducer = (state = initialState, action) => {
         advisorsInDisplay: filteredBySpecialty,
       };
 
-      case FILTER_BY_LANGUAGE:
-        return {
+    case FILTER_BY_LANGUAGE:
+      return {
         ...state,
         filters: {
           ...state.filters,
@@ -131,7 +180,7 @@ const rootReducer = (state = initialState, action) => {
           F_Programming_L: action.payload,
         }, state.sortMethod),
       };
-      case FILTER_BY_RESIDENCE:
+    case FILTER_BY_RESIDENCE:
       return {
         ...state,
         filters: {
@@ -144,20 +193,20 @@ const rootReducer = (state = initialState, action) => {
         }, state.sortMethod),
       };
 
-      case SORT_ADVISORS:
-        const sortedAdvisors = sortAdvisors(state.advisorsInDisplay, action.payload);
-        return {
-          ...state,
+    case SORT_ADVISORS:
+      const sortedAdvisors = sortAdvisors(state.advisorsInDisplay, action.payload);
+      return {
+        ...state,
         sortMethod: action.payload,
         advisorsInDisplay: sortedAdvisors,
       };
 
-      case GET_REVIEWS:
-        return {
+    case GET_REVIEWS:
+      return {
         ...state, reviews: action.payload
       }
 
-      case GET_ADVISORS:
+    case GET_ADVISORS:
       return {
         ...state, advisors: action.payload
       }
@@ -176,8 +225,33 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state, techSkills: action.payload
       }
-      default:
-        return { ...state }
+    case POST_REVIWER:
+      return { ...state, comments: action.payload }
+
+    // case PUT_SCORE:
+    //   return { ...state, comments: action.payload }
+
+
+      case GET_DATES:
+      return {
+        ...state,
+        dates: action.payload
+      };
+
+      case GET_CART_ITEMS:
+        return{
+          ...state,
+        cart: action.payload,
+        productsInCart: {cart: action.payload}
+      };
+
+      case CLEAR_CART: 
+      return {...state, 
+        productsInCart:[]
+        }
+        
+    default:
+      return { ...state }
   }
 }
 

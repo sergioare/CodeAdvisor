@@ -1,3 +1,4 @@
+@use '../../components/Styles/mixins';
 @import '../../components/Styles/variables';
 
 .DetailContainer {
@@ -152,4 +153,57 @@
   }
 
 
+}
+
+.contRevvv {
+  @include mixins.create-flexbox;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  // background-color: blue;
+  // margin-top: 15px;
+  border-radius: 90px 0 90px 0;
+
+  .consRev1,
+  .consRev2 {
+    width: 50%;
+    float: left;
+
+  }
+
+  .consRev1 {
+    // background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // gap: 10px;
+    // padding: 1px;
+
+    .reviewSummary {
+      width: 20vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      background-color: $circles-bg-light;
+      border-radius: 5px;
+
+      h2 {
+        color: $text-bg-purple;
+        font-size: 40px;
+
+      }
+
+      p {
+        font-size: 18px;
+        margin-bottom: 0;
+      }
+
+      span {
+        color: $title-bg-light;
+        font-size: 18px;
+        font-weight: 400;
+      }
+    }
+  }
 }

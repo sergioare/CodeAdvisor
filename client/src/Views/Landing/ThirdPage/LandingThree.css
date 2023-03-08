@@ -1,0 +1,112 @@
+.landingThree {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-image: url(../../../assets/bg-1.png);
+  background-size: 105% 200%;
+}
+.landingThree .leftSide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55%;
+  color: #D9D9D9;
+  font-weight: 800;
+  font-size: 3.5vw;
+}
+.landingThree .leftSide img {
+  width: 30vw;
+  height: 55vh;
+  margin-top: -5vh;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: flex;
+  border: 8px solid #ffffff;
+}
+.landingThree .leftSide .image1 {
+  position: absolute;
+  margin-top: -65vh;
+  width: 7.3em;
+  height: 7.3em;
+}
+.landingThree .leftSide .image2 {
+  position: absolute;
+  margin-top: -28vh;
+  margin-left: -33vw;
+  width: 4em;
+  height: 4em;
+}
+.landingThree .leftSide .image3 {
+  position: absolute;
+  margin-left: 3vw;
+  margin-top: 63vh;
+  width: 6em;
+  height: 6em;
+}
+.landingThree .leftSide .image4 {
+  position: absolute;
+  margin-top: 30vh;
+  margin-left: -30vw;
+  width: 5em;
+  height: 5em;
+}
+.landingThree .leftSide .image5 {
+  position: absolute;
+  margin-top: -30vh;
+  margin-left: 32vw;
+  width: 4.2em;
+  height: 4.2em;
+}
+.landingThree .leftSide .image6 {
+  position: absolute;
+  margin-top: 28vh;
+  margin-left: 32vw;
+  width: 5em;
+  height: 5em;
+}
+.landingThree .leftSide .image7 {
+  position: absolute;
+  margin-top: 90vh;
+  margin-left: -32vw;
+  width: 3.5em;
+  height: 3.5em;
+}
+.landingThree .rightSide {
+  display: flex;
+  flex-wrap: wrap;
+  width: 43%;
+  margin-top: 15vh;
+  color: #ffffff;
+  margin-right: 0vw;
+}
+.landingThree .rightSide h1 {
+  text-align: left;
+}
+.landingThree .rightSide .benefits {
+  display: flex;
+  flex-wrap: wrap;
+}
+.landingThree .rightSide .benefits .left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+}
+.landingThree .rightSide .benefits .right {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  text-align: left;
+}
+.landingThree .rightSide .benefits .right h1 {
+  font-size: 3vw;
+}
+.landingThree .rightSide .benefits .right h2 {
+  font-size: 2vw;
+  margin-bottom: 2vh;
+  text-align: left;
+}
+.landingThree .rightSide .benefits .right p {
+  font-size: 1.4vw;
+}/*# sourceMappingURL=LandingThree.css.map */

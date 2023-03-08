@@ -9,8 +9,12 @@ import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { getTechSkills } from "../../../redux/actions/actions";
 import Swal from 'sweetalert2'
+import { getAuth } from "firebase/auth";
+import { createAdvisorFromClient } from "../../../handlers/createAdvisorFromClient";
+import { UploadFile } from "../../../firebase";
 let auth_token;
 let country_list = [];
+
 
 const AdvisorProfile = () => {
   const techSkills = useSelector(state=> state.techSkills)
@@ -20,6 +24,11 @@ const AdvisorProfile = () => {
   const [techSelected, setTechSelected] = useState([]);
   const navigate = useNavigate();
   const [imageCloud, setImageCloud] = useState("");
+  const TechSkills = [{name:'PY'}, {name:'HTML'},{name:'C#'},{name:'C++'},{name:'CSS'},{name:'JS'},{name:'Java'},{name:'PHP'},{name:'Ruby'}];
+  const Specialties = [{name: 'Freelancer'}, {name: 'Advisor'}]
+  const [CV_Cloud, setCV_Cloud] = useState("");
+  const [Specialty, setSpecialty] = useState([]);
+  
 
   const showAlert = ()=>{
     Swal.fire({
@@ -28,25 +37,23 @@ const AdvisorProfile = () => {
     footer: "<b>Continue enjoy our services</b>"
 })
 }
+
   const handleImage = async (event) => {
     const file = event.target.files[0];
-    const formData = new FormData();
-    try {
-      formData.append("file", file);
-      formData.append("upload_preset", "zdsy8b2u");
-      await axios
-        .post(
-          "https://api.cloudinary.com/v1_1/ddqsqst5a/image/upload",
-          formData
-        )
-        .then((res) => {
-          console.log(res.data.url);
-          setImageCloud(res.data.url);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    const Uid = getAuth().currentUser.uid;
+    
+    const Image = await UploadFile(file,Uid)
+    setImageCloud(Image)
   };
+
+  const handleCV = async (event) => {
+    const file = event.target.files[0];
+    const Uid = getAuth().currentUser.uid;
+    
+    const CV = await UploadFile(file,'CV-'+Uid)
+    setCV_Cloud(CV)
+  };
+
  
   const get_country = async () => {
     const conf = {
@@ -70,12 +77,14 @@ const AdvisorProfile = () => {
         },
       })
       .then((res) => (country_list = res.data))
+
+      
   };
 
   
   useEffect(() => {
     get_country();
-    getTechSkills();
+    //getTechSkills();
   }, []);
 
 
@@ -87,35 +96,32 @@ const AdvisorProfile = () => {
 
         <Formik
           initialValues={{
-            description: "",
-            photo: "",
-            country: "",
-            state: "",
-            town: "",
-            contact: "",
+            About: "",
+            Img: "",
+            Residence: "",
+            Price: '0',
+            Specialty:"",
+            Contact: "",
             portfolio: "",
-            techSkills:[],
+            TechSkills:[],
             cv:"",
           }}
           onSubmit={(values) => {
-            values.contact = phone;
-            values.techSkills.push(techSelected);
-            values.photo = imageCloud;
-          
-            axios
-              .post(
-                "urlpost",
-                values
-              )
-              .then((response) => {
-                setResponseServer(response.data);
-                // navigate("/professionalDashboard");
-               showAlert();
-              })
-              .catch((error) => {
-                setResponseServer(error.message);
-              });
+            const Profile = getAuth();
+            const Uid = Profile.currentUser.uid;
+            
+            values.Contact = phone;
+            values.TechSkills= [...techSelected]
+            Profile.currentUser.providerData[0].providerId  == 'google.com' ?  
+            values.Img = Profile.currentUser.photoURL : 
+            values.Img = imageCloud ;
+            values.cv = CV_Cloud;
+            values.Price = parseInt(values.Price)
+            values.Specialty = Specialty
+            // Envío de datos a la DB, creacion de nuevo Advisor 
+            createAdvisorFromClient(values,Uid)
           }}
+          
         >
           {({
             errors,
@@ -126,103 +132,165 @@ const AdvisorProfile = () => {
           }) => (
             <Form >
               <h1>Complete Advisor Profile</h1>
-              <Field
-                as="select"
-                name="country"
-                id="country"
-                onChange={(e) => {
-                  setcountrySelected(e.target.value);
-                  handleChange(e);
-                }}
-                // error={errors.town}
-                value={values.country}
-                className='input'
-              >
-                <option>Select your Country...</option>
-                {country_list.map((country) => {
-                  return (
-                    <option
-                      key={country.country_short_name}
-                      value={country.country_name}
-                    >
-                      {country.country_name}
-                    </option>
-                  );
-                })}
-              </Field>
-
-              
-              <h6>Enter your contact number</h6>
-              <div className='phone'>
-                <PhoneInput
-                  initialCountry="ar"
-                  value={phone}
-                  onChange={(phone) => setPhone(phone)}
+              <div className="residence">
+                <Field
+                  as="select"
+                  name="Residence"
+                  id="Residence"
+                  onChange={(e) => {
+                    setcountrySelected(e.target.value);
+                    handleChange(e);
+                  }}
+                  // error={errors.town}
+                  value={values.Residence}
                   className='input'
-                />
+                >
+                  <option>Select your Country...</option>
+                  {country_list.map((country) => {
+                    return (
+                      <option
+                        key={country.country_short_name}
+                        value={country.country_name}
+                      >
+                        {country.country_name}
+                      </option>
+                    );
+                  })}
+                </Field>
               </div>
 
-              {errors.contact &&
-                touched.contact(<p style={{ color: "red" }}>{errors.contact}</p>)}
+              
+              <div className='phone'>
+                  <h6>Enter your contact number</h6>
+                    <PhoneInput
+                      initialCountry="ar"
+                      value={phone}
+                      onChange={(phone) => setPhone(phone)}
+                      className="wrapper-phone"
+                    />
+
+                  {errors.Contact &&
+                    touched.Contact(<p style={{ color: "red" }}>{errors.Contact}</p>)}
+              </div>
+
 
              
-              <h6>Insert your portfolio URL</h6>
-              <Field
-                type="text"
-                placeholder="URL portfolio"
-                name="portfolio"
-                id="portfolio"
-                onChange={handleChange}
-                value={values.portfolio}
-                className='input'
-              />
-         
-              <Field
-                as="select"
-                name="professionselect"
-                id="professionselect"
-                placeholder="Select your Profession..."
-                onChange={(e) => {
-                  handleChange(e);
-                  techSelected(e.target.value);
-                }}
-                value={values.professionselect}
-                className='input'
-              >
-                <option>Select your Programming Language...</option>
-                {techSkills.map( tech => { 
-                  return (
-                    <option key={tech.id} value={tech.name}>
-                      {tech.name}
-                    </option>
-                  );
-                })}
-              </Field>
+             <div className="portfolio">
+                  <h6>Insert your portfolio URL</h6>
+                  <Field
+                    type="text"
+                    placeholder="URL portfolio"
+                    name="portfolio"
+                    id="portfolio"
+                    onChange={handleChange}
+                    value={values.portfolio}
+                    className='input'
+                  />
+             </div>
 
-              <h6 className='h6form'>Tell people about your work</h6>
-              <Field
-                as="textarea"
-                name="description"
-                onChange={handleChange}
-                placeholder="Write a brief description about your work..."
-                className='textarea'
-                value={values.description}
-              />
+             
+                            
+              <div className="price">
+                  <h6>Set your price per hour</h6>
+                  <Field
+                    type="text"
+                    placeholder="USD/hr"
+                    name="Price"
+                    id="Price"
+                    onChange={handleChange}
+                    value={values.Price}
+                    className='input'
+                  />
+              </div>
 
-              <h6 >Upload your profile image</h6>
-              <Field
-                type="file"
-                name="photo"
-                id="photo"
-                onChange={handleImage}
-                className='fieldImg'
-              />
-              {errors.image &&
-                touched.image(<p style={{ color: "red" }}>{errors.image}</p>)}
+              <div className="specialty">
+                  <Field
+                    as="select"
+                    name="Specialty"
+                    id="Specialty"
+                    placeholder="Select your specialty"
+                    onChange={(e) => {
+                      handleChange(e);
+                      setSpecialty([...Specialty,e.target.value]);
+                    }}
+                    value={values.Specialty}
+                    className='input'
+                  >
+                    <option>Select your Specialties</option>
+                    {Specialties.map( tech => { 
+                      return (
+                        <option key={tech.name} value={tech.name}>
+                          {tech.name}
+                        </option>
+                      );
+                    })}
+                  </Field>
+              </div>
+              
+              <div className="second-part">
+                  <div className="tech">
+                  <Field
+                    as="select"
+                    name="TechSkills"
+                    id="professionselect"
+                    placeholder="Select your Profession..."
+                    onChange={(e) => {
+                      handleChange(e);
+                      setTechSelected([...techSelected,e.target.value]);
+                    }}
+                    value={values.TechSkills}
+                    className='input'
+                  >
+                    <option>Select your Programming Language...</option>
+                    {TechSkills.map( tech => { 
+                      return (
+                        <option key={tech.name} value={tech.name}>
+                          {tech.name}
+                        </option>
+                      );
+                    })}
+                  </Field>
+                </div>
 
-              <button className='btn' type="submit" onClick={showAlert}>
-                Send
-              </button>
+                  <div className="imgProf">
+                      <h6 >Upload your profile image</h6>
+                      <input
+                            type="file"
+                            name="photo"
+                            id="photo"
+                            className="shadow"
+                            onChange={handleImage}
+                        />
+                  </div>
+                  <div className="about">
+                      <h6 className='h6form'>Tell people about your work</h6>
+                      <Field
+                        as="textarea"
+                        name="About"
+                        onChange={handleChange}
+                        placeholder="Write a brief description about your work..."
+                        className='textarea'
+                        value={values.About}
+                      />
+                  </div>
+
+                    
+                  <div className="cv">
+                      <h6 >Upload your Curriculum vitae</h6>
+                      <input
+                            type="file"
+                            name="cv"
+                            id="cv"
+                            className="shadow"
+                            onChange={handleCV}
+                        />
+                  </div>
+                  <button className='btn' type="submit" onClick={showAlert}>
+                    Send
+                  </button>
+              </div>
+              
+             
 
               {responseServer && <div>{responseServer}</div>}
             </Form>

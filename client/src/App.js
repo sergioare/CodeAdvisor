@@ -1,14 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
 import { Landing, Home, Detail } from './Views/index';
-import AboutUs from "./components/AboutUs/AboutUs"
+import AboutUs from "./Views/AboutUs/AboutUs"
 import { AuthProvider } from './context/authContext';
 import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute';
 import Technologies from './components/Technologies/Technologies';
 import Contact from './components/Contact/Contact';
 import Upload from './components/Upload/upload';
-import AdvisorProfile from './components/Forms/AdvisorProfile/AdvisorProfile';
 import Payment from './components/Payment/Payment';
 import { Reviews } from './components/Reviews/Reviews';
+import Faqs from './Views/Faqs/Faqs'
+import Donate from './components/Donate/Donate';
 
 
 
@@ -16,10 +17,6 @@ function App() {
   // const location = useLocation();
   return (
 
-    
-    <div className="bg-slate-300 text-black h-screen flex text-white" align = 'center'>
-     
-      
       <AuthProvider>
         <Routes>
           <Route exact path='/' element={<Landing />} /> 
@@ -39,14 +36,13 @@ function App() {
           </ProtectedRoute>
 
            } />
-          <Route path='/profadv' element={<AdvisorProfile />} />
           <Route path='/payment/:id' element={<Payment/>} />
           <Route path='/reviews' element={<Reviews/>}/>
+          <Route path='/faqs' element={<Faqs/>}/>
+          <Route path='/donate' element={<Donate/>} />
         </Routes>
       </AuthProvider>
-      </div>
-
-  
+     
   );
 }
 

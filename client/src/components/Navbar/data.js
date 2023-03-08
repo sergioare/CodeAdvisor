@@ -13,6 +13,6 @@ export const navbarItems = [
     },
     {
         name: 'FAQs',
-        path: 'FAQs'
+        path: '/faqs'
     },
 ]

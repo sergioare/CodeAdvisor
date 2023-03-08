@@ -5,56 +5,14 @@ const firestore = firebase.firestore();
 
 ///////////////////--Get-Data--\\\\\\\\\\\\\\\\\\\\\\\\\
 const getData = async (req, res, next) => {
+    const admin = []
     try {
-        const fireUser              = await firestore.collection(`/User`)
-        const fireAutores           = await firestore.collection(`/Autores`)
-        const fireAdvisors          = await firestore.collection(`/Advisors`)
-        const fireTechSkills        = await firestore.collection(`/TechSkills`)
-        const fireCommunityComments = await firestore.collection(`/CommunityComments`)
-
-        const dataUser              = await fireUser.get();
-        const dataAutores           = await fireAutores.get();
-        const dataAdvisors          = await fireAdvisors.get();
-        const dataTechSkills        = await fireTechSkills.get();
-        const dataCommunityComments = await fireCommunityComments.get();
-
-        let Admin = {User : [], Autores: [], Advisors:[], TechSkills:[], CommunityComments:[]}
-        dataUser.forEach((x) =>{  
-            let user = {
-                id: x.id,
-                data: x.data()
-            }
-            Admin.User.push(user)
+        const fire = await firestore.collection("DataAdmin");
+        const data = await fire.get();
+        data.forEach((doc)=> {
+            admin.push(doc.id,doc.data())
         })
-        dataAutores.forEach((x) =>{            
-            let a = {
-                id: x.id,
-                data: x.data()
-            }
-            //Admin.Autores.push(a)        
-        })
-        dataAdvisors.forEach((x) =>{            
-            let a = {
-                id: x.id,
-                data: x.data()
-            }
-            Admin.Advisors.push(a)        
-        })
-        dataTechSkills.forEach((x) =>{            
-            let a = {
-                id: x.id,
-                data: x.data()
-            }
-            Admin.TechSkills.push(a)        
-        })
-        dataCommunityComments.forEach((x) =>{            
-            let a = {
-                id: x.id,
-                data: x.data()
-            }
-            Admin.CommunityComments.push(a)        
-        })
-        res.status(200).send(Admin)
+        res.status(200).send(admin)
     } catch (error) {
         res.status(404).send(error.message)
     }

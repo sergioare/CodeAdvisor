@@ -1,11 +1,15 @@
 import './Navbar.scss'
 import { navbarItems } from './data';
-import Searchbar from '../Searchbar/Searchbar';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import ModShopping from '../Modals/ModShopping';
+import { getAuth } from 'firebase/auth';
 
 const Navbar = (props) => {
   const { toggleConfigBar } = props;
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
+
 
   const showAlert = (e)=>{
     e.preventDefault();
@@ -31,11 +35,18 @@ const Navbar = (props) => {
           to: item.path,
           key: index
         };
-        if (item.name === 'Forum' || item.name === 'FAQs') {
+        if (item.name === 'Forum') {
           linkProps.onClick = showAlert;
         }
         return <Link {...linkProps}><div>{item.name}</div></Link>;
       })}
+      {currentUser?
+        <div className='user'> Hi, {currentUser.displayName}</div>
+        :null
+      }
+      <div className="shopping">
+        <ModShopping/>
+      </div>
         <div className='conf'>
         <i className="config-icon fa-solid fa-gear" onClick={toggleConfigBar}></i>
         </div>

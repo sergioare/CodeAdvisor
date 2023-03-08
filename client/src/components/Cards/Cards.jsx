@@ -72,14 +72,14 @@ const Cards = ({ isSidebarOpen, currentPage, setCurrentPage }) => {
             onClick={handleFirstPage}
             disabled={currentPage === 1}
           >
-            &lt;&lt;
-          </button>
+        <i className="fa-solid fa-angles-left"></i>          
+        </button>
           <button
             className="prev-page-btn"
             onClick={handlePrevPage}
             disabled={currentPage === 1}
           >
-            &lt;
+          <i className="fa-solid fa-angle-left"></i>          
           </button>
           <span className="current-page">{currentPage}</span>
           <button
@@ -87,14 +87,14 @@ const Cards = ({ isSidebarOpen, currentPage, setCurrentPage }) => {
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
           >
-            &gt;
+           <i className="fa-solid fa-angle-right"></i>
           </button>
           <button
             className="last-page-btn"
             onClick={handleLastPage}
             disabled={currentPage === totalPages}
           >
-            &gt;&gt;
+            <i className="fa-solid fa-angles-right"></i>
           </button>
         </div>
       </div>

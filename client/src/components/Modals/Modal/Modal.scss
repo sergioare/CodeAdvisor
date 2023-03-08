@@ -1,3 +1,4 @@
+@use '../../Styles/mixins';
 @import '../../Styles/variables';
 
 .modal{
@@ -15,8 +16,12 @@
 }
 .modal.is-open{
     display: flex;
-
 }
+
+.modal.is-right{
+    justify-content: end;
+    }
+
 .modal-container{
     position:relative;
     padding: 1rem;
@@ -31,14 +36,29 @@
     background-position-y: top, bottom;
     border: .2em solid $secundary-color;
     border-radius: 40px;
+}
+.modal-container.is-profile{
+    border: 3px solid $secundary-color;
+    @include mixins.create-flexbox;
+     width: 60vw;
+     padding: 5px;
+    
+    .modal-close{
+        top: 1rem;
+        right: 4rem;
+    }
 
+}
 
+.modal-container.is-right{
+    width: 20vw;
+    height: 85vh;
 }
 
 .modal-close{
    position: absolute;
-   top: 2.4rem;
-   right: 1.6rem;
+   top: 0.4rem;
+   right: 0.5rem;
    border: 2px solid $circles-bg-light;
    border-radius:   0px 200px 200px 200px;
    background-color:$circles-bg-light ;

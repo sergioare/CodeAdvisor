@@ -11,6 +11,7 @@ const {
     addAdvisorsSchedules,
     addAdvisorsMyWallet,
     
+    
     updatAdvisorsReviwers,
     updatAdvisorsSchedules,
     
@@ -18,18 +19,24 @@ const {
     deleteAdvisors
 
     } = require('../controllers/advisorsController');
+const { createAdvisorFromClient } = require('../controllers/clientsController');
 
 const advisorsRoute = Router();
 
 advisorsRoute.get('/',getAllAdvisors);
 advisorsRoute.get('/:id',getIdAdvisors);
-advisorsRoute.get('/:id/Reviwers',getAdvisorsAllReviwers)
-advisorsRoute.get('/:id/Schedules',getAdvisorsAllSchedules)
-advisorsRoute.get('/:id/MyWallet',getAdvisorsAllMyWallet)
+
+// =============== NO USAR PARA LA PAGINA ===================\\
+advisorsRoute.get('/:id/Reviwers',getAdvisorsAllReviwers)    //
+advisorsRoute.get('/:id/Schedules',getAdvisorsAllSchedules)//\\
+advisorsRoute.get('/:id/MyWallet',getAdvisorsAllMyWallet)    //
+// =============== NO USAR PARA LA PAGINA ===================\\
+
 
 advisorsRoute.post('/:id/Reviwers',addAdvisorsReviwers)
 advisorsRoute.post('/:id/Schedules',addAdvisorsSchedules)
 advisorsRoute.post('/:id/MyWallet',addAdvisorsMyWallet)
+advisorsRoute.post('/Create/:uid', createAdvisorFromClient)
 
 advisorsRoute.put('/:id/Reviwers/:idr',updatAdvisorsReviwers)
 advisorsRoute.put('/:id/Schedules/:idr',updatAdvisorsSchedules)

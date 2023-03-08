@@ -4,18 +4,32 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { getDetail } from '../../redux/actions/actions';
 import Reviews from '../../components/Reviews/Reviews';
+import { ReviewsFinish } from '../../components/Reviews/ReviewsFinish';
+import StarRating from '../../components/StarRating/StarRating';
+import { getAuth } from 'firebase/auth';
 
 const Detail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const detail = useSelector(state => state.advisorDetail)
+  console.log(detail)
+  // const detScore = detail.Score?.toFixed(1);
+  const detScore = detail.score?.toFixed(1);
+  // const numReviews = Array.isArray(detail.Reviews) ? detail.Reviews.length : 0;
+  const numReviews = Array.isArray(detail.Reviwers) ? detail.Reviwers.length : 0;
+
+
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
+  const uid = currentUser ? currentUser.uid : null;
+  const purchase = detail.MyWallet;
+  // console.log(uid)
 
   useEffect(() => {
     dispatch(getDetail(id));
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [dispatch, id]);
 
-  const detail = useSelector(state => state.advisorDetail)
-  // console.log(detail);
   return (
     <div>
       <div className='DetailContainer'>
@@ -24,28 +38,33 @@ const Detail = () => {
 
         <div className='Detail'>
           <h4 className='About'> About me: <p className='TextAbout'>{detail.About}</p>
-            <Link to={`/payment/${detail.id}`}><button className='ButtonSchedule'>Schedule Advice</button></Link>
+            <Link to={`/payment/${detail.id}`}><button className='ButtonSchedule'>Book Meeting</button></Link>
             <Link to='/home'><button>Back Home</button></Link></h4>
-          
+
 
           <img src={detail.Img} alt='imageAdvisor' />
           <div className='DataContent'>
-            {/* <p className='DetailTitle'>Details</p> */}
-            {/* <p className='TitlesPurple'> Name: <p>{detail.Firstname + ' ' + detail.Lastname} </p></p> */}
             <h4 className='TitlesPurple'>Conutry: <p>{detail.Residence}</p></h4>
             <h4 className='TitlesPurple'>Languages: <p>{detail.Language/*?.length > 1 ? detail.Language.join(', ') : detail.Language*/}</p></h4>
             <h4 className='TitlesPurple'>Tech Skills: <p>{detail.TechSkills?.join(', ')}</p></h4>
-            <h4 className='TitlesPurple'>Score: <span>⭐{detail.Score}</span></h4>
             <h4 className='TitlesPurple'>Price: <span>${detail.Price} / hr</span></h4>
-
           </div>
         </div>
-        {/* <div> */}
-        {/* <>ENLAZAR LOS REVIEWS DEL ASESOR</> */}
-        {/* </div> */}
       </div>
-      <Reviews />
-
+      <div className='contRevvv'>
+        <div className='consRev1'>
+          <div className='reviewSummary'>
+            <h2 className='TitlesPurple'>{detScore}</h2>
+            <p className='TitlesPurple'>{<StarRating rating={detScore} />}</p>
+            <span>{numReviews} user reviews.</span>
+          </div>
+          {/* <Reviews /> */}
+          {purchase?.includes(uid) && <Reviews /> }
+        </div>
+        <div className='contRev2'>
+          <ReviewsFinish />
+        </div>
+      </div>
     </div>
   )
 }

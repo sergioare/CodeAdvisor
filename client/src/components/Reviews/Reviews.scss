@@ -2,26 +2,27 @@
 
 .fullContRev {
   display: flex;
-  margin: 10px;
+  margin-top: 2%;
   align-items: flex-start;
 
   .containerReview {
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 15px;
-    width: 30%;
-    margin-left: 10%;
+    width: 30vw;
+    // margin-left: 1px;
     // border: 1px solid $primary-color;
     border-radius: 5px;
     background-color: $bg-cards;
     box-shadow: 0px 0px 8px 0px $primary-color;
     background-image: url(../../assets/modal-2.png);
-    background-size: 97%;
+    background-size: 100%;
     background-repeat: no-repeat;
     background-position-x: right;
-    background-position-y: 9vh;
+    background-position-y: bottom;
     // opacity: 1.75;
 
     .reseña {
@@ -29,10 +30,10 @@
       font-weight: bold;
       color: $title-bg-light;
       background-color: $circles-bg-light;
-      padding: 15px;
+      padding: 17px;
       border-radius: 50px 0 50px 0;
       margin-bottom: -20px;
-      border: 1px solid $title-bg-medium;
+      // border: 1px solid $title-bg-medium;
     }
 
     .estrellas {
@@ -56,8 +57,8 @@
     .textareaRev {
 
       textarea {
-        height: 70px;
-        width: 300px;
+        height: 5vw;
+        width: 20vw;
         border: 2px solid $border-purple-ligth;
         font-size: 16px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -66,11 +67,10 @@
     }
 
     .botonRev {
-      // margin-block: 2rem;
       font-size: 18px;
       color: white;
       border-radius: 8px;
-      width: 50%;
+      width: 20vh;
       background-color: $title-bg-medium;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       cursor: pointer;

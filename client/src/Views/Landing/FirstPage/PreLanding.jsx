@@ -1,7 +1,6 @@
 import './Landing.scss'
-import { images, textLanding } from './data';
+import { images, textLanding, navbarLanding } from './data';
 import { icons } from '../../../Utils/utils';
-import { navbarLanding } from "./data";
 import { Link } from 'react-router-dom';
 import Modals from '../../../components/Modals/Modals';
 
@@ -50,7 +49,10 @@ const PreLanding = () => {
       <div className='icons'>
         {icons.map((icon, index) => (
           <div className='icon' key={index}>
+            <Link to={icon.path} className='icon'>
+
             {icon.name}
+            </Link>
           </div>
         ))}
       </div>

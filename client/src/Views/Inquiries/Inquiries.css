@@ -1,0 +1,48 @@
+.inquiries {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border: 2px solid #AD90FF;
+  border-radius: 40px;
+}
+.inquiries .error {
+  color: red;
+}
+.inquiries h1, .inquiries h2 {
+  color: #794BFF;
+}
+.inquiries Form {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.inquiries Form label {
+  color: #0B036B;
+  text-align: left;
+  font-weight: bold;
+}
+.inquiries Form .input {
+  border: 2px solid #AD90FF;
+  border-radius: 10px;
+  padding-left: 0.5em;
+}
+.inquiries Form .textarea {
+  width: 100%;
+  height: 15vh;
+}
+.inquiries Form .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #AD90FF;
+  color: #ffffff;
+  font-weight: bold;
+  border: 1px solid #ffffff;
+}
+.inquiries Form .btn:hover {
+  background-color: #794BFF;
+}/*# sourceMappingURL=Inquiries.css.map */

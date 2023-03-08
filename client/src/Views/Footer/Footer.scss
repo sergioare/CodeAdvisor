@@ -18,7 +18,7 @@
     text-align: left;
     padding:  3vw 3vw 3vw 3vw;
     margin-top: 25vh;
-    font-size: 1.3vw;
+    font-size: 1.4vw;
     color:$text-bg-purple;
     a:link,
     a:visited {
@@ -54,6 +54,16 @@
                 justify-content: space-evenly;
                 font-size: 2vw;
                 color:$text-bg-purple;
+                cursor: pointer;
+
+            .icon{
+
+                &:hover{
+                    transition: all 1s cubic-bezier(.25, .4, .45, 1.4)  ;
+                    
+                    font-size: 3vw;
+                }
+            }
 
         }
     }

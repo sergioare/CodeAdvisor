@@ -33,7 +33,7 @@ async function getAllReviews(aId) {
         const fire = await firestore.collection(`/Advisors/${aId}/Reviwers`);
         const data = await fire.get();
         if (data.empty) {
-            return ["Reviwers empty", 0]
+            return [["Reviwers empty"], 0]
         } else {
             data.forEach((doc) => {
                 let a = doc.data().score || 1
@@ -52,7 +52,7 @@ async function getAllReviews(aId) {
             }
     } catch (error) {
         console.log(error);
-        return ["Error Reviwers", 0]
+        return [["Error Reviwers"], 0]
     }
 }
 async function getAllSchedules(aId) {
