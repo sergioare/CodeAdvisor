@@ -1,9 +1,10 @@
 import axios from "axios";
+import { Ultimate } from "../Deploys";
 
 export const createAdvisorFromClient = (data,uid)=>{
      
        
-        const ProfileData =  axios.post(`http://localhost:3002/Advisors/Create/${uid}`, data)
+        const ProfileData =  axios.post(`${Ultimate}/Advisors/Create/${uid}`, data)
         .then(()=>console.log('Parameters added'))
         .catch(err=>console.log(err));
 

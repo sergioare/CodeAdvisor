@@ -28,7 +28,7 @@ const VERCEL_URL = 'http://localhost:3002';
 */
 (async function startServer(){
   try{
-    server.listen(PORT, ()=> console.log(`Server running on http://localhost:${PORT}. or ${VERCEL_URL}`))
+    server.listen(PORT, ()=> console.log(`Server running on http://localhost:${PORT}.`))
   }catch(error){
     console.log('Unable to initiate', error)
   }

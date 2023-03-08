@@ -1,4 +1,6 @@
 import axios from "axios"
+import { AngelGit, Sergiogit, Ultimate, localhost } from "../../Deploys";
+
 
 export const GET_AUTORS = "GET_AUTORS";
 export const GET_REVIEWS = 'GET_REVIEWS';
@@ -21,17 +23,15 @@ export const UNBLOCK_ACCOUNT = 'UNBLOCK_ACCOUNT'
 export const UPDATE_DATES = 'UPDATE_DATES'
 export const UPDATE_AVAILABILITY = 'UPDATE_AVAILABILITY'
 export const GET_AVAILABILITY = 'GET_AVAILABILITY'
-const SantaUrl = 'https://code-advisor-4mjear53q-codigojaguar.vercel.app';
-const AngelUrl = 'https://code-advisor-back.vercel.app'   // link1   ------> https://github.com/Angel-pv/CodeAdvisor_Back/
-const AngelUrl2= 'https://code-advisor-xi.vercel.app'     //  link2   ------> https://github.com/sergioare/CodeAdvisor/tree/main/server
 
+const Server = localhost;
 
 
 export const updateAvailability = (timeSpans,id) => {
   return async function (dispatch) {
     
     try {
-      const apiData = await axios.get(`${SantaUrl}/Advisors/${id}`);   // link1 
+      const apiData = await axios.get(`${Server}/Advisors/${id}`);   // link1 
       const schedules = apiData.data.Schedules;
       console.log("schedules " + schedules)
 
@@ -54,7 +54,7 @@ export const updateAvailability = (timeSpans,id) => {
         await axios.put(`ruta para remplazar los horarios`, schedules);
       }
 
-      const updatedApiData = await axios.get(`${SantaUrl}/Advisors/${id}`);     // link1
+      const updatedApiData = await axios.get(`${Server}/Advisors/${id}`);     // link1
       const updatedSchedules = updatedApiData.data.Schedules;
 
       dispatch({ type: UPDATE_AVAILABILITY, payload: updatedSchedules });
@@ -68,7 +68,7 @@ export const updateAvailability = (timeSpans,id) => {
 
 export const getAvailability = (id) => {
   return async function (dispatch) {
-    const apiData = await axios.get(`${SantaUrl}/Advisors/${id}`);    // link1 
+    const apiData = await axios.get(`${Server}/Advisors/${id}`);    // link1 
     //const apiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/001`);
     const timeSpans = apiData.data;
     dispatch({ type: GET_AVAILABILITY, payload: timeSpans });
@@ -79,7 +79,7 @@ export const getAvailability = (id) => {
 
 export const getAutors = () => {
   return async function (dispatch) {
-    const apiData = await axios.get(`${SantaUrl}/data/autores/`);      // link2
+    const apiData = await axios.get(`${Server}/data/autores/`);      // link2
     const autors = apiData.data;
     dispatch({ type: GET_AUTORS, payload: autors });//... este info va al reducer
 
@@ -106,7 +106,7 @@ export const unBlockAccount = (id) => {
 
 export const getAdvisorReviews = (id) => {
   return async function (dispatch) {
-    const apiData = await axios.get(`${SantaUrl}/Advisors/${id}/Reviwers`);   // link2
+    const apiData = await axios.get(`${Server}/Advisors/${id}/Reviwers`);   // link2
     const reviews = apiData.data;
     dispatch({ type: GET_ADVISORS_REVIEWS, payload: reviews });
 
@@ -115,7 +115,7 @@ export const getAdvisorReviews = (id) => {
 
 export const getReviews = () => {
   return async function (dispatch) {
-    const response = await axios.get(`${SantaUrl}/data/CommunityComments`);   // link2
+    const response = await axios.get(`${Server}/data/CommunityComments`);   // link2
     const reviews = response.data;
     dispatch({ type: GET_REVIEWS, payload: reviews });
   };
@@ -123,7 +123,7 @@ export const getReviews = () => {
 
 export const getAdvisors = () => {
   return async function (dispatch) {
-    const response = await axios.get(`${SantaUrl}/Advisors`);     // link2
+    const response = await axios.get(`${Server}/Advisors`);     // link2
     const advisors = response.data;
     dispatch({ type: GET_ADVISORS, payload: advisors })
   };
@@ -131,7 +131,7 @@ export const getAdvisors = () => {
 
 export const getDetail = (id) => {
   return async function (dispatch) {
-    const response = await axios.get(`${AngelUrl}/Advisors/${id}`);   // link2
+    const response = await axios.get(`${Server}/Advisors/${id}`);   // link2
     const advisor = response.data;
     dispatch({ type: ADVISOR_DETAIL, payload: advisor })
   }
@@ -139,7 +139,7 @@ export const getDetail = (id) => {
 
 export const getProfile = (id) => {
   return async function (dispatch) {
-    const response = await axios.get(`${SantaUrl}/Advisors/${id}`);   // link2
+    const response = await axios.get(`${Server}/Advisors/${id}`);   // link2
     const advisor = response.data;
     dispatch({ type: GET_PROFILE, payload: advisor })
   }
@@ -147,7 +147,7 @@ export const getProfile = (id) => {
 
 export const getTechSkills = () => {
   return async function (dispatch) {
-    const response = await axios.get(`${SantaUrl}/data/TechSkills`);  // link2
+    const response = await axios.get(`${Server}/data/TechSkills`);  // link2
     const techSkills = response.data;
     dispatch({ type: GET_TECHSKILLS, payload: techSkills })
   }
@@ -155,7 +155,7 @@ export const getTechSkills = () => {
 
 export const loadProfessionals = () => {
   return function (dispatch) {
-    fetch(`${SantaUrl}/Advisors`)         // link2
+    fetch(`${Server}/Advisors`)         // link2
       .then(res => res.json())
       .then(data => dispatch({ type: LOAD_PROFESSIONALS, payload: data }));
   }
@@ -196,16 +196,16 @@ export const sortAdvisors = (method) => {
   };
 };
 
-export const POST_REVIWER = 'POST_REVIWER';
+export const POST_REVIEW = 'POST_REVIWER';
 export const DELETE_REVIWER = 'DELETE_REVIWER';
 // export const PUT_SCORE = 'PUT_SCORE';
 
 
-export function postReviwer(id, uid, photoUser, nameUser, Reviwer, score) {
+export function postReview(id, uid, photoUser, nameUser, Reviwer, score) {
   return async function (dispatch) {
     const tokken = window.localStorage.getItem("tokken");
     console.log(tokken)
-    const json = await axios.post(`${SantaUrl}/Advisors/${id}/Reviwers`,          // link2
+    const json = await axios.post(`${Server}/Advisors/${id}/Reviwers`,          // link2
       {
         id,
         uid: uid,
@@ -222,12 +222,26 @@ export function postReviwer(id, uid, photoUser, nameUser, Reviwer, score) {
       }
     );
     return dispatch({
-      type: POST_REVIWER,
+      type: POST_REVIEW,
       payload: json.data,
     });
   };
 }
 
+export const getCartItems = (id) => {
+  return async function (dispatch){
+    const cartData = await axios.get(`${localhost}/User/${id}`);   // back.vercel
+    // console.log(cartData)
+    const cartItems= cartData.data;
+    dispatch({type: GET_CART_ITEMS, payload: cartItems})
+  };
+};
+
+export const clearCart = () => {
+  return {
+    type: CLEAR_CART
+  };
+};
 // export function putScore(id, score) {
 //   return async function (dispatch) {
 //     console.log(id, score);

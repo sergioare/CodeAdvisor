@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 import './Reviews.scss';
-import { postReviwer, getDetail } from '../../redux/actions/actions';
+import { postReview, getDetail } from '../../redux/actions/actions';
 import { getAuth } from "firebase/auth";
 // import StarRating from '../StarRating/StarRating';
 
@@ -69,7 +69,7 @@ export const Reviews = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     //if (detail) console.log(detail)
-    dispatch(postReviwer(id, uid, photoUser, nameUser, input, currentValue));
+    dispatch(postReview(id, uid, photoUser, nameUser, input, currentValue));
     setInput({ uid: "", Img: "", Name: "", Reviwer: "", score: "" });
     sethoverValue(undefined)
     setcurrentValue(0)

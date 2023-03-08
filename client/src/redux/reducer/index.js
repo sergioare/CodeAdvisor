@@ -7,7 +7,7 @@ import {
   SORT_ADVISORS,
   GET_AUTORS, GET_REVIEWS, GET_ADVISORS, ADVISOR_DETAIL, GET_TECHSKILLS, GET_PROFILE, GET_ADVISORS_REVIEWS,
   BLOCK_ACCOUNT, UNBLOCK_ACCOUNT,
-  POST_REVIWER,
+  POST_REVIEW,
   // DELETE_REVIWER,PUT_SCORE,
   UPDATE_DATES, UPDATE_AVAILABILITY, GET_AVAILABILITY
 } from '../actions/actions';
@@ -46,6 +46,9 @@ const initialState = {
     F_Residence: [],
   },
   sortMethod: "",
+  dates:[],
+  cart:[],
+  productsInCart:[],
 }
 
 
@@ -219,7 +222,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state, techSkills: action.payload
       }
-    case POST_REVIWER:
+    case POST_REVIEW:
       return { ...state, comments: action.payload }
 
     // case PUT_SCORE:

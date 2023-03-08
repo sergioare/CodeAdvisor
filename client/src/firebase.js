@@ -17,13 +17,13 @@ import {getStorage,ref,uploadBytes,getDownloadURL} from 'firebase/storage'
 // } = process.env;
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDQVoL7G5EOxnbYZaigRuj9DQuzY9nkPlM",
-  authDomain: 'fb-2do.firebaseapp.com',
-  projectId: "fb-2do",
-  storageBucket: 'fb-2do.appspot.com',
-  messagingSenderId: '812758619537',
-  appId: "1:812758619537:web:269beeda8245a2f1a9f630",
-  measurementId: 'G-CGZZGWFR0F',
+  apiKey: "AIzaSyBJx1qDtFdOikWplgVfvIlKURe3yWPgt50",
+  authDomain: "platziblog-a4eff.firebaseapp.com",
+  projectId: "platziblog-a4eff",
+  storageBucket: "platziblog-a4eff.appspot.com",
+  messagingSenderId: "1015089930452",
+  appId: "1:1015089930452:web:b372dcac109ee22c421b41",
+  measurementId: "G-XCMTMT8B07"
   
 };
 

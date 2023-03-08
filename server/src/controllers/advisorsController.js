@@ -74,46 +74,64 @@ const getAllAdvisors = async (req, res, next) => {
     }
 };
 
-// const getIdAdvisors = async (req, res, next) => {
-//     console.log("get_Id_Advisors");
-//     const id = req.params.id;
-//     try {
-//         const fire = await firestore.collection("Advisors").doc(id);
-//         const data = await fire.get();
-//         if (!data.exists) {
-//             res.status(404).send(`Advisor with id: ${id}. Does not exist`);
-//         } else {
-//             let reviwers = [[],0]
-//             let schedules = []
-//             if(data.data().statusReviwers === true) {
-//                 reviwers = await getAllReviews(data.id)
-//             }
-//             if (data.data().statusSchedules === true) {
-//                 schedules = await getAllSchedules(data.id)
-//             }
-//             const advisors = new Advisors(
-//                 data.id,
-//                 data.data().Nickname || "empty",
-//                 data.data().Firstname || "empty",
-//                 data.data().Lastname || "empty",
-//                 data.data().Contact || "00-000-00-00",
-//                 data.data().Img || "https://img.freepik.com/vector-premium/fondo-pagina-error-404-distorsion_23-2148086293.jpg?w=2000",
-//                 data.data().Residence || "empty",
-//                 data.data().Language || ["empty"],
-//                 data.data().Price || "000",
-//                 reviwers[1],
-//                 data.data().About || "empty",
-//                 data.data().Specialty || ["empty"],
-//                 data.data().TechSkills || ["empty"],
-//                 reviwers[0],
-//                 schedules
-//             );
-//             res.send(advisors);
-//         }
-//     } catch (error) {
-//         res.status(400).send(error.message);
-//     }
-// };
+const getIdAdvisors = async (req, res, next) => {
+    console.log("get_Id_Advisors");
+    const id = req.params.id;
+    try {
+        const fire = await firestore.collection("Advisors").doc(id);
+        const data = await fire.get();
+        if (!data.exists) {
+            res.status(404).send(`Advisor with id: ${id}. Does not exist`);
+        } else {
+            let reviwers = [[],0]
+            let schedules = []
+            if(data.data().statusReviwers === true) {
+                reviwers = await getAllReviews(data.id)
+            }
+            if (data.data().statusSchedules === true) {
+                schedules = await getAllSchedules(data.id)
+            }
+            const advisors = new Advisors(
+                data.id,
+                data.data().Nickname || "empty",
+                data.data().Firstname || "empty",
+                data.data().Lastname || "empty",
+                data.data().Contact || "00-000-00-00",
+                data.data().Img || "https://img.freepik.com/vector-premium/fondo-pagina-error-404-distorsion_23-2148086293.jpg?w=2000",
+                data.data().Residence || "empty",
+                data.data().Language || ["empty"],
+                data.data().Price || "000",
+                reviwers[1],
+                data.data().About || "empty",
+                data.data().Specialty || ["empty"],
+                data.data().TechSkills || ["empty"],
+                reviwers[0],
+                schedules
+            );
+
+
+            // if (advisor.statusMyWallet === true) {
+            //         newAdvisor.MyWallet = await getFilterAdvisorAllMyWallet(aId)
+            //     } else newAdvisor.MyWallet = []
+            //     if (advisor.statusReviwers === true) {
+            //         let ss = 0
+            //         newAdvisor.Reviwers = await getFilterAdvisorAllReviwers(aId)
+            //         newAdvisor.Reviwers.map((s) => {
+            //             ss = ss + s.score
+            //         })
+            //         newAdvisor.score = ss / newAdvisor.Reviwers.length            
+            //     } else advisor.Reviwers = [], advisor.score = 0
+            //     if (advisor.statusSchedules === true) {
+            //         newAdvisor.Schedules = await getFilterAdvisorAllSchedules(aId)
+            //     } else newAdvisor.Schedules = []
+
+
+            res.send(advisors);
+        }
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+};
 
 
 //------------/ Advisors Reviwers /-------------------------------------//
@@ -316,51 +334,52 @@ const deleteAdvisors = async (req, res, next) => {
 };
 
 
-const getIdAdvisors = async (req, res, next) => {     //  https://github.com/Angel-pv/CodeAdvisor_Back/blob/main/src/controllers/advisorsController.js
-    console.log("get_Id_Advisors");
-    const aId = req.params.aId;
-    try {
-        const fireColl = await firestore.collection("Advisors").doc(aId);
-        const fireAdvi = await fireColl.get();
-        if (!fireAdvi.exists) {
-            res.status(404).send(`Advisor with id: ${aId}. Does not exist`);
-        } else {
-            const advisor = fireAdvi.data()
-            const newAdvisor = new Advisors(
-                advisor.Firstname       || "",
-                advisor.Lastname        || "",
-                advisor.Img             || img404,
-                advisor.About           || "",
-                advisor.Residence       || "",
-                advisor.Language        || [],
-                advisor.Specialty       || [],
-                advisor.TechSkills      || [],
-                advisor.Price           || 00,
-                advisor.statusMyWallet  || false,
-                advisor.statusReviwers  || false,
-                advisor.statusSchedules || false,
-            )
-            if (advisor.statusMyWallet === true) {
-                newAdvisor.MyWallet = await getFilterAdvisorAllMyWallet(aId)
-            } else newAdvisor.MyWallet = []
-            if (advisor.statusReviwers === true) {
-                let ss = 0
-                newAdvisor.Reviwers = await getFilterAdvisorAllReviwers(aId)
-                newAdvisor.Reviwers.map((s) => {
-                    ss = ss + s.score
-                })
-                newAdvisor.score = ss / newAdvisor.Reviwers.length            
-            } else advisor.Reviwers = [], advisor.score = 0
-            if (advisor.statusSchedules === true) {
-                newAdvisor.Schedules = await getFilterAdvisorAllSchedules(aId)
-            } else newAdvisor.Schedules = []
+// const getIdAdvisors = async (req, res, next) => {     //  https://github.com/Angel-pv/CodeAdvisor_Back/blob/main/src/controllers/advisorsController.js
+//     console.log("get_Id_Advisors");
+//     const aId = req.params.aId;
+//     try {
+//         const fireColl = await firestore.collection("Advisors").doc(aId);
+//         const fireAdvi = await fireColl.get();
+//         if (!fireAdvi) {
+//             res.status(404).send(`Advisor with id: ${aId}. Does not exist`);
+//         } else {
+//             const advisor = fireAdvi.data()
+//             console.log(advisor)
+//             const newAdvisor = new Advisors(
+//                 advisor.Firstname       || "",
+//                 advisor.Lastname        || "",
+//                 advisor.Img             || "https://img.freepik.com/vector-premium/fondo-pagina-error-404-distorsion_23-2148086293.jpg?w=2000",
+//                 advisor.About           || "",
+//                 advisor.Residence       || "",
+//                 advisor.Language        || [],
+//                 advisor.Specialty       || [],
+//                 advisor.TechSkills      || [],
+//                 advisor.Price           || 00,
+//                 advisor.statusMyWallet  || false,
+//                 advisor.statusReviwers  || false,
+//                 advisor.statusSchedules || false,
+//             )
+//             if (advisor.statusMyWallet === true) {
+//                 newAdvisor.MyWallet = await getFilterAdvisorAllMyWallet(aId)
+//             } else newAdvisor.MyWallet = []
+//             if (advisor.statusReviwers === true) {
+//                 let ss = 0
+//                 newAdvisor.Reviwers = await getFilterAdvisorAllReviwers(aId)
+//                 newAdvisor.Reviwers.map((s) => {
+//                     ss = ss + s.score
+//                 })
+//                 newAdvisor.score = ss / newAdvisor.Reviwers.length            
+//             } else advisor.Reviwers = [], advisor.score = 0
+//             if (advisor.statusSchedules === true) {
+//                 newAdvisor.Schedules = await getFilterAdvisorAllSchedules(aId)
+//             } else newAdvisor.Schedules = []
 
-                res.send(newAdvisor);
-        }
-    } catch (error) {
-        res.status(400).send(error.message);
-    }
-};
+//                 res.send(newAdvisor);
+//         }
+//     } catch (error) {
+//         res.status(400).send(error.message);
+//     }
+// };
 
 module.exports = {
     getAllAdvisors,
