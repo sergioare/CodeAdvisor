@@ -33,7 +33,7 @@ const ModShopping = () => {
     useEffect(() => {
         console.log("apagalo oto cart")
         dispatch(getCartItems(idClient));
-    }, [dispatch, idClient, productStatusPending]);
+    }, []);
 
 
     const handlerClear = () => {
@@ -76,7 +76,9 @@ const ModShopping = () => {
                             <h2>Hours: <span>{p.hours} hrs</span> </h2>
                             {/* <h2>Total: <span>{p.Price * p.hours}</span> </h2> */}
 
-                            {sumaPriceTotal += p.Price * p.hours}
+                            
+                                <p className="sumaContador"> {sumaPriceTotal += p.Price * p.hours} </p>
+                           
 
 
                             <div className="btnconteiner">
@@ -91,16 +93,16 @@ const ModShopping = () => {
                                     }
                                 }>
                                     Pay ${p.Price * p.hours} </button>
-                            </div>
                             
                             <button className="btnDelete" onClick={
                                 (event) => {
                                     event.preventDefault()
                                     axios.put(`https://code-advisor-back.vercel.app/User/${idClient}/MyCart/${p.uId}`, { status: "deleted" })
-
+                                    
                                 }
                             }> <i class="fa-solid fa-trash"></i> </button>
 
+                            </div>
                         </div>
                     )
                 }
