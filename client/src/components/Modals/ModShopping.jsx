@@ -86,6 +86,8 @@ const ModShopping = () => {
                                         axios.post('https://code-advisor-xi.vercel.app/payment', { Title: p.Firstname, Quantity: p.hours, Price: p.Price })
                                             .then((res) =>
                                                 (window.location.href = res.data.response.body.init_point));
+
+                                        axios.put(`https://code-advisor-back.vercel.app/User/${idClient}/MyCart/${p.uId}`, { status: "success" })
                                     }
                                 }>
                                     Pay ${p.Price * p.hours} </button>
