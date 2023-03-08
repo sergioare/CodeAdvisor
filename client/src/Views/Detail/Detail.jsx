@@ -12,7 +12,7 @@ const Detail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const detail = useSelector(state => state.advisorDetail)
-  
+  console.log(detail)
   // const detScore = detail.Score?.toFixed(1);
   const detScore = detail.score?.toFixed(1);
   // const numReviews = Array.isArray(detail.Reviews) ? detail.Reviews.length : 0;
