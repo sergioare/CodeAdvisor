@@ -27,32 +27,18 @@ const ModShopping = () => {
     //----------------- filter to choose the Product -------------//
     const productStatusPending = productsInCart?.filter((s) => s.status === "pending")
 
-    const { id } = useParams();
 
 
     useEffect(() => {
         console.log("apagalo oto cart")
         dispatch(getCartItems(idClient));
-    }, []);
+    }, [ModShopping, dispatch]);
 
 
     const handlerClear = () => {
         dispatch(clearCart())
     }
-    // const handleRemove =(event)=>{
-    //     event.preventDefault()
-    //     axios.put(`https://code-advisor-back.vercel.app/User/${idClient}/MyCart/${}`, fail)
-    // }
-
-    // const handleRemove =(event)=>{
-    //     event.preventDefault()
-    //     axios.put(`https://code-advisor-back.vercel.app/User/ALgS5hpPocTCHveuuzNHXdqUu0w2/MyCart/2hOuoKCMJrEcEcARifku`, deleted)
-    // }
-
-
-    // const deleted = {
-    //     status: "success"
-    // }
+    
 
     const [isOpenShop, openModalShop, closeModalShop] = useModal(false);
 
@@ -89,7 +75,7 @@ const ModShopping = () => {
                                             .then((res) =>
                                                 (window.location.href = res.data.response.body.init_point));
 
-                                        axios.put(`https://code-advisor-back.vercel.app/User/${idClient}/MyCart/${p.uId}`, { status: "success" })
+                                        axios.put(`https://code-advisor-back.vercel.app/User/${idClient}/MyCart/${p.cId}`, { status: "success" })
                                     }
                                 }>
                                     Pay ${p.Price * p.hours} </button>
@@ -97,7 +83,7 @@ const ModShopping = () => {
                             <button className="btnDelete" onClick={
                                 (event) => {
                                     event.preventDefault()
-                                    axios.put(`https://code-advisor-back.vercel.app/User/${idClient}/MyCart/${p.uId}`, { status: "deleted" })
+                                    axios.put(`https://code-advisor-back.vercel.app/User/${idClient}/MyCart/${p.cId}`, { status: "deleted" })
                                     
                                 }
                             }> <i class="fa-solid fa-trash"></i> </button>
