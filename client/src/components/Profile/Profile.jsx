@@ -175,7 +175,6 @@ const handleTimeSpanClick = (index) => {
 }
   
 useEffect(() => {
-  console.log("setSelectedTimeSpan(prevState => ")
   setSelectedTimeSpan(prevState => {
     const newState = [...prevState];
     for (let hour = startTime; hour < endTime; hour++) {
@@ -204,7 +203,6 @@ useEffect(() => {
 
 
 useEffect(() => {
-  console.log("{dispatch(updateAvailability(selectedTimeSpan, id));}")
     dispatch(updateAvailability(selectedTimeSpan, id));
 }, [selectedTimeSpan]);
 
@@ -475,14 +473,14 @@ return (
               </table>
             </div>
             {/* -----------------time Spans buttons ----------------- */}
-            <div class="time-slots">
+            <div className="time-slots">
               <h1>Available Time Slots - {months[selectedDate?.month]} {selectedDate?.date} {selectedDate?.year}</h1>
-              <div class="state-buttons">
-                <button class="blocked" onClick={() => handleStateButtonClick("blocked")}>Blocked</button>
-                <button class="available" onClick={() => handleStateButtonClick("available")}>Available</button>
-                <button class="reserved" onClick={() => handleStateButtonClick("reserved")}>Reserved</button>
+              <div className="state-buttons">
+                <button className="blocked" onClick={() => handleStateButtonClick("blocked")}>Blocked</button>
+                <button className="available" onClick={() => handleStateButtonClick("available")}>Available</button>
+                <button className="reserved" onClick={() => handleStateButtonClick("reserved")}>Reserved</button>
               </div>
-              <div class="time-slots-container">
+              <div className="time-slots-container">
                 <table>
                   <thead>
                     <tr>
@@ -492,7 +490,7 @@ return (
                   </thead>
                   <tbody>
                     {selectedTimeSpan.map((timeSpan, index) => (
-                    <tr key={index} class={timeSpan.state}>
+                    <tr key={index} className={timeSpan.state}>
                       <td>
                         <button onClick={() => handleTimeSpanClick(index)}>
                           {timeSpan.StartingHour}:00 - {timeSpan.EndingHour}:00

@@ -21,7 +21,22 @@ export const UNBLOCK_ACCOUNT = 'UNBLOCK_ACCOUNT'
 export const UPDATE_DATES = 'UPDATE_DATES'
 export const UPDATE_AVAILABILITY = 'UPDATE_AVAILABILITY'
 export const GET_AVAILABILITY = 'GET_AVAILABILITY'
+export const GET_ADMIN_DATA = 'GET_ADMIN_DATA'
 
+export const getAdminData = () => {
+  console.log('action')
+  return async function (dispatch) {
+    try {
+      const apiData = await axios.get(`https://code-advisor-back.vercel.app/Admin/data`);
+      const data = apiData.data;
+      console.log('data')
+      console.log(data)
+      dispatch({ type: GET_ADMIN_DATA, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 
 export const updateAvailability = (timeSpansArray, id) => {
@@ -49,7 +64,7 @@ export const updateAvailability = (timeSpansArray, id) => {
         }
       }
                         //ruta debe ser actualizada
-      await axios.put(`https://code-advisor-back.vercel.app/Advisors/${id}`, schedules);
+      await axios.put(`https://code-advisor-back.vercel.app/Advisors/${id}/Schedules`, schedules);
 
       const updatedApiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
       const updatedSchedules = updatedApiData.data.Schedules;

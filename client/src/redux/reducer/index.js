@@ -9,10 +9,12 @@ import {
   BLOCK_ACCOUNT, UNBLOCK_ACCOUNT,
   POST_REVIWER,
   // DELETE_REVIWER,PUT_SCORE,
-  UPDATE_DATES, UPDATE_AVAILABILITY, GET_AVAILABILITY
+  UPDATE_DATES, UPDATE_AVAILABILITY, GET_AVAILABILITY,
+  GET_ADMIN_DATA
 } from '../actions/actions';
 
 const initialState = {
+  adminData: {},
   users: [],
   advisors: [],
   advisorDetail: [],
@@ -52,7 +54,16 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
 
+  console.log(action.type)
   switch (action.type) {
+    case GET_ADMIN_DATA:
+      console.log("reducer")
+      console.log(action.payload)
+      return {
+        ...state,
+        adminData: action.payload
+      };
+
     case GET_AVAILABILITY:
 
       return {

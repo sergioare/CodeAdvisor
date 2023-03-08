@@ -67,7 +67,7 @@ const Home = () => {
   return (
     <div className='home'>
       <Navbar toggleConfigBar={toggleConfigBar} />
-      <SideBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} setCurrentPage={setCurrentPage} />
+      {/* <SideBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} setCurrentPage={setCurrentPage} />
       <Commercial isSidebarOpen={isSidebarOpen} />
       <div className={`contSecctionVideo ${isSidebarOpen ? 'sidebar-open' : ''}`}>
         <div className='ContVideoPlayer'>
@@ -94,7 +94,7 @@ const Home = () => {
         ))}
       </div>
       <Footer/>
-      <Profile  isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen}> </Profile>
+      <Profile  isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen}> </Profile> */}
       <ConfigSideBar isAdmin={isAdmin} isSidebarOpen={isSidebarOpen} isConfigBarOpen={isConfigBarOpen} toggleConfigBar={toggleConfigBar} toggleProfile={toggleProfile} openAdmin={openAdmin} toggleAdmin={toggleAdmin} closeSideBar={closeSideBar} isProfileOpen={isProfileOpen}/>
       
       {isAdmin && <Admin openAdmin={openAdmin} toggleAdmin={toggleAdmin} isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen} closeSideBar={closeSideBar}></Admin>}

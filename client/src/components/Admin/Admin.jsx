@@ -1,20 +1,25 @@
 import './Admin.scss'
-import { blockAccount, unBlockAccount } from "../../redux/actions/actions"
+import { blockAccount, unBlockAccount, getAdminData } from "../../redux/actions/actions"
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAdvisorReviews } from '../../redux/actions/actions';
 import Graphs from '../Graphs/Graphs'
 
 function Admin ({isProfileOpen, toggleProfile, isConfigBarOpen, closeSideBar, openAdmin, toggleAdmin}) {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        console.log("dispatch")
+        dispatch(getAdminData())
+     }, []);
+
     const [displayUsers, setDisplayUsers] = useState("Users")
 
     const users = useSelector(state => state.users)
     const advisors = useSelector(state => state.advisors)
     const blockedUsers = useSelector(state => state.blockedAccounts)
     const Reviews = useSelector(state => state.advisorReviews)
-
-
-    const dispatch = useDispatch();
+    const Data = useSelector(state => state.adminData)
+    console.log("DAta " + Data)
 
     const handleAdminButtonClick = () => {
         toggleAdmin();
@@ -161,6 +166,26 @@ function Admin ({isProfileOpen, toggleProfile, isConfigBarOpen, closeSideBar, op
                 </div>
                 {displayUsers === 'Graphs' && (       
                     <div>
+                        <table>
+  <thead>
+    <tr>
+      <th>Transactions</th>
+      <th>Advisors</th>
+      <th>ClassHours</th>
+      <th>Users</th>
+      <th>CommunityCommentsScore</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{Data.Transactions}</td>
+      <td>34</td>
+      <td>234</td>
+      <td>76</td>
+      <td>3, 4, 1.5</td>
+    </tr>
+  </tbody>
+</table>
                         <Graphs></Graphs>
                     </div>
                 )}
