@@ -14,9 +14,11 @@ const Cards = ({ isSidebarOpen, currentPage, setCurrentPage }) => {
 
   useEffect(() => {
     dispatch(getAdvisors())
+    console.log("El error Esta en Cards")
   }, [dispatch])
 
   useEffect(() => {
+    console.log("El error Esta en Cards")
     if (isSidebarOpen) {
       setCardsPerPage(6);
       setCurrentPage(Math.round(currentPage * 1.33))

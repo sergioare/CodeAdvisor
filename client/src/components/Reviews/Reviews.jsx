@@ -36,6 +36,7 @@ export const Reviews = () => {
 
   const [isLogged, setIsLogged] = useState(false);
   useEffect(() => {
+  console.log("El error es de Tere, Aqui en Reviews")
     if (currentUser) {
       setIsLogged(true);
     }

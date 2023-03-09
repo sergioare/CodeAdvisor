@@ -72,7 +72,7 @@ const Home = () => {
       <div className={`contSecctionVideo ${isSidebarOpen ? 'sidebar-open' : ''}`}>
         <div className='ContVideoPlayer'>
           <Video/>
-        </div>
+        </div> 
         <div className={`ContTextVideoplay ${isSidebarOpen ? 'sidebar-open' : ''}`}>
           <h3>Have you ever wondered how to write a web page?</h3>
           <p>There are many different programming languages ​​that allow us to create our web pages. Here we show you what they are and you can also choose who will teach you the programming language that interests you the most.</p>

@@ -18,7 +18,9 @@ const Newsletter = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:3002/subcribe/', input)
+
+    axios.post('https://code-advisor-back.vercel.app/XD/', input)
+
       .then(res => {
         setInput({
           full_name: "",

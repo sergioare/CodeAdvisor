@@ -344,7 +344,7 @@ return (
               </thead>
               <tbody>
                 {selectedTimeSpan.filter(timeSpan => timeSpan.state !== 'blocked').map((timeSpan, index) => (
-                  <tr key={index} class={timeSpan.state}>
+                  <tr key={index} className={timeSpan.state}>
                     <td>
                       {timeSpan.StartingHour}:00 - {timeSpan.EndingHour}:00
                     </td>
@@ -434,31 +434,33 @@ return (
                     <th className="tittle" style={{ width: "100%" }}>Calendar</th>
                   </tr>
                   <tr>
-                    <td className="data"></td>
-                    <div>
-                    <div className="calendar-wrapper">
-                      <header>
-                        <p className="current-date"></p>
-                        <div className="icons">
-                        <button onClick={()=>{prevNextClick("prev")}} className="material-symbols-rounded">&lt;</button>
-                        <button onClick={()=>{prevNextClick("next")}} className="material-symbols-rounded">&gt;</button>
+                    <td className="data">
+
+                          <div>
+                          <div className="calendar-wrapper">
+                            <header>
+                              <p className="current-date"></p>
+                              <div className="icons">
+                              <button onClick={()=>{prevNextClick("prev")}} className="material-symbols-rounded">&lt;</button>
+                              <button onClick={()=>{prevNextClick("next")}} className="material-symbols-rounded">&gt;</button>
+                              </div>
+                            </header>
+                            <div className="calendar">
+                              <ul className="weeks">
+                                <li>Sun</li>
+                                <li>Mon</li>
+                                <li>Tue</li>
+                                <li>Wed</li>
+                                <li>Thu</li>
+                                <li>Fri</li>
+                                <li>Sat</li>
+                              </ul>
+                              <ul className="days"></ul>
+                            </div>
+                          </div>
+                          <hr/>
                         </div>
-                      </header>
-                      <div className="calendar">
-                        <ul className="weeks">
-                          <li>Sun</li>
-                          <li>Mon</li>
-                          <li>Tue</li>
-                          <li>Wed</li>
-                          <li>Thu</li>
-                          <li>Fri</li>
-                          <li>Sat</li>
-                        </ul>
-                        <ul className="days"></ul>
-                      </div>
-                    </div>
-                    <hr/>
-                  </div>
+                    </td>
                   </tr>
                   <tr>
                     <th className="tittle">Meet</th>
