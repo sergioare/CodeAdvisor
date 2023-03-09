@@ -4,8 +4,8 @@ export const navbarItems = [
         path: '/home'
     },
     {
-        name: 'Forum',
-        path: '/forum'
+        name: 'Donate',
+        path: '/donate'
     },
     {
         name: 'Technologies',

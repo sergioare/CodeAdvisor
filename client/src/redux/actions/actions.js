@@ -20,8 +20,8 @@ export const BLOCK_ACCOUNT = 'BLOCK_ACCOUNT'
 export const UNBLOCK_ACCOUNT = 'UNBLOCK_ACCOUNT'
 export const GET_DATES = "GET_DATES"
 export const GET_CART_ITEMS = "GET_CART_ITEMS"
-export const ADD_TO_CART="ADD_TO_CART"
-export const CLEAR_CART= "CLEAR_CART"
+export const ADD_TO_CART = "ADD_TO_CART"
+export const CLEAR_CART = "CLEAR_CART"
 
 
 export const UPDATE_DATES = 'UPDATE_DATES'
@@ -30,10 +30,9 @@ export const GET_AVAILABILITY = 'GET_AVAILABILITY'
 
 
 
-
 export const updateAvailability = (timeSpansArray, id) => {
+  console.log("updateAvaiilabity")
   return async function (dispatch) {
-
     try {
       const apiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
       const schedules = apiData.data.Schedules;
@@ -43,8 +42,8 @@ export const updateAvailability = (timeSpansArray, id) => {
 
         for (let j = 0; j < schedules.length; j++) {
           if (schedules[j].Day === timeSpansArray[i].Day &&
-              schedules[j].Month === timeSpansArray[i].Month &&
-              schedules[j].Year === timeSpansArray[i].Year) {
+            schedules[j].Month === timeSpansArray[i].Month &&
+            schedules[j].Year === timeSpansArray[i].Year) {
             matchingObjectIndex = j;
             break;
           }
@@ -56,7 +55,7 @@ export const updateAvailability = (timeSpansArray, id) => {
           schedules.push(timeSpansArray[i]);
         }
       }
-                        //ruta debe ser actualizada
+      //ruta debe ser actualizada
       await axios.put(`https://code-advisor-back.vercel.app/Advisors/${id}`, schedules);
 
       const updatedApiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
@@ -66,13 +65,16 @@ export const updateAvailability = (timeSpansArray, id) => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }
 };
 
 
 
 
+
 export const getAvailability = (id) => {
+  console.log("getAvailability")
+
   return async function (dispatch) {
     const apiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
     //const apiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/001`);
@@ -111,7 +113,9 @@ export const unBlockAccount = (id) => {
 }
 
 export const getAdvisorReviews = (id) => {
+  console.log("getAdvisorReviews")
   return async function (dispatch) {
+
     const apiData = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`);
     const reviews = apiData.data;
     dispatch({ type: GET_ADVISORS_REVIEWS, payload: reviews });
@@ -120,6 +124,7 @@ export const getAdvisorReviews = (id) => {
 };
 
 export const getReviews = () => {
+  console.log("getReviews")
   return async function (dispatch) {
     const response = await axios.get('https://code-advisor-xi.vercel.app/data/CommunityComments');
     const reviews = response.data;
@@ -128,6 +133,7 @@ export const getReviews = () => {
 };
 
 export const getAdvisors = () => {
+  console.log("getAdvisors")
   return async function (dispatch) {
     const response = await axios.get('https://code-advisor-xi.vercel.app/Advisors');
     const advisors = response.data;
@@ -136,15 +142,19 @@ export const getAdvisors = () => {
 };
 
 export const getDetail = (id) => {
+  console.log("getDatail")
+
   return async function (dispatch) {
-    // const response = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}`);
-    const response = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
+    const response = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}`);
+    // const response = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
     const advisor = response.data;
     dispatch({ type: ADVISOR_DETAIL, payload: advisor })
   }
 }
 
 export const getProfile = (id) => {
+  console.log("getProfile")
+
   return async function (dispatch) {
     const response = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}`);
     const advisor = response.data;
@@ -153,6 +163,8 @@ export const getProfile = (id) => {
 }
 
 export const getTechSkills = () => {
+  console.log("getTechSkills")
+
   return async function (dispatch) {
     const response = await axios.get('https://code-advisor-xi.vercel.app/data/TechSkills');
     const techSkills = response.data;
@@ -206,20 +218,19 @@ export const sortAdvisors = (method) => {
 export const POST_REVIWER = 'POST_REVIWER';
 // export const DELETE_REVIWER = 'DELETE_REVIWER';
 
-export function postReviwer(id, uid, photoUser, nameUser, Reviwer, score) {
+export function postReviwer(aId, uId, photoUser, nameUser, Reviwer, score) {
   return async function (dispatch) {
     const tokken = window.localStorage.getItem("tokken");
     console.log(tokken)
-    // const json = await axios.post(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`,
-    const json = await axios.post(`https://code-advisor-back.vercel.app/Advisors/${id}/Reviwers`,
+    const json = await axios.post(`https://code-advisor-back.vercel.app/User/${uId}/AdvisorReviwer/${aId}`,
+      // const json = await axios.post(`https://code-advisor-back.vercel.app/Advisors/${id}/Reviwers`,
       {
-        id,
-        uid: uid,
+        aId,
+        uid: uId,
         Img: photoUser,
         Name: nameUser,
         Reviwer: Reviwer.Reviwer,
         score: score,
-
       },
       {
         headers: {
@@ -257,21 +268,21 @@ export function postReviwer(id, uid, photoUser, nameUser, Reviwer, score) {
 //   };
 // };
 
-  export const getCartItems = (id) => {
-    return async function (dispatch){
-      const cartData = await axios.get(`https://code-advisor-back.vercel.app/User/${id}`);
-      // console.log(cartData)
-      const cartItems= cartData.data;
-      dispatch({type: GET_CART_ITEMS, payload: cartItems})
-    };
+export const getCartItems = (id) => {
+  return async function (dispatch) {
+    const cartData = await axios.get(`https://code-advisor-back.vercel.app/User/${id}`);
+    // console.log(cartData)
+    const cartItems = cartData.data;
+    dispatch({ type: GET_CART_ITEMS, payload: cartItems })
   };
+};
 
 
-  export const clearCart = () => {
-    return {
-      type: CLEAR_CART
-    };
+export const clearCart = () => {
+  return {
+    type: CLEAR_CART
   };
+};
 
 
 

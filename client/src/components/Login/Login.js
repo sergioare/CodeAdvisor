@@ -54,7 +54,8 @@ const Login = () => {
       const handleGoogleSignin = async () => {
         try {
           const UserUid = await loginWithGoogle();   // uid  = UserUid.user.uid
-          const data = {Nickname: UserUid.user.displayName , Img : UserUid.user.photoURL} 
+          const data = {Nickname: UserUid.user.displayName , Img : UserUid.user.photoURL}
+          console.log(UserUid.user.uid) 
           sendProfileDetails(data, UserUid.user.uid) 
           navigate("/home");
         } catch (error) {
