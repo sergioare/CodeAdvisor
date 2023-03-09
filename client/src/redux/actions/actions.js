@@ -22,19 +22,12 @@ export const GET_DATES = "GET_DATES"
 export const GET_CART_ITEMS = "GET_CART_ITEMS"
 export const ADD_TO_CART = "ADD_TO_CART"
 export const CLEAR_CART = "CLEAR_CART"
-
-
 export const UPDATE_DATES = 'UPDATE_DATES'
 export const UPDATE_AVAILABILITY = 'UPDATE_AVAILABILITY'
 export const GET_AVAILABILITY = 'GET_AVAILABILITY'
 export const GET_ADMIN_DATA = 'GET_ADMIN_DATA'
 
-const key = {
-  key: 'ANG31'
-}
-
 export const getAdminData = () => {
-  console.log('action')
   return async function (dispatch) {
     try {
       const apiData = await axios.get(`https://code-advisor-back.vercel.app/Admin/data`, key);
@@ -50,7 +43,6 @@ export const getAdminData = () => {
 
 
 export const updateAvailability = (timeSpansArray, id) => {
-  console.log("updateAvaiilabity")
   return async function (dispatch) {
     try {
       const apiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
@@ -74,7 +66,7 @@ export const updateAvailability = (timeSpansArray, id) => {
           schedules.push(timeSpansArray[i]);
         }
       }
-                        //ruta debe ser actualizada
+
       await axios.put(`https://code-advisor-back.vercel.app/Advisors/${id}/Schedules`, schedules);
 
       const updatedApiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
@@ -92,8 +84,6 @@ export const updateAvailability = (timeSpansArray, id) => {
 
 
 export const getAvailability = (id) => {
-  console.log("getAvailability")
-
   return async function (dispatch) {
     const apiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
     //const apiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/001`);
@@ -134,7 +124,6 @@ export const unBlockAccount = (id) => {
 }
 
 export const getAdvisorReviews = (id) => {
-  console.log("getAdvisorReviews")
   return async function (dispatch) {
 
     const apiData = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`);
@@ -145,7 +134,6 @@ export const getAdvisorReviews = (id) => {
 };
 
 export const getReviews = () => {
-  console.log("getReviews")
   return async function (dispatch) {
     const response = await axios.get('https://code-advisor-xi.vercel.app/data/CommunityComments');
     const reviews = response.data;
@@ -154,7 +142,6 @@ export const getReviews = () => {
 };
 
 export const getAdvisors = () => {
-  console.log("getAdvisors")
   return async function (dispatch) {
     const response = await axios.get('https://code-advisor-xi.vercel.app/Advisors');
     const advisors = response.data;
@@ -163,19 +150,14 @@ export const getAdvisors = () => {
 };
 
 export const getDetail = (id) => {
-  console.log("getDatail")
-
   return async function (dispatch) {
     const response = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}`);
-    // const response = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
     const advisor = response.data;
     dispatch({ type: ADVISOR_DETAIL, payload: advisor })
   }
 }
 
 export const getProfile = (id) => {
-  console.log("getProfile")
-
   return async function (dispatch) {
     const response = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}`);
     const advisor = response.data;
@@ -184,8 +166,6 @@ export const getProfile = (id) => {
 }
 
 export const getTechSkills = () => {
-  console.log("getTechSkills")
-
   return async function (dispatch) {
     const response = await axios.get('https://code-advisor-xi.vercel.app/data/TechSkills');
     const techSkills = response.data;

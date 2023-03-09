@@ -67,12 +67,12 @@ const Home = () => {
   return (
     <div className='home'>
       <Navbar toggleConfigBar={toggleConfigBar} />
-      {/* <SideBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} setCurrentPage={setCurrentPage} />
+      <SideBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} setCurrentPage={setCurrentPage} />
       <Commercial isSidebarOpen={isSidebarOpen} />
       <div className={`contSecctionVideo ${isSidebarOpen ? 'sidebar-open' : ''}`}>
         <div className='ContVideoPlayer'>
           <Video/>
-        </div> 
+        </div>
         <div className={`ContTextVideoplay ${isSidebarOpen ? 'sidebar-open' : ''}`}>
           <h3>Have you ever wondered how to write a web page?</h3>
           <p>There are many different programming languages ​​that allow us to create our web pages. Here we show you what they are and you can also choose who will teach you the programming language that interests you the most.</p>
@@ -81,9 +81,9 @@ const Home = () => {
         <div className="circle2"></div>
         <div className="circle3"></div>
         <div className="circle4"></div>
-      </div> */}
+      </div>
       <Cards isSidebarOpen={isSidebarOpen} currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      {/* <Testimonials />
+      <Testimonials />
       <div className='icons'>
         {icons.map((icon, index) => (
           <div className='icon' key={index}>
@@ -94,7 +94,7 @@ const Home = () => {
         ))}
       </div>
       <Footer/>
-      <Profile  isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen}> </Profile> */}
+      <Profile  isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen}> </Profile>
       <ConfigSideBar isAdmin={isAdmin} isSidebarOpen={isSidebarOpen} isConfigBarOpen={isConfigBarOpen} toggleConfigBar={toggleConfigBar} toggleProfile={toggleProfile} openAdmin={openAdmin} toggleAdmin={toggleAdmin} closeSideBar={closeSideBar} isProfileOpen={isProfileOpen}/>
       
       {isAdmin && <Admin openAdmin={openAdmin} toggleAdmin={toggleAdmin} isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen} closeSideBar={closeSideBar}></Admin>}
