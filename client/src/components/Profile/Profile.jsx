@@ -28,7 +28,6 @@ async function checkIfAdvisorFunction(id) {
 }
 
 useEffect(() => {
-  console.log("del inicio")
   async function fetchData() {
     if (id) {
       dispatch(getProfile(id)); 
@@ -105,6 +104,7 @@ const prevNextClick = (direction) => {
 };
 
 const renderCalendar = (year, month, selectedDate, monthChanged, availableDatesRender) => {
+  
     let firstDayofMonth = new Date(year, month, 1).getDay(), // getting first day of month
         lastDateofMonth = new Date(year, month + 1, 0).getDate(), // getting last date of month
         lastDayofMonth = new Date(year, month, lastDateofMonth).getDay(), // getting last day of month

@@ -6,8 +6,10 @@ import {
   FILTER_BY_RESIDENCE,
   SORT_ADVISORS,
   GET_AUTORS, GET_REVIEWS, GET_ADVISORS, ADVISOR_DETAIL, GET_TECHSKILLS, GET_PROFILE, GET_ADVISORS_REVIEWS,
-  BLOCK_ACCOUNT, UNBLOCK_ACCOUNT,
+
+  BLOCK_ACCOUNT, UNBLOCK_ACCOUNT, GET_DATES,
   POST_REVIWER,
+  GET_CART_ITEMS, CLEAR_CART,
   // DELETE_REVIWER,PUT_SCORE,
   UPDATE_DATES, UPDATE_AVAILABILITY, GET_AVAILABILITY,
   GET_ADMIN_DATA
@@ -48,6 +50,9 @@ const initialState = {
     F_Residence: [],
   },
   sortMethod: "",
+  datesBack:[],
+  cart:[],
+  productsInCart:[],
 }
 
 
@@ -91,12 +96,12 @@ const rootReducer = (state = initialState, action) => {
 
     case BLOCK_ACCOUNT:
       const blockedUser = state.users.find(a => a.id === action.payload);
-      const blockedAdvisor = state.advisors.find(a => a.id === action.payload);
+      const blockedAdvisor = state.advisorsInDisplay.find(a => a.id === action.payload);
 
       return {
         ...state,
         users: state.users.filter(a => a.id !== action.payload),
-        advisors: state.advisors.filter(a => a.id !== action.payload),
+        advisorsInDisplay: state.advisorsInDisplay.filter(a => a.id !== action.payload),
         blockedAccounts: [
           ...state.blockedAccounts,
           blockedUser || blockedAdvisor // add the filtered user or advisor object
@@ -125,7 +130,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         blockedAccounts: state.blockedAccounts.filter(a => a.id !== action.payload),
         users: updatedUsers,
-        advisors: updatedAdvisors
+        advisorsInDisplay: updatedAdvisors
       };
 
 
@@ -236,6 +241,25 @@ const rootReducer = (state = initialState, action) => {
     // case PUT_SCORE:
     //   return { ...state, comments: action.payload }
 
+
+      case GET_DATES:
+      return {
+        ...state,
+        dates: action.payload
+      };
+
+      case GET_CART_ITEMS:
+        return{
+          ...state,
+        cart: action.payload,
+        productsInCart: {cart: action.payload}
+      };
+
+      case CLEAR_CART: 
+      return {...state, 
+        productsInCart:[]
+        }
+        
     default:
       return { ...state }
   }

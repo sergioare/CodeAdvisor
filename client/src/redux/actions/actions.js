@@ -18,16 +18,26 @@ export const GET_PROFILE = 'GET_PROFILE'
 export const GET_ADVISORS_REVIEWS = 'GET_ADVISORS_REVIEWS'
 export const BLOCK_ACCOUNT = 'BLOCK_ACCOUNT'
 export const UNBLOCK_ACCOUNT = 'UNBLOCK_ACCOUNT'
+export const GET_DATES = "GET_DATES"
+export const GET_CART_ITEMS = "GET_CART_ITEMS"
+export const ADD_TO_CART = "ADD_TO_CART"
+export const CLEAR_CART = "CLEAR_CART"
+
+
 export const UPDATE_DATES = 'UPDATE_DATES'
 export const UPDATE_AVAILABILITY = 'UPDATE_AVAILABILITY'
 export const GET_AVAILABILITY = 'GET_AVAILABILITY'
 export const GET_ADMIN_DATA = 'GET_ADMIN_DATA'
 
+const key = {
+  key: 'ANG31'
+}
+
 export const getAdminData = () => {
   console.log('action')
   return async function (dispatch) {
     try {
-      const apiData = await axios.get(`https://code-advisor-back.vercel.app/Admin/data`);
+      const apiData = await axios.get(`https://code-advisor-back.vercel.app/Admin/data`, key);
       const data = apiData.data;
       console.log('data')
       console.log(data)
@@ -39,8 +49,10 @@ export const getAdminData = () => {
 };
 
 
+
 export const updateAvailability = (timeSpansArray, id) => {
   return async function (dispatch) {
+
     try {
       const apiData = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
       const schedules = apiData.data.Schedules;
@@ -50,8 +62,8 @@ export const updateAvailability = (timeSpansArray, id) => {
 
         for (let j = 0; j < schedules.length; j++) {
           if (schedules[j].Day === timeSpansArray[i].Day &&
-              schedules[j].Month === timeSpansArray[i].Month &&
-              schedules[j].Year === timeSpansArray[i].Year) {
+            schedules[j].Month === timeSpansArray[i].Month &&
+            schedules[j].Year === timeSpansArray[i].Year) {
             matchingObjectIndex = j;
             break;
           }
@@ -107,12 +119,14 @@ export const updateDates = (dates) => {
 
 export const blockAccount = (id) => {
   return async function (dispatch) {
+    await axios.put(`https://code-advisor-back.vercel.app/Admin/User/${id}`, false);
     dispatch({ type: BLOCK_ACCOUNT, payload: id })
   };
 }
 
 export const unBlockAccount = (id) => {
   return async function (dispatch) {
+    await axios.put(`https://code-advisor-back.vercel.app/Admin/User/${id}`, true);
     dispatch({ type: UNBLOCK_ACCOUNT, payload: id })
   };
 }
@@ -144,7 +158,8 @@ export const getAdvisors = () => {
 
 export const getDetail = (id) => {
   return async function (dispatch) {
-    const response = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}`);
+    // const response = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}`);
+    const response = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
     const advisor = response.data;
     dispatch({ type: ADVISOR_DETAIL, payload: advisor })
   }
@@ -210,23 +225,21 @@ export const sortAdvisors = (method) => {
 };
 
 export const POST_REVIWER = 'POST_REVIWER';
-export const DELETE_REVIWER = 'DELETE_REVIWER';
-// export const PUT_SCORE = 'PUT_SCORE';
+// export const DELETE_REVIWER = 'DELETE_REVIWER';
 
-
-export function postReviwer(id, uid, photoUser, nameUser, Reviwer, score) {
+export function postReviwer(aId, uId, photoUser, nameUser, Reviwer, score) {
   return async function (dispatch) {
     const tokken = window.localStorage.getItem("tokken");
     console.log(tokken)
-    const json = await axios.post(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`,
+    const json = await axios.post(`https://code-advisor-back.vercel.app/User/${uId}/AdvisorReviwer/${aId}`,
+      // const json = await axios.post(`https://code-advisor-back.vercel.app/Advisors/${id}/Reviwers`,
       {
-        id,
-        uid: uid,
+        aId,
+        uid: uId,
         Img: photoUser,
         Name: nameUser,
         Reviwer: Reviwer.Reviwer,
         score: score,
-        
       },
       {
         headers: {
@@ -241,23 +254,6 @@ export function postReviwer(id, uid, photoUser, nameUser, Reviwer, score) {
   };
 }
 
-// export function putScore(id, score) {
-//   return async function (dispatch) {
-//     console.log(id, score);
-//     try {
-//       const response = await axios.put(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`, {
-//         score: score,
-//       });
-//       dispatch({
-//         type: PUT_SCORE,
-//         payload: response.data,
-//       });
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   }
-// }
-
 // export function deleteReviwer(id) {
 //   try {
 //     return async function (dispatch) {
@@ -271,3 +267,31 @@ export function postReviwer(id, uid, photoUser, nameUser, Reviwer, score) {
 //     console.log(error.message);
 //   }
 // }
+
+// export const getDates = (id) => {
+//   return async function (dispatch) {
+//     const datesData = await axios.get(`https://code-advisor-xi.vercel.app/data/XD/${id}`);
+//     const dates = datesData.data;
+//     // console.log(dates)
+//     dispatch({ type: GET_DATES, payload: dates });//... este info va al reducer
+//   };
+// };
+
+export const getCartItems = (id) => {
+  return async function (dispatch) {
+    const cartData = await axios.get(`https://code-advisor-back.vercel.app/User/${id}`);
+    // console.log(cartData)
+    const cartItems = cartData.data;
+    dispatch({ type: GET_CART_ITEMS, payload: cartItems })
+  };
+};
+
+
+export const clearCart = () => {
+  return {
+    type: CLEAR_CART
+  };
+};
+
+
+

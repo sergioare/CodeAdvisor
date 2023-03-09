@@ -15,14 +15,16 @@ export const ReviewsFinish = () => {
     dispatch(getDetail(id));
   }, [dispatch, id]);
 
-  const reviewsByUsers = useSelector(state => state.advisorDetail.Reviews)
+  // const reviewsByUsers = useSelector(state => state.advisorDetail.Reviews)
+  const reviewsByUsers = useSelector(state => state.advisorDetail.Reviwers)
+
 
   return (
     <div className='ContainRevFin'>
       <div className='RevFin'>
-        {Array.isArray(reviewsByUsers) && reviewsByUsers?.map((review) => {
+        {Array.isArray(reviewsByUsers) && reviewsByUsers?.map((review, index) => {
           return (
-            <div className='cardRevFin' key={review.id}>
+            <div className='cardRevFin' key={index}>
               <div className='HeadRevFin'>
                 <img src={review.Img} alt='una_imagen' />
                 <h2>{review.Name}</h2>

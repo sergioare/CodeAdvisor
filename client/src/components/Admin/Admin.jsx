@@ -15,7 +15,7 @@ function Admin ({isProfileOpen, toggleProfile, isConfigBarOpen, closeSideBar, op
     const [displayUsers, setDisplayUsers] = useState("Users")
 
     const users = useSelector(state => state.users)
-    const advisors = useSelector(state => state.advisors)
+    const advisors = useSelector(state => state.advisorsInDisplay)
     const blockedUsers = useSelector(state => state.blockedAccounts)
     const Reviews = useSelector(state => state.advisorReviews)
     const Data = useSelector(state => state.adminData)
@@ -44,6 +44,7 @@ function Admin ({isProfileOpen, toggleProfile, isConfigBarOpen, closeSideBar, op
     }
 
     const accountBlocking = (id) => {
+        console.log(id)
         const confirmed = window.confirm("Are you sure you want to block this user?");
       
         if (confirmed) {
@@ -54,6 +55,7 @@ function Admin ({isProfileOpen, toggleProfile, isConfigBarOpen, closeSideBar, op
       }
 
     const accountUnblocking = (id) => {
+        console.log(id)
     const confirmed = window.confirm("Are you sure you want to unblock this user?");
 
         if (confirmed) {

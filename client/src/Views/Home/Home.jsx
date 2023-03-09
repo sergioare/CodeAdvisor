@@ -81,9 +81,9 @@ const Home = () => {
         <div className="circle2"></div>
         <div className="circle3"></div>
         <div className="circle4"></div>
-      </div>
+      </div> */}
       <Cards isSidebarOpen={isSidebarOpen} currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      <Testimonials />
+      {/* <Testimonials />
       <div className='icons'>
         {icons.map((icon, index) => (
           <div className='icon' key={index}>
