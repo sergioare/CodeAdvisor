@@ -135,7 +135,7 @@ export const getAdvisors = () => {
 
 export const getDetail = (id) => {
   return async function (dispatch) {
-    const response = await axios.get(`https://code-advisor-xi.vercel.app/Advisors/${id}`);
+    const response = await axios.get(`https://code-advisor-back.vercel.app/Advisors/${id}`);
     const advisor = response.data;
     dispatch({ type: ADVISOR_DETAIL, payload: advisor })
   }
@@ -205,19 +205,19 @@ export const DELETE_REVIWER = 'DELETE_REVIWER';
 // export const PUT_SCORE = 'PUT_SCORE';
 
 
-export function postReviwer(id, uid, photoUser, nameUser, Reviwer, score) {
+export function postReviwer(aId, uId, photoUser, nameUser, Reviwer, score) {
   return async function (dispatch) {
     const tokken = window.localStorage.getItem("tokken");
     console.log(tokken)
-    const json = await axios.post(`https://code-advisor-xi.vercel.app/Advisors/${id}/Reviwers`,
+    const json = await axios.post(`https://code-advisor-back.vercel.app/User/${uId}/AdvisorReviwer/${aId}`,
+     
       {
-        id,
-        uid: uid,
+        aId,
+        uid: uId,
         Img: photoUser,
         Name: nameUser,
         Reviwer: Reviwer.Reviwer,
         score: score,
-        
       },
       {
         headers: {
@@ -231,6 +231,7 @@ export function postReviwer(id, uid, photoUser, nameUser, Reviwer, score) {
     });
   };
 }
+
 
 // export function putScore(id, score) {
 //   return async function (dispatch) {

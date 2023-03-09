@@ -82,44 +82,44 @@ const rootReducer = (state = initialState, action) => {
         }
       }
 
-    case BLOCK_ACCOUNT:
-      const blockedUser = state.users.find(a => a.id === action.payload);
-      const blockedAdvisor = state.advisors.find(a => a.id === action.payload);
-
-      return {
-        ...state,
-        users: state.users.filter(a => a.id !== action.payload),
-        advisors: state.advisors.filter(a => a.id !== action.payload),
-        blockedAccounts: [
-          ...state.blockedAccounts,
-          blockedUser || blockedAdvisor // add the filtered user or advisor object
-        ]
-      };
-
-
-
-    case UNBLOCK_ACCOUNT:
-      const unblockedAccount = state.blockedAccounts.find(a => a.id === action.payload);
-
-      if (!unblockedAccount) {
-        return state; // if the account isn't blocked, do nothing
-      }
-
-      const updatedUsers = [...state.users];
-      const updatedAdvisors = [...state.advisors];
-
-      if (unblockedAccount.Specialty) {
-        updatedAdvisors.push(unblockedAccount);
-      } else {
-        updatedUsers.push(unblockedAccount);
-      }
-
-      return {
-        ...state,
-        blockedAccounts: state.blockedAccounts.filter(a => a.id !== action.payload),
-        users: updatedUsers,
-        advisors: updatedAdvisors
-      };
+      case BLOCK_ACCOUNT:
+        const blockedUser = state.users.find(a => a.id === action.payload);
+        const blockedAdvisor = state.advisorsInDisplay.find(a => a.id === action.payload);
+  
+        return {
+          ...state,
+          users: state.users.filter(a => a.id !== action.payload),
+          advisorsInDisplay: state.advisorsInDisplay.filter(a => a.id !== action.payload),
+          blockedAccounts: [
+            ...state.blockedAccounts,
+            blockedUser || blockedAdvisor // add the filtered user or advisor object
+          ]
+        };
+  
+  
+  
+      case UNBLOCK_ACCOUNT:
+        const unblockedAccount = state.blockedAccounts.find(a => a.id === action.payload);
+  
+        if (!unblockedAccount) {
+          return state; // if the account isn't blocked, do nothing
+        }
+  
+        const updatedUsers = [...state.users];
+        const updatedAdvisors = [...state.advisors];
+  
+        if (unblockedAccount.Specialty) {
+          updatedAdvisors.push(unblockedAccount);
+        } else {
+          updatedUsers.push(unblockedAccount);
+        }
+  
+        return {
+          ...state,
+          blockedAccounts: state.blockedAccounts.filter(a => a.id !== action.payload),
+          users: updatedUsers,
+          advisorsInDisplay: updatedAdvisors
+        };
 
 
     case GET_ADVISORS_REVIEWS:

@@ -6,7 +6,7 @@ import { getDetail } from '../../redux/actions/actions';
 import Reviews from '../../components/Reviews/Reviews';
 import { ReviewsFinish } from '../../components/Reviews/ReviewsFinish';
 import StarRating from '../../components/StarRating/StarRating';
-
+import { getAuth } from 'firebase/auth';
 const Detail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -17,7 +17,10 @@ const Detail = () => {
   }, [dispatch, id]);
 
   const detail = useSelector(state => state.advisorDetail)
- 
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
+  const uid = currentUser ? currentUser.uid : null;
+  const purchase = detail.MyWallet;
   const detScore = detail.Score?.toFixed(1);
   const numReviews = Array.isArray(detail.Reviews) ? detail.Reviews.length : 0;
 
@@ -49,7 +52,7 @@ const Detail = () => {
             <p className='TitlesPurple'>{<StarRating rating={detScore} />}</p>
             <span>{numReviews} user reviews.</span>
           </div>
-          <Reviews />
+          {purchase?.includes(uid) && <Reviews /> }
         </div>
         <div className='contRev2'>
           <ReviewsFinish />

@@ -18,11 +18,11 @@ mercadoPagoRouter.post('/', (req, res) => {
             unit_price: prod.Price
         }],
 
-        back_urls: {
-            success : "https://code-advisor-hy1v.vercel.app/home",
-            failure: "https://code-advisor-xi.vercel.app/payment/feedback",
-            pending : ""
-        },
+        // back_urls: {
+        //     success : "https://code-advisor-ultimate-5tbczw96o-codigojaguar.vercel.app/home",
+        //     failure: "https://code-advisor-xi.vercel.app/payment/feedback",
+        //     pending : ""
+        // },
         auto_return: 'approved',
         binary_mode: true,
 

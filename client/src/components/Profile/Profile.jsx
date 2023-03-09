@@ -10,22 +10,26 @@ import { months, startTime, endTime, timeSlots, checkIfAdvisor } from './data';
 
 let calendarRenderd = false;
 
-function Profile ({isProfileOpen, toggleProfile, isConfigBarOpen}) {
+function Profile ({isProfileOpen, toggleProfile, isConfigBarOpen, isAdvisors}) {
+  console.log(isAdvisors)
 const auth = getAuth();
 const currentUser = auth.currentUser;
-const [isAdvisor, setIsAdvisor] = useState(false);
+// const [isAdvisor, setIsAdvisor] = useState(false);
+// setIsAdvisor(isAdvisors)
+const isAdvisor = true
+console.log(isAdvisor)
 const dispatch = useDispatch();
 
 
-const id = "001"; //cambair id por id de cada cuenta
-//const id = currentUser ? currentUser.uid : '2Vyng2S1Lfwv8ge4A9Mv';
+// const id = "001"; //cambair id por id de cada cuenta
+const id = currentUser ? currentUser.uid : '2Vyng2S1Lfwv8ge4A9Mv';
 const userEmail = currentUser ? currentUser.email : null;
 
-async function checkIfAdvisorFunction(id) {
-  const isAdvisor = await checkIfAdvisor(id);
-  console.log(isAdvisor);
-  return isAdvisor
-}
+// async function checkIfAdvisorFunction(id) {
+//   const isAdvisor = await checkIfAdvisor(id);
+//   console.log(isAdvisor);
+//   return isAdvisor
+// }
 
 useEffect(() => {
   console.log("del inicio")

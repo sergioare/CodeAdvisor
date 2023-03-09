@@ -22,6 +22,7 @@ const Home = () => {
   const { user, logout } = useAuth()
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
+  const [isAdvisors, setIsAdvisors]= useState(false)
   //Estado de admin. No se si será necesario o vendra despues de otro lado.
   const [isAdmin, setIsAdmin] = useState(true);
 
@@ -57,18 +58,25 @@ const Home = () => {
   const toggleProfile = () => {
     setIsProfileOpen(prevState => !prevState);
   };
+  const setAdvisors = (value) => {
+    setIsAdvisors(value);
+    console.log(value)
+  };
 
   const toggleAdmin = () => {
     setOpenAdmin(!openAdmin);
   };
 
+  const hanlderChangeadvisor =()=>{
+    setIsAdvisors(!isAdvisors)
+  }
 
 
   return (
     <div className='home'>
       <Navbar toggleConfigBar={toggleConfigBar} />
       <SideBar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} setCurrentPage={setCurrentPage} />
-      <Commercial isSidebarOpen={isSidebarOpen} />
+      <Commercial setAdvisors={setAdvisors} isSidebarOpen={isSidebarOpen} />
       <div className={`contSecctionVideo ${isSidebarOpen ? 'sidebar-open' : ''}`}>
         <div className='ContVideoPlayer'>
           <Video/>
@@ -94,7 +102,7 @@ const Home = () => {
         ))}
       </div>
       <Footer/>
-      <Profile  isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen}> </Profile>
+      <Profile isAdvisors={isAdvisors}  isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen}> </Profile>
       <ConfigSideBar isAdmin={isAdmin} isSidebarOpen={isSidebarOpen} isConfigBarOpen={isConfigBarOpen} toggleConfigBar={toggleConfigBar} toggleProfile={toggleProfile} openAdmin={openAdmin} toggleAdmin={toggleAdmin} closeSideBar={closeSideBar} isProfileOpen={isProfileOpen}/>
       
       {isAdmin && <Admin openAdmin={openAdmin} toggleAdmin={toggleAdmin} isProfileOpen={isProfileOpen} toggleProfile={toggleProfile} isConfigBarOpen={isConfigBarOpen} closeSideBar={closeSideBar}></Admin>}
