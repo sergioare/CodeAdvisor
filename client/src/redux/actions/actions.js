@@ -22,7 +22,7 @@ export const GET_DATES = "GET_DATES"
 export const GET_CART_ITEMS = "GET_CART_ITEMS"
 export const ADD_TO_CART="ADD_TO_CART"
 export const CLEAR_CART= "CLEAR_CART"
-
+export const DELETE_CART="DELETE_CART"
 
 export const UPDATE_DATES = 'UPDATE_DATES'
 export const UPDATE_AVAILABILITY = 'UPDATE_AVAILABILITY'
@@ -289,5 +289,11 @@ export function postReviwer(aId, uId, photoUser, nameUser, Reviwer, score) {
     };
   };
 
+  // export const deletCart = (id) => {
+  //   return {
+  //     type: DELETE_CART,
+  //     payload:id
+  //   };
+  // };
 
 

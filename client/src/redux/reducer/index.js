@@ -8,7 +8,7 @@ import {
   GET_AUTORS, GET_REVIEWS, GET_ADVISORS, ADVISOR_DETAIL, GET_TECHSKILLS, GET_PROFILE, GET_ADVISORS_REVIEWS,
   BLOCK_ACCOUNT, UNBLOCK_ACCOUNT, GET_DATES,
   POST_REVIWER,
-  GET_CART_ITEMS, CLEAR_CART,
+  GET_CART_ITEMS, CLEAR_CART,DELETE_CART,
   // DELETE_REVIWER,PUT_SCORE,
   UPDATE_DATES, UPDATE_AVAILABILITY, GET_AVAILABILITY
 } from '../actions/actions';
@@ -246,7 +246,14 @@ const rootReducer = (state = initialState, action) => {
       case CLEAR_CART: 
       return {...state, 
         productsInCart:[]
-        }
+        };
+
+        // case DELETE_CART:
+        //   return {
+        //     ...state,
+        //     productsInCart: state.productsInCart.filter(item => console.log(item.cId) !== action.payload),
+        
+        //   }
         
     default:
       return { ...state }

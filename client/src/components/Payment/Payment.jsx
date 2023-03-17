@@ -12,11 +12,21 @@ import { getDetail } from '../../redux/actions/actions';
 import booking from "../../assets/booking.png"
 import axios from "axios"
 import { getAuth } from 'firebase/auth'
+import Swal from 'sweetalert2'
 
 
 
 
 const Payment = () => {
+
+    const showAlert = ()=>{
+        Swal.fire({
+        title: "Meet added to cart",
+        icon: "success",
+        footer: "<b>Go to cart and complete de purchese</b>",
+        timer: 3000,
+    })
+    }
 
     const auth = getAuth();
 const idClient = auth.currentUser ? auth.currentUser.uid : null;
@@ -64,7 +74,7 @@ console.log(idClient)
         //     .then((res) =>
         //         (window.location.href = res.data.response.body.init_point));
        axios.post(`https://code-advisor-back.vercel.app/User/${idClient}/MyCart`, agenda)
-            .then(res => alert("added to cart"));
+            .then(res => showAlert());
         };
 
 
@@ -78,7 +88,7 @@ console.log(idClient)
 
 
     //-----------------------Calendar-------------------//
-    const [value, setValue] = useState(dayjs('2023-02-24'));
+    const [value, setValue] = useState(dayjs('2023-03-01'));
     const date = value.$d.toString().split(" ")
     // console.log(value)
     const dateLong = (` ${date[1]} ${date[2]} ${date[3]}`)

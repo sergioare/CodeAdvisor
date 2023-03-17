@@ -233,7 +233,7 @@ return (
           <div className="image-container">
             <img 
               className="image" 
-              src={profileData.Img ||imgDefault } 
+              src={profileData.Img || currentUser.photoURL ||imgDefault  } 
               alt="Profile"
               onClick={!profileData.Img ? handleEdit : undefined}
               style={!profileData.Img ? { cursor: "pointer" } : undefined}

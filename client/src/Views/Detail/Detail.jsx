@@ -21,8 +21,8 @@ const Detail = () => {
   const currentUser = auth.currentUser;
   const uid = currentUser ? currentUser.uid : null;
   const purchase = detail.MyWallet;
-  const detScore = detail.Score?.toFixed(1);
-  const numReviews = Array.isArray(detail.Reviews) ? detail.Reviews.length : 0;
+  const detScore = detail.score?.toFixed(1);
+  const numReviews = Array.isArray(detail.Reviwers) ? detail.Reviwers.length : 0;
 
   return (
     <div>
@@ -48,7 +48,7 @@ const Detail = () => {
       <div className='contRevvv'>
         <div className='consRev1'>
           <div className='reviewSummary'>
-            <h2 className='TitlesPurple'>{detScore}</h2>
+          <h2 className='TitlesPurple'>{detScore}</h2>
             <p className='TitlesPurple'>{<StarRating rating={detScore} />}</p>
             <span>{numReviews} user reviews.</span>
           </div>

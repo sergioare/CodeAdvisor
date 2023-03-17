@@ -5,7 +5,7 @@ import './ModShopping.scss';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getCartItems, clearCart } from "../../redux/actions/actions"
+import { getCartItems, clearCart, deletCart } from "../../redux/actions/actions"
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { getAuth } from 'firebase/auth'
@@ -39,6 +39,9 @@ const ModShopping = () => {
         dispatch(clearCart())
     }
     
+    // const handlerDelet = (cId) =>{
+    //     dispatch(deletCart(cId))
+    // }
 
     const [isOpenShop, openModalShop, closeModalShop] = useModal(false);
 
@@ -83,8 +86,9 @@ const ModShopping = () => {
                             <button className="btnDelete" onClick={
                                 (event) => {
                                     event.preventDefault()
-                                    axios.put(`https://code-advisor-back.vercel.app/User/${idClient}/MyCart/${p.cId}`, { status: "deleted" })
-                                    
+                                    axios.put(`https://code-advisor-back.vercel.app/User/${idClient}/MyCart/${p.cId}`, { status: "deleted" });
+
+                                    // ()=>{handlerDelet(p.cId)}
                                 }
                             }> <i class="fa-solid fa-trash"></i> </button>
 

@@ -62,7 +62,7 @@ function Admin ({isProfileOpen, toggleProfile, isConfigBarOpen, closeSideBar, op
     return (
         <div>
             <div className={`admin-window ${openAdmin ? 'admin-window--open' : ''} ${isConfigBarOpen ? 'config-sidebar-open' : ''}`}>
-                <button onClick={handleAdminButtonClick}>Close</button>
+            <button onClick={handleAdminButtonClick} className='close'>X</button>
                 <h1>Platform administrator</h1>
                 <p>Be responsible, be fair. Great power comes with great responsibility.</p>
                 <div className='buttons-positions'>
